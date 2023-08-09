@@ -1,8 +1,12 @@
 import "./App.css";
+import fuyo from './assets/fuyo.jpg'
 
 function App() {
     return (
-        <h1>Fuyo Clicker!</h1>
+        <div>
+            <h1>Fuyo Clicker!</h1>
+            <img src={fuyo} />
+        </div>
     );
 }
 

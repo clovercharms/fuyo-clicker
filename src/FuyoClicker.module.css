@@ -1,0 +1,19 @@
+.container {
+    height: 100vh;
+    display: flex;
+    background-image: url("./assets/images/bg2.png");
+    background-size: cover;
+}
+
+.container > * {
+    width: 30%;
+    overflow-y: auto;
+}
+
+.container .middle {
+    width: 50%;
+}
+
+.container .right {
+    width: 20%;
+}

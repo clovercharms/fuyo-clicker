@@ -18,12 +18,7 @@ export default function Lane({ type, ...props }: ILane) {
             {...props}
             className={[props.className, classes.container].join(" ")}
             style={{
-                backgroundImage: `url(${
-                    new URL(
-                        `../../../assets/images/lanes/${LaneTypes[type].background}.png`,
-                        import.meta.url
-                    ).href
-                })`,
+                backgroundImage: `url(${LaneTypes[type].background})`,
             }}
         >
             {/* Fill placeholder Clovers for demonstration purposes. */}

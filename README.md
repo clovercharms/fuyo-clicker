@@ -1,6 +1,6 @@
 # Fuyo Clicker!
 
-![Fuyo](./src/assets/fuyo.jpg)
+![Fuyo](./src/assets/images/fuyo.jpg)
 
 This is the main repository for the Fuyo Clicker fangame, it's based on the
 `react-ts` template of [Vite](https://vitejs.dev/guide/) and uses

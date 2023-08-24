@@ -1,7 +1,31 @@
-:root {
-    font-family: sans-serif;
+@font-face {
+    font-family: "KOMIKASK";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../src/assets/fonts/KOMIKASK.woff2");
 }
 
-body {
+:root {
+    font-family: "KOMIKASK", sans-serif;
+}
+
+body,
+h1,
+h2 {
     margin: 0;
+}
+
+h1,
+h2 {
+    color: white;
+    -webkit-text-stroke: 0.05rem ForestGreen;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
 }

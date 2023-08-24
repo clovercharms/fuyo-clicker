@@ -1,0 +1,11 @@
+.container {
+    white-space: nowrap;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    border-bottom: 0.2rem solid limegreen;
+    overflow: visible;
+}

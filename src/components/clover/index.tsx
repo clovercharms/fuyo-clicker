@@ -28,14 +28,7 @@ export default function Clover({ job, ...props }: IClover) {
                 style={{ animationDelay: `${Math.random()}s` }}
             >
                 <img src={base} />
-                <img
-                    src={
-                        new URL(
-                            `../../assets/images/clover/jobs/${Jobs[job]}.png`,
-                            import.meta.url
-                        ).href
-                    }
-                />
+                <img src={Jobs[job]} />
             </div>
         </div>
     );

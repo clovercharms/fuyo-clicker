@@ -1,3 +1,11 @@
+import {
+    blacksmith,
+    factory_worker,
+    mechanic,
+    miner,
+    scientist,
+} from "../../assets/images/clover/jobs";
+
 /**
  * A type of job a Clover can have.
  */
@@ -10,14 +18,14 @@ export enum Job {
 }
 
 /**
- * Mapping for Clover jobs to images.
+ * Mapping for Clover jobs to image URLs.
  */
-export const Jobs: { [job in Job]: string } = {
-    [Job.Blacksmith]: "blacksmith",
-    [Job.FactoryWorker]: "factory_worker",
-    [Job.Mechanic]: "mechanic",
-    [Job.Miner]: "miner",
-    [Job.Scientist]: "scientist",
+export const Jobs: { [type in Job]?: string } = {
+    [Job.Blacksmith]: blacksmith,
+    [Job.FactoryWorker]: factory_worker,
+    [Job.Mechanic]: mechanic,
+    [Job.Miner]: miner,
+    [Job.Scientist]: scientist,
 };
 
 /**
@@ -29,7 +37,7 @@ export const names = [
     "Xander",
     "Boyong",
     "Bannana Bread",
-    "Doomei2",
+    "Doomei",
     "EcchiArtistIdk",
     "ISneeze",
     "Khris",

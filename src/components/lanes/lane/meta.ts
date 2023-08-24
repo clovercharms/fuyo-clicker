@@ -1,3 +1,10 @@
+import {
+    construction_site,
+    forge,
+    garage,
+    lab,
+    mines,
+} from "../../../assets/images/lanes";
 import { Job } from "../../clover/meta";
 
 /**
@@ -27,22 +34,22 @@ export interface LaneData {
 export const LaneTypes: { [type in LaneType]: LaneData } = {
     [LaneType.Mine]: {
         job: Job.Miner,
-        background: "mines",
+        background: mines,
     },
     [LaneType.Forge]: {
         job: Job.Blacksmith,
-        background: "forge",
+        background: forge,
     },
     [LaneType.ConstructionSite]: {
         job: Job.FactoryWorker,
-        background: "construction_site",
+        background: construction_site,
     },
     [LaneType.RepairShop]: {
         job: Job.Mechanic,
-        background: "garage",
+        background: garage,
     },
     [LaneType.Lab]: {
         job: Job.Scientist,
-        background: "lab",
+        background: lab,
     },
 };

@@ -1,6 +1,6 @@
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { ItemType, Images } from "./meta";
+import { ItemType, Items } from "./meta";
 
 export interface IItem extends Omit<HTMLProps<HTMLDivElement>, "itemType"> {
     /** The type of item. */
@@ -18,7 +18,7 @@ export default function Item({itemType, owned, ...props} : IItem) {
             {...props}
             className={[props.className, classes.container].join(" ")}
         >
-            <img src={new URL(Images[itemType], import.meta.url).href} />
+            <img src={Items[itemType]} />
             <span>{owned}</span>
         </div>
     );

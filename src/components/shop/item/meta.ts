@@ -1,3 +1,5 @@
+import { clicker, clover } from "../../../assets/images/items";
+
 /**
  * A type of item.
  */
@@ -7,9 +9,9 @@ export enum ItemType {
 }
 
 /**
- * Mapping for items to images.
+ * Mapping for items to image URLs.
  */
-export const Images: { [itemType in ItemType]: string } = {
-    [ItemType.Clicker]: "../../../assets/images/items/clicker.png",
-    [ItemType.Clover]: "../../../assets/images/items/clover.png",
+export const Items: { [itemType in ItemType]: string } = {
+    [ItemType.Clicker]: clicker,
+    [ItemType.Clover]: clover,
 };

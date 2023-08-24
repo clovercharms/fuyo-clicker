@@ -1,0 +1,9 @@
+.container {
+    min-height: 5rem;
+    background-color: #fff4;
+}
+
+img {
+    width: 64px;
+    height: 64px;
+}

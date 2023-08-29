@@ -14,7 +14,9 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
      * Handles the main coin click, currently on updates a simple counter for
      * demonstration purposes.
      */
-    const handleClick = () => {
+    const handleClick = (event: MouseEvent) => {
+        if (event.button !== 0) return;
+        
         setCoins(coins => coins + 1);
 
         // Clone audio node in order to allow for overlapping audio.

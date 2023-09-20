@@ -1,11 +1,19 @@
 .container {
+    position: relative;
     white-space: nowrap;
     overflow: hidden;
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
     height: 6rem;
     border-bottom: 0.2rem solid limegreen;
     overflow: visible;
+    overflow-x: clip;
+}
+
+.overlap {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }

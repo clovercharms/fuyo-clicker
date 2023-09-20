@@ -1,4 +1,33 @@
 .container {
-    min-height: 5rem;
     background-color: #fff4;
+}
+
+.items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+.items > li {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: burlywood;
+    color: white;
+    -webkit-text-stroke: 0.0625rem Black;
+    font-size: 1.5rem;
+    border: 0.3rem solid saddlebrown;
+    border-bottom: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.items li:last-child {
+    border-bottom: 0.3rem solid saddlebrown;
+}
+
+.purchased {
+    margin-left: auto;
+    font-size: 2.5rem;
 }

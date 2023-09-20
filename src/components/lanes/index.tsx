@@ -1,23 +1,22 @@
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import Lane from "./lane";
-import { LaneType } from './lane/meta';
+import { useGameStore } from '../../store';
 
 /**
  * Collection of Lanes for Clovers to be assigned to.
  */
 export default function Lanes(props: HTMLProps<HTMLDivElement>) {
+    const lanes = useGameStore(state => state.lanes);
     return (
         <div
             {...props}
             className={[props.className, classes.container].join(" ")}
         >
             <h1>Buildings</h1>
-            <Lane type={LaneType.Mine} />
-            <Lane type={LaneType.Forge} />
-            <Lane type={LaneType.ConstructionSite} />
-            <Lane type={LaneType.RepairShop} />
-            <Lane type={LaneType.Lab} />
+            {Object.entries(lanes).map(([type, lane]) => (
+                <Lane key={type} type={parseInt(type)} lane={lane} />
+            ))}
         </div>
     );
 }

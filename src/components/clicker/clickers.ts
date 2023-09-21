@@ -26,14 +26,9 @@ export function useHands(coins: GameState["coins"]) {
         if (coins.clickers === 0) return;
 
         offsetHand.current = (offsetHand.current + 1) % coins.clickers;
-        let loopOffset = 0;
+
         Object.keys(handRefs.current)
-            .filter(k => {
-                const iteration =
-                    parseInt(k) === offsetHand.current + loopOffset;
-                if (iteration) loopOffset += LOOP_OFFSET;
-                return iteration;
-            })
+            .filter(k => (parseInt(k) - offsetHand.current) % LOOP_OFFSET === 0)
             .forEach(k => {
                 handRefs.current[parseInt(k)].animate(
                     [

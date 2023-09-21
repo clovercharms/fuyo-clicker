@@ -30,6 +30,8 @@ export function useHands(coins: GameState["coins"]) {
         Object.keys(handRefs.current)
             .filter(k => (parseInt(k) - offsetHand.current) % LOOP_OFFSET === 0)
             .forEach(k => {
+                if (!handRefs.current) return;
+
                 handRefs.current[parseInt(k)].animate(
                     [
                         { transform: "translateY(0rem)" },

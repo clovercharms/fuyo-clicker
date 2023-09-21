@@ -21,6 +21,10 @@ export interface CoinsSlice {
          * Manually increments the coin amount.
          */
         click: () => void;
+        /**
+         * Manually sets the amount of coins.
+         */
+        cheat: (amount: number) => void;
     };
 }
 
@@ -83,6 +87,22 @@ export const createCoinsSlice = (
                 false,
                 // @ts-expect-error typing
                 "Action - Click"
+            );
+        },
+        cheat: (amount: number) => {
+            // Immediately forward game state.
+            get().coins.tick();
+
+            set(
+                state => ({
+                    coins: {
+                        ...state.coins,
+                        amount: amount,
+                    },
+                }),
+                false,
+                // @ts-expect-error typing
+                "Action - Cheat - Coins"
             );
         },
     },

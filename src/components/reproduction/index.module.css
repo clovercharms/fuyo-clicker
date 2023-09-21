@@ -1,4 +1,7 @@
 .container {
     background-color: #fff4;
-    overflow: auto;
+}
+
+button {
+    margin-bottom: 1rem;
 }

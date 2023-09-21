@@ -14,14 +14,14 @@ const BASE_TITLE = "Fuyo Clicker";
  */
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const coins = useGameStore(state => state.coins);
-    const { counterRef } = useCounter(coins.amount, coins.rateMs);
+    const { counterRef } = useCounter(coins.amount, coins.rateMs, true, true);
     const { clickerRefs, handRefs } = useClickerHands(coins);
 
     /**
      * Updates the title to reflect the latest amount of coins accrued.
      */
     useEffect(() => {
-        document.title = `${formatNumber(coins.amount)} coins - ${BASE_TITLE}`;
+        document.title = `${formatNumber(coins.amount, true)} coins - ${BASE_TITLE}`;
     }, [coins.amount]);
 
     /**
@@ -36,6 +36,14 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
         void new Audio(ping).play();
     };
 
+    const handleCheat = () => {
+        let amount = 0;
+        do amount = parseInt(prompt("Coins:") ?? '')
+        while (Number.isNaN(amount));
+
+        coins.cheat(amount);
+    }
+
     return (
         <div
             {...props}
@@ -47,11 +55,12 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                 </h1>
                 <h2>
                     Per second:{" "}
-                    {formatNumber(coins.rateMs * 1e3, {
+                    {formatNumber(coins.rateMs * 1e3, false, {
                         minimumFractionDigits: 1,
                         maximumFractionDigits: 1
                     })}
                 </h2>
+                <button onClick={handleCheat}>Set coins</button>
             </header>
             <div className={classes.cookie}>
                 {new Array(coins.clickers).fill(undefined).map((_, i) => (

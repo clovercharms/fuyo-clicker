@@ -33,6 +33,10 @@ export interface ReproSlice {
          * @param clover The Clover to assign.
          */
         assign: (laneType: LaneType, clover: Clover) => void;
+        /**
+         * Manually spawns a new clover.
+         */
+        cheat: () => void;
     };
 }
 
@@ -44,7 +48,7 @@ export const createReproSlice = (
         clovers: {},
         lastCloverId: 0,
         progress: 0,
-        rateMs: 1 / 60e3,
+        rateMs: 1 / 10e3,
         lastUpdate: performance.now(),
         tick: () => {
             const elapsed = performance.now() - get().repro.lastUpdate;
@@ -123,8 +127,32 @@ export const createReproSlice = (
 
             // Immediately forward game state.
             get().coins.tick();
+        },
+        cheat: () => {
+            const id = get().repro.lastCloverId + 1;
 
-            return true;
+            set(
+                state => ({
+                    repro: {
+                        ...state.repro,
+                        clovers: {
+                            ...state.repro.clovers,
+                            [id]: {
+                                id,
+                                name: names[
+                                    Math.round(
+                                        Math.random() * (names.length - 1)
+                                    )
+                                ],
+                            },
+                        },
+                        lastCloverId: id,
+                    },
+                }),
+                false,
+                // @ts-expect-error typing
+                "Action - Cheat - Clover"
+            );
         },
     },
 });

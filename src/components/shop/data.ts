@@ -20,14 +20,14 @@ export const data: Record<number, Item> = {
         name: "Auto Clicker",
         price: {
             base: 15,
-            factor: 1.2,
+            factor: 1.1,
         },
     },
     1: {
         name: "Mine",
         price: {
             base: 100,
-            factor: 1.2,
+            factor: 1.15,
         },
         laneType: LaneType.Mine,
     },
@@ -35,9 +35,33 @@ export const data: Record<number, Item> = {
         name: "Forge",
         price: {
             base: 200,
-            factor: 1.3,
+            factor: 1.2,
         },
         laneType: LaneType.Forge,
+    },
+    3: {
+        name: "Crane",
+        price: {
+            base: 500,
+            factor: 1.25,
+        },
+        laneType: LaneType.ConstructionSite,
+    },
+    4: {
+        name: "Repair Tools",
+        price: {
+            base: 1000,
+            factor: 1.3,
+        },
+        laneType: LaneType.RepairShop,
+    },
+    5: {
+        name: "Lab Equipment",
+        price: {
+            base: 2000,
+            factor: 1.35,
+        },
+        laneType: LaneType.Lab,
     },
 };
 

@@ -45,26 +45,26 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Forge]: {
         job: Job.Blacksmith,
         background: forge,
-        rateMs: 0.5,
-        slots: 2,
+        rateMs: 0.002,
+        slots: 4,
     },
     [LaneType.ConstructionSite]: {
         job: Job.FactoryWorker,
         background: construction_site,
-        rateMs: 0.75,
-        slots: 2,
+        rateMs: 0.004,
+        slots: 6,
     },
     [LaneType.RepairShop]: {
         job: Job.Mechanic,
         background: garage,
-        rateMs: 1.0,
-        slots: 2,
+        rateMs: 0.008,
+        slots: 6,
     },
     [LaneType.Lab]: {
         job: Job.Scientist,
         background: lab,
-        rateMs: 1.25,
-        slots: 2,
+        rateMs: 0.016,
+        slots: 6,
     },
 };
 

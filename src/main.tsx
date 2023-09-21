@@ -2,9 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import FuyoClicker from "./FuyoClicker.tsx";
 import "./index.css";
+import Spoiler from './components/hide/index.tsx';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-        <FuyoClicker />
+        <Spoiler>
+            <FuyoClicker />
+        </Spoiler>
     </React.StrictMode>
 );

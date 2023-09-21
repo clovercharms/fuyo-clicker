@@ -31,3 +31,9 @@
     margin-left: auto;
     font-size: 2.5rem;
 }
+
+@-moz-document url-prefix() {
+    .items > li {
+        -webkit-text-stroke: 1px Black;
+    }
+}

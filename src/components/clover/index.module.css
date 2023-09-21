@@ -64,3 +64,9 @@
     max-height: 100%;
     position: absolute;
 }
+
+@-moz-document url-prefix() {
+    .name {
+        -webkit-text-stroke: 1px black;
+    }
+}

@@ -19,7 +19,7 @@ h2 {
 h1,
 h2 {
     color: white;
-    -webkit-text-stroke: 0.03rem ForestGreen;
+    -webkit-text-stroke: 0.01rem forestgreen;
 }
 
 h1 {
@@ -28,4 +28,11 @@ h1 {
 
 h2 {
     font-size: 1.5rem;
+}
+
+@-moz-document url-prefix() {
+    h1,
+    h2 {
+        -webkit-text-stroke: 1px forestgreen;
+    }
 }

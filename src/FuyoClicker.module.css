@@ -10,15 +10,19 @@
     flex: 1;
 }
 
-.container .middle {
+.container > .middle {
     flex: 2;
 }
 
-.container .right {
+.container > .right {
     display: flex;
     flex-direction: column;
 }
 
-.container .right > * {
+.container > .right > * {
+    overflow: auto;
+}
+
+.container > .right > * {
     flex: 1;
 }

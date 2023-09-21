@@ -1,16 +1,7 @@
 import { StoreApi } from "zustand";
 import { GameState } from "../../store";
-import { Job, names } from "../clover/data";
-import { LaneType, lanes } from "../lanes/lane/data";
-
-/**
- * State about a Clover.
- */
-export interface Clover {
-    id: number;
-    name: string;
-    job: Job;
-}
+import { names } from "../clover/data";
+import { Clover } from "../clover/slice";
 
 /**
  * Slice containing information about the current production progress,
@@ -27,12 +18,6 @@ export interface ReproSlice {
          * Chronologically updates production.
          */
         tick: () => void;
-        /**
-         * Assigns a Clover to a specific lane.
-         * @param laneType The type of lane.
-         * @param clover The Clover to assign.
-         */
-        assign: (laneType: LaneType, clover: Clover) => void;
         /**
          * Manually spawns a new clover.
          */
@@ -86,6 +71,7 @@ export const createReproSlice = (
                                         Math.random() * (names.length - 1)
                                     )
                                 ],
+                                assigned: 0,
                             },
                         },
                         lastCloverId: id,
@@ -95,38 +81,6 @@ export const createReproSlice = (
                 // @ts-expect-error typing
                 "Tick - Repro - Clover"
             );
-        },
-        assign: (laneType: LaneType, clover: Clover) => {
-            const clovers = get().repro.clovers;
-            delete clovers[clover.id];
-
-            set(
-                state => ({
-                    repro: {
-                        ...state.repro,
-                        clovers,
-                    },
-                    lanes: {
-                        ...state.lanes,
-                        [laneType]: {
-                            ...state.lanes[laneType],
-                            clovers: {
-                                ...state.lanes[laneType].clovers,
-                                [clover.id]: {
-                                    ...clover,
-                                    job: lanes[laneType].job,
-                                },
-                            },
-                        },
-                    },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Action - Assign"
-            );
-
-            // Immediately forward game state.
-            get().coins.tick();
         },
         cheat: () => {
             const id = get().repro.lastCloverId + 1;

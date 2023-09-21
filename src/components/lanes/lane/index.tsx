@@ -2,10 +2,12 @@ import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import Clover from "../../clover";
 import { Lane as ILane } from "../slice";
-import { LaneType, lanes } from "./data";
+import { LaneType } from "./data";
 import building from "../../../assets/images/lanes/building.png";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "../../../store";
+import { Clover as IClover } from "../../clover/slice";
+import { lanes as lanesData } from "./data";
 
 export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
     type: LaneType;
@@ -17,7 +19,7 @@ export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
  * can be built, possibly by upgrades or deliberate action.
  */
 export default function Lane({ type, lane, ...props }: LaneProps) {
-    const repro = useGameStore(state => state.repro);
+    const lanes = useGameStore(state => state.lanes);
 
     const { isOver, setNodeRef } = useDroppable({
         id: `${type}-lane`,
@@ -29,8 +31,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
      */
     useDndMonitor({
         onDragEnd: event =>
-            isOver &&
-            repro.assign(type, repro.clovers[event.active.id as number]),
+            isOver && lanes.assign(event.active.data.current as IClover, type),
     });
 
     return (
@@ -39,7 +40,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             className={[props.className, classes.container].join(" ")}
             style={{
                 // backgroundColor: isOver ? "red" : "gray",
-                backgroundImage: `url(${lanes[type].background})`,
+                backgroundImage: `url(${lanesData[type].background})`,
             }}
             ref={setNodeRef}
         >
@@ -49,9 +50,11 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
                 ))}
             </div>
             <div className={classes.overlap}>
-                {Object.values(lane.clovers).map(clover => (
-                    <Clover key={clover.id} clover={clover} />
-                ))}
+                {Object.values(lane.clovers)
+                    .sort((a, b) => a.assigned - b.assigned)
+                    .map(clover => (
+                        <Clover key={clover.id} clover={clover} />
+                    ))}
             </div>
         </div>
     );

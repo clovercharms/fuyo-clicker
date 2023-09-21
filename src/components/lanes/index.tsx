@@ -7,7 +7,7 @@ import { useGameStore } from '../../store';
  * Collection of Lanes for Clovers to be assigned to.
  */
 export default function Lanes(props: HTMLProps<HTMLDivElement>) {
-    const lanes = useGameStore(state => state.lanes);
+    const lanes = useGameStore(state => state.lanes.rows);
     return (
         <div
             {...props}

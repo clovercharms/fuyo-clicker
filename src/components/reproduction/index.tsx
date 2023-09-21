@@ -2,14 +2,17 @@ import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useGameStore } from "../../store";
 import Clover from "../clover";
 import classes from "./index.module.css";
-import { HTMLProps, useState } from "react";
+import { HTMLProps } from "react";
 import { useCounter } from "../../hooks/counter";
+import { Clover as IClover } from "../clover/slice";
 
 /**
  * Spawning area for Clovers, ready to be assigned.
  */
 export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     const repro = useGameStore(state => state.repro);
+    const clover = useGameStore(state => state.clover);
+
     const { counterRef } = useCounter(
         repro.progress,
         repro.rateMs,
@@ -18,10 +21,14 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
         { minimumFractionDigits: 3 }
     );
 
-    const [activeId, setActiveId] = useState<number | undefined>(undefined);
+    /**
+     * Handles state updates for dragging Clovers.
+     * [FIXME] Separate this concern elsewhere.
+     */
     useDndMonitor({
-        onDragStart: event => setActiveId(event.active.id as number),
-        onDragEnd: () => setActiveId(undefined),
+        onDragStart: event =>
+            clover.drag(event.active.data.current as IClover),
+        onDragEnd: () => clover.drag(undefined),
     });
 
     return (
@@ -31,18 +38,19 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
         >
             <h1>Reproduction</h1>
             <h2>
-                Production: <span ref={counterRef} />
+                Progress: <span ref={counterRef} />
             </h2>
             <button onClick={repro.cheat}>Spawn</button>
             {Object.values(repro.clovers).map(clover => (
                 <Clover key={clover.id} clover={clover} />
             ))}
+            {/**
+             * Clover drag visualization.
+             * [FIXME] Handle this concern elsewhere.
+             */}
             <DragOverlay>
-                {!!activeId && (
-                    <Clover
-                        clover={repro.clovers[activeId]}
-                        style={{ zIndex: 1 }}
-                    />
+                {!!clover.dragged && (
+                    <Clover clover={clover.dragged} style={{ zIndex: 1 }} />
                 )}
             </DragOverlay>
         </div>

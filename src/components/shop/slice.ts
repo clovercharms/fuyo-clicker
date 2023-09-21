@@ -60,10 +60,14 @@ export const createShopSlice = (
                     ? {
                           lanes: {
                               ...state.lanes,
-                              [laneType]: {
-                                  ...state.lanes[laneType],
-                                  buildings:
-                                      state.lanes[laneType].buildings + 1,
+                              rows: {
+                                  ...state.lanes.rows,
+                                  [laneType]: {
+                                      ...state.lanes.rows[laneType],
+                                      buildings:
+                                          state.lanes.rows[laneType].buildings +
+                                          1,
+                                  },
                               },
                           },
                       }

@@ -5,11 +5,13 @@ import { devtools /* persist, createJSONStorage */ } from "zustand/middleware";
 import { ReproSlice, createReproSlice } from "./components/reproduction/slice";
 // import { all as merge } from "deepmerge";
 import { LanesSlice, createLanesSlice } from "./components/lanes/slice";
+import { CloverSlice, createCloverSlice } from "./components/clover/slice";
 
 /** Combination of all different slices from different aspects of the game. */
 export type GameState = CoinsSlice &
     ShopSlice &
     ReproSlice &
+    CloverSlice &
     LanesSlice & {
         tick: () => void;
     };
@@ -25,7 +27,8 @@ export const useGameStore = create<GameState>()(
             ...createCoinsSlice(set, get),
             ...createShopSlice(set, get),
             ...createReproSlice(set, get),
-            ...createLanesSlice(),
+            ...createCloverSlice(set),
+            ...createLanesSlice(set, get),
             tick: () => {
                 createCoinsSlice(set, get).coins.tick();
                 createReproSlice(set, get).repro.tick();

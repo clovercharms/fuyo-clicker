@@ -50,7 +50,7 @@ export const createCoinsSlice = (
             for (const type of Object.values(LaneType).filter(
                 t => typeof t === "number"
             )) {
-                const lane = get().lanes[type as LaneType];
+                const lane = get().lanes.rows[type as LaneType];
                 rateMs += calculateLaneRate(
                     type as LaneType,
                     lane.buildings,

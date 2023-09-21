@@ -1,6 +1,20 @@
 import { useCallback, useEffect, useRef } from "react";
 
 /**
+ * Formatting function used for numbers.
+ * [FIXME] Only supports up to trillion notation, might need custom impl. later.
+ */
+export const formatNumber = (
+    number: number | bigint,
+    options?: Intl.NumberFormatOptions
+) =>
+    Intl.NumberFormat("en", {
+        notation: "compact",
+        compactDisplay: "long",
+        ...options,
+    }).format(number);
+
+/**
  * Optimistic counter for a given value, which updates at a certain rate.
  * @param value The last known value.
  * @param rateMs The rate in which the value changes every millisecond.
@@ -30,8 +44,10 @@ export function useCounter(value: number, rateMs: number, fractionDigits = 0) {
         const currentValue = value + elapsed * rateMs;
         elementRef.current.innerText =
             fractionDigits !== 0
-                ? currentValue.toFixed(fractionDigits)
-                : Math.floor(currentValue) + "";
+                ? formatNumber(currentValue, {
+                      minimumFractionDigits: fractionDigits,
+                  })
+                : formatNumber(Math.floor(currentValue)) + "";
 
         requestRef.current = requestAnimationFrame(updateValue);
         return () => cancelAnimationFrame(requestRef.current!);

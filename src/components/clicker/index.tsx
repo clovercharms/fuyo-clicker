@@ -1,10 +1,12 @@
 import classes from "./index.module.css";
 import ping from "../../assets/audio/ping-82822.mp3";
-import { CSSProperties, HTMLProps, MouseEvent } from "react";
+import { CSSProperties, HTMLProps, MouseEvent, useEffect } from "react";
 import { useGameStore } from "../../store";
-import { useCounter } from "../../hooks/counter";
+import { formatNumber, useCounter } from "../../hooks/counter";
 import hand from "../../assets/images/hand.png";
 import { useClickerHands } from "./clickers";
+
+const BASE_TITLE = "Fuyo Clicker";
 
 /**
  * The Clicker component contains the main coin, the current stats, and any
@@ -14,6 +16,13 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const coins = useGameStore(state => state.coins);
     const { counterRef } = useCounter(coins.amount, coins.rateMs);
     const { clickerRefs, handRefs } = useClickerHands(coins);
+
+    /**
+     * Updates the title to reflect the latest amount of coins accrued.
+     */
+    useEffect(() => {
+        document.title = `${formatNumber(coins.amount)} coins - ${BASE_TITLE}`;
+    }, [coins.amount]);
 
     /**
      * Handles the main coin click, currently on updates a simple counter for
@@ -36,7 +45,13 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                 <h1>
                     You have <span ref={counterRef} /> coins!
                 </h1>
-                <h2>Per second: {(coins.rateMs * 1000).toFixed(1)}</h2>
+                <h2>
+                    Per second:{" "}
+                    {formatNumber(coins.rateMs * 1e3, {
+                        minimumFractionDigits: 1,
+                        maximumFractionDigits: 1
+                    })}
+                </h2>
             </header>
             <div className={classes.cookie}>
                 {new Array(coins.clickers).fill(undefined).map((_, i) => (

@@ -35,17 +35,6 @@ export const createShopSlice = (
             const price = calculatePrice(id, item.purchased);
             const laneType = data[id].laneType;
 
-            // Immediately forward game state.
-            const coins = get().coins.tick();
-            console.log(
-                "price",
-                price,
-                "coins",
-                get().coins.amount,
-                "tick coins",
-                coins
-            );
-
             if (price > get().coins.amount) return false;
 
             set(state => ({
@@ -81,6 +70,7 @@ export const createShopSlice = (
                     : {}),
             }));
 
+            // Immediately forward game state.
             get().coins.tick();
 
             return true;

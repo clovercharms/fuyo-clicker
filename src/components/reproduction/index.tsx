@@ -10,7 +10,7 @@ import { useCounter } from '../../hooks/counter';
  */
 export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     const repro = useGameStore(state => state.repro);
-    const { counterRef } = useCounter(repro.progress, repro.rateMs, 1);
+    const { counterRef } = useCounter(repro.progress, repro.rateMs, 3);
 
     const [activeId, setActiveId] = useState<number | undefined>(undefined);
     useDndMonitor({

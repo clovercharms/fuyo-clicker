@@ -47,9 +47,7 @@ export const createReproSlice = (
         rateMs: 1 / 60e3,
         lastUpdate: performance.now(),
         tick: () => {
-            let elapsed = performance.now() - get().repro.lastUpdate;
-            // FIXME: Time restored from storage could be later than perf.now
-            if (elapsed < 0) elapsed = 0;
+            const elapsed = performance.now() - get().repro.lastUpdate;
 
             set(
                 state => ({

@@ -23,7 +23,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
 
     /**
      * Handles state updates for dragging Clovers.
-     * [FIXME] Separate this concern elsewhere.
+     * [FIXME] Separate this concern to elsewhere.
      */
     useDndMonitor({
         onDragStart: event =>
@@ -46,7 +46,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
             ))}
             {/**
              * Clover drag visualization.
-             * [FIXME] Handle this concern elsewhere.
+             * [FIXME] Separate this concern to elsewhere.
              */}
             <DragOverlay>
                 {!!clover.dragged && (

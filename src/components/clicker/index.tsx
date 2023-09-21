@@ -6,7 +6,7 @@ import { formatNumber, useCounter } from "../../hooks/counter";
 import hand from "../../assets/images/hand.png";
 import { useClickerHands } from "./clickers";
 
-const BASE_TITLE = "Fuyo Clicker";
+const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 
 /**
  * The Clicker component contains the main coin, the current stats, and any
@@ -21,7 +21,10 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
      * Updates the title to reflect the latest amount of coins accrued.
      */
     useEffect(() => {
-        document.title = `${formatNumber(coins.amount, true)} coins - ${BASE_TITLE}`;
+        document.title = `${formatNumber(
+            coins.amount,
+            true
+        )} coins - ${BASE_TITLE}`;
     }, [coins.amount]);
 
     /**
@@ -38,11 +41,11 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
 
     const handleCheat = () => {
         let amount = 0;
-        do amount = parseInt(prompt("Coins:") ?? '')
+        do amount = parseInt(prompt("Coins:") ?? "");
         while (Number.isNaN(amount));
 
         coins.cheat(amount);
-    }
+    };
 
     return (
         <div
@@ -57,7 +60,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                     Per second:{" "}
                     {formatNumber(coins.rateMs * 1e3, false, {
                         minimumFractionDigits: 1,
-                        maximumFractionDigits: 1
+                        maximumFractionDigits: 1,
                     })}
                 </h2>
                 <button onClick={handleCheat}>Set coins</button>

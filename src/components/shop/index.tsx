@@ -16,7 +16,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     const handleBuy = (id: number) => {
         const result = shop.buy(id);
         // [FIXME] Properly handle
-        if (!result) alert("Insufficient coins");
+        if (!result) alert("Insufficient clovers");
     };
 
     return (

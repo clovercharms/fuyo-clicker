@@ -54,7 +54,7 @@ export const createCoinsSlice = (
                 rateMs += calculateLaneRate(
                     type as LaneType,
                     lane.buildings,
-                    Object.keys(lane.clovers).length
+                    Object.keys(lane.clovers.heros).length
                 );
             }
 

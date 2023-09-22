@@ -2,6 +2,46 @@
     background-color: #fff4;
 }
 
-button {
+@keyframes spin {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.clover {
+    width: 8rem;
+    aspect-ratio: 1/1;
+    animation: 1s spin linear infinite;
+}
+
+.clover button {
+    width: 8rem;
+    aspect-ratio: 1/1;
+    background-color: unset;
+    border-style: unset;
+    background-image: url("../../assets/images/clover/base.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: 0.1s;
+}
+
+.clover button:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.clover button:active {
+    transform: scale(1);
+}
+
+.spawn {
     margin-bottom: 1rem;
+}
+
+.heroClovers {
+    display: flex;
+    overflow-x: auto;
 }

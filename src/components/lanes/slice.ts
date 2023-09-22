@@ -9,7 +9,10 @@ import { Clover } from "../clover/slice";
  */
 export interface Lane {
     buildings: number;
-    clovers: Record<number, Clover>;
+    clovers: {
+        regular: Record<number, Clover>;
+        heros: Record<number, Clover>;
+    };
 }
 
 /**
@@ -30,9 +33,12 @@ export interface LanesSlice {
 /**
  * Default lane state.
  */
-const defaultLane = {
+const defaultLane: Lane = {
     buildings: 0,
-    clovers: {},
+    clovers: {
+        regular: {},
+        heros: {},
+    },
 };
 
 export const createLanesSlice = (
@@ -47,22 +53,28 @@ export const createLanesSlice = (
             [LaneType.RepairShop]: defaultLane,
             [LaneType.Lab]: defaultLane,
         },
-        assign: (clover: Clover, laneType: LaneType) => {
+        assign: (heroClover: Clover, laneType: LaneType) => {
             // Remove from production chamber
-            const clovers = get().repro.clovers;
-            delete clovers[clover.id];
+            const heroClovers = get().repro.clovers.heros.spawned;
+            delete heroClovers[heroClover.id];
 
             // Remove from lanes
             const rows = get().lanes.rows;
             for (const row of Object.values(rows)) {
-                delete row.clovers[clover.id];
+                delete row.clovers.heros[heroClover.id];
             }
 
             set(
                 state => ({
                     repro: {
                         ...state.repro,
-                        clovers,
+                        clovers: {
+                            ...state.repro.clovers,
+                            heros: {
+                                ...state.repro.clovers.heros,
+                                spawned: heroClovers,
+                            },
+                        },
                     },
                     lanes: {
                         ...state.lanes,
@@ -72,10 +84,14 @@ export const createLanesSlice = (
                                 ...state.lanes.rows[laneType],
                                 clovers: {
                                     ...state.lanes.rows[laneType].clovers,
-                                    [clover.id]: {
-                                        ...clover,
-                                        job: lanesData[laneType].job,
-                                        assigned: Date.now(),
+                                    heros: {
+                                        ...state.lanes.rows[laneType].clovers
+                                            .heros,
+                                        [heroClover.id]: {
+                                            ...heroClover,
+                                            job: lanesData[laneType].job,
+                                            assigned: Date.now(),
+                                        },
                                     },
                                 },
                             },

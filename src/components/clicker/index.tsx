@@ -1,5 +1,4 @@
 import classes from "./index.module.css";
-import ping from "../../assets/audio/ping-82822.mp3";
 import { CSSProperties, HTMLProps, MouseEvent, useEffect } from "react";
 import { useGameStore } from "../../store";
 import { formatNumber, useCounter } from "../../hooks/counter";
@@ -35,8 +34,6 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
         if (event.button !== 0) return;
 
         coins.click();
-
-        void new Audio(ping).play();
     };
 
     const handleCheat = () => {

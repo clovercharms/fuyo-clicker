@@ -10,6 +10,7 @@ export interface Item {
         factor: number;
     };
     laneType?: LaneType;
+    clovers?: number;
 }
 
 /**
@@ -30,6 +31,7 @@ export const data: Record<number, Item> = {
             factor: 1.15,
         },
         laneType: LaneType.Mine,
+        clovers: 2,
     },
     2: {
         name: "Forge",
@@ -38,6 +40,7 @@ export const data: Record<number, Item> = {
             factor: 1.2,
         },
         laneType: LaneType.Forge,
+        clovers: 2,
     },
     3: {
         name: "Crane",
@@ -46,6 +49,7 @@ export const data: Record<number, Item> = {
             factor: 1.25,
         },
         laneType: LaneType.ConstructionSite,
+        clovers: 4,
     },
     4: {
         name: "Repair Tools",
@@ -54,6 +58,7 @@ export const data: Record<number, Item> = {
             factor: 1.3,
         },
         laneType: LaneType.RepairShop,
+        clovers: 4,
     },
     5: {
         name: "Lab Equipment",
@@ -62,6 +67,7 @@ export const data: Record<number, Item> = {
             factor: 1.35,
         },
         laneType: LaneType.Lab,
+        clovers: 4,
     },
 };
 

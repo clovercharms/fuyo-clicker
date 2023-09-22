@@ -1,6 +1,9 @@
 import { StoreApi } from "zustand";
 import { GameState } from "../../store";
 import { calculatePrice, data } from "./data";
+import { generateClover } from "../reproduction/slice";
+import { Clover } from "../clover/slice";
+import { lanes } from "../lanes/lane/data";
 
 /**
  * State about an item in the shop.
@@ -35,47 +38,104 @@ export const createShopSlice = (
             const price = calculatePrice(id, item.purchased);
             const laneType = data[id].laneType;
 
-            if (price > get().coins.amount) return false;
+            get().tick();
 
-            set(state => ({
-                coins: {
-                    ...state.coins,
-                    amount: state.coins.amount - price,
-                    /* If lane type not set, assume auto clicker. */
-                    clickers:
-                        state.coins.clickers + (laneType === undefined ? 1 : 0),
-                },
-                shop: {
-                    ...state.shop,
-                    items: {
-                        ...state.shop.items,
-                        [id]: {
-                            ...state.shop.items[id],
-                            purchased: state.shop.items[id].purchased + 1,
+            // Auto clicker
+            if (laneType === undefined) {
+                if (get().coins.amount < price) return false;
+
+                set(
+                    state => ({
+                        coins: {
+                            ...state.coins,
+                            amount: state.coins.amount - price,
+                            clickers: state.coins.clickers + 1,
                         },
-                    },
-                },
-                /* Update lane buildings if part of item. */
-                ...(laneType !== undefined
-                    ? {
-                          lanes: {
-                              ...state.lanes,
-                              rows: {
-                                  ...state.lanes.rows,
-                                  [laneType]: {
-                                      ...state.lanes.rows[laneType],
-                                      buildings:
-                                          state.lanes.rows[laneType].buildings +
-                                          1,
-                                  },
-                              },
-                          },
-                      }
-                    : {}),
-            }));
+                        shop: {
+                            ...state.shop,
+                            items: {
+                                ...state.shop.items,
+                                [id]: {
+                                    ...state.shop.items[id],
+                                    purchased:
+                                        state.shop.items[id].purchased + 1,
+                                },
+                            },
+                        },
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Purchase - Auto Clicker"
+                );
+            } else {
+                if (get().repro.clovers.amount < price) return false;
 
-            // Immediately forward game state.
-            get().coins.tick();
+                const time = Date.now();
+                const clovers = new Array(data[id].clovers)
+                    .fill(undefined)
+                    .reduce((prev: Record<number, Clover>, _, i) => {
+                        const clover = {
+                            ...generateClover(
+                                get().repro.clovers.lastCloverId + i
+                            ),
+                            job: lanes[laneType].job,
+                            assigned: time - data[id].clovers! + i,
+                        };
+                        prev[clover.id] = clover;
+                        return prev;
+                    }, {});
+
+                set(
+                    state => ({
+                        repro: {
+                            ...state.repro,
+                            clovers: {
+                                ...state.repro.clovers,
+                                amount: state.repro.clovers.amount - price,
+                                lastCloverId:
+                                    state.repro.clovers.lastCloverId +
+                                    Object.keys(clovers).length,
+                            },
+                        },
+                        shop: {
+                            ...state.shop,
+                            items: {
+                                ...state.shop.items,
+                                [id]: {
+                                    ...state.shop.items[id],
+                                    purchased:
+                                        state.shop.items[id].purchased + 1,
+                                },
+                            },
+                        },
+                        lanes: {
+                            ...state.lanes,
+                            rows: {
+                                ...state.lanes.rows,
+                                [laneType]: {
+                                    ...state.lanes.rows[laneType],
+                                    buildings:
+                                        state.lanes.rows[laneType].buildings +
+                                        1,
+                                    clovers: {
+                                        ...state.lanes.rows[laneType].clovers,
+                                        regular: {
+                                            ...state.lanes.rows[laneType]
+                                                .clovers.regular,
+                                            ...clovers,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Purchase - Building"
+                );
+            }
+
+            get().tick();
 
             return true;
         },

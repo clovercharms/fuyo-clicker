@@ -8,6 +8,7 @@ import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "../../../store";
 import { Clover as IClover } from "../../clover/slice";
 import { lanes as lanesData } from "./data";
+import HeroClover from '../../clover/hero';
 
 export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
     type: LaneType;
@@ -44,16 +45,23 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             }}
             ref={setNodeRef}
         >
-            <div className={classes.overlap}>
+            <div className={[classes.overlap, classes.buildings].join(' ')}>
                 {new Array(lane.buildings).fill(undefined).map((_, i) => (
-                    <img key={i} src={building} />
+                    <img key={i} className={classes.building} src={building} />
                 ))}
             </div>
-            <div className={classes.overlap}>
-                {Object.values(lane.clovers)
+            <div className={[classes.overlap, classes.clovers].join(' ')}>
+                {Object.values(lane.clovers.regular)
                     .sort((a, b) => a.assigned - b.assigned)
                     .map(clover => (
                         <Clover key={clover.id} clover={clover} />
+                    ))}
+            </div>
+            <div className={classes.overlap}>
+                {Object.values(lane.clovers.heros)
+                    .sort((a, b) => a.assigned - b.assigned)
+                    .map(clover => (
+                        <HeroClover key={clover.id} clover={clover} />
                     ))}
             </div>
         </div>

@@ -6,6 +6,7 @@ import {
     mines,
 } from "../../../assets/images/lanes";
 import { Job } from "../../clover/data";
+import { Clover } from "../../clover/slice";
 
 /**
  * Types of lanes that are accessible for Clovers to be assigned to.
@@ -27,8 +28,10 @@ export interface LaneData {
     background: string;
     /** Rate of production per building per millisecond. */
     rateMs: number;
-    /** The amount of slots that can be filled with Clovers. */
-    slots: number;
+    clovers: {
+        regular: Record<number, Clover>;
+        heros: Record<number, Clover>;
+    };
 }
 
 /**
@@ -40,48 +43,68 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Miner,
         background: mines,
         rateMs: 0.001,
-        slots: 2,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
     },
     [LaneType.Forge]: {
         job: Job.Blacksmith,
         background: forge,
         rateMs: 0.002,
-        slots: 4,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
     },
     [LaneType.ConstructionSite]: {
         job: Job.FactoryWorker,
         background: construction_site,
         rateMs: 0.004,
-        slots: 6,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
     },
     [LaneType.RepairShop]: {
         job: Job.Mechanic,
         background: garage,
         rateMs: 0.008,
-        slots: 6,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
     },
     [LaneType.Lab]: {
         job: Job.Scientist,
         background: lab,
         rateMs: 0.016,
-        slots: 6,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
     },
 };
+
+/**
+ * 10% Bonus for every Hero Clover assigned to a Lane.
+ */
+const heroCloverBonus = 0.1;
 
 /**
  * Calculates the production of buildings and Clovers based on the type of lane,
  * the amount of buildings, and the amount of Clovers working with them.
  * @param type The type of lane.
  * @param buildings How many buildings the lane has.
- * @param clovers The amount of Clovers assigned to the lane.
+ * @param heroClovers How many Hero Clovers are assigned to this lane.
  * @returns The production rate of the lane per millisecond.
  */
 export function calculateLaneRate(
     type: LaneType,
     buildings: number,
-    clovers: number
+    heroClovers: number
 ) {
-    const buildingSlots = buildings * lanes[type].slots;
-    const factor = clovers === 0 ? 0 : Math.min(clovers / buildingSlots, 1);
-    return buildings * factor * lanes[type].rateMs;
+    return (
+        buildings * lanes[type].rateMs * (1.0 + heroClovers * heroCloverBonus)
+    );
 }

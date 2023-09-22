@@ -57,12 +57,15 @@ export const createReproSlice = (
 
             // [TODO] Calculate clover rateMs
             const cloverRateMs =
-                get().repro.clovers.tier *
-                upgrades.rate *
-                get().repro.clovers.tier;
+                get().repro.clovers.tier === 0
+                    ? 0
+                    : upgrades.rate * 1.5 ** get().repro.clovers.tier;
 
             // [TODO] Which rate?
-            const heroCloverRateMs = get().repro.clovers.rateMs / 1e3;
+            const heroCloverRateMs = Math.min(
+                get().repro.clovers.rateMs / 1e3,
+                1 / 120e3
+            );
 
             set(
                 state => ({

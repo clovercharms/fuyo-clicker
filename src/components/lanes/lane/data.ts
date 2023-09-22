@@ -1,10 +1,15 @@
 import {
-    construction_site,
+    constructionSite,
     forge,
     garage,
     lab,
     mines,
 } from "../../../assets/images/lanes";
+import {
+    mine,
+    forge as forgeBuilding,
+    placeholder,
+} from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
 import { Clover } from "../../clover/slice";
 
@@ -26,6 +31,7 @@ export enum LaneType {
 export interface LaneData {
     job: Job;
     background: string;
+    building: string;
     /** Rate of production per building per millisecond. */
     rateMs: number;
     clovers: {
@@ -42,6 +48,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Mine]: {
         job: Job.Miner,
         background: mines,
+        building: mine,
         rateMs: 0.001,
         clovers: {
             regular: {},
@@ -51,6 +58,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Forge]: {
         job: Job.Blacksmith,
         background: forge,
+        building: forgeBuilding,
         rateMs: 0.002,
         clovers: {
             regular: {},
@@ -59,7 +67,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
     },
     [LaneType.ConstructionSite]: {
         job: Job.FactoryWorker,
-        background: construction_site,
+        background: constructionSite,
+        building: placeholder,
         rateMs: 0.004,
         clovers: {
             regular: {},
@@ -69,6 +78,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.RepairShop]: {
         job: Job.Mechanic,
         background: garage,
+        building: placeholder,
         rateMs: 0.008,
         clovers: {
             regular: {},
@@ -78,6 +88,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Lab]: {
         job: Job.Scientist,
         background: lab,
+        building: placeholder,
         rateMs: 0.016,
         clovers: {
             regular: {},

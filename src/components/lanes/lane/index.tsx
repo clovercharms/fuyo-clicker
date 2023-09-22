@@ -2,13 +2,11 @@ import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import Clover from "../../clover";
 import { Lane as ILane } from "../slice";
-import { LaneType } from "./data";
-import building from "../../../assets/images/lanes/building.png";
+import { LaneType, lanes as lanesData } from "./data";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "../../../store";
 import { Clover as IClover } from "../../clover/slice";
-import { lanes as lanesData } from "./data";
-import HeroClover from '../../clover/hero';
+import HeroClover from "../../clover/hero";
 
 export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
     type: LaneType;
@@ -45,12 +43,16 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             }}
             ref={setNodeRef}
         >
-            <div className={[classes.overlap, classes.buildings].join(' ')}>
+            <div className={[classes.overlap, classes.buildings].join(" ")}>
                 {new Array(lane.buildings).fill(undefined).map((_, i) => (
-                    <img key={i} className={classes.building} src={building} />
+                    <img
+                        key={i}
+                        className={classes.building}
+                        src={lanesData[type].building}
+                    />
                 ))}
             </div>
-            <div className={[classes.overlap, classes.clovers].join(' ')}>
+            <div className={[classes.overlap, classes.clovers].join(" ")}>
                 {Object.values(lane.clovers.regular)
                     .sort((a, b) => a.assigned - b.assigned)
                     .map(clover => (

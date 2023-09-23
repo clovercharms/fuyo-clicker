@@ -4,6 +4,7 @@ import { useGameStore } from "../../store";
 import { formatNumber, useCounter } from "../../hooks/counter";
 import hand from "../../assets/images/hand.png";
 import { useClickerHands } from "./clickers";
+import FallingCoins from './falling-coins';
 
 const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 
@@ -49,6 +50,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
             {...props}
             className={[props.className, classes.container].join(" ")}
         >
+            <FallingCoins/>
             <header>
                 <h1>
                     You have <span ref={counterRef} /> coins!

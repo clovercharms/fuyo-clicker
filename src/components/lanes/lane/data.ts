@@ -49,7 +49,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Miner,
         background: mines,
         building: mine,
-        rateMs: 0.001,
+        rateMs: 1 / 1e3,
         clovers: {
             regular: {},
             heros: {},
@@ -59,7 +59,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Blacksmith,
         background: forge,
         building: forgeBuilding,
-        rateMs: 0.002,
+        rateMs: 8 / 1e3,
         clovers: {
             regular: {},
             heros: {},
@@ -69,7 +69,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.FactoryWorker,
         background: constructionSite,
         building: placeholder,
-        rateMs: 0.004,
+        rateMs: 47 / 1e3,
         clovers: {
             regular: {},
             heros: {},
@@ -79,7 +79,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Mechanic,
         background: garage,
         building: placeholder,
-        rateMs: 0.008,
+        rateMs: 260 / 1e3,
         clovers: {
             regular: {},
             heros: {},
@@ -89,7 +89,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Scientist,
         background: lab,
         building: placeholder,
-        rateMs: 0.016,
+        rateMs: 1400 / 1e3,
         clovers: {
             regular: {},
             heros: {},
@@ -107,15 +107,20 @@ const heroCloverBonus = 0.1;
  * the amount of buildings, and the amount of Clovers working with them.
  * @param type The type of lane.
  * @param buildings How many buildings the lane has.
+ * @param upgrades The amount of unlocked upgrades for the lane.
  * @param heroClovers How many Hero Clovers are assigned to this lane.
  * @returns The production rate of the lane per millisecond.
  */
 export function calculateLaneRate(
     type: LaneType,
     buildings: number,
+    upgrades: number,
     heroClovers: number
 ) {
     return (
-        buildings * lanes[type].rateMs * (1.0 + heroClovers * heroCloverBonus)
+        buildings *
+        lanes[type].rateMs *
+        (1.0 + heroClovers * heroCloverBonus) *
+        2 ** upgrades
     );
 }

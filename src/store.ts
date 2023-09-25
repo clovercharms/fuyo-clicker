@@ -6,9 +6,14 @@ import { ReproSlice, createReproSlice } from "./components/reproduction/slice";
 // import { all as merge } from "deepmerge";
 import { LanesSlice, createLanesSlice } from "./components/lanes/slice";
 import { CloverSlice, createCloverSlice } from "./components/clover/slice";
+import {
+    UpgradesSlice,
+    createUpgradesSlice,
+} from "./components/shop/upgrades/slice";
 
 /** Combination of all different slices from different aspects of the game. */
 export type GameState = CoinsSlice &
+    UpgradesSlice &
     ShopSlice &
     ReproSlice &
     CloverSlice &
@@ -25,6 +30,7 @@ export const useGameStore = create<GameState>()(
         // persist(
         (set, get) => ({
             ...createCoinsSlice(set, get),
+            ...createUpgradesSlice(set, get),
             ...createShopSlice(set, get),
             ...createReproSlice(set, get),
             ...createCloverSlice(set),

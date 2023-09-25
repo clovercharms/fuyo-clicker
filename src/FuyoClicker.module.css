@@ -5,13 +5,17 @@
     background-size: cover;
 }
 
-.container > * {
-    overflow-y: auto;
+.container > .left {
     flex: 1;
 }
 
+.container > * {
+    overflow-y: auto;
+    width: 25rem;
+}
+
 .container > .middle {
-    flex: 2;
+    flex: 1.75;
 }
 
 .container > .right {

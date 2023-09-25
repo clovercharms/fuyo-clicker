@@ -1,6 +1,6 @@
 import { StoreApi } from "zustand";
 import { GameState } from "../../store";
-import { calculatePrice, data } from "./data";
+import { calculatePrice, items } from "./data";
 import { generateClover } from "../reproduction/slice";
 import { Clover } from "../clover/slice";
 import { lanes } from "../lanes/lane/data";
@@ -32,11 +32,11 @@ export const createShopSlice = (
     get: StoreApi<GameState>["getState"]
 ) => ({
     shop: {
-        items: Object.keys(data).map(() => ({ purchased: 0 })),
+        items: Object.keys(items).map(() => ({ purchased: 0 })),
         buy: (id: number) => {
             const item = get().shop.items[id];
             const price = calculatePrice(id, item.purchased);
-            const laneType = data[id].laneType;
+            const laneType = items[id].laneType;
 
             get().tick();
 
@@ -71,7 +71,7 @@ export const createShopSlice = (
                 if (get().repro.clovers.amount < price) return false;
 
                 const time = Date.now();
-                const clovers = new Array(data[id].clovers)
+                const clovers = new Array(items[id].clovers)
                     .fill(undefined)
                     .reduce((prev: Record<number, Clover>, _, i) => {
                         const clover = {
@@ -79,7 +79,7 @@ export const createShopSlice = (
                                 get().repro.clovers.lastCloverId + i
                             ),
                             job: lanes[laneType].job,
-                            assigned: time - data[id].clovers! + i,
+                            assigned: time - items[id].clovers! + i,
                         };
                         prev[clover.id] = clover;
                         return prev;

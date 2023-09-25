@@ -1,0 +1,10 @@
+.tooltip {
+    pointer-events: none;
+    background-image: url("../../../assets/images/shop/upgrades/upgrades-bg.png");
+    background-size: 100%;
+    border-image: url("../../../assets/images/shop/upgrades/upgrades-frame.png") 30 26
+    stretch;
+    border-image-width: 0.8rem;
+    padding: 1rem;
+    color: white;
+}

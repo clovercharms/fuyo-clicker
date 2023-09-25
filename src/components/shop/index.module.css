@@ -2,6 +2,14 @@
     background-color: #fff4;
 }
 
+.header {
+    background-image: url("../../assets/images/shop/header.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 7rem;
+}
+
 .items {
     list-style: none;
     padding: 0;
@@ -11,25 +19,28 @@
 
 .items > li {
     display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    background-color: burlywood;
     color: white;
     -webkit-text-stroke: 0.0625rem Black;
     font-size: 1.5rem;
-    border: 0.3rem solid saddlebrown;
     border-bottom: none;
     cursor: pointer;
     user-select: none;
+    border-image: url("../../assets/images/shop/item.png") 10% fill;
+    height: 6rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: -0.8rem;
 }
 
-.items li:last-child {
-    border-bottom: 0.3rem solid saddlebrown;
+.items > li > div {
+    margin-top: 0.8rem;
+    margin-left: 1.2rem;
 }
 
-.purchased {
+.items > li > .purchased {
     margin-left: auto;
     font-size: 2.5rem;
+    margin-right: 2rem;
 }
 
 @-moz-document url-prefix() {

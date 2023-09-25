@@ -1,0 +1,38 @@
+.container {
+    background-color: #fff4;
+}
+
+.upgrades {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-image: url("../../../assets/images/shop/upgrades/upgrades-bg.png");
+    background-size: 100%;
+    border-image: url("../../../assets/images/shop/upgrades/upgrades-frame.png") 30 26
+        stretch;
+    border-image-width: 0.8rem;
+    padding: 1rem;
+}
+
+.upgrades :nth-child(n + 6) {
+    display: none;
+}
+
+.upgrades:hover :nth-child(n + 6) {
+    display: block;
+}
+
+.placeholder,
+.upgrade {
+    aspect-ratio: 1/1;
+}
+
+.upgrade {
+    position: relative;
+    border-style: unset;
+    background-color: unset;
+    background-position: center 65%;
+    background-size: 65%, contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

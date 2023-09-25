@@ -16,12 +16,12 @@ export interface Item {
 /**
  * Collection of metadata about items available in the shop.
  */
-export const data: Record<number, Item> = {
+export const items: Record<number, Item> = {
     0: {
         name: "Auto Clicker",
         price: {
             base: 15,
-            factor: 1.1,
+            factor: 1.15,
         },
     },
     1: {
@@ -36,8 +36,8 @@ export const data: Record<number, Item> = {
     2: {
         name: "Forge",
         price: {
-            base: 200,
-            factor: 1.2,
+            base: 1100,
+            factor: 1.15,
         },
         laneType: LaneType.Forge,
         clovers: 2,
@@ -45,8 +45,8 @@ export const data: Record<number, Item> = {
     3: {
         name: "Crane",
         price: {
-            base: 500,
-            factor: 1.25,
+            base: 12e3,
+            factor: 1.15,
         },
         laneType: LaneType.ConstructionSite,
         clovers: 4,
@@ -54,8 +54,8 @@ export const data: Record<number, Item> = {
     4: {
         name: "Repair Tools",
         price: {
-            base: 1000,
-            factor: 1.3,
+            base: 13e4,
+            factor: 1.15,
         },
         laneType: LaneType.RepairShop,
         clovers: 4,
@@ -63,8 +63,8 @@ export const data: Record<number, Item> = {
     5: {
         name: "Lab Equipment",
         price: {
-            base: 2000,
-            factor: 1.35,
+            base: 1.4e6,
+            factor: 1.15,
         },
         laneType: LaneType.Lab,
         clovers: 4,
@@ -79,6 +79,6 @@ export const data: Record<number, Item> = {
  * @returns The actual price of the item.
  */
 export function calculatePrice(id: number, purchased: number) {
-    const item = data[id];
+    const item = items[id];
     return Math.round(item.price.base * item.price.factor ** purchased);
 }

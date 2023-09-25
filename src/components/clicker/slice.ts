@@ -2,6 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState } from "../../store";
 import { LaneType, calculateLaneRate } from "../lanes/lane/data";
 import { CLICKER_RATE_MS } from "./data";
+import { UpgradeType } from "../shop/upgrades/data";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.
@@ -43,8 +44,21 @@ export const createCoinsSlice = (
             // Start rate calculation
             let rateMs = 0;
 
+            // Upgrades
+            const upgrades = Object.entries(get().upgrades.unlocked).reduce(
+                (prev, [type, unlocked]) => ({
+                    ...prev,
+                    [type as unknown as UpgradeType]:
+                        Object.keys(unlocked).length,
+                }),
+                {} as Record<UpgradeType, number>
+            );
+
             // Clickers
-            rateMs += get().coins.clickers * CLICKER_RATE_MS;
+            rateMs +=
+                get().coins.clickers *
+                CLICKER_RATE_MS *
+                2 ** upgrades[UpgradeType.Clicker];
 
             // Lanes
             for (const type of Object.values(LaneType).filter(
@@ -54,6 +68,7 @@ export const createCoinsSlice = (
                 rateMs += calculateLaneRate(
                     type as LaneType,
                     lane.buildings,
+                    type === LaneType.Mine ? upgrades[UpgradeType.Mine] : 0,
                     Object.keys(lane.clovers.heros).length
                 );
             }
@@ -81,7 +96,15 @@ export const createCoinsSlice = (
                 state => ({
                     coins: {
                         ...state.coins,
-                        amount: state.coins.amount + 1,
+                        amount:
+                            state.coins.amount +
+                            1 *
+                                2 **
+                                    Object.keys(
+                                        state.upgrades.unlocked[
+                                            UpgradeType.Clicker
+                                        ]
+                                    ).length,
                     },
                 }),
                 false,

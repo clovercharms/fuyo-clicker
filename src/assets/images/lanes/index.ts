@@ -1,5 +1,5 @@
 import constructionSite from "./construction-site.png";
-import forge from "./forge.png";
+import forge from "./forgeforge.png";
 import garage from "./garage.png";
 import lab from "./lab.png";
 import mines from "./minemine.png";

@@ -19,10 +19,11 @@ export interface UpgradesSlice {
 }
 
 const initialUpgradesState = {
-    unlocked: {
-        [UpgradeType.Clicker]: {},
-        [UpgradeType.Mine]: {},
-    },
+    unlocked: Object.fromEntries(
+        Object.values(UpgradeType)
+            .filter(t => typeof t === "number")
+            .map(type => [type, {}])
+    ) as Record<UpgradeType, Record<number, boolean>>,
 };
 
 export const createUpgradesSlice = (

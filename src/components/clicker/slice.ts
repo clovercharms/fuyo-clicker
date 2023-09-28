@@ -2,7 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState, resetters } from "../../store";
 import { LaneType, calculateLaneRate } from "../lanes/lane/data";
 import { CLICKER_RATE_MS } from "./data";
-import { UpgradeType } from "../shop/upgrades/data";
+import { LaneTypeUpgradeType, UpgradeType } from "../shop/upgrades/data";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.
@@ -77,7 +77,7 @@ export const createCoinsSlice = (
                     rateMs += calculateLaneRate(
                         type as LaneType,
                         lane.buildings,
-                        type === LaneType.Mine ? upgrades[UpgradeType.Mine] : 0,
+                        upgrades[LaneTypeUpgradeType[type as LaneType]!],
                         Object.keys(lane.clovers.heros).length
                     );
                 }

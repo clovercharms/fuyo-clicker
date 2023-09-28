@@ -42,14 +42,11 @@ const defaultLane: Lane = {
 };
 
 const initialLanesState = {
-    rows: {
-        [LaneType.Mine]: defaultLane,
-        [LaneType.Forge]: defaultLane,
-        [LaneType.ConstructionSite]: defaultLane,
-        [LaneType.RepairShop]: defaultLane,
-        [LaneType.Lab]: defaultLane,
-        [LaneType.Ocean]: defaultLane,
-    },
+    rows: Object.fromEntries(
+        Object.values(LaneType)
+            .filter(t => typeof t === "number")
+            .map(type => [type, defaultLane])
+    ) as Record<LaneType, Lane>,
 };
 
 export const createLanesSlice = (

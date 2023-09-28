@@ -4,6 +4,7 @@ import {
     mechanic,
     miner,
     scientist,
+    scuba,
 } from "../../assets/images/clover/jobs";
 
 /**
@@ -15,6 +16,7 @@ export enum Job {
     Mechanic,
     Miner,
     Scientist,
+    Diver,
 }
 
 /**
@@ -26,6 +28,7 @@ export const Jobs: { [type in Job]?: string } = {
     [Job.Mechanic]: mechanic,
     [Job.Miner]: miner,
     [Job.Scientist]: scientist,
+    [Job.Diver]: scuba,
 };
 
 /**

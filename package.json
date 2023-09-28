@@ -17,6 +17,8 @@
         "@dnd-kit/core": "^6.0.8",
         "@floating-ui/dom": "^1.5.3",
         "@floating-ui/react-dom": "^2.0.2",
+        "@pixi/react": "^7.1.1",
+        "@pixi/react-animated": "^7.1.1",
         "@types/react": "^18.2.15",
         "@types/react-dom": "^18.2.7",
         "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -27,7 +29,9 @@
         "eslint-plugin-react": "^7.33.1",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
+        "pixi.js": "^7.3.1",
         "pure-rand": "^6.0.3",
+        "react-spring": "^9.7.3",
         "typescript": "^5.0.2",
         "vite": "^4.4.5",
         "zustand": "^4.4.1"

@@ -1,68 +1,11 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    overflow: hidden;
 }
 
-header {
+.header {
     position: absolute;
-    top: 0;
-    margin-top: 2rem;
-    width: 100%;
-    text-align: center;
-    background-color: #fff4;
-    font-size: 2rem;
-}
-
-.cookie {
-    --size: 19rem;
-    position: relative;
-    width: var(--size);
-    aspect-ratio: 1/1;
-}
-
-.cookie > * {
-    position: absolute;
-}
-
-.cookie button {
-    width: var(--size);
-    background-image: url("../../assets/images/fuyo-coin.png");
-    background-color: unset;
-    border-style: unset;
-    background-size: contain;
-    background-repeat: no-repeat;
-    aspect-ratio: 1/1;
-    transition: 0.1s;
-}
-
-.cookie button:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-.cookie button:active {
-    transform: scale(1);
-}
-
-.cookie > .clicker {
-    /* The initial offset from the top of the coin */
-    --top-offset: -2.2rem;
-    /* Offset determines how much every ring should be removed from another. */
-    --ring-offset: 1.2rem;
-    /* The difference in angle between clickers. */
-    --angle-diff: 5deg;
-    top: calc(var(--top-offset) - var(--ring) * var(--ring-offset));
-    width: 2rem;
-    aspect-ratio: 1/1;
-    /* Place it in middle of coin. */
-    left: 50%;
-    /* Calculate offset of the clicker from the center of the coin. */
-    transform-origin: 0
-        calc(
-            var(--size) / 2 - var(--top-offset) + var(--ring) *
-                var(--ring-offset)
-        );
+    top: 10%;
+    width: calc(100% - 2rem);
+    padding: 1rem;
 }

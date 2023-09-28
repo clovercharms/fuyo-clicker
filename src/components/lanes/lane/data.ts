@@ -4,11 +4,14 @@ import {
     garage,
     lab,
     mines,
+    seasea,
 } from "../../../assets/images/lanes";
 import {
     mine,
     forge as forgeBuilding,
     placeholder,
+    scienceDesk,
+    sub,
 } from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
 import { Clover } from "../../clover/slice";
@@ -22,6 +25,7 @@ export enum LaneType {
     ConstructionSite,
     RepairShop,
     Lab,
+    Ocean,
 }
 
 /**
@@ -88,8 +92,18 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Lab]: {
         job: Job.Scientist,
         background: lab,
-        building: placeholder,
+        building: scienceDesk,
         rateMs: 1400 / 1e3,
+        clovers: {
+            regular: {},
+            heros: {},
+        },
+    },
+    [LaneType.Ocean]: {
+        job: Job.Diver,
+        background: seasea,
+        building: sub,
+        rateMs: 7800 / 1e3,
         clovers: {
             regular: {},
             heros: {},

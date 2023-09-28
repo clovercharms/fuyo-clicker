@@ -59,7 +59,7 @@ export const createReproSlice = (
             const cloverRateMs =
                 get().repro.clovers.tier === 0
                     ? 0
-                    : upgrades.rate * 1.5 ** get().repro.clovers.tier;
+                    : upgrades.rate * 1.15 ** get().repro.clovers.tier;
 
             // [TODO] Which rate?
             const heroCloverRateMs = Math.min(

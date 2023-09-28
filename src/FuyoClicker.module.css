@@ -1,8 +1,19 @@
+@keyframes slide {
+    0% {
+        background-position: 0vw;
+    }
+    100% {
+        background-position: 100vw;
+    }
+}
+
 .container {
     height: 100vh;
     display: flex;
-    background-image: url("./assets/images/bg2.png");
+    background-image: url("./assets/images/bg3.png");
     background-size: cover;
+    background-attachment: fixed;
+    animation: 120s slide infinite linear;
 }
 
 .container > .left {

@@ -1,14 +1,11 @@
 import { useGameStore } from "../../store";
 import classes from "./index.module.css";
-import {
-    HTMLProps,
-    useRef,
-    useState,
-} from "react";
+import { HTMLProps, useRef, useState } from "react";
 import { calculatePrice, items } from "./data";
 import Upgrades from "./upgrades";
 import Tooltip from "./tooltip";
 import useTooltip from "./tooltip/useTooltip";
+import { formatNumber } from "../../hooks/counter";
 
 /**
  * Shop for buying upgrades and advancements.
@@ -58,7 +55,13 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                             <div>{items[parseInt(id)].name}</div>
                             <div>
                                 Price:{" "}
-                                {calculatePrice(parseInt(id), item.purchased)}
+                                {formatNumber(
+                                    calculatePrice(
+                                        parseInt(id),
+                                        item.purchased
+                                    ),
+                                    true
+                                )}
                             </div>
                         </div>
                         <div className={classes.purchased}>

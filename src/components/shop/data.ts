@@ -69,6 +69,15 @@ export const items: Record<number, Item> = {
         laneType: LaneType.Lab,
         clovers: 4,
     },
+    6: {
+        name: "Scuba Gear",
+        price: {
+            base: 2e7,
+            factor: 1.15,
+        },
+        laneType: LaneType.Ocean,
+        clovers: 1,
+    },
 };
 
 /**

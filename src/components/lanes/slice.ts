@@ -52,6 +52,7 @@ export const createLanesSlice = (
             [LaneType.ConstructionSite]: defaultLane,
             [LaneType.RepairShop]: defaultLane,
             [LaneType.Lab]: defaultLane,
+            [LaneType.Ocean]: defaultLane,
         },
         assign: (heroClover: Clover, laneType: LaneType) => {
             // Remove from production chamber

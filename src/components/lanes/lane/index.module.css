@@ -1,7 +1,7 @@
 .container {
     position: relative;
     white-space: nowrap;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     height: 8rem;
     border-bottom: 0.2rem solid limegreen;
@@ -18,20 +18,53 @@
     margin: 1rem 1rem;
 }
 
+.buildings {
+    width: calc(100% - 2rem);
+}
+
 .buildings > img:nth-child(even) {
     margin-top: 2rem;
 }
 
+@keyframes zoom {
+    0% {
+        left: 0%;
+        top: -25%;
+    }
+    50% {
+        left: 50%;
+        top: 20%;
+    }
+    100% {
+        left: 90%;
+        top: 0%;
+    }
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(180deg);
+    }
+    50% {
+        transform: rotateY(0deg);
+    }
+}
+
 .buildings > img {
+    position: relative;
     height: 4rem;
     align-self: flex-start;
     aspect-ratio: 1/1;
     margin-left: -1rem;
+    animation: 10s zoom alternate infinite linear,
+        20s flip steps(1, end) infinite;
 }
 
 .clovers > * {
     width: 3rem !important;
     margin-left: -1rem;
+    animation: 10s zoom alternate infinite linear,
+        20s flip steps(1, end) infinite;
 }
 
 .clovers > *:nth-child(even) {

@@ -9,6 +9,7 @@ import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
+import { formatNumber } from "../../../hooks/counter";
 
 const RNG_SEED = 15;
 
@@ -115,9 +116,11 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
             </div>
             {active !== null && (
                 <Tooltip anchor={anchor!} initialCoords={coords!}>
-                    <h2>{data[active.type][active.id].name}</h2>
-                    <p>{data[active.type][active.id].price}</p>
-                    <p>{data[active.type][active.id].description}</p>
+                    <h1>{data[active.type][active.id].name}</h1>
+                    <h2>
+                        {formatNumber(data[active.type][active.id].price, true)}
+                    </h2>
+                    <h2>{data[active.type][active.id].description}</h2>
                 </Tooltip>
             )}
         </div>

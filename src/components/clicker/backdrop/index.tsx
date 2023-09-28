@@ -11,7 +11,6 @@ import { ParticleType, Particles } from "./particles";
 export const PARTICLE_SIZE = 100;
 
 const RATE_TIME_MS = 1e3;
-const MAX_PARTICLES = 1e4;
 
 function tween(start: number, end: number, time: number): number {
     return start + time * (end - start);
@@ -25,8 +24,16 @@ export default function Backdrop({ rect }: BackdropProps) {
     const rateMs = useGameStore(state => state.coins.rateMs);
 
     const count = useMemo(
-        () => Math.min(Math.round(rateMs * RATE_TIME_MS), MAX_PARTICLES),
-        [rateMs]
+        () =>
+            Math.min(
+                Math.round(rateMs * RATE_TIME_MS),
+                Math.round(
+                    (rect.width / PARTICLE_SIZE) *
+                        (rect.height / PARTICLE_SIZE) *
+                        16
+                )
+            ),
+        [rateMs, rect]
     );
     const particles = useRef<Particles>(null!);
     if (particles.current === null) {
@@ -42,7 +49,7 @@ export default function Backdrop({ rect }: BackdropProps) {
 
     useTick(() => {
         // Update particles
-        if (particles.current.resize(count)) setRenderCount(count + 1);
+        if (particles.current.resize(count)) setRenderCount(count => count + 1);
 
         // Update sprites
         for (const [id, sprite] of Object.entries(sprites.current)) {
@@ -75,7 +82,7 @@ export default function Backdrop({ rect }: BackdropProps) {
         <>
             <ParticleContainer>
                 {Object.values(particles.current.map)
-                    .filter(particles => particles.type === ParticleType.COIN)
+                    .filter(particle => particle.type === ParticleType.COIN)
                     .map(particle => (
                         <Sprite
                             key={particle.id}
@@ -89,7 +96,7 @@ export default function Backdrop({ rect }: BackdropProps) {
             </ParticleContainer>
             <ParticleContainer>
                 {Object.values(particles.current.map)
-                    .filter(particles => particles.type === ParticleType.CLOVER)
+                    .filter(particle => particle.type === ParticleType.CLOVER)
                     .map(particle => (
                         <Sprite
                             key={particle.id}

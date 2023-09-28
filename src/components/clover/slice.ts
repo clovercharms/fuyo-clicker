@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState, resetters } from "../../store";
 import { Job } from "./data";
 
 /**
@@ -30,21 +30,33 @@ export interface CloverSlice {
     };
 }
 
-export const createCloverSlice = (set: StoreApi<GameState>["setState"]) => ({
-    clover: {
-        dragged: undefined,
-        drag: (clover?: Clover) => {
-            set(
-                state => ({
-                    clover: {
-                        ...state.clover,
-                        dragged: clover,
-                    },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Action - Clover - Drag"
-            );
+const initialCloverState = {
+    dragged: undefined,
+};
+
+export const createCloverSlice = (
+    set: StoreApi<GameState>["setState"],
+    get: StoreApi<GameState>["getState"]
+) => {
+    resetters.push(() => ({
+        clover: { ...get().clover, ...initialCloverState },
+    }));
+    return {
+        clover: {
+            ...initialCloverState,
+            drag: (clover?: Clover) => {
+                set(
+                    state => ({
+                        clover: {
+                            ...state.clover,
+                            dragged: clover,
+                        },
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Clover - Drag"
+                );
+            },
         },
-    },
-});
+    };
+};

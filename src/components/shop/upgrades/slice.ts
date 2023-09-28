@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../../store";
+import { GameState, resetters } from "../../../store";
 import { UpgradeType, upgrades } from "./data";
 
 /**
@@ -18,41 +18,50 @@ export interface UpgradesSlice {
     };
 }
 
+const initialUpgradesState = {
+    unlocked: {
+        [UpgradeType.Clicker]: {},
+        [UpgradeType.Mine]: {},
+    },
+};
+
 export const createUpgradesSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
-) => ({
-    upgrades: {
-        unlocked: {
-            [UpgradeType.Clicker]: {},
-            [UpgradeType.Mine]: {}
-        },
-        buy: (type: UpgradeType, id: number) => {
-            get().tick();
+) => {
+    resetters.push(() => ({
+        upgrades: { ...get().upgrades, ...initialUpgradesState },
+    }));
+    return {
+        upgrades: {
+            ...initialUpgradesState,
+            buy: (type: UpgradeType, id: number) => {
+                get().tick();
 
-            const price = upgrades[type][id].price;
-            if (get().coins.amount < price) return false;
+                const price = upgrades[type][id].price;
+                if (get().coins.amount < price) return false;
 
-            set(state => ({
-                coins: {
-                    ...state.coins,
-                    amount: state.coins.amount - price,
-                },
-                upgrades: {
-                    ...state.upgrades,
-                    unlocked: {
-                        ...state.upgrades.unlocked,
-                        [type]: {
-                            ...state.upgrades.unlocked[type],
-                            [id]: true,
+                set(state => ({
+                    coins: {
+                        ...state.coins,
+                        amount: state.coins.amount - price,
+                    },
+                    upgrades: {
+                        ...state.upgrades,
+                        unlocked: {
+                            ...state.upgrades.unlocked,
+                            [type]: {
+                                ...state.upgrades.unlocked[type],
+                                [id]: true,
+                            },
                         },
                     },
-                },
-            }));
+                }));
 
-            get().tick();
+                get().tick();
 
-            return true;
+                return true;
+            },
         },
-    },
-});
+    };
+};

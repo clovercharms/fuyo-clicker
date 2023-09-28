@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+}
+
+.container::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    aspect-ratio: 1/1;
+    margin-left: 0.25rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.coins::after {
+    background-image: url("../../assets/images/fuyo-coin.png");
+}
+
+.clovers::after {
+    background-image: url("../../assets/images/clover/base.png");
+}

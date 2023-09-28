@@ -38,8 +38,8 @@ export class Particles {
     }
 
     constructor(size: number, rect: DOMRect) {
-        this.resize(size);
         this._rect = rect;
+        this.resize(size);
     }
 
     resize(size: number) {

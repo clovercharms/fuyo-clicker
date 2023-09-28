@@ -21,7 +21,7 @@
 }
 
 .container > * {
-    overflow-y: auto;
+    overflow: hidden;
     width: 25rem;
 }
 
@@ -32,10 +32,6 @@
 .container > .right {
     display: flex;
     flex-direction: column;
-}
-
-.container > .right > * {
-    overflow: auto;
 }
 
 .container > .right > * {

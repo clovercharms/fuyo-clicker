@@ -1,5 +1,5 @@
 export const upgrades = {
-    rate: 0.001,
+    rate: 0.0005,
     price: {
         base: 15,
         factor: 1.15,

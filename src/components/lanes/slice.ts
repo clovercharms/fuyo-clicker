@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState, resetters } from "../../store";
 import { lanes as lanesData, LaneType } from "./lane/data";
 import { Clover } from "../clover/slice";
 
@@ -41,71 +41,78 @@ const defaultLane: Lane = {
     },
 };
 
+const initialLanesState = {
+    rows: {
+        [LaneType.Mine]: defaultLane,
+        [LaneType.Forge]: defaultLane,
+        [LaneType.ConstructionSite]: defaultLane,
+        [LaneType.RepairShop]: defaultLane,
+        [LaneType.Lab]: defaultLane,
+        [LaneType.Ocean]: defaultLane,
+    },
+};
+
 export const createLanesSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
-) => ({
-    lanes: {
-        rows: {
-            [LaneType.Mine]: defaultLane,
-            [LaneType.Forge]: defaultLane,
-            [LaneType.ConstructionSite]: defaultLane,
-            [LaneType.RepairShop]: defaultLane,
-            [LaneType.Lab]: defaultLane,
-            [LaneType.Ocean]: defaultLane,
-        },
-        assign: (heroClover: Clover, laneType: LaneType) => {
-            // Remove from production chamber
-            const heroClovers = get().repro.clovers.heros.spawned;
-            delete heroClovers[heroClover.id];
+) => {
+    resetters.push(() => ({ lanes: { ...get().lanes, ...initialLanesState } }));
+    return {
+        lanes: {
+            ...initialLanesState,
+            assign: (heroClover: Clover, laneType: LaneType) => {
+                // Remove from production chamber
+                const heroClovers = get().repro.clovers.heros.spawned;
+                delete heroClovers[heroClover.id];
 
-            // Remove from lanes
-            const rows = get().lanes.rows;
-            for (const row of Object.values(rows)) {
-                delete row.clovers.heros[heroClover.id];
-            }
+                // Remove from lanes
+                const rows = get().lanes.rows;
+                for (const row of Object.values(rows)) {
+                    delete row.clovers.heros[heroClover.id];
+                }
 
-            set(
-                state => ({
-                    repro: {
-                        ...state.repro,
-                        clovers: {
-                            ...state.repro.clovers,
-                            heros: {
-                                ...state.repro.clovers.heros,
-                                spawned: heroClovers,
+                set(
+                    state => ({
+                        repro: {
+                            ...state.repro,
+                            clovers: {
+                                ...state.repro.clovers,
+                                heros: {
+                                    ...state.repro.clovers.heros,
+                                    spawned: heroClovers,
+                                },
                             },
                         },
-                    },
-                    lanes: {
-                        ...state.lanes,
-                        rows: {
-                            ...rows,
-                            [laneType]: {
-                                ...state.lanes.rows[laneType],
-                                clovers: {
-                                    ...state.lanes.rows[laneType].clovers,
-                                    heros: {
-                                        ...state.lanes.rows[laneType].clovers
-                                            .heros,
-                                        [heroClover.id]: {
-                                            ...heroClover,
-                                            job: lanesData[laneType].job,
-                                            assigned: Date.now(),
+                        lanes: {
+                            ...state.lanes,
+                            rows: {
+                                ...rows,
+                                [laneType]: {
+                                    ...state.lanes.rows[laneType],
+                                    clovers: {
+                                        ...state.lanes.rows[laneType].clovers,
+                                        heros: {
+                                            ...state.lanes.rows[laneType]
+                                                .clovers.heros,
+                                            [heroClover.id]: {
+                                                ...heroClover,
+                                                job: lanesData[laneType].job,
+                                                assigned: Date.now(),
+                                            },
                                         },
                                     },
                                 },
                             },
                         },
-                    },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Action - Clover - Assign"
-            );
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Clover - Assign"
+                );
 
-            // Immediately forward game state.
-            get().coins.tick();
+                // Immediately forward game state.
+                get().coins.tick();
+            },
         },
-    },
-});
+    };
+};

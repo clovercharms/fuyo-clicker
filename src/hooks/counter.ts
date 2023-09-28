@@ -61,7 +61,7 @@ export function useCounter(
      */
     const updateValue = useCallback(() => {
         if (!elementRef.current) return;
-        const elapsed = performance.now() - lastUpdate.current;
+        const elapsed = Math.max(0, performance.now() - lastUpdate.current);
 
         const currentValue = value + elapsed * rateMs;
         elementRef.current.innerText = formatNumber(

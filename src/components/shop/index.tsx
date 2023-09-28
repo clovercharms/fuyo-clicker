@@ -1,33 +1,25 @@
 import { useGameStore } from "../../store";
 import classes from "./index.module.css";
 import { HTMLProps, useRef, useState } from "react";
-import { calculatePrice, items } from "./data";
+import { Currency, calculatePrice, items } from "./item/data";
 import Upgrades from "./upgrades";
 import Tooltip from "./tooltip";
 import useTooltip from "./tooltip/useTooltip";
-import { formatNumber } from "../../hooks/counter";
+import Item from "./item";
 
 /**
  * Shop for buying upgrades and advancements.
  */
 export default function Shop(props: HTMLProps<HTMLDivElement>) {
     const shop = useGameStore(state => state.shop);
+    const coins = useGameStore(state => state.coins.amount);
+    const clovers = useGameStore(state => state.repro.clovers.amount);
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState<number | null>(null);
     const {
         anchor: [anchor, setAnchor],
         coords: [coords, setCoords],
     } = useTooltip();
-
-    /**
-     * Handles shop specific behavior for purchasing items.
-     * @param id The metadata id of the item to purchase.
-     */
-    const handleBuy = (id: number) => {
-        const result = shop.buy(id);
-        // [FIXME] Properly handle
-        if (!result) alert("Insufficient clovers");
-    };
 
     return (
         <div
@@ -42,33 +34,36 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                 onMouseLeave={() => setActiveId(null)}
                 ref={setAnchor}
             >
-                {Object.entries(shop.items).map(([id, item]) => (
-                    <li
-                        key={id}
-                        onClick={() => handleBuy(parseInt(id))}
-                        onMouseEnter={e => {
-                            setActiveId(parseInt(id));
-                            setCoords({ x: e.clientX, y: e.clientY });
-                        }}
-                    >
-                        <div>
-                            <div>{items[parseInt(id)].name}</div>
-                            <div>
-                                Price:{" "}
-                                {formatNumber(
-                                    calculatePrice(
-                                        parseInt(id),
-                                        item.purchased
-                                    ),
-                                    true
-                                )}
-                            </div>
-                        </div>
-                        <div className={classes.purchased}>
-                            {item.purchased}
-                        </div>
-                    </li>
-                ))}
+                {Object.entries(shop.unlockedItems())
+                    .map(([id, item]) => {
+                        const price = calculatePrice(
+                            id as unknown as number,
+                            item.purchased
+                        );
+                        const itemData = items[id as unknown as number];
+                        const affordable =
+                            (itemData.price.currency === Currency.COINS
+                                ? coins
+                                : clovers) >= price;
+
+                        return (
+                            <Item
+                                key={id}
+                                item={items[id as unknown as number]}
+                                price={price}
+                                affordable={affordable}
+                                purchased={item.purchased}
+                                onClick={() =>
+                                    affordable &&
+                                    shop.buy(id as unknown as number)
+                                }
+                                onMouseEnter={e => {
+                                    setActiveId(id as unknown as number);
+                                    setCoords({ x: e.clientX, y: e.clientY });
+                                }}
+                            />
+                        );
+                    })}
             </ul>
             {activeId !== null && (
                 <Tooltip anchor={anchor!} initialCoords={coords!}>

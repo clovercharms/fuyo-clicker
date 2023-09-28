@@ -9,7 +9,8 @@ import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
-import { formatNumber } from "../../../hooks/counter";
+import Price from "../../price";
+import { Currency } from "../item/data";
 
 const RNG_SEED = 15;
 
@@ -118,7 +119,10 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 <Tooltip anchor={anchor!} initialCoords={coords!}>
                     <h1>{data[active.type][active.id].name}</h1>
                     <h2>
-                        {formatNumber(data[active.type][active.id].price, true)}
+                        <Price
+                            amount={data[active.type][active.id].price}
+                            currency={Currency.COINS}
+                        />
                     </h2>
                     <h2>{data[active.type][active.id].description}</h2>
                 </Tooltip>

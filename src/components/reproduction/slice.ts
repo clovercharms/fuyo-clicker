@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState, resetters } from "../../store";
 import { names } from "../clover/data";
 import { Clover } from "../clover/slice";
 import { calculatePrice, upgrades } from "./data";
@@ -35,158 +35,168 @@ export interface ReproSlice {
     };
 }
 
+const initialReproState = {
+    clovers: {
+        amount: 0,
+        rateMs: 0,
+        tier: 0,
+        heros: {
+            progress: 0,
+            rateMs: 0,
+            spawned: {},
+        },
+        lastCloverId: -1,
+    },
+    lastUpdate: performance.now(),
+};
+
 export const createReproSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
-) => ({
-    repro: {
-        clovers: {
-            amount: 0,
-            rateMs: 0,
-            tier: 0,
-            heros: {
-                progress: 0,
-                rateMs: 0,
-                spawned: {},
+) => {
+    resetters.push(() => ({ repro: { ...get().repro, ...initialReproState } }));
+    return {
+        repro: {
+            ...initialReproState,
+            tick: () => {
+                const elapsed = Math.max(
+                    0,
+                    performance.now() - get().repro.lastUpdate
+                );
+
+                // [TODO] Calculate clover rateMs
+                const cloverRateMs =
+                    get().repro.clovers.tier === 0
+                        ? 0
+                        : upgrades.rate * 1.15 ** get().repro.clovers.tier;
+
+                // [TODO] Which rate?
+                const heroCloverRateMs = Math.min(
+                    get().repro.clovers.rateMs / 1e3,
+                    1 / 120e3
+                );
+
+                set(
+                    state => ({
+                        repro: {
+                            ...state.repro,
+                            lastUpdate: performance.now(),
+                            clovers: {
+                                ...state.repro.clovers,
+                                rateMs: cloverRateMs,
+                                amount:
+                                    state.repro.clovers.amount +
+                                    elapsed * cloverRateMs,
+                                heros: {
+                                    ...state.repro.clovers.heros,
+                                    rateMs: heroCloverRateMs,
+                                    progress:
+                                        state.repro.clovers.heros.progress +
+                                        elapsed * heroCloverRateMs,
+                                },
+                            },
+                        },
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Tick - Repro"
+                );
+
+                // Hero Clovers
+                if (get().repro.clovers.heros.progress < 1) return;
+
+                // Generate new Hero Clover
+                const clover = generateClover(get().repro.clovers.lastCloverId);
+
+                set(
+                    state => ({
+                        repro: {
+                            ...state.repro,
+                            clovers: {
+                                ...state.repro.clovers,
+                                heros: {
+                                    ...state.repro.clovers.heros,
+                                    progress:
+                                        state.repro.clovers.heros.progress - 1,
+                                    spawned: {
+                                        ...state.repro.clovers.heros.spawned,
+                                        [clover.id]: clover,
+                                    },
+                                },
+                                lastCloverId: clover.id,
+                            },
+                        },
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Tick - Repro - Hero Clover"
+                );
             },
-            lastCloverId: -1,
-        },
-        lastUpdate: performance.now(),
-        tick: () => {
-            const elapsed = performance.now() - get().repro.lastUpdate;
+            spawn: () => {
+                // Generate new Hero Clover
+                const clover = generateClover(get().repro.clovers.lastCloverId);
 
-            // [TODO] Calculate clover rateMs
-            const cloverRateMs =
-                get().repro.clovers.tier === 0
-                    ? 0
-                    : upgrades.rate * 1.15 ** get().repro.clovers.tier;
-
-            // [TODO] Which rate?
-            const heroCloverRateMs = Math.min(
-                get().repro.clovers.rateMs / 1e3,
-                1 / 120e3
-            );
-
-            set(
-                state => ({
-                    repro: {
-                        ...state.repro,
-                        lastUpdate: performance.now(),
-                        clovers: {
-                            ...state.repro.clovers,
-                            rateMs: cloverRateMs,
-                            amount:
-                                state.repro.clovers.amount +
-                                elapsed * cloverRateMs,
-                            heros: {
-                                ...state.repro.clovers.heros,
-                                rateMs: heroCloverRateMs,
-                                progress:
-                                    state.repro.clovers.heros.progress +
-                                    elapsed * heroCloverRateMs,
-                            },
-                        },
-                    },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Tick - Repro"
-            );
-
-            // Hero Clovers
-            if (get().repro.clovers.heros.progress < 1) return;
-
-            // Generate new Hero Clover
-            const clover = generateClover(get().repro.clovers.lastCloverId);
-
-            set(
-                state => ({
-                    repro: {
-                        ...state.repro,
-                        clovers: {
-                            ...state.repro.clovers,
-                            heros: {
-                                ...state.repro.clovers.heros,
-                                progress:
-                                    state.repro.clovers.heros.progress - 1,
-                                spawned: {
-                                    ...state.repro.clovers.heros.spawned,
-                                    [clover.id]: clover,
+                set(
+                    state => ({
+                        repro: {
+                            ...state.repro,
+                            clovers: {
+                                ...state.repro.clovers,
+                                heros: {
+                                    ...state.repro.clovers.heros,
+                                    spawned: {
+                                        ...state.repro.clovers.heros.spawned,
+                                        [clover.id]: clover,
+                                    },
                                 },
+                                lastCloverId: clover.id,
                             },
-                            lastCloverId: clover.id,
                         },
-                    },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Tick - Repro - Hero Clover"
-            );
-        },
-        spawn: () => {
-            // Generate new Hero Clover
-            const clover = generateClover(get().repro.clovers.lastCloverId);
-
-            set(
-                state => ({
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Cheat - Hero Clover"
+                );
+            },
+            click: () => {
+                set(state => ({
                     repro: {
                         ...state.repro,
                         clovers: {
                             ...state.repro.clovers,
-                            heros: {
-                                ...state.repro.clovers.heros,
-                                spawned: {
-                                    ...state.repro.clovers.heros.spawned,
-                                    [clover.id]: clover,
-                                },
-                            },
-                            lastCloverId: clover.id,
+                            amount: state.repro.clovers.amount + 1,
                         },
                     },
-                }),
-                false,
-                // @ts-expect-error typing
-                "Action - Cheat - Hero Clover"
-            );
-        },
-        click: () => {
-            set(state => ({
-                repro: {
-                    ...state.repro,
-                    clovers: {
-                        ...state.repro.clovers,
-                        amount: state.repro.clovers.amount + 1,
+                }));
+            },
+            upgrade: () => {
+                get().tick();
+
+                const nextTier = get().repro.clovers.tier + 1;
+                const price = calculatePrice(nextTier);
+                if (get().coins.amount < price) return false;
+
+                set(state => ({
+                    coins: {
+                        ...state.coins,
+                        amount: state.coins.amount - price,
                     },
-                },
-            }));
-        },
-        upgrade: () => {
-            get().tick();
-
-            const nextTier = get().repro.clovers.tier + 1;
-            const price = calculatePrice(nextTier);
-            if (get().coins.amount < price) return false;
-
-            set(state => ({
-                coins: {
-                    ...state.coins,
-                    amount: state.coins.amount - price,
-                },
-                repro: {
-                    ...state.repro,
-                    clovers: {
-                        ...state.repro.clovers,
-                        tier: state.repro.clovers.tier + 1,
+                    repro: {
+                        ...state.repro,
+                        clovers: {
+                            ...state.repro.clovers,
+                            tier: state.repro.clovers.tier + 1,
+                        },
                     },
-                },
-            }));
+                }));
 
-            get().tick();
+                get().tick();
 
-            return true;
+                return true;
+            },
         },
-    },
-});
+    };
+};
 
 export function generateClover(lastId: number) {
     // Generate new Hero Clover

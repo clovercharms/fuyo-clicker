@@ -9,10 +9,10 @@ import { useRef } from 'react';
 
 const COIN_SIZE = 300;
 
-function playSfx(src: string, loop?: boolean) {
+function playSfx(src: string, volume = 0.2, loop = false) {
     const audio = new Audio(src);
-    audio.volume = 0.2;
-    audio.loop = loop ?? false;
+    audio.volume = volume;
+    audio.loop = loop;
     void audio.play();
 }
 
@@ -53,7 +53,7 @@ export default function Coin() {
                 playSfx(coinSound);
                 if (Math.random() > 0.9) playSfx(coinSound2);
                 if (!bgmPlaying.current) {
-                    playSfx(bgm, true);
+                    playSfx(bgm, 1.0, true);
                     bgmPlaying.current = true;
                 }
             }}

@@ -19,14 +19,14 @@ export interface Particle {
     to: AnimationProperties;
     duration: number;
     started: number;
-    remove: boolean;
+    recycle: boolean;
     type: ParticleType;
 }
 
 export class Particles {
     active = 0;
-    total = 0;
-    map = {} as Record<number, Particle>;
+    array: Particle[] = [];
+    recycleable: number[] = [];
     _rect: DOMRect;
     _lastId = 0;
     get rect() {
@@ -45,46 +45,41 @@ export class Particles {
     resize(size: number) {
         let changed = false;
         if (this.active < size) {
-            const diff = size - this.active;
-            for (let i = 0; i < diff; i++) {
+            for (let i = this.active; i < size; i++) {
                 const particle = this.generateParticle();
-                this.map[particle.id] = particle;
+                this.array[particle.id] = particle;
             }
-            this.active += diff;
-            this.total += diff;
             changed = true;
         } else if (this.active > size) {
-            const diff = this.active - size;
-            const particleKeys = Object.keys(this.map);
-            for (const key of particleKeys.slice(particleKeys.length - diff)) {
-                this.map[key as unknown as number].remove = true;
+            for (let i = this.active - 1; i >= size; i--) {
+                this.recycle(i);
             }
-            this.active -= diff;
             changed = true;
         }
-
+        this.active = size;
         return changed;
     }
 
     reset(id: number) {
-        this.map[id] = {
-            ...this.generateParticle(id),
-        };
+        this.array[id] = this.generateParticle(id);
     }
 
     resetAll() {
-        for (const id of Object.keys(this.map))
-            this.reset(id as unknown as number);
+        for (let i = 0; i < this.active; i++) {
+            if (this.array[i].recycle) continue;
+            this.reset(i);
+        }
     }
 
-    remove(id: number) {
-        delete this.map[id];
-        this.total -= 1;
+    recycle(id: number) {
+        this.array[id].recycle = true;
+        this.recycleable.push(id);
+        this.active -= 1;
     }
 
     generateParticle(id?: number) {
         return {
-            id: id ?? this._lastId++,
+            id: id ?? this.recycleable.shift() ?? this._lastId++,
             from: {
                 x:
                     -(PARTICLE_SIZE / 2) +

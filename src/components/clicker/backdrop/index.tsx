@@ -44,7 +44,7 @@ export default function Backdrop({ rect }: BackdropProps) {
     ) {
         particles.current.rect = rect;
     }
-    const sprites = useRef<Record<number, ISprite>>({});
+    const sprites = useRef<ISprite[]>([]);
     const [, setRenderCount] = useState(0);
 
     useTick(() => {
@@ -53,8 +53,7 @@ export default function Backdrop({ rect }: BackdropProps) {
 
         // Update sprites
         for (const [id, sprite] of Object.entries(sprites.current)) {
-            const particle = particles.current.map[id as unknown as number];
-            if (!particle) return;
+            const particle = particles.current.array[parseInt(id)];
 
             const elapsed = performance.now() - particle.started;
             const progress = easings.easeInQuad(elapsed / particle.duration);
@@ -67,21 +66,16 @@ export default function Backdrop({ rect }: BackdropProps) {
                 progress
             );
 
-            if (progress < 1) continue;
+            if (particle.recycle || progress < 1) continue;
 
-            if (particle.remove) {
-                particles.current.remove(particle.id);
-                delete sprites.current[particle.id];
-            } else {
-                particles.current.reset(particle.id);
-            }
+            particles.current.reset(particle.id);
         }
     });
 
     return (
         <>
             <ParticleContainer>
-                {Object.values(particles.current.map)
+                {particles.current.array
                     .filter(particle => particle.type === ParticleType.COIN)
                     .map(particle => (
                         <Sprite
@@ -95,7 +89,7 @@ export default function Backdrop({ rect }: BackdropProps) {
                     ))}
             </ParticleContainer>
             <ParticleContainer>
-                {Object.values(particles.current.map)
+                {particles.current.array
                     .filter(particle => particle.type === ParticleType.CLOVER)
                     .map(particle => (
                         <Sprite

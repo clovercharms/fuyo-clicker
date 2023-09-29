@@ -13,15 +13,7 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
             className={[props.className, classes.container].join(" ")}
         >
             <h1>News</h1>
-            <button
-                onClick={() => {
-                    reset();
-                    // [HACK] Coins backdrop doesn't handle shrinking well.
-                    location.reload();
-                }}
-            >
-                Reset all progress
-            </button>
+            <button onClick={reset}>Reset all progress</button>
         </div>
     );
 }

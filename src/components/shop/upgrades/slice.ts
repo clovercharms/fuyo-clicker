@@ -1,6 +1,7 @@
 import { StoreApi } from "zustand";
-import { GameState, resetters } from "../../../store";
+import { GameState } from "../../../store";
 import { UpgradeType, upgrades } from "./data";
+import { resetters } from "../../../resetters";
 
 /**
  * Slice containing shop specific state.

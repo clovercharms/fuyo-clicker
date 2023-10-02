@@ -40,8 +40,3 @@
 .spawn {
     margin-bottom: 1rem;
 }
-
-.heroClovers {
-    display: flex;
-    overflow-x: auto;
-}

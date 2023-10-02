@@ -1,32 +1,32 @@
 import { create } from "zustand";
 import { CoinsSlice, createCoinsSlice } from "./components/clicker/slice";
 import { ShopSlice, createShopSlice } from "./components/shop/slice";
-import {
-    createJSONStorage,
-    devtools /* persist, createJSONStorage */,
-    persist,
-} from "zustand/middleware";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { ReproSlice, createReproSlice } from "./components/reproduction/slice";
 import { all as merge } from "deepmerge";
 import { LanesSlice, createLanesSlice } from "./components/lanes/slice";
-import { CloverSlice, createCloverSlice } from "./components/clover/slice";
 import {
     UpgradesSlice,
     createUpgradesSlice,
 } from "./components/shop/upgrades/slice";
+import {
+    BoostsSlice,
+    createBoostsSlice,
+} from "./components/clicker/boosts/slice";
+import { resetters } from "./resetters";
 
 /** Combination of all different slices from different aspects of the game. */
 export type GameState = CoinsSlice &
+    BoostsSlice &
     UpgradesSlice &
     ShopSlice &
     ReproSlice &
-    CloverSlice &
     LanesSlice & {
         tick: () => void;
         reset: () => void;
     };
 
-export const resetters: (() => Partial<GameState>)[] = [];
+export const STORE_NAME = "game-store";
 
 /**
  * The main game store, contains all store as pertaining to different aspects
@@ -37,13 +37,14 @@ export const useGameStore = create<GameState>()(
         persist(
             (set, get) => ({
                 ...createCoinsSlice(set, get),
+                ...createBoostsSlice(set, get),
                 ...createUpgradesSlice(set, get),
                 ...createShopSlice(set, get),
                 ...createReproSlice(set, get),
-                ...createCloverSlice(set, get),
                 ...createLanesSlice(set, get),
                 tick: () => {
                     createCoinsSlice(set, get).coins.tick();
+                    createBoostsSlice(set, get).boosts.tick();
                     createReproSlice(set, get).repro.tick();
                 },
                 reset: () =>
@@ -60,13 +61,24 @@ export const useGameStore = create<GameState>()(
                     ),
             }),
             {
-                name: "game-store",
+                name: STORE_NAME,
+                version: 2,
                 storage: createJSONStorage(() => localStorage),
                 merge: (persisted, current) =>
                     merge([current, persisted as Partial<GameState>], {
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                         arrayMerge: (_, src) => src,
                     }) as GameState,
+                migrate: () => {
+                    // [HACK] Apply proper migrations for release.
+                    return resetters.reduce(
+                        (prev, curr) => ({
+                            ...prev,
+                            ...curr(),
+                        }),
+                        {} as GameState
+                    );
+                },
             }
         )
     )

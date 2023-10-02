@@ -18,7 +18,7 @@
     display: none;
 }
 
-.upgrades:hover :nth-child(n + 6) {
+.upgrades:hover .upgrade:nth-child(n + 6) {
     display: block;
 }
 

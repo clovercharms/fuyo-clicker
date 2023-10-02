@@ -10,6 +10,24 @@
     font-family: "Subscribe", sans-serif;
 }
 
+body {
+    /* Foreground, Background */
+    scrollbar-color: #987A50 #6A5539;
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #6A5539;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #987A50;
+}
+
 body,
 h1,
 h2 {

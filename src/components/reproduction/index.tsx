@@ -1,9 +1,8 @@
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useGameStore } from "../../store";
 import classes from "./index.module.css";
-import { HTMLProps } from "react";
+import { HTMLProps, useState } from "react";
 import { formatNumber, useCounter } from "../../hooks/counter";
-import { Clover as IClover } from "../clover/slice";
 import { calculatePrice } from "./data";
 import HeroClover from "../clover/hero";
 
@@ -12,7 +11,6 @@ import HeroClover from "../clover/hero";
  */
 export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     const repro = useGameStore(state => state.repro);
-    const clover = useGameStore(state => state.clover);
     const coins = useGameStore(state => state.coins.amount);
 
     const { counterRef: cloverCounterRef } = useCounter(
@@ -22,21 +20,19 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     );
 
     const { counterRef: heroCloverCounterRef } = useCounter(
-        repro.clovers.heros.progress,
-        repro.clovers.heros.rateMs,
+        repro.clovers.heroes.progress,
+        repro.clovers.heroes.rateMs,
         false,
         false,
         { minimumFractionDigits: 3 }
     );
 
-    /**
-     * Handles state updates for dragging Clovers.
-     * [FIXME] Separate this concern to elsewhere.
-     */
     useDndMonitor({
-        onDragStart: event => clover.drag(event.active.data.current as IClover),
-        onDragEnd: () => clover.drag(undefined),
+        onDragStart: () => setDragging(true),
+        onDragEnd: () => setDragging(false),
     });
+
+    const [dragging, setDragging] = useState(false);
 
     const handleUpgrade = () => {
         const result = repro.upgrade();
@@ -89,19 +85,19 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
                 <button className={classes.spawn} onClick={repro.spawn}>
                     Spawn
                 </button>
-                <div className={classes.heroClovers}>
-                    {Object.values(repro.clovers.heros.spawned).map(clover => (
-                        <HeroClover key={clover.id} clover={clover} />
-                    ))}
-                </div>
-                {/**
-                 * Clover drag visualization.
-                 * [FIXME] Separate this concern to elsewhere.
-                 */}
-                <DragOverlay>
-                    {clover.dragged !== undefined && (
+                <div>
+                    {repro.clovers.heroes.spawned && (
                         <HeroClover
-                            clover={clover.dragged}
+                            id={repro.clovers.heroes.spawned.id}
+                            job={repro.clovers.heroes.spawned.job}
+                        />
+                    )}
+                </div>
+                <DragOverlay>
+                    {!!dragging && repro.clovers.heroes.spawned && (
+                        <HeroClover
+                            id={repro.clovers.heroes.spawned.id}
+                            job={repro.clovers.heroes.spawned.job}
                             style={{ zIndex: 1 }}
                         />
                     )}

@@ -58,16 +58,6 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
         [game, upgrades.unlocked]
     );
 
-    /**
-     * Handles shop specific behavior for purchasing items.
-     * @param id The metadata id of the item to purchase.
-     */
-    const handleBuy = (type: UpgradeType, id: number) => {
-        const result = upgrades.buy(type, id);
-        // [FIXME] Properly handle
-        if (!result) alert("Insufficient coins");
-    };
-
     return (
         <div
             {...props}
@@ -76,23 +66,15 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
         >
             <div
                 className={classes.upgrades}
-                onMouseLeave={() => setActive(null)}
                 ref={setAnchor}
+                onMouseLeave={() => setActive(null)}
             >
-                {Object.values(activeUpgrades).reduce(
-                    (prev, curr) => prev + Object.keys(curr).length,
-                    0
-                ) === 0 ? (
-                    <span className={classes.placeholder} />
-                ) : (
-                    <></>
-                )}
-                {Object.entries(activeUpgrades).map(([type, upgrades]) =>
-                    Object.entries(upgrades).map(([id, upgrade]) => (
+                {Object.entries(activeUpgrades).map(([type, upgrades2]) =>
+                    Object.entries(upgrades2).map(([id, upgrade]) => (
                         <button
                             key={type + id}
                             onClick={() =>
-                                handleBuy(
+                                upgrades.buy(
                                     type as unknown as UpgradeType,
                                     parseInt(id)
                                 )
@@ -104,6 +86,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                                 });
                                 setCoords({ x: e.clientX, y: e.clientY });
                             }}
+                            onMouseLeave={() => setActive(null)}
                             className={classes.upgrade}
                             style={{
                                 backgroundImage: `url(${upgrade.image}), url(${
@@ -114,6 +97,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                         />
                     ))
                 )}
+                <span className={classes.placeholder} />
             </div>
             {active !== null && (
                 <Tooltip anchor={anchor!} initialCoords={coords!}>

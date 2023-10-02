@@ -1,11 +1,10 @@
 import classes from "./index.module.css";
-import { HTMLProps } from "react";
+import { CSSProperties, HTMLProps } from "react";
 import Clover from "../../clover";
-import { Lane as ILane } from "../slice";
-import { LaneType, lanes as lanesData } from "./data";
+import { CloverType, Lane as ILane } from "../slice";
+import { LaneType, lanes as data } from "./data";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "../../../store";
-import { Clover as IClover } from "../../clover/slice";
 import HeroClover from "../../clover/hero";
 import {
     xoroshiro128plus,
@@ -41,8 +40,13 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
      * assign it from the reproduction chamber to this lane.
      */
     useDndMonitor({
-        onDragEnd: event =>
-            isOver && lanes.assign(event.active.data.current as IClover, type),
+        onDragEnd: event => {
+            if (!isOver) return;
+            const eventData = event.active.data.current!;
+            if (eventData.job !== data[type].job) return;
+
+            lanes.assign(eventData.id as number, type)
+        },
     });
 
     return (
@@ -50,7 +54,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             {...props}
             className={[props.className, classes.container].join(" ")}
             style={{
-                backgroundImage: `url(${lanesData[type].background})`,
+                backgroundImage: `url(${data[type].background})`,
             }}
             ref={setNodeRef}
         >
@@ -61,7 +65,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
                         <img
                             key={i}
                             className={classes.building}
-                            src={lanesData[type].building}
+                            src={data[type].building}
                             style={{
                                 animationDelay: `${dist(-1e4, 0, rand)}ms`,
                             }}
@@ -69,25 +73,48 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
                     ))}
             </div>
             <div className={[classes.overlap, classes.clovers].join(" ")}>
-                {Object.values(lane.clovers.regular)
-                    .sort((a, b) => a.assigned - b.assigned)
+                {lane.clovers[CloverType.Regular]
                     .slice(0, MAX_CLOVERS)
-                    .map(clover => (
+                    .map(id => (
                         <Clover
-                            key={clover.id}
-                            clover={clover}
-                            style={{
-                                animationDelay: `${dist(-1e4, 0, rand)}ms`,
-                            }}
+                            key={id}
+                            className={classes.clover}
+                            id={id}
+                            job={data[type].job}
+                            style={
+                                {
+                                    "--animation-delay": `${dist(
+                                        -1e4,
+                                        0,
+                                        rand
+                                    )}ms`,
+                                } as CSSProperties
+                            }
                         />
                     ))}
             </div>
-            <div className={classes.overlap}>
-                {Object.values(lane.clovers.heros)
-                    .sort((a, b) => a.assigned - b.assigned)
+            <div
+                className={[classes.overlap, classes["hero-clovers"]].join(" ")}
+            >
+                {lane.clovers[CloverType.Hero]
                     .slice(0, MAX_HERO_CLOVERS)
-                    .map(clover => (
-                        <HeroClover key={clover.id} clover={clover} />
+                    .map(id => (
+                        <HeroClover
+                            key={id}
+                            className={classes['hero-clover']}
+                            id={id}
+                            job={data[type].job}
+                            assigned={true}
+                            style={
+                                {
+                                    "--animation-delay": `${dist(
+                                        -1e4,
+                                        0,
+                                        rand
+                                    )}ms`,
+                                } as CSSProperties
+                            }
+                        />
                     ))}
             </div>
         </div>

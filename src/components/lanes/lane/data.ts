@@ -14,7 +14,8 @@ import {
     sub,
 } from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
-import { Clover } from "../../clover/slice";
+
+export const CLOVERS_PER_BUILDING = 2;
 
 /**
  * Types of lanes that are accessible for Clovers to be assigned to.
@@ -39,8 +40,8 @@ export interface LaneData {
     /** Rate of production per building per millisecond. */
     rateMs: number;
     clovers: {
-        regular: Record<number, Clover>;
-        heros: Record<number, Clover>;
+        regular: number[];
+        heroes: number[];
     };
 }
 
@@ -55,8 +56,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: mine,
         rateMs: 1 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
     [LaneType.Forge]: {
@@ -65,8 +66,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: forgeBuilding,
         rateMs: 8 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
     [LaneType.ConstructionSite]: {
@@ -75,8 +76,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: placeholder,
         rateMs: 47 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
     [LaneType.RepairShop]: {
@@ -85,8 +86,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: placeholder,
         rateMs: 260 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
     [LaneType.Lab]: {
@@ -95,8 +96,8 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: scienceDesk,
         rateMs: 1400 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
     [LaneType.Ocean]: {
@@ -105,16 +106,13 @@ export const lanes: { [type in LaneType]: LaneData } = {
         building: sub,
         rateMs: 7800 / 1e3,
         clovers: {
-            regular: {},
-            heros: {},
+            regular: [],
+            heroes: [],
         },
     },
 };
 
-/**
- * 10% Bonus for every Hero Clover assigned to a Lane.
- */
-const heroCloverBonus = 0.1;
+const HERO_CLOVER_BONUS = 1.2;
 
 /**
  * Calculates the production of buildings and Clovers based on the type of lane,
@@ -134,7 +132,7 @@ export function calculateLaneRate(
     return (
         buildings *
         lanes[type].rateMs *
-        (1.0 + heroClovers * heroCloverBonus) *
+        HERO_CLOVER_BONUS ** heroClovers *
         2 ** upgrades
     );
 }

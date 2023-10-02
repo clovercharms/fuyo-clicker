@@ -1,8 +1,7 @@
 import { StoreApi } from "zustand";
-import { GameState, resetters } from "../../store";
-import { LaneType, calculateLaneRate } from "../lanes/lane/data";
-import { CLICKER_RATE_MS } from "./data";
-import { LaneTypeUpgradeType, UpgradeType } from "../shop/upgrades/data";
+import { GameState } from "../../store";
+import { resetters } from "../../resetters";
+import { calcClickAmount, calcRateMs } from "./calc";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.
@@ -11,6 +10,7 @@ import { LaneTypeUpgradeType, UpgradeType } from "../shop/upgrades/data";
 export interface CoinsSlice {
     coins: {
         amount: number;
+        manualAmount: number;
         lastUpdate: number;
         rateMs: number;
         clickers: number;
@@ -21,7 +21,7 @@ export interface CoinsSlice {
         /**
          * Manually increments the coin amount.
          */
-        click: () => void;
+        click: () => number;
         /**
          * Manually sets the amount of coins.
          */
@@ -31,6 +31,7 @@ export interface CoinsSlice {
 
 const initialCoinsState = {
     amount: 0,
+    manualAmount: 0,
     lastUpdate: performance.now(),
     rateMs: 0,
     clickers: 0,
@@ -50,37 +51,12 @@ export const createCoinsSlice = (
                     performance.now() - get().coins.lastUpdate
                 );
 
-                // Start rate calculation
-                let rateMs = 0;
-
-                // Upgrades
-                const upgrades = Object.entries(get().upgrades.unlocked).reduce(
-                    (prev, [type, unlocked]) => ({
-                        ...prev,
-                        [type as unknown as UpgradeType]:
-                            Object.keys(unlocked).length,
-                    }),
-                    {} as Record<UpgradeType, number>
+                const rateMs = calcRateMs(
+                    get().upgrades.unlocked,
+                    get().lanes.types,
+                    get().coins.clickers,
+                    get().boosts.types
                 );
-
-                // Clickers
-                rateMs +=
-                    get().coins.clickers *
-                    CLICKER_RATE_MS *
-                    2 ** upgrades[UpgradeType.Clicker];
-
-                // Lanes
-                for (const type of Object.values(LaneType).filter(
-                    t => typeof t === "number"
-                )) {
-                    const lane = get().lanes.rows[type as LaneType];
-                    rateMs += calculateLaneRate(
-                        type as LaneType,
-                        lane.buildings,
-                        upgrades[LaneTypeUpgradeType[type as LaneType]!],
-                        Object.keys(lane.clovers.heros).length
-                    );
-                }
 
                 set(
                     state => ({
@@ -88,9 +64,7 @@ export const createCoinsSlice = (
                             ...state.coins,
                             lastUpdate: performance.now(),
                             rateMs,
-                            amount:
-                                state.coins.amount +
-                                elapsed * state.coins.rateMs,
+                            amount: state.coins.amount + elapsed * rateMs,
                         },
                     }),
                     false,
@@ -102,25 +76,27 @@ export const createCoinsSlice = (
                 // Immediately forward game state.
                 get().coins.tick();
 
+                const amount = calcClickAmount(
+                    get().upgrades.unlocked,
+                    get().lanes.types,
+                    get().coins.clickers,
+                    get().boosts.types
+                );
+
                 set(
                     state => ({
                         coins: {
                             ...state.coins,
-                            amount:
-                                state.coins.amount +
-                                1 *
-                                    2 **
-                                        Object.keys(
-                                            state.upgrades.unlocked[
-                                                UpgradeType.Clicker
-                                            ]
-                                        ).length,
+                            amount: state.coins.amount + amount,
+                            manualAmount: state.coins.manualAmount + amount,
                         },
                     }),
                     false,
                     // @ts-expect-error typing
                     "Action - Click"
                 );
+
+                return amount;
             },
             cheat: (amount: number) => {
                 // Immediately forward game state.

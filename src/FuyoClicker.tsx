@@ -32,8 +32,12 @@ export default function FuyoClicker() {
             <Clicker className={classes.left} />
             <DndContext>
                 <div className={classes.middle}>
-                    <News />
-                    <Lanes />
+                    <div className={classes.border} />
+                    <div>
+                        <News />
+                        <Lanes />
+                    </div>
+                    <div className={classes.border} />
                 </div>
                 <div className={classes.right}>
                     <Reproduction />

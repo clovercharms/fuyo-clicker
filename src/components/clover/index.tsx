@@ -1,31 +1,34 @@
 import classes from "./index.module.css";
 import base from "../../assets/images/clover/base.png";
 import { HTMLProps } from "react";
-import { Jobs } from "./data";
-import { Clover as IClover } from '../clover/slice';
+import { Job, Jobs, names } from "./data";
+import {
+    xoroshiro128plus,
+    unsafeUniformIntDistribution as dist,
+} from 'pure-rand';
 
-export interface CloverProps extends HTMLProps<HTMLDivElement> {
-    clover: IClover;
+export interface CloverProps extends Omit<HTMLProps<HTMLDivElement>, 'id'> {
+    id: number;
+    job: Job;
 }
 
 /**
  * Represents a single clover as part of a lane.
  * Clovers are assigned a job and may contain cosmetic layers.
  */
-export default function Clover({ clover, ...props }: CloverProps) {
+export default function Clover({ id, job, ...props }: CloverProps) {
+    const rand = xoroshiro128plus(id);
+    const name = names[dist(0, names.length-1, rand)];
+
     return (
         <div
             {...props}
             className={[props.className, classes.container].join(" ")}
         >
-            <span className={classes.name}>{clover.name}</span>
-            <div
-                className={classes.body}
-                // Offset "squeeze" animation randomly per render
-                // style={{ animationDelay: `${Math.random()}s` }}
-            >
+            <span className={classes.name}>{name}</span>
+            <div className={classes.body}>
                 <img src={base} />
-                {clover.job !== undefined && <img src={Jobs[clover.job]} />}
+                <img src={Jobs[job]} />
             </div>
         </div>
     );

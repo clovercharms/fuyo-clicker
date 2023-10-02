@@ -1,0 +1,152 @@
+@keyframes scroll-rainbow {
+    0% {
+        background-position-x: 0rem;
+    }
+    100% {
+        background-position-x: var(--width);
+    }
+}
+
+@keyframes wave-left-sway {
+    0% {
+        left: var(--wave-offset-left);
+        background-position-x: calc(0rem - var(--wave-offset-left));
+    }
+    50% {
+        left: calc(var(--wave-offset-left) + var(--wave-sway-amount));
+        background-position-x: calc(
+            (0rem - (var(--wave-offset-left) + var(--wave-sway-amount))) +
+                var(--width)
+        );
+    }
+    100% {
+        left: var(--wave-offset-left);
+        background-position-x: calc(
+            (0rem - var(--wave-offset-left)) + var(--width) * 2
+        );
+    }
+}
+
+@keyframes wave-right-sway {
+    0% {
+        left: var(--wave-offset-right);
+        background-position-x: calc(
+            0rem - var(--wave-offset-right) - var(--delay-background-offset)
+        );
+    }
+    50% {
+        left: calc(0rem - var(--wave-offset-right));
+        background-position-x: calc(
+            var(--wave-offset-right) + var(--width) -
+                var(--delay-background-offset)
+        );
+    }
+    100% {
+        left: var(--wave-offset-right);
+        background-position-x: calc(
+            calc(
+                    0rem - var(--wave-offset-right) -
+                        var(--delay-background-offset)
+                ) + var(--width) * 2
+        );
+    }
+}
+
+.fuyonade {
+    --fuyonade: 50%;
+    --width: 40rem;
+    --wave-width: 150%;
+    --wave-height: 30rem;
+    --wave-buoyancy: 12rem;
+    --wave-offset-left: -20.5rem;
+    --wave-offset-right: 4rem;
+    --wave-sway-amount: 8rem;
+    --wave-sway-duration: 5s;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--fuyonade);
+    opacity: 0.5;
+    animation: 5s scroll-rainbow linear infinite;
+    transition: height 0.5s;
+}
+
+.fuyonade::before {
+    left: var(--wave-offset-left);
+    background-position-x: calc(0rem - var(--wave-offset-left));
+    animation: calc(var(--wave-sway-duration) * 2) wave-left-sway linear
+        infinite;
+}
+
+.fuyonade::after {
+    --delay-background-offset: calc(var(--width) / 2);
+    left: var(--wave-offset-right);
+    background-position-x: calc(0rem - var(--wave-offset-right));
+    animation: calc(var(--wave-sway-duration) * 2)
+        calc(0s - var(--wave-sway-duration) / 2) wave-right-sway linear infinite;
+}
+
+.fuyonade,
+.fuyonade::before,
+.fuyonade::after {
+    background-image: linear-gradient(
+        90deg,
+        hsl(0, 100%, 50%),
+        hsl(30, 100%, 50%),
+        hsl(60, 100%, 50%),
+        hsl(90, 100%, 50%),
+        hsl(120, 100%, 50%),
+        hsl(150, 100%, 50%),
+        hsl(180, 100%, 50%),
+        hsl(210, 100%, 50%),
+        hsl(240, 100%, 50%),
+        hsl(270, 100%, 50%),
+        hsl(300, 100%, 50%),
+        hsl(330, 100%, 50%),
+        hsl(360, 100%, 50%)
+    );
+    background-size: var(--width);
+}
+
+.fuyonade::before,
+.fuyonade::after {
+    content: "";
+    position: absolute;
+    top: calc(0rem - (var(--wave-height) / 2) + var(--wave-buoyancy));
+    border-radius: 100%;
+    width: var(--wave-width);
+    height: var(--wave-height);
+}
+
+@keyframes overlay-fade {
+    0% {
+        box-shadow: inset 0rem 0rem 2rem 1rem #fff;
+        opacity: 0.6;
+    }
+    100% {
+        box-shadow: inset 0rem 0rem 2rem 2rem #fff;
+        opacity: 0.75;
+    }
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.overlay.active {
+    animation: 1s overlay-fade ease-out infinite alternate;
+}
+
+.controls {
+    position: absolute;
+    display: flex;
+    bottom: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -1,10 +1,9 @@
 import { StoreApi } from "zustand";
-import { GameState, resetters } from "../../store";
+import { GameState } from "../../store";
 import { calculatePrice, isItemUnlocked, items } from "./item/data";
-import { generateClover } from "../reproduction/slice";
-import { Clover } from "../clover/slice";
-import { lanes } from "../lanes/lane/data";
-import { items as itemsData } from "./item/data";
+import { CLOVERS_PER_BUILDING } from "../lanes/lane/data";
+import { CloverType } from "../lanes/slice";
+import { resetters } from "../../resetters";
 
 /**
  * State about an item in the shop.
@@ -57,7 +56,7 @@ export const createShopSlice = (
                         if (
                             !isItemUnlocked(
                                 item,
-                                itemsData[id as unknown as number],
+                                items[id as unknown as number],
                                 get().coins.amount,
                                 get().repro.clovers.amount
                             )
@@ -74,7 +73,6 @@ export const createShopSlice = (
                 if (newUnlocked) {
                     set(
                         state => ({
-                            ...state,
                             shop: {
                                 ...state.shop,
                                 unlocked,
@@ -124,21 +122,6 @@ export const createShopSlice = (
                 } else {
                     if (get().repro.clovers.amount < price) return false;
 
-                    const time = Date.now();
-                    const clovers = new Array(items[id].clovers)
-                        .fill(undefined)
-                        .reduce((prev: Record<number, Clover>, _, i) => {
-                            const clover = {
-                                ...generateClover(
-                                    get().repro.clovers.lastCloverId + i
-                                ),
-                                job: lanes[laneType].job,
-                                assigned: time - items[id].clovers! + i,
-                            };
-                            prev[clover.id] = clover;
-                            return prev;
-                        }, {});
-
                     set(
                         state => ({
                             repro: {
@@ -148,7 +131,7 @@ export const createShopSlice = (
                                     amount: state.repro.clovers.amount - price,
                                     lastCloverId:
                                         state.repro.clovers.lastCloverId +
-                                        Object.keys(clovers).length,
+                                        CLOVERS_PER_BUILDING,
                                 },
                             },
                             shop: {
@@ -164,21 +147,32 @@ export const createShopSlice = (
                             },
                             lanes: {
                                 ...state.lanes,
-                                rows: {
-                                    ...state.lanes.rows,
+                                types: {
+                                    ...state.lanes.types,
                                     [laneType]: {
-                                        ...state.lanes.rows[laneType],
+                                        ...state.lanes.types[laneType],
                                         buildings:
-                                            state.lanes.rows[laneType]
+                                            state.lanes.types[laneType]
                                                 .buildings + 1,
                                         clovers: {
-                                            ...state.lanes.rows[laneType]
+                                            ...state.lanes.types[laneType]
                                                 .clovers,
-                                            regular: {
-                                                ...state.lanes.rows[laneType]
-                                                    .clovers.regular,
-                                                ...clovers,
-                                            },
+                                            [CloverType.Regular]: [
+                                                ...state.lanes.types[laneType]
+                                                    .clovers[
+                                                    CloverType.Regular
+                                                ],
+                                                ...new Array(
+                                                    CLOVERS_PER_BUILDING
+                                                )
+                                                    .fill(undefined)
+                                                    .map(
+                                                        (_, i) =>
+                                                            state.repro.clovers
+                                                                .lastCloverId +
+                                                            (i + 1)
+                                                    ),
+                                            ],
                                         },
                                     },
                                 },

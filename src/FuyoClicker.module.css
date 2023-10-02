@@ -23,10 +23,23 @@
 .container > * {
     overflow: hidden;
     width: 25rem;
+    display: flex;
 }
 
 .container > .middle {
     flex: 1.75;
+}
+
+.border {
+    width: 1rem;
+    background-image: url('./assets/images/border-vertical.png');
+    background-size: contain;
+}
+
+.container > .middle > :nth-child(2) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .container > .right {

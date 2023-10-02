@@ -66,7 +66,6 @@ export class Particles {
 
     resetAll() {
         for (let i = 0; i < this.active; i++) {
-            if (this.array[i].recycle) continue;
             this.reset(i);
         }
     }
@@ -78,8 +77,13 @@ export class Particles {
     }
 
     generateParticle(id?: number) {
+        let recycledId: number | undefined = undefined;
+        if (id !== undefined) {
+            recycledId = this.recycleable.shift();
+        }
+
         return {
-            id: id ?? this.recycleable.shift() ?? this._lastId++,
+            id: id ?? recycledId ?? this._lastId++,
             from: {
                 x:
                     -(PARTICLE_SIZE / 2) +
@@ -100,6 +104,10 @@ export class Particles {
                 ANIM_DURATION_RANGE[0] + Math.random() * ANIM_DURATION_RANGE[1],
             started: performance.now(),
             type: Math.random() < 0.9 ? ParticleType.COIN : ParticleType.CLOVER,
+            recycle:
+                id !== undefined && recycledId !== undefined
+                    ? this.array[id].recycle
+                    : false,
         } as Particle;
     }
 }

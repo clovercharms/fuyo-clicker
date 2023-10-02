@@ -7,17 +7,21 @@ import { useGameStore } from "../../store";
  * Collection of Lanes for Clovers to be assigned to.
  */
 export default function Lanes(props: HTMLProps<HTMLDivElement>) {
-    const lanes = useGameStore(state => state.lanes.rows);
+    const lanes = useGameStore(state => state.lanes.types);
+    
     return (
         <div
             {...props}
             className={[props.className, classes.container].join(" ")}
         >
-            <h1>Buildings</h1>
+            <div className={classes.border} />
             {Object.entries(lanes)
                 .filter(([, lane]) => lane.buildings > 0)
                 .map(([type, lane]) => (
-                    <Lane key={type} type={parseInt(type)} lane={lane} />
+                    <>
+                        <Lane key={type} type={parseInt(type)} lane={lane} />
+                        <div className={classes.border} />
+                    </>
                 ))}
         </div>
     );

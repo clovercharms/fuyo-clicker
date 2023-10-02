@@ -1,19 +1,22 @@
 import { HTMLProps } from "react";
 import { useDraggable } from '@dnd-kit/core';
-import { Clover as IClover } from '../../clover/slice';
 import Clover from '..';
+import { Job } from '../data';
 
-export interface CloverProps extends HTMLProps<HTMLDivElement> {
-    clover: IClover;
+export interface CloverProps extends Omit<HTMLProps<HTMLDivElement>, 'id'> {
+    id: number;
+    job: Job;
+    assigned?: boolean;
 }
 
 /**
  * Represents a single Hero Clover as part of a lane.
  */
-export default function HeroClover({ clover, ...props }: CloverProps) {
+export default function HeroClover({ id, job, assigned, ...props }: CloverProps) {
     const { attributes, listeners, setNodeRef, transform } = useDraggable({
-        id: clover.id + 1,
-        data: clover
+        id: id + 1,
+        data: { id, job },
+        disabled: assigned
     });
 
     const style = transform ? {
@@ -28,7 +31,7 @@ export default function HeroClover({ clover, ...props }: CloverProps) {
             {...attributes}
             ref={setNodeRef}
         >
-            <Clover clover={clover} />
+            <Clover id={id} job={job} />
         </div>
     );
 }

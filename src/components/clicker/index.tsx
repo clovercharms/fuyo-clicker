@@ -6,6 +6,7 @@ import { BlurFilter } from "pixi.js";
 import Coin from "./coin";
 import Backdrop from "./backdrop";
 import Header from "./header";
+import Fuyonade from './boosts';
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -31,6 +32,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
             className={[props.className, classes.container].join(" ")}
             ref={containerRef}
         >
+            <Fuyonade />
             <Header className={classes.header} />
             {rect !== null && (
                 <Stage

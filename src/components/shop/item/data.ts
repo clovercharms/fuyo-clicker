@@ -2,12 +2,11 @@ import { LaneType } from "../../lanes/lane/data";
 import { Item as ItemSlice } from "../slice";
 import hand from "../../../assets/images/hand.png";
 import {
-    forge,
-    mine,
     scienceDesk,
     sub,
     placeholder,
 } from "../../../assets/images/lanes/buildings";
+import { mine, forge } from "../../../assets/images/shop/items/icons";
 
 export enum Currency {
     COINS,
@@ -20,13 +19,10 @@ export enum Currency {
 export interface Item {
     name: string;
     price: {
-        base: number;
-        factor: number;
+        amount: number;
         currency: Currency;
     };
     laneType?: LaneType;
-    // [FIXME] Move to Lanes
-    clovers?: number;
     thumbnail: string;
 }
 
@@ -37,8 +33,7 @@ export const items: Record<number, Item> = {
     0: {
         name: "Auto Clicker",
         price: {
-            base: 15,
-            factor: 1.15,
+            amount: 15,
             currency: Currency.COINS,
         },
         thumbnail: hand,
@@ -46,70 +41,60 @@ export const items: Record<number, Item> = {
     1: {
         name: "Mine",
         price: {
-            base: 100,
-            factor: 1.15,
+            amount: 100,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Mine,
-        clovers: 2,
         thumbnail: mine,
     },
     2: {
         name: "Forge",
         price: {
-            base: 1100,
-            factor: 1.15,
+            amount: 1100,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Forge,
-        clovers: 2,
         thumbnail: forge,
     },
     3: {
         name: "Crane",
         price: {
-            base: 12e3,
-            factor: 1.15,
+            amount: 12e3,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.ConstructionSite,
-        clovers: 4,
         thumbnail: placeholder,
     },
     4: {
         name: "Repair Tools",
         price: {
-            base: 13e4,
-            factor: 1.15,
+            amount: 13e4,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.RepairShop,
-        clovers: 4,
         thumbnail: placeholder,
     },
     5: {
         name: "Lab Equipment",
         price: {
-            base: 1.4e6,
-            factor: 1.15,
+            amount: 1.4e6,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Lab,
-        clovers: 4,
         thumbnail: scienceDesk,
     },
     6: {
         name: "Scuba Gear",
         price: {
-            base: 2e7,
-            factor: 1.15,
+            amount: 2e7,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Ocean,
-        clovers: 1,
         thumbnail: sub,
     },
 };
+
+export const priceBase = 1.15;
 
 /**
  * Calculates the price of a shop item based on the `id` and how many were
@@ -120,7 +105,7 @@ export const items: Record<number, Item> = {
  */
 export function calculatePrice(id: number, purchased: number) {
     const item = items[id];
-    return Math.round(item.price.base * item.price.factor ** purchased);
+    return Math.round(item.price.amount * priceBase ** purchased);
 }
 
 /** Currency to price ratio when to uncover an item. */
@@ -134,7 +119,7 @@ const UNCOVER_RATIO = 0.75;
  * @returns If the currency to price ratio has reached the `UNCOVER_RATIO`.
  */
 function currencyRatio(itemData: Item, amount: number) {
-    return amount !== 0 && amount / itemData.price.base > UNCOVER_RATIO;
+    return amount !== 0 && amount / itemData.price.amount > UNCOVER_RATIO;
 }
 
 /**

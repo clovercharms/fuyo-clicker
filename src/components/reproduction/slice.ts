@@ -1,8 +1,15 @@
 import { StoreApi } from "zustand";
-import { GameState, resetters } from "../../store";
-import { names } from "../clover/data";
-import { Clover } from "../clover/slice";
-import { calculatePrice, upgrades } from "./data";
+import { GameState } from "../../store";
+import { Job } from "../clover/data";
+import {
+    CLOVER_RATE_BASE,
+    HERO_CLOVER_RATE_MS,
+    calculatePrice,
+    upgrades,
+} from "./data";
+import { LaneType, lanes } from "../lanes/lane/data";
+import { CloverType } from "../lanes/slice";
+import { resetters } from "../../resetters";
 
 /**
  * Slice containing information about the current production progress,
@@ -14,10 +21,13 @@ export interface ReproSlice {
             amount: number;
             rateMs: number;
             tier: number;
-            heros: {
+            heroes: {
                 progress: number;
                 rateMs: number;
-                spawned: Record<number, Clover>;
+                spawned?: {
+                    id: number;
+                    job: Job;
+                };
             };
             lastCloverId: number;
         };
@@ -40,10 +50,10 @@ const initialReproState = {
         amount: 0,
         rateMs: 0,
         tier: 0,
-        heros: {
+        heroes: {
             progress: 0,
             rateMs: 0,
-            spawned: {},
+            spawned: undefined,
         },
         lastCloverId: -1,
     },
@@ -64,17 +74,20 @@ export const createReproSlice = (
                     performance.now() - get().repro.lastUpdate
                 );
 
-                // [TODO] Calculate clover rateMs
                 const cloverRateMs =
                     get().repro.clovers.tier === 0
                         ? 0
-                        : upgrades.rate * 1.15 ** get().repro.clovers.tier;
+                        : upgrades.rate *
+                          CLOVER_RATE_BASE ** get().repro.clovers.tier;
 
-                // [TODO] Which rate?
-                const heroCloverRateMs = Math.min(
-                    get().repro.clovers.rateMs / 1e3,
-                    1 / 120e3
-                );
+                // Hero Clovers
+                const heroCloverLaneTypes = determineHeroCloverLaneTypes(get);
+                const shouldSpawnHeroClover =
+                    get().repro.clovers.heroes.spawned === undefined &&
+                    heroCloverLaneTypes.length > 0;
+                const heroCloverRateMs = !shouldSpawnHeroClover
+                    ? 0
+                    : HERO_CLOVER_RATE_MS;
 
                 set(
                     state => ({
@@ -87,11 +100,11 @@ export const createReproSlice = (
                                 amount:
                                     state.repro.clovers.amount +
                                     elapsed * cloverRateMs,
-                                heros: {
-                                    ...state.repro.clovers.heros,
+                                heroes: {
+                                    ...state.repro.clovers.heroes,
                                     rateMs: heroCloverRateMs,
                                     progress:
-                                        state.repro.clovers.heros.progress +
+                                        state.repro.clovers.heroes.progress +
                                         elapsed * heroCloverRateMs,
                                 },
                             },
@@ -103,10 +116,17 @@ export const createReproSlice = (
                 );
 
                 // Hero Clovers
-                if (get().repro.clovers.heros.progress < 1) return;
+                if (
+                    !shouldSpawnHeroClover ||
+                    get().repro.clovers.heroes.progress < 1
+                )
+                    return;
 
                 // Generate new Hero Clover
-                const clover = generateClover(get().repro.clovers.lastCloverId);
+                const heroClover = generateHeroClover(
+                    get().repro.clovers.lastCloverId,
+                    heroCloverLaneTypes
+                );
 
                 set(
                     state => ({
@@ -114,16 +134,12 @@ export const createReproSlice = (
                             ...state.repro,
                             clovers: {
                                 ...state.repro.clovers,
-                                heros: {
-                                    ...state.repro.clovers.heros,
-                                    progress:
-                                        state.repro.clovers.heros.progress - 1,
-                                    spawned: {
-                                        ...state.repro.clovers.heros.spawned,
-                                        [clover.id]: clover,
-                                    },
+                                heroes: {
+                                    ...state.repro.clovers.heroes,
+                                    progress: 0,
+                                    spawned: heroClover,
                                 },
-                                lastCloverId: clover.id,
+                                lastCloverId: heroClover.id,
                             },
                         },
                     }),
@@ -134,7 +150,15 @@ export const createReproSlice = (
             },
             spawn: () => {
                 // Generate new Hero Clover
-                const clover = generateClover(get().repro.clovers.lastCloverId);
+                const heroCloverLaneTypes = determineHeroCloverLaneTypes(get);
+                if (heroCloverLaneTypes.length === 0) {
+                    alert("Conditions not met to spawn hero clover.");
+                    return;
+                }
+                const heroClover = generateHeroClover(
+                    get().repro.clovers.lastCloverId,
+                    heroCloverLaneTypes
+                );
 
                 set(
                     state => ({
@@ -142,14 +166,12 @@ export const createReproSlice = (
                             ...state.repro,
                             clovers: {
                                 ...state.repro.clovers,
-                                heros: {
-                                    ...state.repro.clovers.heros,
-                                    spawned: {
-                                        ...state.repro.clovers.heros.spawned,
-                                        [clover.id]: clover,
-                                    },
+                                heroes: {
+                                    ...state.repro.clovers.heroes,
+                                    progress: 0,
+                                    spawned: heroClover,
                                 },
-                                lastCloverId: clover.id,
+                                lastCloverId: heroClover.id,
                             },
                         },
                     }),
@@ -198,13 +220,26 @@ export const createReproSlice = (
     };
 };
 
-export function generateClover(lastId: number) {
-    // Generate new Hero Clover
-    const id = lastId + 1;
+/** Buildings required for hero clover of type to spawn. */
+const HERO_CLOVER_REQUIRED_BUILDINGS = 3;
+
+function determineHeroCloverLaneTypes(get: () => GameState) {
+    return Object.entries(get().lanes.types)
+        .filter(([, lane]) => lane.buildings > 0)
+        .filter(
+            ([, lane]) =>
+                lane.clovers[CloverType.Hero].length <
+                Math.floor(lane.buildings / HERO_CLOVER_REQUIRED_BUILDINGS)
+        )
+        .map(([type]) => type as unknown as LaneType);
+}
+
+function generateHeroClover(lastId: number, laneTypes: LaneType[]) {
+    const laneType =
+        laneTypes[Math.round(Math.random() * laneTypes.length - 1)];
 
     return {
-        id,
-        name: names[Math.round(Math.random() * (names.length - 1))],
-        assigned: 0,
-    } as Clover;
+        id: lastId + 1,
+        job: lanes[laneType].job,
+    };
 }

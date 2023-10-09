@@ -13,24 +13,32 @@ import {
 import cx from "classix";
 
 const RNG_SEED = 1;
+const BUILDING_SIZE_PX = 64;
+const CLOVER_SIZE_PX = 32;
+const HERO_CLOVER_SIZE_PX = 80;
 
-// [FIXME] Calculate based on container size.
-const MAX_CLOVERS = 28;
-const MAX_HERO_CLOVERS = 11;
-const MAX_BUILDINGS = 19;
+function useDynamicSizes(rect: DOMRect) {
+    return {
+        buldings: Math.ceil(rect.width / BUILDING_SIZE_PX),
+        clovers: Math.ceil(rect.width / CLOVER_SIZE_PX),
+        heroClovers: Math.ceil(rect.width / HERO_CLOVER_SIZE_PX),
+    };
+}
 
 export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
     type: LaneType;
     lane: ILane;
+    rect: DOMRect;
 }
 
 /**
  * A lane is a workable area to which Clovers can be assigned to and buildings
  * can be built, possibly by upgrades or deliberate action.
  */
-export default function Lane({ type, lane, ...props }: LaneProps) {
+export default function Lane({ type, lane, rect, ...props }: LaneProps) {
     const lanes = useGameStore(state => state.lanes);
     const rand = xoroshiro128plus(RNG_SEED);
+    const sizing = useDynamicSizes(rect);
 
     const { isOver, setNodeRef } = useDroppable({
         id: `${type}-lane`,
@@ -60,7 +68,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             ref={setNodeRef}
         >
             <div className={cx(classes.overlap, classes.buildings)}>
-                {new Array(Math.min(lane.buildings, MAX_BUILDINGS))
+                {new Array(Math.min(lane.buildings, sizing.buldings))
                     .fill(undefined)
                     .map((_, i) => (
                         <img
@@ -75,7 +83,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             </div>
             <div className={cx(classes.overlap, classes.clovers)}>
                 {lane.clovers[CloverType.Regular]
-                    .slice(0, MAX_CLOVERS)
+                    .slice(0, sizing.clovers)
                     .map(id => (
                         <Clover
                             key={id}
@@ -96,7 +104,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             </div>
             <div className={cx(classes.overlap, classes["hero-clovers"])}>
                 {lane.clovers[CloverType.Hero]
-                    .slice(0, MAX_HERO_CLOVERS)
+                    .slice(0, sizing.heroClovers)
                     .map(id => (
                         <HeroClover
                             key={id}

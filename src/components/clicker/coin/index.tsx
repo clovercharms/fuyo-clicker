@@ -43,8 +43,8 @@ export default function Coin() {
         setHints(hints => [
             ...hints,
             {
-                x: -(app.view.width / 2 - e.clientX),
-                y: -(app.view.height / 2 - e.clientY),
+                x: -(app.screen.width / 2 - e.clientX),
+                y: -(app.screen.height / 2 - e.clientY),
                 amount,
             },
         ]);

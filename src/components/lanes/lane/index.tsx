@@ -10,6 +10,7 @@ import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
+import cx from "classix";
 
 const RNG_SEED = 1;
 
@@ -45,20 +46,20 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
             const eventData = event.active.data.current!;
             if (eventData.job !== data[type].job) return;
 
-            lanes.assign(eventData.id as number, type)
+            lanes.assign(eventData.id as number, type);
         },
     });
 
     return (
         <div
             {...props}
-            className={[props.className, classes.container].join(" ")}
+            className={cx(classes.lane, props.className)}
             style={{
                 backgroundImage: `url(${data[type].background})`,
             }}
             ref={setNodeRef}
         >
-            <div className={[classes.overlap, classes.buildings].join(" ")}>
+            <div className={cx(classes.overlap, classes.buildings)}>
                 {new Array(Math.min(lane.buildings, MAX_BUILDINGS))
                     .fill(undefined)
                     .map((_, i) => (
@@ -72,7 +73,7 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
                         />
                     ))}
             </div>
-            <div className={[classes.overlap, classes.clovers].join(" ")}>
+            <div className={cx(classes.overlap, classes.clovers)}>
                 {lane.clovers[CloverType.Regular]
                     .slice(0, MAX_CLOVERS)
                     .map(id => (
@@ -93,15 +94,13 @@ export default function Lane({ type, lane, ...props }: LaneProps) {
                         />
                     ))}
             </div>
-            <div
-                className={[classes.overlap, classes["hero-clovers"]].join(" ")}
-            >
+            <div className={cx(classes.overlap, classes["hero-clovers"])}>
                 {lane.clovers[CloverType.Hero]
                     .slice(0, MAX_HERO_CLOVERS)
                     .map(id => (
                         <HeroClover
                             key={id}
-                            className={classes['hero-clover']}
+                            className={classes["hero-clover"]}
                             id={id}
                             job={data[type].job}
                             assigned={true}

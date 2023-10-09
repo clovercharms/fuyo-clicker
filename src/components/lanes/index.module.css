@@ -1,10 +1,10 @@
-.container {
+.lanes {
     background-color: #fff6;
     overflow-y: auto;
-}
 
-.border {
-    background-image: url('../../assets/images/border-horizontal.png');
-    height: 1rem;
-    background-size: contain;
+    & > .border {
+        background-image: url("../../assets/images/border-horizontal.png");
+        height: 1rem;
+        background-size: contain;
+    }
 }

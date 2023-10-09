@@ -5,6 +5,7 @@ import { HTMLProps, useState } from "react";
 import { formatNumber, useCounter } from "../../hooks/counter";
 import { calculatePrice } from "./data";
 import HeroClover from "../clover/hero";
+import cx from "classix";
 
 /**
  * Spawning area for Clovers, ready to be assigned.
@@ -34,16 +35,8 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
 
     const [dragging, setDragging] = useState(false);
 
-    const handleUpgrade = () => {
-        const result = repro.upgrade();
-        if (!result) alert("insufficient coins");
-    };
-
     return (
-        <div
-            {...props}
-            className={[props.className, classes.container].join(" ")}
-        >
+        <div {...props} className={cx(classes.reproduction, props.className)}>
             <h1>Reproduction</h1>
             <div>
                 <h2>
@@ -68,7 +61,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
 
                     return (
                         <button
-                            onClick={handleUpgrade}
+                            onClick={repro.upgrade}
                             disabled={upgradeCost > coins}
                         >
                             Upgrade - cost{" "}

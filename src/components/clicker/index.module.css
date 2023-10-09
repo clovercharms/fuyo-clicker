@@ -1,11 +1,11 @@
-.container {
+.clicker {
     position: relative;
     overflow: hidden;
-}
 
-.header {
-    position: absolute;
-    top: 10%;
-    width: calc(100% - 2rem);
-    padding: 1rem;
+    & > .header {
+        position: absolute;
+        top: 10%;
+        width: calc(100% - 2rem);
+        padding: 1rem;
+    }
 }

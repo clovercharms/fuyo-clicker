@@ -1,19 +1,19 @@
-.container {
+.shop {
     background-color: #fff6;
     overflow: hidden auto;
-}
 
-.header {
-    background-image: url("../../assets/images/shop/header.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    height: 7rem;
-}
+    & > .header {
+        background-image: url("../../assets/images/shop/header.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        height: 7rem;
+    }
 
-.items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-collapse: collapse;
+    & > .items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-collapse: collapse;
+    }
 }

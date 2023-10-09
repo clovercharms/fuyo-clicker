@@ -1,4 +1,4 @@
-.container {
+.reproduction {
     background-color: #fff6;
 }
 
@@ -15,26 +15,26 @@
     width: 8rem;
     aspect-ratio: 1/1;
     animation: 1s spin linear infinite;
-}
 
-.clover button {
-    width: 8rem;
-    aspect-ratio: 1/1;
-    background-color: unset;
-    border-style: unset;
-    background-image: url("../../assets/images/clover/base.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    transition: 0.1s;
-}
+    & button {
+        width: 8rem;
+        aspect-ratio: 1/1;
+        background-color: unset;
+        border-style: unset;
+        background-image: url("../../assets/images/clover/base.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: 0.1s;
 
-.clover button:hover {
-    transform: scale(1.2);
-    cursor: pointer;
-}
+        &:hover {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
 
-.clover button:active {
-    transform: scale(1);
+        &:active {
+            transform: scale(1);
+        }
+    }
 }
 
 .spawn {

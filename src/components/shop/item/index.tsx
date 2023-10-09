@@ -26,14 +26,14 @@ export default function Item({
         <li
             {...props}
             className={cx(
-                classes.container,
-                props.className,
-                !affordable && classes.hidden
+                classes.item,
+                !affordable && classes.hidden,
+                props.className
             )}
         >
             <div>
-                <img src={thumbnail} />
-                <div>
+                <img className={classes.thumbnail} src={thumbnail} />
+                <div className={classes.details}>
                     <div>{name}</div>
                     <div>
                         <span>Price: </span>

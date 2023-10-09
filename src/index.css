@@ -12,7 +12,7 @@
 
 body {
     /* Foreground, Background */
-    scrollbar-color: #987A50 #6A5539;
+    scrollbar-color: #987a50 #6a5539;
 }
 
 ::-webkit-scrollbar {
@@ -21,11 +21,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #6A5539;
+    background-color: #6a5539;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #987A50;
+    background: #987a50;
 }
 
 body,
@@ -53,6 +53,6 @@ h2 {
 @-moz-document url-prefix() {
     h1,
     h2 {
-        -webkit-text-stroke: 1.2px white;
+        -webkit-text-stroke: 1.4px white;
     }
 }

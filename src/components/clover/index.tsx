@@ -8,6 +8,7 @@ import {
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
 import { CloverType } from "../lanes/slice";
+import cx from "classix";
 
 export interface CloverProps
     extends Omit<HTMLProps<HTMLDivElement>, "id" | "type"> {
@@ -30,10 +31,7 @@ export default function Clover({
     const name = names[dist(0, names.length - 1, rand)];
 
     return (
-        <div
-            {...props}
-            className={[props.className, classes.container].join(" ")}
-        >
+        <div {...props} className={cx(classes.clover, props.className)}>
             <span className={classes.name}>{name}</span>
             <div className={classes.body}>
                 <img src={type === CloverType.Regular ? base : hero} />

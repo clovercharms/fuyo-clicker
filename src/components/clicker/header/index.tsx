@@ -2,6 +2,7 @@ import classes from "./index.module.css";
 import { HTMLProps, useEffect } from "react";
 import { formatNumber, useCounter } from "../../../hooks/counter";
 import { useGameStore } from "../../../store";
+import cx from "classix";
 
 const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 
@@ -28,10 +29,7 @@ export default function Header(props: HTMLProps<HTMLHeadingElement>) {
     };
 
     return (
-        <header
-            {...props}
-            className={[classes.container, props.className].join(" ")}
-        >
+        <header {...props} className={cx(classes.header, props.className)}>
             <h1>
                 <span ref={counterRef} /> coins
             </h1>

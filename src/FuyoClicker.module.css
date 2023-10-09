@@ -7,46 +7,46 @@
     }
 }
 
-.container {
+.fuyo-clicker {
     height: 100vh;
     display: flex;
     background-image: url("./assets/images/bg3.png");
     background-size: cover;
     background-attachment: fixed;
     animation: 120s slide infinite linear;
-}
 
-.container > .left {
-    flex: 1;
-}
+    & > * {
+        overflow: hidden;
+        width: 25rem;
+        display: flex;
+    }
 
-.container > * {
-    overflow: hidden;
-    width: 25rem;
-    display: flex;
-}
+    & > .left {
+        flex: 1;
+    }
 
-.container > .middle {
-    flex: 1.75;
-}
+    & > .middle {
+        flex: 1.75;
 
-.border {
-    width: 1rem;
-    background-image: url('./assets/images/border-vertical.png');
-    background-size: contain;
-}
+        & > :nth-child(2) {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-.container > .middle > :nth-child(2) {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+        & > .border {
+            width: 1rem;
+            background-image: url("./assets/images/border-vertical.png");
+            background-size: contain;
+        }
+    }
 
-.container > .right {
-    display: flex;
-    flex-direction: column;
-}
+    & > .right {
+        display: flex;
+        flex-direction: column;
 
-.container > .right > * {
-    flex: 1;
+        & > * {
+            flex: 1;
+        }
+    }
 }

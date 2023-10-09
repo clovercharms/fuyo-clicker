@@ -6,7 +6,8 @@ import { BlurFilter } from "pixi.js";
 import Coin from "./coin";
 import Backdrop from "./backdrop";
 import Header from "./header";
-import Fuyonade from './boosts';
+import Fuyonade from "./boosts";
+import cx from "classix";
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     return (
         <div
             {...props}
-            className={[props.className, classes.container].join(" ")}
+            className={cx(classes.clicker, props.className)}
             ref={containerRef}
         >
             <Fuyonade />

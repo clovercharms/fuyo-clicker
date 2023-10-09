@@ -28,6 +28,7 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
         "pixi.js": "^7.3.1",
+        "postcss-nesting": "^12.0.1",
         "pure-rand": "^6.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

@@ -7,6 +7,7 @@ import Tooltip from "./tooltip";
 import useTooltip from "./tooltip/useTooltip";
 import Item from "./item";
 import { calcLanesRate, countUnlockedUpgrades } from "../clicker/calc";
+import cx from "classix";
 
 /**
  * Shop for buying upgrades and advancements.
@@ -34,7 +35,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     return (
         <div
             {...props}
-            className={[props.className, classes.container].join(" ")}
+            className={cx(classes.shop, props.className)}
             ref={containerRef}
         >
             <div className={classes.header} />

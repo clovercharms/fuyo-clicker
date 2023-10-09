@@ -1,13 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import classes from "./FuyoClicker.module.css";
 //import Clicker from './components/clicker';
-import Lanes from './components/lanes';
-import News from './components/news';
-import Reproduction from './components/reproduction';
-import Shop from './components/shop';
-import { useGameStore } from './store';
-import { DndContext } from '@dnd-kit/core';
-import Clicker from './components/clicker';
+import Lanes from "./components/lanes";
+import News from "./components/news";
+import Reproduction from "./components/reproduction";
+import Shop from "./components/shop";
+import { useGameStore } from "./store";
+import { DndContext } from "@dnd-kit/core";
+import Clicker from "./components/clicker";
 
 /** Determines the frequency of updates of the game state. */
 const TICK_MS = 1000;
@@ -24,11 +24,11 @@ export default function FuyoClicker() {
 
         tick();
         intervalId.current = window.setInterval(tick, TICK_MS);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <div className={classes.container}>
+        <div className={classes["fuyo-clicker"]}>
             <Clicker className={classes.left} />
             <DndContext>
                 <div className={classes.middle}>

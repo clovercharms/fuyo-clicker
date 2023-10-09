@@ -71,53 +71,54 @@
     opacity: 0.5;
     animation: 5s scroll-rainbow linear infinite;
     transition: height 0.5s;
-}
 
-.fuyonade::before {
-    left: var(--wave-offset-left);
-    background-position-x: calc(0rem - var(--wave-offset-left));
-    animation: calc(var(--wave-sway-duration) * 2) wave-left-sway linear
-        infinite;
-}
+    &::before {
+        left: var(--wave-offset-left);
+        background-position-x: calc(0rem - var(--wave-offset-left));
+        animation: calc(var(--wave-sway-duration) * 2) wave-left-sway linear
+            infinite;
+    }
 
-.fuyonade::after {
-    --delay-background-offset: calc(var(--width) / 2);
-    left: var(--wave-offset-right);
-    background-position-x: calc(0rem - var(--wave-offset-right));
-    animation: calc(var(--wave-sway-duration) * 2)
-        calc(0s - var(--wave-sway-duration) / 2) wave-right-sway linear infinite;
-}
+    &::after {
+        --delay-background-offset: calc(var(--width) / 2);
+        left: var(--wave-offset-right);
+        background-position-x: calc(0rem - var(--wave-offset-right));
+        animation: calc(var(--wave-sway-duration) * 2)
+            calc(0s - var(--wave-sway-duration) / 2) wave-right-sway linear
+            infinite;
+    }
 
-.fuyonade,
-.fuyonade::before,
-.fuyonade::after {
-    background-image: linear-gradient(
-        90deg,
-        hsl(0, 100%, 50%),
-        hsl(30, 100%, 50%),
-        hsl(60, 100%, 50%),
-        hsl(90, 100%, 50%),
-        hsl(120, 100%, 50%),
-        hsl(150, 100%, 50%),
-        hsl(180, 100%, 50%),
-        hsl(210, 100%, 50%),
-        hsl(240, 100%, 50%),
-        hsl(270, 100%, 50%),
-        hsl(300, 100%, 50%),
-        hsl(330, 100%, 50%),
-        hsl(360, 100%, 50%)
-    );
-    background-size: var(--width);
-}
+    &,
+    &::before,
+    &::after {
+        background-image: linear-gradient(
+            90deg,
+            hsl(0, 100%, 50%),
+            hsl(30, 100%, 50%),
+            hsl(60, 100%, 50%),
+            hsl(90, 100%, 50%),
+            hsl(120, 100%, 50%),
+            hsl(150, 100%, 50%),
+            hsl(180, 100%, 50%),
+            hsl(210, 100%, 50%),
+            hsl(240, 100%, 50%),
+            hsl(270, 100%, 50%),
+            hsl(300, 100%, 50%),
+            hsl(330, 100%, 50%),
+            hsl(360, 100%, 50%)
+        );
+        background-size: var(--width);
+    }
 
-.fuyonade::before,
-.fuyonade::after {
-    content: "";
-    position: absolute;
-    top: calc(0rem - (var(--wave-height) / 2) + var(--wave-buoyancy));
-    border-radius: 100%;
-    width: var(--wave-width);
-    height: var(--wave-height);
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: calc(0rem - (var(--wave-height) / 2) + var(--wave-buoyancy));
+        border-radius: 100%;
+        width: var(--wave-width);
+        height: var(--wave-height);
+    }
 }
 
 @keyframes overlay-fade {
@@ -136,10 +137,10 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-}
 
-.overlay.active {
-    animation: 1s overlay-fade ease-out infinite alternate;
+    &.active {
+        animation: 1s overlay-fade ease-out infinite alternate;
+    }
 }
 
 .controls {

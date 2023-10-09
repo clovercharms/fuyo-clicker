@@ -12,7 +12,7 @@ export default function Price({ amount, currency }: PriceProps) {
     return (
         <span
             className={cx(
-                classes.container,
+                classes.price,
                 currency === Currency.COINS ? classes.coins : classes.clovers
             )}
         >

@@ -33,3 +33,8 @@ jobs:
           user-email: fraym.phone@gmail.com
           target-branch: main
           commit-message: Update
+      - name: Notify
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}

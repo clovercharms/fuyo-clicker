@@ -30,4 +30,5 @@ jobs:
               with:
                   eslint: true
                   eslint_extensions: ts,tsx
+                  eslint_args: "--max-warnings 0"
                   prettier: true

@@ -9,9 +9,10 @@ import {
 import {
     mine,
     forge as forgeBuilding,
-    placeholder,
     scienceDesk,
     sub,
+    chemtoilet,
+    rack,
 } from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
 
@@ -73,7 +74,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.ConstructionSite]: {
         job: Job.FactoryWorker,
         background: constructionSite,
-        building: placeholder,
+        building: chemtoilet,
         rateMs: 47 / 1e3,
         clovers: {
             regular: [],
@@ -83,7 +84,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.RepairShop]: {
         job: Job.Mechanic,
         background: garage,
-        building: placeholder,
+        building: rack,
         rateMs: 260 / 1e3,
         clovers: {
             regular: [],

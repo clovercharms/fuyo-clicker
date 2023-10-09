@@ -1,12 +1,8 @@
 import { LaneType } from "../../lanes/lane/data";
 import { Item as ItemSlice } from "../slice";
 import hand from "../../../assets/images/hand.png";
-import {
-    scienceDesk,
-    sub,
-    placeholder,
-} from "../../../assets/images/lanes/buildings";
-import { mine, forge } from "../../../assets/images/shop/items/icons";
+import { placeholder } from "../../../assets/images/lanes/buildings";
+import { mine, forge, lab, sub } from "../../../assets/images/shop/items/icons";
 
 export enum Currency {
     COINS,
@@ -81,7 +77,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Lab,
-        thumbnail: scienceDesk,
+        thumbnail: lab,
     },
     6: {
         name: "Scuba Gear",

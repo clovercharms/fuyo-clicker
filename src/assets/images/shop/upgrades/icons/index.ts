@@ -4,9 +4,9 @@ import cursor1 from "./cursor-1.webp";
 import cursor2 from "./cursor-2.webp";
 import cursor3 from "./cursor-3.webp";
 import cursor4 from "./cursor-4.webp";
-import mine0 from "./mine-0.webp";
-import mine1 from "./mine-1.webp";
-import mine2 from "./mine-2.webp";
+import mine0 from "./mine-0.png";
+import mine1 from "./mine-1.png";
+import mine2 from "./mine-2.png";
 import mine3 from "./mine-3.webp";
 import mine4 from "./mine-4.webp";
 

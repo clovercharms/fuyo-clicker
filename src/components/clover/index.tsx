@@ -1,24 +1,33 @@
 import classes from "./index.module.css";
 import base from "../../assets/images/clover/base.png";
+import hero from "../../assets/images/clover/hero.png";
 import { HTMLProps } from "react";
 import { Job, Jobs, names } from "./data";
 import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
-} from 'pure-rand';
+} from "pure-rand";
+import { CloverType } from "../lanes/slice";
 
-export interface CloverProps extends Omit<HTMLProps<HTMLDivElement>, 'id'> {
+export interface CloverProps
+    extends Omit<HTMLProps<HTMLDivElement>, "id" | "type"> {
     id: number;
     job: Job;
+    type?: CloverType;
 }
 
 /**
  * Represents a single clover as part of a lane.
  * Clovers are assigned a job and may contain cosmetic layers.
  */
-export default function Clover({ id, job, ...props }: CloverProps) {
+export default function Clover({
+    id,
+    job,
+    type = CloverType.Regular,
+    ...props
+}: CloverProps) {
     const rand = xoroshiro128plus(id);
-    const name = names[dist(0, names.length-1, rand)];
+    const name = names[dist(0, names.length - 1, rand)];
 
     return (
         <div
@@ -27,7 +36,7 @@ export default function Clover({ id, job, ...props }: CloverProps) {
         >
             <span className={classes.name}>{name}</span>
             <div className={classes.body}>
-                <img src={base} />
+                <img src={type === CloverType.Regular ? base : hero} />
                 <img src={Jobs[job]} />
             </div>
         </div>

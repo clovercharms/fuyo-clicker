@@ -13,15 +13,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: npm
-      - name: Install dependencies
+
+      - name: Dependencies
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: Deploy
         uses: cpina/github-action-push-to-another-repository@main
         env:
@@ -33,6 +37,7 @@ jobs:
           user-email: fraym.phone@gmail.com
           target-branch: main
           commit-message: Update
+          
       - name: Notify
         uses: sarisia/actions-status-discord@v1
         if: always()

@@ -1,7 +1,7 @@
 import cx from "classix";
 import { useGameStore } from "../../../store";
 import classes from "./index.module.css";
-import { BoostType } from './data';
+import { BoostType } from "./data";
 
 export default function Fuyonade() {
     const fuyonade = useGameStore(

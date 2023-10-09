@@ -23,7 +23,9 @@
     background-repeat: no-repeat;
     margin-bottom: -0.8rem;
     animation: 1s slide-left;
-    transition: filter 0.5s, transform 0.1s;
+    transition:
+        filter 0.5s,
+        transform 0.1s;
 
     &:hover {
         transform: scale(0.97);

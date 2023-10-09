@@ -10,6 +10,7 @@ export default function useTooltip() {
     const coords = useState<Coords | null>(null);
 
     return {
-        anchor, coords
-    }
+        anchor,
+        coords,
+    };
 }

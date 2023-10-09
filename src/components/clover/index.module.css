@@ -14,7 +14,9 @@
         color: white;
         -webkit-text-stroke: 0.05rem black;
         opacity: 0;
-        transition: opacity 0.2s, top 0.2s;
+        transition:
+            opacity 0.2s,
+            top 0.2s;
         font-size: 1.5rem;
     }
 

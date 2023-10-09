@@ -1,5 +1,5 @@
-import Coin from './coin';
-import Label from './label';
+import Coin from "./coin";
+import Label from "./label";
 
 export const HINT_DURATION = 1e3;
 

@@ -3,7 +3,7 @@ import { TextStyle } from "pixi.js";
 import { easings, useSpring } from "react-spring";
 import { Text } from "@pixi/react";
 import { formatNumber } from "../../../../../hooks/counter";
-import { HINT_DURATION, HintProps } from '..';
+import { HINT_DURATION, HintProps } from "..";
 
 export default function Label({ x, y, amount }: HintProps) {
     const [spring] = useSpring(() => ({
@@ -12,7 +12,7 @@ export default function Label({ x, y, amount }: HintProps) {
             alpha: 1,
         },
         to: {
-            y: y -50,
+            y: y - 50,
             alpha: 0,
         },
         config: {

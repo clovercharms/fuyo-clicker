@@ -69,16 +69,6 @@ export const useGameStore = create<GameState>()(
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                         arrayMerge: (_, src) => src,
                     }) as GameState,
-                migrate: () => {
-                    // [HACK] Apply proper migrations for release.
-                    return resetters.reduce(
-                        (prev, curr) => ({
-                            ...prev,
-                            ...curr(),
-                        }),
-                        {} as GameState
-                    );
-                },
             }
         )
     )

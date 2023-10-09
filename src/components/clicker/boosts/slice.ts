@@ -2,6 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState } from "../../../store";
 import { BoostType, boosts as data } from "./data";
 import { resetters } from "../../../resetters";
+import { produce } from "immer";
 
 export interface Boost {
     lastUpdate: number;
@@ -38,21 +39,18 @@ export const createBoostsSlice = (
             ...initialBoostsState,
             tick: () => {
                 set(
-                    state => ({
-                        boosts: {
-                            ...state.boosts,
-                            types: Object.fromEntries(
-                                Object.entries(state.boosts.types).map(
-                                    ([type, boost]) => [
-                                        type,
-                                        updateBoost(
-                                            type as unknown as BoostType,
-                                            boost
-                                        ),
-                                    ]
-                                )
-                            ) as Record<BoostType, Boost>,
-                        },
+                    produce<GameState>(state => {
+                        state.boosts.types = Object.fromEntries(
+                            Object.entries(state.boosts.types).map(
+                                ([type, boost]) => [
+                                    type,
+                                    updateBoost(
+                                        type as unknown as BoostType,
+                                        boost
+                                    ),
+                                ]
+                            )
+                        ) as Record<BoostType, Boost>;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -61,17 +59,8 @@ export const createBoostsSlice = (
             },
             activate: (type: BoostType) => {
                 set(
-                    state => ({
-                        boosts: {
-                            ...state.boosts,
-                            types: {
-                                ...state.boosts.types,
-                                [type]: {
-                                    ...state.boosts.types[type],
-                                    active: true,
-                                },
-                            },
-                        },
+                    produce<GameState>(state => {
+                        state.boosts.types[type].active = true;
                     }),
                     false,
                     // @ts-expect-error typing

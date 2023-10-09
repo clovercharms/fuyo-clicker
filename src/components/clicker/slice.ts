@@ -2,6 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState } from "../../store";
 import { resetters } from "../../resetters";
 import { calcClickAmount, calcRateMs } from "./calc";
+import { produce } from "immer";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.
@@ -59,13 +60,10 @@ export const createCoinsSlice = (
                 );
 
                 set(
-                    state => ({
-                        coins: {
-                            ...state.coins,
-                            lastUpdate: performance.now(),
-                            rateMs,
-                            amount: state.coins.amount + elapsed * rateMs,
-                        },
+                    produce<GameState>(state => {
+                        state.coins.lastUpdate = performance.now();
+                        state.coins.rateMs = rateMs;
+                        state.coins.amount += elapsed * rateMs;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -84,12 +82,9 @@ export const createCoinsSlice = (
                 );
 
                 set(
-                    state => ({
-                        coins: {
-                            ...state.coins,
-                            amount: state.coins.amount + amount,
-                            manualAmount: state.coins.manualAmount + amount,
-                        },
+                    produce<GameState>(state => {
+                        state.coins.amount += amount;
+                        state.coins.manualAmount += amount;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -103,11 +98,8 @@ export const createCoinsSlice = (
                 get().coins.tick();
 
                 set(
-                    state => ({
-                        coins: {
-                            ...state.coins,
-                            amount: amount,
-                        },
+                    produce<GameState>(state => {
+                        state.coins.amount = amount;
                     }),
                     false,
                     // @ts-expect-error typing

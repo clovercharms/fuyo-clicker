@@ -2,6 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState } from "../../../store";
 import { UpgradeType, upgrades } from "./data";
 import { resetters } from "../../../resetters";
+import { produce } from "immer";
 
 /**
  * Slice containing shop specific state.
@@ -43,22 +44,15 @@ export const createUpgradesSlice = (
                 const price = upgrades[type][id].price;
                 if (get().coins.amount < price) return false;
 
-                set(state => ({
-                    coins: {
-                        ...state.coins,
-                        amount: state.coins.amount - price,
-                    },
-                    upgrades: {
-                        ...state.upgrades,
-                        unlocked: {
-                            ...state.upgrades.unlocked,
-                            [type]: {
-                                ...state.upgrades.unlocked[type],
-                                [id]: true,
-                            },
-                        },
-                    },
-                }));
+                set(
+                    produce<GameState>(state => {
+                        state.coins.amount -= price;
+                        state.upgrades.unlocked[type][id] = true;
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Buy - Upgrade"
+                );
 
                 get().tick();
 

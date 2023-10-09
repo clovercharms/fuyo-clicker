@@ -4,6 +4,7 @@ import { calculatePrice, isItemUnlocked, items } from "./item/data";
 import { CLOVERS_PER_BUILDING } from "../lanes/lane/data";
 import { CloverType } from "../lanes/slice";
 import { resetters } from "../../resetters";
+import { produce } from "immer";
 
 /**
  * State about an item in the shop.
@@ -72,15 +73,15 @@ export const createShopSlice = (
 
                 if (newUnlocked) {
                     set(
-                        state => ({
-                            shop: {
-                                ...state.shop,
-                                unlocked,
-                            },
+                        produce<GameState>(state => {
+                            state.shop.unlocked = {
+                                ...state.shop.unlocked,
+                                ...unlocked,
+                            };
                         }),
                         false,
                         // @ts-expect-error typing
-                        "Shop - Update Unlocked"
+                        "Shop - Unlocked - Item"
                     );
                 }
                 return unlocked;
@@ -97,90 +98,41 @@ export const createShopSlice = (
                     if (get().coins.amount < price) return false;
 
                     set(
-                        state => ({
-                            coins: {
-                                ...state.coins,
-                                amount: state.coins.amount - price,
-                                clickers: state.coins.clickers + 1,
-                            },
-                            shop: {
-                                ...state.shop,
-                                items: {
-                                    ...state.shop.items,
-                                    [id]: {
-                                        ...state.shop.items[id],
-                                        purchased:
-                                            state.shop.items[id].purchased + 1,
-                                    },
-                                },
-                            },
+                        produce<GameState>(state => {
+                            state.coins.amount -= price;
+                            state.coins.clickers++;
+                            state.shop.items[id].purchased++;
                         }),
                         false,
                         // @ts-expect-error typing
-                        "Action - Purchase - Auto Clicker"
+                        "Action - Buy - Auto Clicker"
                     );
                 } else {
                     if (get().repro.clovers.amount < price) return false;
 
                     set(
-                        state => ({
-                            repro: {
-                                ...state.repro,
-                                clovers: {
-                                    ...state.repro.clovers,
-                                    amount: state.repro.clovers.amount - price,
-                                    lastCloverId:
-                                        state.repro.clovers.lastCloverId +
-                                        CLOVERS_PER_BUILDING,
-                                },
-                            },
-                            shop: {
-                                ...state.shop,
-                                items: {
-                                    ...state.shop.items,
-                                    [id]: {
-                                        ...state.shop.items[id],
-                                        purchased:
-                                            state.shop.items[id].purchased + 1,
-                                    },
-                                },
-                            },
-                            lanes: {
-                                ...state.lanes,
-                                types: {
-                                    ...state.lanes.types,
-                                    [laneType]: {
-                                        ...state.lanes.types[laneType],
-                                        buildings:
-                                            state.lanes.types[laneType]
-                                                .buildings + 1,
-                                        clovers: {
-                                            ...state.lanes.types[laneType]
-                                                .clovers,
-                                            [CloverType.Regular]: [
-                                                ...state.lanes.types[laneType]
-                                                    .clovers[
-                                                    CloverType.Regular
-                                                ],
-                                                ...new Array(
-                                                    CLOVERS_PER_BUILDING
-                                                )
-                                                    .fill(undefined)
-                                                    .map(
-                                                        (_, i) =>
-                                                            state.repro.clovers
-                                                                .lastCloverId +
-                                                            (i + 1)
-                                                    ),
-                                            ],
-                                        },
-                                    },
-                                },
-                            },
+                        produce<GameState>(state => {
+                            const repro = state.repro;
+                            repro.clovers.amount -= price;
+                            repro.clovers.lastCloverId += CLOVERS_PER_BUILDING;
+
+                            state.shop.items[id].purchased++;
+
+                            const lane = state.lanes.types[laneType];
+                            lane.buildings++;
+                            lane.clovers[CloverType.Regular].push(
+                                ...new Array(CLOVERS_PER_BUILDING)
+                                    .fill(undefined)
+                                    .map(
+                                        (_, i) =>
+                                            state.repro.clovers.lastCloverId +
+                                            (i + 1)
+                                    )
+                            );
                         }),
                         false,
                         // @ts-expect-error typing
-                        "Action - Purchase - Building"
+                        "Action - Buy - Building"
                     );
                 }
 

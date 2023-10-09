@@ -2,6 +2,7 @@ import { StoreApi } from "zustand";
 import { GameState } from "../../store";
 import { LaneType } from "./lane/data";
 import { resetters } from "../../resetters";
+import { produce } from "immer";
 
 export enum CloverType {
     Regular,
@@ -62,34 +63,11 @@ export const createLanesSlice = (
             ...initialLanesState,
             assign: (id: number, laneType: LaneType) => {
                 set(
-                    state => ({
-                        repro: {
-                            ...state.repro,
-                            clovers: {
-                                ...state.repro.clovers,
-                                heroes: {
-                                    ...state.repro.clovers.heroes,
-                                    spawned: undefined,
-                                },
-                            },
-                        },
-                        lanes: {
-                            ...state.lanes,
-                            types: {
-                                ...state.lanes.types,
-                                [laneType]: {
-                                    ...state.lanes.types[laneType],
-                                    clovers: {
-                                        ...state.lanes.types[laneType].clovers,
-                                        [CloverType.Hero]: [
-                                            ...state.lanes.types[laneType]
-                                                .clovers[CloverType.Hero],
-                                            id,
-                                        ],
-                                    },
-                                },
-                            },
-                        },
+                    produce<GameState>(state => {
+                        state.repro.clovers.heroes.spawned = undefined;
+                        state.lanes.types[laneType].clovers[
+                            CloverType.Hero
+                        ].push(id);
                     }),
                     false,
                     // @ts-expect-error typing

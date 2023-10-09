@@ -10,6 +10,7 @@ import {
 import { LaneType, lanes } from "../lanes/lane/data";
 import { CloverType } from "../lanes/slice";
 import { resetters } from "../../resetters";
+import { produce } from "immer";
 
 /**
  * Slice containing information about the current production progress,
@@ -90,25 +91,16 @@ export const createReproSlice = (
                     : HERO_CLOVER_RATE_MS;
 
                 set(
-                    state => ({
-                        repro: {
-                            ...state.repro,
-                            lastUpdate: performance.now(),
-                            clovers: {
-                                ...state.repro.clovers,
-                                rateMs: cloverRateMs,
-                                amount:
-                                    state.repro.clovers.amount +
-                                    elapsed * cloverRateMs,
-                                heroes: {
-                                    ...state.repro.clovers.heroes,
-                                    rateMs: heroCloverRateMs,
-                                    progress:
-                                        state.repro.clovers.heroes.progress +
-                                        elapsed * heroCloverRateMs,
-                                },
-                            },
-                        },
+                    produce<GameState>(state => {
+                        const clovers = state.repro.clovers;
+                        const heroes = state.repro.clovers.heroes;
+
+                        state.repro.lastUpdate = performance.now();
+                        clovers.rateMs = cloverRateMs;
+                        clovers.amount += elapsed * cloverRateMs;
+
+                        heroes.rateMs = heroCloverRateMs;
+                        heroes.progress += elapsed * heroCloverRateMs;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -129,19 +121,13 @@ export const createReproSlice = (
                 );
 
                 set(
-                    state => ({
-                        repro: {
-                            ...state.repro,
-                            clovers: {
-                                ...state.repro.clovers,
-                                heroes: {
-                                    ...state.repro.clovers.heroes,
-                                    progress: 0,
-                                    spawned: heroClover,
-                                },
-                                lastCloverId: heroClover.id,
-                            },
-                        },
+                    produce<GameState>(state => {
+                        const clovers = state.repro.clovers;
+                        const heroes = state.repro.clovers.heroes;
+
+                        heroes.progress = 0;
+                        heroes.spawned = heroClover;
+                        clovers.lastCloverId = heroClover.id;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -161,19 +147,13 @@ export const createReproSlice = (
                 );
 
                 set(
-                    state => ({
-                        repro: {
-                            ...state.repro,
-                            clovers: {
-                                ...state.repro.clovers,
-                                heroes: {
-                                    ...state.repro.clovers.heroes,
-                                    progress: 0,
-                                    spawned: heroClover,
-                                },
-                                lastCloverId: heroClover.id,
-                            },
-                        },
+                    produce<GameState>(state => {
+                        const clovers = state.repro.clovers;
+                        const heroes = state.repro.clovers.heroes;
+
+                        heroes.progress = 0;
+                        heroes.spawned = heroClover;
+                        clovers.lastCloverId = heroClover.id;
                     }),
                     false,
                     // @ts-expect-error typing
@@ -181,15 +161,16 @@ export const createReproSlice = (
                 );
             },
             click: () => {
-                set(state => ({
-                    repro: {
-                        ...state.repro,
-                        clovers: {
-                            ...state.repro.clovers,
-                            amount: state.repro.clovers.amount + 1,
-                        },
-                    },
-                }));
+                get().repro.tick();
+
+                set(
+                    produce<GameState>(state => {
+                        state.repro.clovers.amount += 1;
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Click - Clover"
+                );
             },
             upgrade: () => {
                 get().tick();
@@ -198,19 +179,15 @@ export const createReproSlice = (
                 const price = calculatePrice(nextTier);
                 if (get().coins.amount < price) return false;
 
-                set(state => ({
-                    coins: {
-                        ...state.coins,
-                        amount: state.coins.amount - price,
-                    },
-                    repro: {
-                        ...state.repro,
-                        clovers: {
-                            ...state.repro.clovers,
-                            tier: state.repro.clovers.tier + 1,
-                        },
-                    },
-                }));
+                set(
+                    produce<GameState>(state => {
+                        state.coins.amount -= price;
+                        state.repro.clovers.tier++;
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Action - Upgrade - Repro"
+                );
 
                 get().tick();
 

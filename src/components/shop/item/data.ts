@@ -1,8 +1,14 @@
 import { LaneType } from "../../lanes/lane/data";
 import { Item as ItemSlice } from "../slice";
 import hand from "../../../assets/images/hand.png";
-import { placeholder } from "../../../assets/images/lanes/buildings";
-import { mine, forge, lab, sub } from "../../../assets/images/shop/items/icons";
+import {
+    mine,
+    forge,
+    lab,
+    sub,
+    constructionSite,
+    repairShop,
+} from "../../../assets/images/shop/items/icons";
 
 export enum Currency {
     COINS,
@@ -59,7 +65,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.ConstructionSite,
-        thumbnail: placeholder,
+        thumbnail: constructionSite,
     },
     4: {
         name: "Repair Tools",
@@ -68,7 +74,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.RepairShop,
-        thumbnail: placeholder,
+        thumbnail: repairShop,
     },
     5: {
         name: "Lab Equipment",

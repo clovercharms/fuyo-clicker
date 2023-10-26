@@ -1,5 +1,4 @@
-import { ParticleContainer, useTick } from "@pixi/react";
-import { Sprite } from "@pixi/react";
+import { ParticleContainer, useTick, Sprite } from "@pixi/react";
 import coinImage from "../../../assets/images/fuyo-coin.png";
 import cloverImage from "../../../assets/images/clover/base.png";
 import { useMemo, useRef, useState } from "react";
@@ -74,7 +73,7 @@ export default function Backdrop({ rect }: BackdropProps) {
 
     return (
         <>
-            <ParticleContainer>
+            <ParticleContainer autoResize={true}>
                 {particles.current.array
                     .filter(particle => particle.type === ParticleType.COIN)
                     .map(particle => (
@@ -88,7 +87,7 @@ export default function Backdrop({ rect }: BackdropProps) {
                         />
                     ))}
             </ParticleContainer>
-            <ParticleContainer>
+            <ParticleContainer autoResize={true}>
                 {particles.current.array
                     .filter(particle => particle.type === ParticleType.CLOVER)
                     .map(particle => (

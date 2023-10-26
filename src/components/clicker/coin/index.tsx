@@ -1,31 +1,26 @@
 import { Container, Sprite } from "@pixi/react-animated";
 import coin from "../../../assets/images/fuyo-coin.png";
 import { useSpring } from "react-spring";
-import coinSound from "../../../assets/audio/Coin_Sound_3.mp3";
-import coinSound2 from "../../../assets/audio/Coin_Sound_1-3.mp3";
-import bgm from "../../../assets/audio/fuyonade_dreams_ver2.wav";
 import { useGameStore } from "../../../store";
 import { useRef, useState } from "react";
 import { HINT_DURATION, Hint, HintProps } from "./hint";
 import { FederatedPointerEvent } from "pixi.js";
 import { useApp } from "@pixi/react";
+import { AudioContext } from "../../../context/audio";
+import { Sound } from "../../../context/audio/sounds";
 
 const COIN_SIZE = 300;
 
-function playSfx(src: string, volume = 0.2, loop = false) {
-    const audio = new Audio(src);
-    audio.volume = volume;
-    audio.loop = loop;
-    void audio.play();
+export interface CoinProps {
+    audio: AudioContext;
 }
 
-export default function Coin() {
+export default function Coin({ audio }: CoinProps) {
     const click = useGameStore(state => state.coins.click);
     const [spring, set] = useSpring(() => ({
         width: COIN_SIZE,
         height: COIN_SIZE,
     }));
-    const bgmPlaying = useRef(false);
     const [hints, setHints] = useState<HintProps[]>([]);
     const app = useApp();
     const hintCleanupId = useRef<number | null>(null);
@@ -33,11 +28,12 @@ export default function Coin() {
     const handleClick = (e: FederatedPointerEvent) => {
         const amount = click();
 
-        playSfx(coinSound);
-        if (Math.random() > 0.9) playSfx(coinSound2);
-        if (!bgmPlaying.current) {
-            playSfx(bgm, 1.0, true);
-            bgmPlaying.current = true;
+        audio.play(Sound.Coin1);
+        if (Math.random() > 0.9) audio.play(Sound.Coin2);
+
+        // Start BGM if not playing already
+        if (!audio.states[Sound.BGM]?.element?.paused) {
+            audio.play(Sound.BGM);
         }
 
         setHints(hints => [

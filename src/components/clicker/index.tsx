@@ -9,9 +9,11 @@ import Header from "./header";
 import Fuyonade from "./boosts";
 import cx from "classix";
 import { useRect } from "../../hooks/useRect";
+import { useAudio } from "../../context/audio";
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const { elementRef, rect } = useRect<HTMLDivElement>();
+    const audio = useAudio();
 
     // [FIXME] Workound https://github.com/pixijs/pixi-react/issues/456
     useMemo(() => new BlurFilter(0), []);
@@ -33,7 +35,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                     <Backdrop rect={rect} />
                     <Container x={rect.width / 2} y={rect.height / 2}>
                         <Hands />
-                        <Coin />
+                        <Coin audio={audio} />
                     </Container>
                 </Stage>
             )}

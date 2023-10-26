@@ -1,7 +1,7 @@
 import classes from "./index.module.css";
-import { formatNumber } from "../../hooks/counter";
 import { Currency } from "../shop/item/data";
 import cx from "classix";
+import { formatNumber } from "../../utils/numbers";
 
 export interface PriceProps {
     amount: number;
@@ -16,7 +16,7 @@ export default function Price({ amount, currency }: PriceProps) {
                 currency === Currency.COINS ? classes.coins : classes.clovers
             )}
         >
-            {formatNumber(amount, true)}
+            {formatNumber(amount)}
         </span>
     );
 }

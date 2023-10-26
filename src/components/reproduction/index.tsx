@@ -2,10 +2,11 @@ import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useGameStore } from "../../store";
 import classes from "./index.module.css";
 import { HTMLProps, useState } from "react";
-import { formatNumber, useCounter } from "../../hooks/counter";
+import { useCounter } from "../../hooks/useCounter";
 import { calculatePrice } from "./data";
 import HeroClover from "../clover/hero";
 import cx from "classix";
+import { formatNumber } from "../../utils/numbers";
 
 /**
  * Spawning area for Clovers, ready to be assigned.
@@ -23,9 +24,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     const { counterRef: heroCloverCounterRef } = useCounter(
         repro.clovers.heroes.progress,
         repro.clovers.heroes.rateMs,
-        false,
-        false,
-        { minimumFractionDigits: 3 }
+        false
     );
 
     useDndMonitor({
@@ -44,10 +43,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
                 </h2>
                 <h2>
                     Clover per second:{" "}
-                    {formatNumber(repro.clovers.rateMs * 1e3, false, {
-                        minimumFractionDigits: 1,
-                        maximumFractionDigits: 1,
-                    })}
+                    {formatNumber(repro.clovers.rateMs * 1e3)}
                 </h2>
                 <div className={classes.clover}>
                     <button onClick={repro.click} />

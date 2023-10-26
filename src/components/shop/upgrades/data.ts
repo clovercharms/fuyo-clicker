@@ -210,7 +210,7 @@ export const upgrades: Upgrades = {
             name: "Forge - Upgrade 1",
             description: "A funny and witty description goes here. :)",
             price: 11e3,
-            image: placeholder,
+            image: icons[UpgradeType.Forge][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Forge].buildings >= 1,
         },
@@ -218,7 +218,7 @@ export const upgrades: Upgrades = {
             name: "Forge - Upgrade 2",
             description: "A funny and witty description goes here. :)",
             price: 55e3,
-            image: placeholder,
+            image: icons[UpgradeType.Forge][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Forge].buildings >= 5,
         },
@@ -226,7 +226,7 @@ export const upgrades: Upgrades = {
             name: "Forge - Upgrade 3",
             description: "A funny and witty description goes here. :)",
             price: 55e4,
-            image: placeholder,
+            image: icons[UpgradeType.Forge][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Forge].buildings >= 25,
         },
@@ -234,7 +234,7 @@ export const upgrades: Upgrades = {
             name: "Forge - Upgrade 4",
             description: "A funny and witty description goes here. :)",
             price: 55e6,
-            image: placeholder,
+            image: icons[UpgradeType.Forge][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Forge].buildings >= 50,
         },
@@ -242,7 +242,7 @@ export const upgrades: Upgrades = {
             name: "Forge - Upgrade 5",
             description: "A funny and witty description goes here. :)",
             price: 5.5e9,
-            image: placeholder,
+            image: icons[UpgradeType.Forge][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Forge].buildings >= 100,
         },

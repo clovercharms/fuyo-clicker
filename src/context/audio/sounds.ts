@@ -20,7 +20,7 @@ export interface SoundConfig {
     src: string;
     /** Whether or not audio should persist and be controllable. */
     persistent?: boolean;
-    /** The options to use when  */
+    /** The options to use when initializing the `HTMLAudioElement` element. */
     options?: Partial<AudioInitOptions>;
 }
 

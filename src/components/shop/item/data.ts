@@ -171,7 +171,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Sketches,
-        thumbnail: icons.wip,
+        thumbnail: icons.sketch,
     },
 };
 

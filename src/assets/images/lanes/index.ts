@@ -4,5 +4,20 @@ import garage from "./garage.png";
 import lab from "./lab.png";
 import mines from "./minemine.png";
 import seasea from "./seasea.png";
+import powerPlant from "./power-plant.png";
+import sketch from "./sketch.png";
+import wip from "./wip.png";
+import wip2 from "./wip2.png";
 
-export { constructionSite, forge, garage, lab, mines, seasea };
+export {
+    constructionSite,
+    forge,
+    garage,
+    lab,
+    mines,
+    seasea,
+    powerPlant,
+    sketch,
+    wip,
+    wip2,
+};

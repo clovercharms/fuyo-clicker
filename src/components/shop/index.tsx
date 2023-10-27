@@ -8,6 +8,7 @@ import useTooltip from "./tooltip/useTooltip";
 import Item from "./item";
 import { calcLanesRate, countUnlockedUpgrades } from "../clicker/calc";
 import cx from "classix";
+import { formatNumber } from "@/utils/numbers";
 
 /**
  * Shop for buying upgrades and advancements.
@@ -81,17 +82,19 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                         <>
                             <h2>
                                 Production{" "}
-                                {laneProduction[items[activeId].laneType!] *
-                                    1e3}{" "}
+                                {formatNumber(
+                                    laneProduction[items[activeId].laneType!] *
+                                        1e3
+                                )}{" "}
                                 per second
                             </h2>
                             <h2>
                                 Production{" "}
-                                {(
+                                {formatNumber(
                                     (laneProduction[items[activeId].laneType!] /
                                         coins.rateMs) *
-                                    1e2
-                                ).toFixed(1)}{" "}
+                                        1e2
+                                )}{" "}
                                 % of total coins per second
                             </h2>
                         </>

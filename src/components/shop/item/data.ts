@@ -1,14 +1,7 @@
 import { LaneType } from "../../lanes/lane/data";
 import { Item as ItemSlice } from "../slice";
 import hand from "@/assets/images/hand.png";
-import {
-    mine,
-    forge,
-    lab,
-    sub,
-    constructionSite,
-    repairShop,
-} from "@/assets/images/shop/items/icons";
+import * as icons from "@/assets/images/shop/items/icons";
 
 export enum Currency {
     COINS,
@@ -40,59 +33,145 @@ export const items: Record<number, Item> = {
         },
         thumbnail: hand,
     },
+    /* [CC] Grandma */
     1: {
         name: "Mine",
         price: {
             amount: 100,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Mine,
-        thumbnail: mine,
+        laneType: LaneType.Miners,
+        thumbnail: icons.mine,
     },
+    /* [CC] Farm */
     2: {
         name: "Forge",
         price: {
             amount: 1100,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Forge,
-        thumbnail: forge,
+        laneType: LaneType.Blacksmiths,
+        thumbnail: icons.forge,
     },
+    /* [CC] Mine */
     3: {
         name: "Crane",
         price: {
             amount: 12e3,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.ConstructionSite,
-        thumbnail: constructionSite,
+        laneType: LaneType.FactoryWorkers,
+        thumbnail: icons.constructionSite,
     },
+    /* [CC] Factory */
     4: {
         name: "Repair Tools",
         price: {
             amount: 13e4,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.RepairShop,
-        thumbnail: repairShop,
+        laneType: LaneType.Mechanics,
+        thumbnail: icons.repairShop,
     },
+    /* [CC] Bank */
     5: {
         name: "Lab Equipment",
         price: {
             amount: 1.4e6,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Lab,
-        thumbnail: lab,
+        laneType: LaneType.Scientists,
+        thumbnail: icons.lab,
     },
+    /* [CC] Temple */
     6: {
         name: "Scuba Gear",
         price: {
             amount: 2e7,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Ocean,
-        thumbnail: sub,
+        laneType: LaneType.Divers,
+        thumbnail: icons.sub,
+    },
+    /* [CC] Wizard Tower */
+    7: {
+        name: "Rocket",
+        price: {
+            amount: 33e7,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Astronauts,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Shipment */
+    8: {
+        name: "Altar",
+        price: {
+            amount: 51e8,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Cultists,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Alchemy Lab */
+    9: {
+        name: "Bank",
+        price: {
+            amount: 75e9,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Investors,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Portal */
+    10: {
+        name: "UFO",
+        price: {
+            amount: 1e12,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Aliens,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Time Machine */
+    11: {
+        name: "Nuclear Power Plant",
+        price: {
+            amount: 14e12,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Hazmats,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Antimatter Condenser */
+    12: {
+        name: "Wizard Tower",
+        price: {
+            amount: 17e13,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Wizards,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Prism */
+    13: {
+        name: "Castle",
+        price: {
+            amount: 21e14,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Knights,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Chancemaker */
+    14: {
+        name: "Sketch",
+        price: {
+            amount: 26e15,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Sketches,
+        thumbnail: icons.wip,
     },
 };
 

@@ -109,7 +109,7 @@ export const createShopSlice = (
                             state.coins.clickers++;
                             state.shop.items[id] = {
                                 ...item,
-                                purchased: item.purchased++,
+                                purchased: item.purchased + 1,
                             };
                         }),
                         false,

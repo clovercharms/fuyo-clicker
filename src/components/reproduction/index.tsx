@@ -43,7 +43,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
                 </h2>
                 <h2>
                     Clover per second:{" "}
-                    {formatNumber(repro.clovers.rateMs * 1e3)}
+                    {formatNumber(Math.floor(repro.clovers.rateMs * 1e3))}
                 </h2>
                 <div className={classes.clover}>
                     <button onClick={repro.click} />
@@ -60,7 +60,8 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
                             onClick={repro.upgrade}
                             disabled={upgradeCost > coins}
                         >
-                            Upgrade - cost {formatNumber(upgradeCost)}
+                            Upgrade - cost{" "}
+                            {formatNumber(Math.floor(upgradeCost))}
                         </button>
                     );
                 })()}

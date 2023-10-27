@@ -39,5 +39,5 @@ export const SOUNDS: Record<Sound, SoundConfig> = {
     },
     [Sound.Coin1]: { src: coin1 },
     [Sound.Coin2]: { src: coin2 },
-    [Sound.Kaching]: { src: kaching, options: { volume: 0.4 } },
+    [Sound.Kaching]: { src: kaching, options: { volume: 0.25 } },
 };

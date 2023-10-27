@@ -6,10 +6,6 @@
     src: url("../src/assets/fonts/subscribe.woff2");
 }
 
-:root {
-    font-family: "Subscribe", sans-serif;
-}
-
 body {
     /* Foreground, Background */
     scrollbar-color: #987a50 #6a5539;
@@ -31,6 +27,7 @@ body {
 body,
 h1,
 h2 {
+    font-family: "Subscribe", sans-serif;
     margin: 0;
     overflow: hidden;
 }

@@ -1,5 +1,5 @@
 import cx from "classix";
-import { useGameStore } from "../../../store";
+import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { BoostType } from "./data";
 

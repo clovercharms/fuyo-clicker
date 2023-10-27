@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../../store";
+import { GameState } from "@/store";
 import { UpgradeType, upgrades } from "./data";
 import { resetters } from "../../../resetters";
 import { produce } from "immer";

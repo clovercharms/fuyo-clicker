@@ -1,6 +1,6 @@
-import bgm from "../../assets/audio/fuyonade_dreams_ver2.wav";
-import coin1 from "../../assets/audio/Coin_Sound_3.mp3";
-import coin2 from "../../assets/audio/Coin_Sound_1-3.mp3";
+import bgm from "@/assets/audio/fuyonade_dreams_ver2.wav";
+import coin1 from "@/assets/audio/Coin_Sound_3.mp3";
+import coin2 from "@/assets/audio/Coin_Sound_1-3.mp3";
 import { AudioInitOptions } from ".";
 
 /**

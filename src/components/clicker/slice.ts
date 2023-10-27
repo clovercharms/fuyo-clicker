@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState } from "@/store";
 import { resetters } from "../../resetters";
 import { calcClickAmount, calcRateMs } from "./calc";
 import { produce } from "immer";

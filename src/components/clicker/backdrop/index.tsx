@@ -1,10 +1,10 @@
 import { ParticleContainer, useTick, Sprite } from "@pixi/react";
-import coinImage from "../../../assets/images/fuyo-coin.png";
-import cloverImage from "../../../assets/images/clover/base.png";
+import coinImage from "@/assets/images/fuyo-coin.png";
+import cloverImage from "@/assets/images/clover/base.png";
 import { useMemo, useRef, useState } from "react";
 import { Sprite as ISprite } from "pixi.js";
 import { easings } from "react-spring";
-import { useGameStore } from "../../../store";
+import { useGameStore } from "@/store";
 import { ParticleType, Particles } from "./particles";
 
 export const PARTICLE_SIZE = 100;

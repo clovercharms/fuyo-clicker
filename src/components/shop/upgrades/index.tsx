@@ -1,6 +1,6 @@
-import { useGameStore } from "../../../store";
+import { useGameStore } from "@/store";
 import classes from "./index.module.css";
-import itemFrames from "../../../assets/images/shop/upgrades/item-frames";
+import itemFrames from "@/assets/images/shop/upgrades/item-frames";
 import { HTMLProps, useMemo, useRef, useState } from "react";
 import { Upgrade, UpgradeType, upgrades as data } from "./data";
 import useTooltip from "../tooltip/useTooltip";

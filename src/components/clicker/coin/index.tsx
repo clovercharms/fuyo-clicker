@@ -1,13 +1,13 @@
 import { Container, Sprite } from "@pixi/react-animated";
-import coin from "../../../assets/images/fuyo-coin.png";
+import coin from "@/assets/images/fuyo-coin.png";
 import { useSpring } from "react-spring";
-import { useGameStore } from "../../../store";
+import { useGameStore } from "@/store";
 import { useRef, useState } from "react";
 import { HINT_DURATION, Hint, HintProps } from "./hint";
 import { FederatedPointerEvent } from "pixi.js";
 import { useApp } from "@pixi/react";
-import { AudioContext } from "../../../context/audio";
-import { Sound } from "../../../context/audio/sounds";
+import { AudioContext } from "@/context/audio";
+import { Sound } from "@/context/audio/sounds";
 
 const COIN_SIZE = 300;
 

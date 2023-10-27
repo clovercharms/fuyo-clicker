@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import { formatNumber } from "../utils/numbers";
+import { formatNumber } from "@/utils/numbers";
 
 /**
  * Optimistic counter for a given value, which updates at a certain rate.

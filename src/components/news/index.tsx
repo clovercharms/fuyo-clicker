@@ -1,9 +1,9 @@
 import cx from "classix";
-import { useGameStore } from "../../store";
+import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { useAudio } from "../../context/audio";
-import { Sound } from "../../context/audio/sounds";
+import { useAudio } from "@/context/audio";
+import { Sound } from "@/context/audio/sounds";
 
 /**
  * Newsreel that displays news based on current or random events.

@@ -1,6 +1,6 @@
 import { LaneType } from "../../lanes/lane/data";
 import { Item as ItemSlice } from "../slice";
-import hand from "../../../assets/images/hand.png";
+import hand from "@/assets/images/hand.png";
 import {
     mine,
     forge,
@@ -8,7 +8,7 @@ import {
     sub,
     constructionSite,
     repairShop,
-} from "../../../assets/images/shop/items/icons";
+} from "@/assets/images/shop/items/icons";
 
 export enum Currency {
     COINS,

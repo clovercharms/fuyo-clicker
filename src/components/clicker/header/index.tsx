@@ -1,9 +1,9 @@
 import classes from "./index.module.css";
 import { HTMLProps, useEffect } from "react";
-import { useCounter } from "../../../hooks/useCounter";
-import { useGameStore } from "../../../store";
+import { useCounter } from "@/hooks/useCounter";
+import { useGameStore } from "@/store";
 import cx from "classix";
-import { formatNumber } from "../../../utils/numbers";
+import { formatNumber } from "@/utils/numbers";
 
 const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 

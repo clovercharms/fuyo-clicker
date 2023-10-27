@@ -72,7 +72,7 @@ export const createShopSlice = (
                     }
                     unlocked = {
                         ...unlocked,
-                        [id]: shopItem,
+                        [id]: true,
                     };
                 }
 

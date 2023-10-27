@@ -47,34 +47,40 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                 onMouseLeave={() => setActiveId(null)}
                 ref={setAnchor}
             >
-                {Object.entries(shop.unlockedItems()).map(([id, item]) => {
-                    const price = calculatePrice(
-                        id as unknown as number,
-                        item.purchased
-                    );
-                    const itemData = items[id as unknown as number];
-                    const affordable =
-                        (itemData.price.currency === Currency.COINS
-                            ? coins.amount
-                            : clovers) >= price;
+                {Object.entries(shop.unlockedItems())
+                    .filter(([, unlocked]) => !!unlocked)
+                    .map(([id]) => {
+                        const item = shop.items[id as unknown as number];
+                        const price = calculatePrice(
+                            id as unknown as number,
+                            item.purchased
+                        );
+                        const data = items[id as unknown as number];
+                        const affordable =
+                            (data.price.currency === Currency.COINS
+                                ? coins.amount
+                                : clovers) >= price;
 
-                    return (
-                        <Item
-                            key={id}
-                            item={items[id as unknown as number]}
-                            price={price}
-                            affordable={affordable}
-                            purchased={item.purchased}
-                            onClick={() =>
-                                handleBuy(affordable, id as unknown as number)
-                            }
-                            onMouseEnter={e => {
-                                setActiveId(id as unknown as number);
-                                setCoords({ x: e.clientX, y: e.clientY });
-                            }}
-                        />
-                    );
-                })}
+                        return (
+                            <Item
+                                key={id}
+                                item={items[id as unknown as number]}
+                                price={price}
+                                affordable={affordable}
+                                purchased={item.purchased}
+                                onClick={() =>
+                                    handleBuy(
+                                        affordable,
+                                        id as unknown as number
+                                    )
+                                }
+                                onMouseEnter={e => {
+                                    setActiveId(id as unknown as number);
+                                    setCoords({ x: e.clientX, y: e.clientY });
+                                }}
+                            />
+                        );
+                    })}
             </ul>
             {activeId !== null && (
                 <ProductionTooltip

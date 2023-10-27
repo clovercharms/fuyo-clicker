@@ -35,8 +35,9 @@ export interface ShopSlice {
     };
 }
 
+const initialItemState = { purchased: 0 };
 const initialShopState = {
-    items: Object.keys(items).map(() => ({ purchased: 0 })),
+    items: Object.keys(items).map(() => structuredClone(initialItemState)),
     unlocked: {},
 };
 
@@ -52,11 +53,15 @@ export const createShopSlice = (
                 let unlocked = {};
                 let newUnlocked = false;
 
-                for (const [id, item] of Object.entries(get().shop.items)) {
-                    if (!get().shop.unlocked[id as unknown as number]) {
+                for (const id of Object.keys(items).map(Number)) {
+                    const shopItem =
+                        get().shop.items[id] ??
+                        structuredClone(initialItemState);
+
+                    if (!get().shop.unlocked[id]) {
                         if (
                             !isItemUnlocked(
-                                item,
+                                shopItem,
                                 items[id as unknown as number],
                                 get().coins.amount,
                                 get().repro.clovers.amount
@@ -67,7 +72,7 @@ export const createShopSlice = (
                     }
                     unlocked = {
                         ...unlocked,
-                        [id]: item,
+                        [id]: shopItem,
                     };
                 }
 

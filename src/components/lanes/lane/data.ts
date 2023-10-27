@@ -1,19 +1,5 @@
-import {
-    constructionSite,
-    forge,
-    garage,
-    lab,
-    mines,
-    seasea,
-} from "../../../assets/images/lanes";
-import {
-    mine,
-    forge as forgeBuilding,
-    scienceDesk,
-    sub,
-    chemtoilet,
-    rack,
-} from "../../../assets/images/lanes/buildings";
+import * as backgrounds from "../../../assets/images/lanes";
+import * as buildings from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
 
 export const CLOVERS_PER_BUILDING = 2;
@@ -22,12 +8,20 @@ export const CLOVERS_PER_BUILDING = 2;
  * Types of lanes that are accessible for Clovers to be assigned to.
  */
 export enum LaneType {
-    Mine,
-    Forge,
-    ConstructionSite,
-    RepairShop,
-    Lab,
-    Ocean,
+    Miners,
+    Blacksmiths,
+    FactoryWorkers,
+    Mechanics,
+    Scientists,
+    Divers,
+    Astronauts,
+    Cultists,
+    Investors,
+    Aliens,
+    Hazmats,
+    Wizards,
+    Knights,
+    Sketches,
 }
 
 /**
@@ -51,61 +45,155 @@ export interface LaneData {
  * background image it uses.
  */
 export const lanes: { [type in LaneType]: LaneData } = {
-    [LaneType.Mine]: {
+    /* [CC] Grandma */
+    [LaneType.Miners]: {
         job: Job.Miner,
-        background: mines,
-        building: mine,
+        background: backgrounds.mines,
+        building: buildings.mine,
         rateMs: 1 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
         },
     },
-    [LaneType.Forge]: {
+    /* [CC] Farm */
+    [LaneType.Blacksmiths]: {
         job: Job.Blacksmith,
-        background: forge,
-        building: forgeBuilding,
+        background: backgrounds.forge,
+        building: buildings.forge,
         rateMs: 8 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
         },
     },
-    [LaneType.ConstructionSite]: {
+    /* [CC] Mine */
+    [LaneType.FactoryWorkers]: {
         job: Job.FactoryWorker,
-        background: constructionSite,
-        building: chemtoilet,
+        background: backgrounds.constructionSite,
+        building: buildings.chemtoilet,
         rateMs: 47 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
         },
     },
-    [LaneType.RepairShop]: {
+    /* [CC] Factory */
+    [LaneType.Mechanics]: {
         job: Job.Mechanic,
-        background: garage,
-        building: rack,
+        background: backgrounds.garage,
+        building: buildings.rack,
         rateMs: 260 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
         },
     },
-    [LaneType.Lab]: {
+    /* [CC] Bank */
+    [LaneType.Scientists]: {
         job: Job.Scientist,
-        background: lab,
-        building: scienceDesk,
-        rateMs: 1400 / 1e3,
+        background: backgrounds.lab,
+        building: buildings.scienceDesk,
+        rateMs: 14e2 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
         },
     },
-    [LaneType.Ocean]: {
+    /* [CC] Temple */
+    [LaneType.Divers]: {
         job: Job.Diver,
-        background: seasea,
-        building: sub,
-        rateMs: 7800 / 1e3,
+        background: backgrounds.seasea,
+        building: buildings.sub,
+        rateMs: 78e2 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Wizard Tower */
+    [LaneType.Astronauts]: {
+        job: Job.Astronaut,
+        background: backgrounds.wip2,
+        building: buildings.rocket,
+        rateMs: 44e3 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Shipment */
+    [LaneType.Cultists]: {
+        job: Job.Cultist,
+        background: backgrounds.wip,
+        building: buildings.altar,
+        rateMs: 26e4 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Alchemy Lab */
+    [LaneType.Investors]: {
+        job: Job.Investor,
+        background: backgrounds.wip,
+        building: buildings.bank,
+        rateMs: 16e5 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Portal */
+    [LaneType.Aliens]: {
+        job: Job.Alien,
+        background: backgrounds.wip2,
+        building: buildings.ufo,
+        rateMs: 1e7 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Time Machine */
+    [LaneType.Hazmats]: {
+        job: Job.Hazmat,
+        background: backgrounds.powerPlant,
+        building: buildings.powerPlant,
+        rateMs: 65e6 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Antimatter Condenser */
+    [LaneType.Wizards]: {
+        job: Job.Wizard,
+        background: backgrounds.wip,
+        building: buildings.wizardTower,
+        rateMs: 43e7 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Prism */
+    [LaneType.Knights]: {
+        job: Job.Knight,
+        background: backgrounds.wip,
+        building: buildings.castle,
+        rateMs: 29e8 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Chancemaker */
+    [LaneType.Sketches]: {
+        job: Job.Sketch,
+        background: backgrounds.sketch,
+        building: buildings.sketchHouse,
+        rateMs: 21e9 / 1e3,
         clovers: {
             regular: [],
             heroes: [],

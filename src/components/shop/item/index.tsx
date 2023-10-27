@@ -35,10 +35,7 @@ export default function Item({
                 <img className={classes.thumbnail} src={thumbnail} />
                 <div className={classes.details}>
                     <div>{name}</div>
-                    <div>
-                        <span>Price: </span>
-                        <Price amount={price} currency={currency} />
-                    </div>
+                    <Price amount={price} currency={currency} />
                 </div>
             </div>
             <div className={classes.purchased}>{purchased}</div>

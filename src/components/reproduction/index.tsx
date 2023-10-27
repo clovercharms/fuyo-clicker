@@ -60,8 +60,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
                             onClick={repro.upgrade}
                             disabled={upgradeCost > coins}
                         >
-                            Upgrade - cost{" "}
-                            {calculatePrice(repro.clovers.tier + 1)}
+                            Upgrade - cost {formatNumber(upgradeCost)}
                         </button>
                     );
                 })()}

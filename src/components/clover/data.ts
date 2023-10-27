@@ -1,11 +1,4 @@
-import {
-    blacksmith,
-    factory_worker,
-    mechanic,
-    miner,
-    scientist,
-    scuba,
-} from "../../assets/images/clover/jobs";
+import * as images from "../../assets/images/clover/jobs";
 
 /**
  * A type of job a Clover can have.
@@ -17,18 +10,34 @@ export enum Job {
     Miner,
     Scientist,
     Diver,
+    Astronaut,
+    Cultist,
+    Investor,
+    Alien,
+    Hazmat,
+    Wizard,
+    Knight,
+    Sketch,
 }
 
 /**
  * Mapping for Clover jobs to image URLs.
  */
 export const Jobs: { [type in Job]?: string } = {
-    [Job.Blacksmith]: blacksmith,
-    [Job.FactoryWorker]: factory_worker,
-    [Job.Mechanic]: mechanic,
-    [Job.Miner]: miner,
-    [Job.Scientist]: scientist,
-    [Job.Diver]: scuba,
+    [Job.Blacksmith]: images.blacksmith,
+    [Job.FactoryWorker]: images.factory_worker,
+    [Job.Mechanic]: images.mechanic,
+    [Job.Miner]: images.miner,
+    [Job.Scientist]: images.scientist,
+    [Job.Diver]: images.scuba,
+    [Job.Astronaut]: images.astronaut,
+    [Job.Cultist]: images.cultist,
+    [Job.Investor]: images.investor,
+    [Job.Alien]: images.alien,
+    [Job.Hazmat]: images.hazmat,
+    [Job.Wizard]: images.wizard,
+    [Job.Knight]: images.knight,
+    [Job.Sketch]: images.sketch,
 };
 
 /**

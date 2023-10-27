@@ -12,6 +12,7 @@ import knight from "./knight.png";
 import investor from "./lucky_coin_investor.png";
 import wizard from "./wizard.png";
 import sketch from "./sketch.png";
+import peak from "./peak.png";
 
 export {
     blacksmith,
@@ -28,4 +29,5 @@ export {
     investor,
     wizard,
     sketch,
+    peak,
 };

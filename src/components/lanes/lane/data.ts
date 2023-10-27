@@ -22,6 +22,7 @@ export enum LaneType {
     Wizards,
     Knights,
     Sketches,
+    Peak,
 }
 
 /**
@@ -198,6 +199,17 @@ export const lanes: { [type in LaneType]: LaneData } = {
         background: backgrounds.sketch,
         building: buildings.sketchHouse,
         rateMs: 21e9 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Fractal Engine */
+    [LaneType.Peak]: {
+        job: Job.Peak,
+        background: backgrounds.wip2,
+        building: buildings.altar,
+        rateMs: 15e10 / 1e3,
         clovers: {
             regular: [],
             heroes: [],

@@ -173,6 +173,16 @@ export const items: Record<number, Item> = {
         laneType: LaneType.Sketches,
         thumbnail: icons.sketch,
     },
+    /* [CC] Fractal Engine */
+    15: {
+        name: "Peak",
+        price: {
+            amount: 31e16,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Peak,
+        thumbnail: icons.wip,
+    },
 };
 
 export const priceBase = 1.15;

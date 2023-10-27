@@ -34,8 +34,10 @@ export default function Clover({
         <div {...props} className={cx(classes.clover, props.className)}>
             <span className={classes.name}>{name}</span>
             <div className={classes.body}>
-                <img src={type === CloverType.Regular ? base : hero} />
-                <img src={Jobs[job]} />
+                {!Jobs[job].substitute && (
+                    <img src={type === CloverType.Regular ? base : hero} />
+                )}
+                <img src={Jobs[job].src} />
             </div>
         </div>
     );

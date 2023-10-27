@@ -23,6 +23,7 @@ export enum UpgradeType {
     Wizards,
     Knights,
     Sketches,
+    Peak,
 }
 
 export const LaneTypeUpgradeType: Partial<Record<LaneType, UpgradeType>> = {
@@ -40,6 +41,7 @@ export const LaneTypeUpgradeType: Partial<Record<LaneType, UpgradeType>> = {
     [LaneType.Wizards]: UpgradeType.Wizards,
     [LaneType.Knights]: UpgradeType.Knights,
     [LaneType.Sketches]: UpgradeType.Sketches,
+    [LaneType.Peak]: UpgradeType.Peak,
 };
 
 /**
@@ -777,6 +779,49 @@ export const upgrades: Upgrades = {
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 100,
+        },
+    },
+    /* [CC] Fractal Engine */
+    [UpgradeType.Peak]: {
+        0: {
+            name: "Peak - Upgrade 1",
+            description: "A funny and witty description goes here. :)",
+            price: 31e17,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Peak].buildings >= 1,
+        },
+        1: {
+            name: "Peak - Upgrade 2",
+            description: "A funny and witty description goes here. :)",
+            price: 155e17,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Peak].buildings >= 5,
+        },
+        2: {
+            name: "Peak - Upgrade 3",
+            description: "A funny and witty description goes here. :)",
+            price: 155e18,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Peak].buildings >= 25,
+        },
+        3: {
+            name: "Peak - Upgrade 4",
+            description: "A funny and witty description goes here. :)",
+            price: 155e20,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Peak].buildings >= 50,
+        },
+        4: {
+            name: "Peak - Upgrade 5",
+            description: "A funny and witty description goes here. :)",
+            price: 155e22,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Peak].buildings >= 100,
         },
     },
 };

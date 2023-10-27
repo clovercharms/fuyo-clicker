@@ -18,26 +18,33 @@ export enum Job {
     Wizard,
     Knight,
     Sketch,
+    Peak,
+}
+
+export interface JobConfig {
+    src: string;
+    substitute?: boolean;
 }
 
 /**
  * Mapping for Clover jobs to image URLs.
  */
-export const Jobs: { [type in Job]?: string } = {
-    [Job.Blacksmith]: images.blacksmith,
-    [Job.FactoryWorker]: images.factory_worker,
-    [Job.Mechanic]: images.mechanic,
-    [Job.Miner]: images.miner,
-    [Job.Scientist]: images.scientist,
-    [Job.Diver]: images.scuba,
-    [Job.Astronaut]: images.astronaut,
-    [Job.Cultist]: images.cultist,
-    [Job.Investor]: images.investor,
-    [Job.Alien]: images.alien,
-    [Job.Hazmat]: images.hazmat,
-    [Job.Wizard]: images.wizard,
-    [Job.Knight]: images.knight,
-    [Job.Sketch]: images.sketch,
+export const Jobs: { [type in Job]: JobConfig } = {
+    [Job.Blacksmith]: { src: images.blacksmith },
+    [Job.FactoryWorker]: { src: images.factory_worker },
+    [Job.Mechanic]: { src: images.mechanic },
+    [Job.Miner]: { src: images.miner },
+    [Job.Scientist]: { src: images.scientist },
+    [Job.Diver]: { src: images.scuba },
+    [Job.Astronaut]: { src: images.astronaut },
+    [Job.Cultist]: { src: images.cultist },
+    [Job.Investor]: { src: images.investor },
+    [Job.Alien]: { src: images.alien },
+    [Job.Hazmat]: { src: images.hazmat },
+    [Job.Wizard]: { src: images.wizard },
+    [Job.Knight]: { src: images.knight },
+    [Job.Sketch]: { src: images.sketch },
+    [Job.Peak]: { src: images.peak, substitute: true },
 };
 
 /**

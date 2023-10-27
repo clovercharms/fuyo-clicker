@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState } from "@/store";
 import { calculatePrice, isItemUnlocked, items } from "./item/data";
 import { CLOVERS_PER_BUILDING } from "../lanes/lane/data";
 import { CloverType } from "../lanes/slice";

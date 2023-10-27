@@ -1,12 +1,12 @@
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
-import { useGameStore } from "../../store";
+import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { HTMLProps, useState } from "react";
-import { useCounter } from "../../hooks/useCounter";
+import { useCounter } from "@/hooks/useCounter";
 import { calculatePrice } from "./data";
 import HeroClover from "../clover/hero";
 import cx from "classix";
-import { formatNumber } from "../../utils/numbers";
+import { formatNumber } from "@/utils/numbers";
 
 /**
  * Spawning area for Clovers, ready to be assigned.

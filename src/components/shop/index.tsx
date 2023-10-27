@@ -1,4 +1,4 @@
-import { useGameStore } from "../../store";
+import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { HTMLProps, useMemo, useRef, useState } from "react";
 import { Currency, calculatePrice, items } from "./item/data";

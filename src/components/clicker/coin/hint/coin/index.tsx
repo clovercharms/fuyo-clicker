@@ -1,7 +1,7 @@
 import { easings, useSpring } from "react-spring";
 import { HINT_DURATION, HintProps } from "..";
 import { Sprite } from "@pixi/react-animated";
-import coin from "../../../../../assets/images/fuyo-coin.png";
+import coin from "@/assets/images/fuyo-coin.png";
 
 export default function Coin({ x, y }: HintProps) {
     const [spring] = useSpring(() => {

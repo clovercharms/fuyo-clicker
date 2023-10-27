@@ -1,4 +1,4 @@
-import { UpgradeType } from "../../../../../components/shop/upgrades/data";
+import { UpgradeType } from "@/components/shop/upgrades/data";
 import cursor0 from "./cursor-0.webp";
 import cursor1 from "./cursor-1.webp";
 import cursor2 from "./cursor-2.webp";

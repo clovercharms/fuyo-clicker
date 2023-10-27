@@ -1,7 +1,7 @@
 import classes from "./index.module.css";
 import { Currency } from "../shop/item/data";
 import cx from "classix";
-import { formatNumber } from "../../utils/numbers";
+import { formatNumber } from "@/utils/numbers";
 
 export interface PriceProps {
     amount: number;

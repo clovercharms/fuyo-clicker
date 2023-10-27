@@ -1,6 +1,6 @@
-import { GameState } from "../../../store";
-import icons from "../../../assets/images/shop/upgrades/icons";
-import placeholder from "../../../assets/images/lanes/buildings/placeholder.png";
+import { GameState } from "@/store";
+import icons from "@/assets/images/shop/upgrades/icons";
+import placeholder from "@/assets/images/lanes/buildings/placeholder.png";
 import { LaneType } from "../../lanes/lane/data";
 
 /**

@@ -8,8 +8,8 @@ import Backdrop from "./backdrop";
 import Header from "./header";
 import Fuyonade from "./boosts";
 import cx from "classix";
-import { useRect } from "../../hooks/useRect";
-import { useAudio } from "../../context/audio";
+import { useRect } from "@/hooks/useRect";
+import { useAudio } from "@/context/audio";
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const { elementRef, rect } = useRect<HTMLDivElement>();

@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState } from "@/store";
 import { LaneType } from "./lane/data";
 import { resetters } from "../../resetters";
 import { produce } from "immer";

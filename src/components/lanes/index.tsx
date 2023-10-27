@@ -1,9 +1,9 @@
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import Lane from "./lane";
-import { useGameStore } from "../../store";
+import { useGameStore } from "@/store";
 import cx from "classix";
-import { useRect } from "../../hooks/useRect";
+import { useRect } from "@/hooks/useRect";
 
 /**
  * Collection of Lanes for Clovers to be assigned to.

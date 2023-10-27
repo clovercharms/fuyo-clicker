@@ -1,6 +1,6 @@
 import classes from "./index.module.css";
-import base from "../../assets/images/clover/base.png";
-import hero from "../../assets/images/clover/hero.png";
+import base from "@/assets/images/clover/base.png";
+import hero from "@/assets/images/clover/hero.png";
 import { HTMLProps } from "react";
 import { Job, Jobs, names } from "./data";
 import {

@@ -4,7 +4,7 @@ import Clover from "../../clover";
 import { CloverType, Lane as ILane } from "../slice";
 import { LaneType, lanes as data } from "./data";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
-import { useGameStore } from "../../../store";
+import { useGameStore } from "@/store";
 import HeroClover from "../../clover/hero";
 import {
     xoroshiro128plus,

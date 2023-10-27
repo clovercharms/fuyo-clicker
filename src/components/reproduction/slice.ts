@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "../../store";
+import { GameState } from "@/store";
 import { Job } from "../clover/data";
 import {
     CLOVER_RATE_BASE,

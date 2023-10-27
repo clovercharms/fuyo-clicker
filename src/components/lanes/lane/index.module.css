@@ -1,23 +1,56 @@
-@keyframes zoom {
+@keyframes work {
     0% {
         left: 0rem;
         bottom: 0rem;
+        transform: rotate(0deg);
     }
     25% {
         left: 1rem;
         bottom: 1rem;
+        transform: rotate(11.25deg);
     }
     50% {
         left: 0rem;
         bottom: 0rem;
+        transform: rotate(0deg);
     }
     75% {
         left: -1rem;
         bottom: 1rem;
+        transform: rotate(-11.25deg);
     }
     100% {
         left: 0rem;
         bottom: 0rem;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes flying {
+    0% {
+        left: 0rem;
+        bottom: 1.5rem;
+        transform: rotate(0deg);
+    }
+    25% {
+        left: 20rem;
+        bottom: -0.5rem;
+        transform: rotate(0deg);
+    }
+    50% {
+        left: 0rem;
+        bottom: 1.5rem;
+        transform: rotate(0deg);
+    }
+    75% {
+        left: -20rem;
+        bottom: -0.5rem;
+        transform: rotate(0deg);
+    }
+    100% {
+        left: 0rem;
+        bottom: 1.5rem;
+        transform: rotate(0deg);
     }
 }
 
@@ -56,6 +89,16 @@
             height: 5rem;
             aspect-ratio: 1/1;
             margin-left: -1rem;
+        }
+
+        &.flying {
+            & > img {
+                position: relative;
+                animation:
+                    50s var(--animation-delay) flying infinite linear,
+                    25s var(--animation-delay) flip steps(1, end) infinite
+                        alternate;
+            }
         }
     }
 
@@ -98,7 +141,7 @@
     & > .hero-clovers {
         & > * {
             --animation-delay: 0s;
-            animation: 2s var(--animation-delay) zoom infinite linear;
+            animation: 2s var(--animation-delay) work infinite linear;
         }
     }
 

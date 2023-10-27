@@ -32,6 +32,7 @@ export interface LaneData {
     job: Job;
     background: string;
     building: string;
+    flying?: boolean;
     /** Rate of production per building per millisecond. */
     rateMs: number;
     clovers: {
@@ -105,6 +106,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Diver,
         background: backgrounds.seasea,
         building: buildings.sub,
+        flying: true,
         rateMs: 78e2 / 1e3,
         clovers: {
             regular: [],
@@ -116,6 +118,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Astronaut,
         background: backgrounds.wip2,
         building: buildings.rocket,
+        flying: true,
         rateMs: 44e3 / 1e3,
         clovers: {
             regular: [],
@@ -149,6 +152,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Alien,
         background: backgrounds.wip2,
         building: buildings.ufo,
+        flying: true,
         rateMs: 1e7 / 1e3,
         clovers: {
             regular: [],

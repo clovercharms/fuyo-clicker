@@ -67,7 +67,13 @@ export default function Lane({ type, lane, rect, ...props }: LaneProps) {
             }}
             ref={setNodeRef}
         >
-            <div className={cx(classes.overlap, classes.buildings)}>
+            <div
+                className={cx(
+                    classes.overlap,
+                    classes.buildings,
+                    data[type].flying && classes.flying
+                )}
+            >
                 {new Array(Math.min(lane.buildings, sizing.buldings))
                     .fill(undefined)
                     .map((_, i) => (
@@ -75,9 +81,15 @@ export default function Lane({ type, lane, rect, ...props }: LaneProps) {
                             key={i}
                             className={classes.building}
                             src={data[type].building}
-                            style={{
-                                animationDelay: `${dist(-1e4, 0, rand)}ms`,
-                            }}
+                            style={
+                                {
+                                    "--animation-delay": `${dist(
+                                        -5e4,
+                                        0,
+                                        rand
+                                    )}ms`,
+                                } as CSSProperties
+                            }
                         />
                     ))}
             </div>

@@ -15,7 +15,9 @@ export default function Header(props: HTMLProps<HTMLHeadingElement>) {
      * Updates the title to reflect the latest amount of coins accrued.
      */
     useEffect(() => {
-        document.title = `${formatNumber(coins.amount)} coins - ${BASE_TITLE}`;
+        document.title = `${formatNumber(
+            Math.floor(coins.amount)
+        )} coins - ${BASE_TITLE}`;
     }, [coins.amount]);
 
     const handleCheat = () => {

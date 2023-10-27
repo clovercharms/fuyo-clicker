@@ -92,7 +92,8 @@ export const createShopSlice = (
                 return unlocked;
             },
             buy: (id: number) => {
-                const item = get().shop.items[id];
+                const item =
+                    get().shop.items[id] ?? structuredClone(initialItemState);
                 const price = calculatePrice(id, item.purchased);
                 const laneType = items[id].laneType;
 
@@ -106,7 +107,10 @@ export const createShopSlice = (
                         produce<GameState>(state => {
                             state.coins.amount -= price;
                             state.coins.clickers++;
-                            state.shop.items[id].purchased++;
+                            state.shop.items[id] = {
+                                ...item,
+                                purchased: item.purchased++,
+                            };
                         }),
                         false,
                         // @ts-expect-error typing
@@ -121,7 +125,10 @@ export const createShopSlice = (
                             repro.clovers.amount -= price;
                             repro.clovers.lastCloverId += CLOVERS_PER_BUILDING;
 
-                            state.shop.items[id].purchased++;
+                            state.shop.items[id] = {
+                                ...item,
+                                purchased: item.purchased + 1,
+                            };
 
                             const lane = state.lanes.types[laneType];
                             lane.buildings++;

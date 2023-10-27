@@ -9,6 +9,8 @@ import Item from "./item";
 import { calcLanesRate, countUnlockedUpgrades } from "../clicker/calc";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
+import { useAudio } from "@/context/audio";
+import { Sound } from "@/context/audio/sounds";
 
 /**
  * Shop for buying upgrades and advancements.
@@ -19,6 +21,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     const clovers = useGameStore(state => state.repro.clovers.amount);
     const lanes = useGameStore(state => state.lanes.types);
     const unlockedUpgrades = useGameStore(state => state.upgrades.unlocked);
+    const { play } = useAudio();
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState<number | null>(null);
@@ -32,6 +35,13 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
         const upgrades = countUnlockedUpgrades(unlockedUpgrades);
         return calcLanesRate(lanes, upgrades);
     }, [unlockedUpgrades, lanes]);
+
+    const handleBuy = (affordable: boolean, id: number) => {
+        if (!affordable) return;
+
+        shop.buy(id);
+        play(Sound.Kaching);
+    };
 
     return (
         <div
@@ -65,7 +75,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                             affordable={affordable}
                             purchased={item.purchased}
                             onClick={() =>
-                                affordable && shop.buy(id as unknown as number)
+                                handleBuy(affordable, id as unknown as number)
                             }
                             onMouseEnter={e => {
                                 setActiveId(id as unknown as number);

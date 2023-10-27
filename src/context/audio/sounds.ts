@@ -1,6 +1,7 @@
 import bgm from "@/assets/audio/fuyonade_dreams_ver2.wav";
 import coin1 from "@/assets/audio/Coin_Sound_3.mp3";
 import coin2 from "@/assets/audio/Coin_Sound_1-3.mp3";
+import kaching from "@/assets/audio/kachingNotReally.wav";
 import { AudioInitOptions } from ".";
 
 /**
@@ -10,6 +11,7 @@ export enum Sound {
     BGM,
     Coin1,
     Coin2,
+    Kaching,
 }
 
 /**
@@ -37,4 +39,5 @@ export const SOUNDS: Record<Sound, SoundConfig> = {
     },
     [Sound.Coin1]: { src: coin1 },
     [Sound.Coin2]: { src: coin2 },
+    [Sound.Kaching]: { src: kaching, options: { volume: 0.4 } },
 };

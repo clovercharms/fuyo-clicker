@@ -212,8 +212,7 @@ function determineHeroCloverLaneTypes(get: () => GameState) {
 }
 
 function generateHeroClover(lastId: number, laneTypes: LaneType[]) {
-    const laneType =
-        laneTypes[Math.round(Math.random() * laneTypes.length - 1)];
+    const laneType = laneTypes[Math.floor(Math.random() * laneTypes.length)];
 
     return {
         id: lastId + 1,

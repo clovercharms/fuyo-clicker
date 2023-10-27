@@ -15,16 +15,16 @@
         "@floating-ui/react-dom": "^2.0.2",
         "@pixi/react": "^7.1.1",
         "@pixi/react-animated": "^7.1.1",
-        "@types/react": "^18.2.15",
-        "@types/react-dom": "^18.2.7",
-        "@typescript-eslint/eslint-plugin": "^6.0.0",
-        "@typescript-eslint/parser": "^6.0.0",
+        "@types/react": "^18.2.33",
+        "@types/react-dom": "^18.2.14",
+        "@typescript-eslint/eslint-plugin": "^6.9.0",
+        "@typescript-eslint/parser": "^6.9.0",
         "@vitejs/plugin-react": "^4.0.3",
-        "classix": "^2.1.34",
+        "classix": "^2.1.35",
         "deepmerge": "^4.3.1",
-        "eslint": "^8.45.0",
+        "eslint": "^8.52.0",
         "eslint-import-resolver-alias": "^1.1.2",
-        "eslint-plugin-import": "^2.28.1",
+        "eslint-plugin-import": "^2.29.0",
         "eslint-plugin-react": "^7.33.1",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.3",
@@ -37,7 +37,7 @@
         "react-dom": "^18.2.0",
         "react-spring": "^9.7.3",
         "typescript": "^5.0.2",
-        "vite": "^4.4.5",
-        "zustand": "^4.4.1"
+        "vite": "^4.5.0",
+        "zustand": "^4.4.4"
     }
 }

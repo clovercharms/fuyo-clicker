@@ -43,7 +43,7 @@ export const Jobs: { [type in Job]: JobConfig } = {
     [Job.Hazmat]: { src: images.hazmat },
     [Job.Wizard]: { src: images.wizard },
     [Job.Knight]: { src: images.knight },
-    [Job.Sketch]: { src: images.sketch },
+    [Job.Sketch]: { src: images.sketch, substitute: true },
     [Job.Peak]: { src: images.peak, substitute: true },
 };
 

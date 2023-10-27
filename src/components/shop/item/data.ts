@@ -101,7 +101,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Astronauts,
-        thumbnail: icons.wip,
+        thumbnail: icons.rocket,
     },
     /* [CC] Shipment */
     8: {
@@ -111,7 +111,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Cultists,
-        thumbnail: icons.wip,
+        thumbnail: icons.altar,
     },
     /* [CC] Alchemy Lab */
     9: {
@@ -121,7 +121,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Investors,
-        thumbnail: icons.wip,
+        thumbnail: icons.bank,
     },
     /* [CC] Portal */
     10: {
@@ -141,7 +141,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Hazmats,
-        thumbnail: icons.wip,
+        thumbnail: icons.hazmat,
     },
     /* [CC] Antimatter Condenser */
     12: {

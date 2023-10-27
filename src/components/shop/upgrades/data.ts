@@ -355,7 +355,7 @@ export const upgrades: Upgrades = {
             name: "Lab - Upgrade 1",
             description: "A funny and witty description goes here. :)",
             price: 14e6,
-            image: wip,
+            image: icons[UpgradeType.Scientists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 1,
         },
@@ -363,7 +363,7 @@ export const upgrades: Upgrades = {
             name: "Lab - Upgrade 2",
             description: "A funny and witty description goes here. :)",
             price: 7e7,
-            image: wip,
+            image: icons[UpgradeType.Scientists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 5,
         },
@@ -371,7 +371,7 @@ export const upgrades: Upgrades = {
             name: "Lab - Upgrade 3",
             description: "A funny and witty description goes here. :)",
             price: 7e8,
-            image: wip,
+            image: icons[UpgradeType.Scientists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 25,
         },
@@ -379,7 +379,7 @@ export const upgrades: Upgrades = {
             name: "Lab - Upgrade 4",
             description: "A funny and witty description goes here. :)",
             price: 7e10,
-            image: wip,
+            image: icons[UpgradeType.Scientists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 50,
         },
@@ -387,7 +387,7 @@ export const upgrades: Upgrades = {
             name: "Lab - Upgrade 5",
             description: "A funny and witty description goes here. :)",
             price: 7e12,
-            image: wip,
+            image: icons[UpgradeType.Scientists][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 100,
         },

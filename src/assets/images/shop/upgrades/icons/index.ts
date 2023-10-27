@@ -14,10 +14,16 @@ import forge1 from "./forge-1.png";
 import forge2 from "./forge-2.png";
 import forge3 from "./forge-3.png";
 import forge4 from "./forge-4.png";
+import lab0 from "./lab-0.png";
+import lab1 from "./lab-1.png";
+import lab2 from "./lab-2.png";
+import lab3 from "./lab-3.png";
+import lab4 from "./lab-4.png";
 
 /* [FIXME] Typing */
 export default {
     0: [cursor0, cursor1, cursor2, cursor3, cursor4],
     2: [mine0, mine1, mine2, mine3, mine4],
     3: [forge0, forge1, forge2, forge3, forge4],
+    6: [lab0, lab1, lab2, lab3, lab4],
 } as Record<UpgradeType, string[]>;

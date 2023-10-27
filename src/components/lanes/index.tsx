@@ -1,5 +1,5 @@
 import classes from "./index.module.css";
-import { HTMLProps } from "react";
+import { Fragment, HTMLProps } from "react";
 import Lane from "./lane";
 import { useGameStore } from "@/store";
 import cx from "classix";
@@ -23,15 +23,14 @@ export default function Lanes(props: HTMLProps<HTMLDivElement>) {
                 Object.entries(lanes)
                     .filter(([, lane]) => lane.buildings > 0)
                     .map(([type, lane]) => (
-                        <>
+                        <Fragment key={type}>
                             <Lane
-                                key={type}
                                 type={parseInt(type)}
                                 lane={lane}
                                 rect={rect}
                             />
                             <div className={classes.border} />
-                        </>
+                        </Fragment>
                     ))}
         </div>
     );

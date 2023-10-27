@@ -41,8 +41,12 @@ export const ProductionTooltip = memo(
                 <h2>Production {formatNumber(production)} per second</h2>
                 <h2>
                     Production{" "}
-                    {formatNumber((production / (coins.rateMs * 1e3)) * 1e2)} %
-                    of total coins per second
+                    {production === 0
+                        ? 0
+                        : formatNumber(
+                              (production / (coins.rateMs * 1e3)) * 1e2
+                          )}{" "}
+                    % of total coins per second
                 </h2>
             </Tooltip>
         );

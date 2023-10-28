@@ -9,8 +9,8 @@ export const CLOVERS_PER_BUILDING = 2;
  */
 export enum LaneType {
     Miners,
-    Blacksmiths,
     Lumberjacks,
+    Blacksmiths,
     FactoryWorkers,
     Mechanics,
     Scientists,

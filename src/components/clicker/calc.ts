@@ -114,8 +114,7 @@ export function calcBoostFactor(boosts: Record<BoostType, Boost>) {
 export function calcClickAmount(
     upgrades: Record<UpgradeType, Record<number, boolean>>,
     lanes: Record<LaneType, Lane>,
-    clickers: number,
-    boosts: Record<BoostType, Boost>
+    clickers: number
 ) {
     const unlockedUpgrades = countUnlockedUpgrades(upgrades);
     const totalBuildings = countBuildings(lanes);
@@ -133,19 +132,20 @@ export function calcClickAmount(
 
     // Cursors
     if (unlockedUpgrades[UpgradeType.Cursor] > 0) {
-        const rateSec = calcRateMs(upgrades, lanes, clickers, boosts) * 1e3;
-        const percentage = unlockedUpgrades[UpgradeType.Cursor] * 0.01;
-        amount += percentage * rateSec;
+        const rateSec = calcRateMs(upgrades, lanes, clickers) * 1e3;
+        let total = rateSec;
+        total *= 1.15 ** (unlockedUpgrades[UpgradeType.Cursor] - 1);
+        amount += total;
     }
 
-    return Math.round(amount);
+    return amount;
 }
 
 export function calcRateMs(
     unlockedUpgrades: Record<UpgradeType, Record<number, boolean>>,
     lanes: Record<LaneType, Lane>,
     clickers: number,
-    boosts: Record<BoostType, Boost>
+    boosts?: Record<BoostType, Boost>
 ) {
     // Start rate calculation
     let rateMs = 0;
@@ -166,7 +166,9 @@ export function calcRateMs(
     );
 
     // Boosts
-    rateMs *= calcBoostFactor(boosts);
+    if (boosts) {
+        rateMs *= calcBoostFactor(boosts);
+    }
 
     return rateMs;
 }

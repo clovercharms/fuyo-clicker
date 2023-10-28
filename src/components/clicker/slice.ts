@@ -77,8 +77,7 @@ export const createCoinsSlice = (
                 const amount = calcClickAmount(
                     get().upgrades.unlocked,
                     get().lanes.types,
-                    get().coins.clickers,
-                    get().boosts.types
+                    get().coins.clickers
                 );
 
                 set(

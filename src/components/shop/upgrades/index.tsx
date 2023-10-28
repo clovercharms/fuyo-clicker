@@ -62,8 +62,8 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     );
 
     const handleBuy = (type: UpgradeType, id: number) => {
-        upgrades.buy(type, id);
-        play(Sound.Kaching);
+        const success = upgrades.buy(type, id);
+        if (success) play(Sound.Kaching);
     };
 
     return (
@@ -98,7 +98,11 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                             className={classes.upgrade}
                             style={{
                                 backgroundImage: `url(${upgrade.image}), url(${
-                                    itemFrames[Math.round(dist(0, 4, rand))]
+                                    itemFrames[
+                                        Math.round(
+                                            dist(0, itemFrames.length - 1, rand)
+                                        )
+                                    ]
                                 })`,
                                 transform: `rotateZ(${dist(-12, 12, rand)}deg)`,
                             }}

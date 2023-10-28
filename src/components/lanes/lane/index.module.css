@@ -1,56 +1,36 @@
 @keyframes work {
     0% {
-        left: 0rem;
-        bottom: 0rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, 0rem);
     }
     25% {
-        left: 1rem;
-        bottom: 1rem;
-        transform: rotate(11.25deg);
+        transform: rotate(11.25deg) translate(1rem, -1rem);
     }
     50% {
-        left: 0rem;
-        bottom: 0rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, 0rem);
     }
     75% {
-        left: -1rem;
-        bottom: 1rem;
-        transform: rotate(-11.25deg);
+        transform: rotate(-11.25deg) translate(-1rem, -1rem);
     }
     100% {
-        left: 0rem;
-        bottom: 0rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, 0rem);
     }
 }
 
 @keyframes flying {
     0% {
-        left: 0rem;
-        bottom: 1.5rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, -1.5rem);
     }
     25% {
-        left: 20rem;
-        bottom: -0.5rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(20rem, 0.5rem);
     }
     50% {
-        left: 0rem;
-        bottom: 1.5rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, -1.5rem);
     }
     75% {
-        left: -20rem;
-        bottom: -0.5rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(-20rem, 0.5rem);
     }
     100% {
-        left: 0rem;
-        bottom: 1.5rem;
-        transform: rotate(0deg);
+        transform: rotate(0deg) translate(0rem, -1.5rem);
     }
 }
 
@@ -93,7 +73,7 @@
 
         &.flying {
             & > img {
-                position: relative;
+                animation-composition: add;
                 animation:
                     50s var(--animation-delay) flying infinite linear,
                     25s var(--animation-delay) flip steps(1, end) infinite
@@ -125,10 +105,6 @@
     }
 
     & > .hero-clovers {
-        & > * {
-            position: relative;
-        }
-
         & > .hero-clover {
             & > div > div {
                 animation: 1s var(--animation-delay) flip steps(1, end)
@@ -140,7 +116,6 @@
     & > .clovers,
     & > .hero-clovers {
         & > * {
-            --animation-delay: 0s;
             animation: 2s var(--animation-delay) work infinite linear;
         }
     }

@@ -29,10 +29,14 @@
         background-size: 65%, contain;
         background-repeat: no-repeat;
         cursor: pointer;
-        transition: transform 0.1s;
+        transition: 0.1s;
 
         &:hover {
             transform: rotateZ(15deg) !important;
+        }
+
+        &.hidden {
+            filter: brightness(0.75);
         }
     }
 

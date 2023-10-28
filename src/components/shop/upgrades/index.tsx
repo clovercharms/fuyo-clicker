@@ -13,6 +13,7 @@ import Price from "../../price";
 import { Currency } from "../item/data";
 import { useAudio } from "@/context/audio";
 import { Sound } from "@/context/audio/sounds";
+import cx from "classix";
 
 const RNG_SEED = 15;
 
@@ -22,6 +23,7 @@ const RNG_SEED = 15;
 export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const game = useGameStore();
     const upgrades = useGameStore(state => state.upgrades);
+    const coins = useGameStore(state => state.coins.amount);
     const { play } = useAudio();
     const containerRef = useRef<HTMLDivElement>(null);
     const [active, setActive] = useState<{
@@ -78,36 +80,54 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 onMouseLeave={() => setActive(null)}
             >
                 {Object.entries(activeUpgrades).map(([type, upgrades2]) =>
-                    Object.entries(upgrades2).map(([id, upgrade]) => (
-                        <button
-                            key={type + id}
-                            onClick={() =>
-                                handleBuy(
-                                    type as unknown as UpgradeType,
-                                    Number(id)
-                                )
-                            }
-                            onMouseEnter={e => {
-                                setActive({
-                                    id: parseInt(id),
-                                    type: type as unknown as UpgradeType,
-                                });
-                                setCoords({ x: e.clientX, y: e.clientY });
-                            }}
-                            onMouseLeave={() => setActive(null)}
-                            className={classes.upgrade}
-                            style={{
-                                backgroundImage: `url(${upgrade.image}), url(${
-                                    itemFrames[
-                                        Math.round(
-                                            dist(0, itemFrames.length - 1, rand)
-                                        )
-                                    ]
-                                })`,
-                                transform: `rotateZ(${dist(-12, 12, rand)}deg)`,
-                            }}
-                        />
-                    ))
+                    Object.entries(upgrades2).map(([id, upgrade]) => {
+                        const affordable = coins >= upgrade.price;
+
+                        return (
+                            <button
+                                key={type + id}
+                                onClick={() =>
+                                    affordable &&
+                                    handleBuy(
+                                        type as unknown as UpgradeType,
+                                        Number(id)
+                                    )
+                                }
+                                onMouseEnter={e => {
+                                    setActive({
+                                        id: parseInt(id),
+                                        type: type as unknown as UpgradeType,
+                                    });
+                                    setCoords({ x: e.clientX, y: e.clientY });
+                                }}
+                                onMouseLeave={() => setActive(null)}
+                                className={cx(
+                                    classes.upgrade,
+                                    !affordable && classes.hidden
+                                )}
+                                style={{
+                                    backgroundImage: `url(${
+                                        upgrade.image
+                                    }), url(${
+                                        itemFrames[
+                                            Math.round(
+                                                dist(
+                                                    0,
+                                                    itemFrames.length - 1,
+                                                    rand
+                                                )
+                                            )
+                                        ]
+                                    })`,
+                                    transform: `rotateZ(${dist(
+                                        -12,
+                                        12,
+                                        rand
+                                    )}deg)`,
+                                }}
+                            />
+                        );
+                    })
                 )}
                 <span className={classes.placeholder} />
             </div>

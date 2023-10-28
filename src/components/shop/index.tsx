@@ -27,9 +27,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
         coords: [coords, setCoords],
     } = useTooltip();
 
-    const handleBuy = (affordable: boolean, id: number) => {
-        if (!affordable) return;
-
+    const handleBuy = (id: number) => {
         shop.buy(id);
         play(Sound.Kaching);
     };
@@ -69,10 +67,8 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                                 affordable={affordable}
                                 purchased={item.purchased}
                                 onClick={() =>
-                                    handleBuy(
-                                        affordable,
-                                        id as unknown as number
-                                    )
+                                    affordable &&
+                                    handleBuy(id as unknown as number)
                                 }
                                 onMouseEnter={e => {
                                     setActiveId(id as unknown as number);

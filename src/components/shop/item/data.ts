@@ -45,139 +45,149 @@ export const items: Record<number, Item> = {
     },
     /* [CC] Farm */
     2: {
-        name: "Forge",
+        name: "Axe",
         price: {
             amount: 1100,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Lumberjacks,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Mine */
+    3: {
+        name: "Forge",
+        price: {
+            amount: 12e3,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Blacksmiths,
         thumbnail: icons.forge,
     },
-    /* [CC] Mine */
-    3: {
+    /* [CC] Factory */
+    4: {
         name: "Crane",
         price: {
-            amount: 12e3,
+            amount: 13e4,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.FactoryWorkers,
         thumbnail: icons.constructionSite,
     },
-    /* [CC] Factory */
-    4: {
+    /* [CC] Bank */
+    5: {
         name: "Repair Tools",
         price: {
-            amount: 13e4,
+            amount: 1.4e6,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Mechanics,
         thumbnail: icons.repairShop,
     },
-    /* [CC] Bank */
-    5: {
+    /* [CC] Temple */
+    6: {
         name: "Lab Equipment",
         price: {
-            amount: 1.4e6,
+            amount: 2e7,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Scientists,
         thumbnail: icons.lab,
     },
-    /* [CC] Temple */
-    6: {
+    /* [CC] Wizard Tower */
+    7: {
         name: "Scuba Gear",
         price: {
-            amount: 2e7,
+            amount: 33e7,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Divers,
         thumbnail: icons.sub,
     },
-    /* [CC] Wizard Tower */
-    7: {
+    /* [CC] Shipment */
+    8: {
         name: "Rocket",
         price: {
-            amount: 33e7,
+            amount: 51e8,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Astronauts,
         thumbnail: icons.rocket,
     },
-    /* [CC] Shipment */
-    8: {
+    /* [CC] Alchemy Lab */
+    9: {
         name: "Altar",
         price: {
-            amount: 51e8,
+            amount: 75e9,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Cultists,
         thumbnail: icons.altar,
     },
-    /* [CC] Alchemy Lab */
-    9: {
+    /* [CC] Portal */
+    10: {
         name: "Bank",
         price: {
-            amount: 75e9,
+            amount: 1e12,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Investors,
         thumbnail: icons.bank,
     },
-    /* [CC] Portal */
-    10: {
+    /* [CC] Time Machine */
+    11: {
         name: "UFO",
         price: {
-            amount: 1e12,
+            amount: 14e12,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Aliens,
         thumbnail: icons.wip,
     },
-    /* [CC] Time Machine */
-    11: {
+    /* [CC] Antimatter Condenser */
+    12: {
         name: "Nuclear Power Plant",
         price: {
-            amount: 14e12,
+            amount: 17e13,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Hazmats,
         thumbnail: icons.hazmat,
     },
-    /* [CC] Antimatter Condenser */
-    12: {
+    /* [CC] Prism */
+    13: {
         name: "Wizard Tower",
         price: {
-            amount: 17e13,
+            amount: 21e14,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Wizards,
         thumbnail: icons.wip,
     },
-    /* [CC] Prism */
-    13: {
+    /* [CC] Chancemaker */
+    14: {
         name: "Castle",
         price: {
-            amount: 21e14,
+            amount: 26e15,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Knights,
         thumbnail: icons.wip,
     },
-    /* [CC] Chancemaker */
-    14: {
+    /* [CC] Fractal Engine */
+    15: {
         name: "Sketch",
         price: {
-            amount: 26e15,
+            amount: 31e16,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Sketches,
         thumbnail: icons.sketch,
     },
-    /* [CC] Fractal Engine */
-    15: {
+    /* [CC] Javascript Console */
+    16: {
         name: "Peak",
         price: {
-            amount: 31e16,
+            amount: 71e18,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Peak,

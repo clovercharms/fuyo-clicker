@@ -10,6 +10,7 @@ export enum UpgradeType {
     Clicker,
     Cursor,
     Miners,
+    Lumberjacks,
     Blacksmiths,
     FactoryWorkers,
     Mechanics,
@@ -28,6 +29,7 @@ export enum UpgradeType {
 
 export const LaneTypeUpgradeType: Partial<Record<LaneType, UpgradeType>> = {
     [LaneType.Miners]: UpgradeType.Miners,
+    [LaneType.Lumberjacks]: UpgradeType.Lumberjacks,
     [LaneType.Blacksmiths]: UpgradeType.Blacksmiths,
     [LaneType.FactoryWorkers]: UpgradeType.FactoryWorkers,
     [LaneType.Mechanics]: UpgradeType.Mechanics,
@@ -223,11 +225,54 @@ export const upgrades: Upgrades = {
         },
     },
     // [CC] Farm
+    [UpgradeType.Lumberjacks]: {
+        0: {
+            name: "Lumberjacks - Upgrade 1",
+            description: "A funny and witty description goes here. :)",
+            price: 11e3,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Lumberjacks].buildings >= 1,
+        },
+        1: {
+            name: "Lumberjacks - Upgrade 2",
+            description: "A funny and witty description goes here. :)",
+            price: 55e3,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Lumberjacks].buildings >= 5,
+        },
+        2: {
+            name: "Lumberjacks - Upgrade 3",
+            description: "A funny and witty description goes here. :)",
+            price: 55e4,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Lumberjacks].buildings >= 25,
+        },
+        3: {
+            name: "Lumberjacks - Upgrade 4",
+            description: "A funny and witty description goes here. :)",
+            price: 55e6,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Lumberjacks].buildings >= 50,
+        },
+        4: {
+            name: "Lumberjacks - Upgrade 5",
+            description: "A funny and witty description goes here. :)",
+            price: 5.5e9,
+            image: wip,
+            condition: (state: GameState) =>
+                state.lanes.types[LaneType.Lumberjacks].buildings >= 100,
+        },
+    },
+    // [CC] Mine
     [UpgradeType.Blacksmiths]: {
         0: {
             name: "Forge - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 11e3,
+            price: 12e4,
             image: icons[UpgradeType.Blacksmiths][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 1,
@@ -235,7 +280,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Forge - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 55e3,
+            price: 6e5,
             image: icons[UpgradeType.Blacksmiths][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 5,
@@ -243,7 +288,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Forge - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 55e4,
+            price: 6e6,
             image: icons[UpgradeType.Blacksmiths][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 25,
@@ -251,7 +296,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Forge - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 55e6,
+            price: 6e8,
             image: icons[UpgradeType.Blacksmiths][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 50,
@@ -259,18 +304,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Forge - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 5.5e9,
+            price: 60e9,
             image: icons[UpgradeType.Blacksmiths][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 100,
         },
     },
-    // [CC] Mine
+    // [CC] Factory
     [UpgradeType.FactoryWorkers]: {
         0: {
             name: "Construction Site - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 12e4,
+            price: 1.3e6,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 1,
@@ -278,7 +323,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Construction Site - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 6e5,
+            price: 6.5e6,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 5,
@@ -286,7 +331,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Construction Site - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 6e6,
+            price: 65e6,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 25,
@@ -294,7 +339,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Construction Site - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 6e8,
+            price: 6.5e9,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 50,
@@ -302,18 +347,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Construction Site - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 60e9,
+            price: 65e10,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 100,
         },
     },
-    // [CC] Factory
+    // [CC] Bank
     [UpgradeType.Mechanics]: {
         0: {
             name: "Repair Shop - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 1.3e6,
+            price: 14e6,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 1,
@@ -321,7 +366,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Repair Shop - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 6.5e6,
+            price: 7e7,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 5,
@@ -329,7 +374,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Repair Shop - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 65e6,
+            price: 7e8,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 25,
@@ -337,7 +382,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Repair Shop - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 6.5e9,
+            price: 7e10,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 50,
@@ -345,18 +390,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Repair Shop - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 65e10,
+            price: 7e12,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 100,
         },
     },
-    // [CC] Bank
+    // [CC] Temple
     [UpgradeType.Scientists]: {
         0: {
             name: "Lab - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 14e6,
+            price: 2e8,
             image: icons[UpgradeType.Scientists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 1,
@@ -364,7 +409,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Lab - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 7e7,
+            price: 1e9,
             image: icons[UpgradeType.Scientists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 5,
@@ -372,7 +417,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Lab - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 7e8,
+            price: 1e12,
             image: icons[UpgradeType.Scientists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 25,
@@ -380,7 +425,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Lab - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 7e10,
+            price: 1e14,
             image: icons[UpgradeType.Scientists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 50,
@@ -388,18 +433,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Lab - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 7e12,
+            price: 10e15,
             image: icons[UpgradeType.Scientists][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 100,
         },
     },
-    // [CC] Temple
+    // [CC] Wizard Tower
     [UpgradeType.Divers]: {
         0: {
             name: "Ocean - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 2e8,
+            price: 33e8,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 1,
@@ -407,7 +452,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Ocean - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 1e9,
+            price: 165e8,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 5,
@@ -415,7 +460,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Ocean - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 1e12,
+            price: 165e9,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 25,
@@ -423,7 +468,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Ocean - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 1e14,
+            price: 165e11,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 50,
@@ -431,18 +476,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Ocean - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 10e15,
+            price: 165e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 100,
         },
     },
-    /* [CC] Wizard Tower */
+    /* [CC] Shipment */
     [UpgradeType.Astronauts]: {
         0: {
             name: "Astronauts - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 33e8,
+            price: 51e9,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 1,
@@ -450,7 +495,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Astronauts - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 165e8,
+            price: 255e9,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 5,
@@ -458,7 +503,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Astronauts - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 165e9,
+            price: 255e10,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 25,
@@ -466,7 +511,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Astronauts - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 165e11,
+            price: 255e12,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 50,
@@ -474,18 +519,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Astronauts - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 165e13,
+            price: 255e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 100,
         },
     },
-    /* [CC] Shipment */
+    /* [CC] Alchemy Lab */
     [UpgradeType.Cultists]: {
         0: {
             name: "Cultists - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 51e9,
+            price: 75e10,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 1,
@@ -493,7 +538,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Cultists - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 255e9,
+            price: 375e10,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 5,
@@ -501,7 +546,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Cultists - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 255e10,
+            price: 375e11,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 25,
@@ -509,7 +554,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Cultists - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 255e12,
+            price: 375e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 50,
@@ -517,18 +562,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Cultists - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 255e13,
+            price: 375e15,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 100,
         },
     },
-    /* [CC] Alchemy Lab */
+    /* [CC] Portal */
     [UpgradeType.Investors]: {
         0: {
             name: "Investors - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 75e10,
+            price: 1e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 1,
@@ -536,7 +581,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Investors - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 375e10,
+            price: 5e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 5,
@@ -544,7 +589,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Investors - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 375e11,
+            price: 5e14,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 25,
@@ -552,7 +597,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Investors - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 375e13,
+            price: 5e16,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 50,
@@ -560,18 +605,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Investors - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 375e15,
+            price: 5e18,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 100,
         },
     },
-    /* [CC] Portal */
+    /* [CC] Time Machine */
     [UpgradeType.Aliens]: {
         0: {
             name: "Aliens - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 1e13,
+            price: 14e13,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 1,
@@ -579,7 +624,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Aliens - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 5e13,
+            price: 7e14,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 5,
@@ -587,7 +632,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Aliens - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 5e14,
+            price: 7e15,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 25,
@@ -595,7 +640,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Aliens - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 5e16,
+            price: 7e17,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 50,
@@ -603,18 +648,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Aliens - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 5e18,
+            price: 7e19,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 100,
         },
     },
-    /* [CC] Time Machine */
+    /* [CC] Antimatter Condenser */
     [UpgradeType.Hazmats]: {
         0: {
             name: "Hazmats - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 14e13,
+            price: 17e14,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 1,
@@ -622,7 +667,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Hazmats - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 7e14,
+            price: 85e14,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 5,
@@ -630,7 +675,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Hazmats - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 7e15,
+            price: 85e15,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 25,
@@ -638,7 +683,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Hazmats - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 7e17,
+            price: 85e17,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 50,
@@ -646,18 +691,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Hazmats - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 7e19,
+            price: 85e19,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 100,
         },
     },
-    /* [CC] Antimatter Condenser */
+    /* [CC] Prism */
     [UpgradeType.Wizards]: {
         0: {
             name: "Wizards - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 17e14,
+            price: 21e15,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 1,
@@ -665,7 +710,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Wizards - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 85e14,
+            price: 105e15,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 5,
@@ -673,7 +718,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Wizards - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 85e15,
+            price: 105e16,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 25,
@@ -681,7 +726,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Wizards - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 85e17,
+            price: 105e18,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 50,
@@ -689,18 +734,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Wizards - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 85e19,
+            price: 105e20,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 100,
         },
     },
-    /* [CC] Prism */
+    /* [CC] Chancemaker */
     [UpgradeType.Knights]: {
         0: {
             name: "Knights - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 21e15,
+            price: 26e16,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 1,
@@ -708,7 +753,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Knights - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 105e15,
+            price: 13e17,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 5,
@@ -716,7 +761,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Knights - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 105e16,
+            price: 13e18,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 25,
@@ -724,7 +769,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Knights - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 105e18,
+            price: 13e20,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 50,
@@ -732,18 +777,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Knights - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 105e20,
+            price: 13e22,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 100,
         },
     },
-    /* [CC] Chancemaker */
+    /* [CC] Fractal Engine */
     [UpgradeType.Sketches]: {
         0: {
             name: "Sketches - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 26e16,
+            price: 31e17,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 1,
@@ -751,7 +796,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Sketches - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 13e17,
+            price: 155e17,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 5,
@@ -759,7 +804,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Sketches - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 13e18,
+            price: 155e18,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 25,
@@ -767,7 +812,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Sketches - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 13e20,
+            price: 155e20,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 50,
@@ -775,18 +820,18 @@ export const upgrades: Upgrades = {
         4: {
             name: "Sketches - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 13e22,
+            price: 155e22,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 100,
         },
     },
-    /* [CC] Fractal Engine */
+    /* [CC] Javascript Console */
     [UpgradeType.Peak]: {
         0: {
             name: "Peak - Upgrade 1",
             description: "A funny and witty description goes here. :)",
-            price: 31e17,
+            price: 71e19,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 1,
@@ -794,7 +839,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Peak - Upgrade 2",
             description: "A funny and witty description goes here. :)",
-            price: 155e17,
+            price: 355e19,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 5,
@@ -802,7 +847,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Peak - Upgrade 3",
             description: "A funny and witty description goes here. :)",
-            price: 155e18,
+            price: 355e20,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 25,
@@ -810,7 +855,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Peak - Upgrade 4",
             description: "A funny and witty description goes here. :)",
-            price: 155e20,
+            price: 355e22,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 50,
@@ -818,7 +863,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Peak - Upgrade 5",
             description: "A funny and witty description goes here. :)",
-            price: 155e22,
+            price: 355e24,
             image: wip,
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 100,

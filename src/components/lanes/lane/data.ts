@@ -10,6 +10,7 @@ export const CLOVERS_PER_BUILDING = 2;
 export enum LaneType {
     Miners,
     Blacksmiths,
+    Lumberjacks,
     FactoryWorkers,
     Mechanics,
     Scientists,
@@ -59,10 +60,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Farm */
-    [LaneType.Blacksmiths]: {
-        job: Job.Blacksmith,
-        background: backgrounds.forge,
-        building: buildings.forge,
+    [LaneType.Lumberjacks]: {
+        job: Job.Lumberjack,
+        background: backgrounds.wip,
+        building: buildings.castle,
         rateMs: 8 / 1e3,
         clovers: {
             regular: [],
@@ -70,10 +71,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Mine */
-    [LaneType.FactoryWorkers]: {
-        job: Job.FactoryWorker,
-        background: backgrounds.constructionSite,
-        building: buildings.chemtoilet,
+    [LaneType.Blacksmiths]: {
+        job: Job.Blacksmith,
+        background: backgrounds.forge,
+        building: buildings.forge,
         rateMs: 47 / 1e3,
         clovers: {
             regular: [],
@@ -81,10 +82,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Factory */
-    [LaneType.Mechanics]: {
-        job: Job.Mechanic,
-        background: backgrounds.garage,
-        building: buildings.rack,
+    [LaneType.FactoryWorkers]: {
+        job: Job.FactoryWorker,
+        background: backgrounds.constructionSite,
+        building: buildings.chemtoilet,
         rateMs: 260 / 1e3,
         clovers: {
             regular: [],
@@ -92,10 +93,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Bank */
-    [LaneType.Scientists]: {
-        job: Job.Scientist,
-        background: backgrounds.lab,
-        building: buildings.scienceDesk,
+    [LaneType.Mechanics]: {
+        job: Job.Mechanic,
+        background: backgrounds.garage,
+        building: buildings.rack,
         rateMs: 14e2 / 1e3,
         clovers: {
             regular: [],
@@ -103,11 +104,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Temple */
-    [LaneType.Divers]: {
-        job: Job.Diver,
-        background: backgrounds.seasea,
-        building: buildings.sub,
-        flying: true,
+    [LaneType.Scientists]: {
+        job: Job.Scientist,
+        background: backgrounds.lab,
+        building: buildings.scienceDesk,
         rateMs: 78e2 / 1e3,
         clovers: {
             regular: [],
@@ -115,10 +115,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Wizard Tower */
-    [LaneType.Astronauts]: {
-        job: Job.Astronaut,
-        background: backgrounds.wip2,
-        building: buildings.rocket,
+    [LaneType.Divers]: {
+        job: Job.Diver,
+        background: backgrounds.seasea,
+        building: buildings.sub,
         flying: true,
         rateMs: 44e3 / 1e3,
         clovers: {
@@ -127,10 +127,11 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Shipment */
-    [LaneType.Cultists]: {
-        job: Job.Cultist,
-        background: backgrounds.wip,
-        building: buildings.altar,
+    [LaneType.Astronauts]: {
+        job: Job.Astronaut,
+        background: backgrounds.wip2,
+        building: buildings.rocket,
+        flying: true,
         rateMs: 26e4 / 1e3,
         clovers: {
             regular: [],
@@ -138,10 +139,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Alchemy Lab */
-    [LaneType.Investors]: {
-        job: Job.Investor,
+    [LaneType.Cultists]: {
+        job: Job.Cultist,
         background: backgrounds.wip,
-        building: buildings.bank,
+        building: buildings.altar,
         rateMs: 16e5 / 1e3,
         clovers: {
             regular: [],
@@ -149,11 +150,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Portal */
-    [LaneType.Aliens]: {
-        job: Job.Alien,
-        background: backgrounds.wip2,
-        building: buildings.ufo,
-        flying: true,
+    [LaneType.Investors]: {
+        job: Job.Investor,
+        background: backgrounds.wip,
+        building: buildings.bank,
         rateMs: 1e7 / 1e3,
         clovers: {
             regular: [],
@@ -161,10 +161,11 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Time Machine */
-    [LaneType.Hazmats]: {
-        job: Job.Hazmat,
-        background: backgrounds.powerPlant,
-        building: buildings.powerPlant,
+    [LaneType.Aliens]: {
+        job: Job.Alien,
+        background: backgrounds.wip2,
+        building: buildings.ufo,
+        flying: true,
         rateMs: 65e6 / 1e3,
         clovers: {
             regular: [],
@@ -172,10 +173,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Antimatter Condenser */
-    [LaneType.Wizards]: {
-        job: Job.Wizard,
-        background: backgrounds.wip,
-        building: buildings.wizardTower,
+    [LaneType.Hazmats]: {
+        job: Job.Hazmat,
+        background: backgrounds.powerPlant,
+        building: buildings.powerPlant,
         rateMs: 43e7 / 1e3,
         clovers: {
             regular: [],
@@ -183,10 +184,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Prism */
-    [LaneType.Knights]: {
-        job: Job.Knight,
+    [LaneType.Wizards]: {
+        job: Job.Wizard,
         background: backgrounds.wip,
-        building: buildings.castle,
+        building: buildings.wizardTower,
         rateMs: 29e8 / 1e3,
         clovers: {
             regular: [],
@@ -194,10 +195,10 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Chancemaker */
-    [LaneType.Sketches]: {
-        job: Job.Sketch,
-        background: backgrounds.sketch,
-        building: buildings.sketchHouse,
+    [LaneType.Knights]: {
+        job: Job.Knight,
+        background: backgrounds.wip,
+        building: buildings.castle,
         rateMs: 21e9 / 1e3,
         clovers: {
             regular: [],
@@ -205,11 +206,22 @@ export const lanes: { [type in LaneType]: LaneData } = {
         },
     },
     /* [CC] Fractal Engine */
+    [LaneType.Sketches]: {
+        job: Job.Sketch,
+        background: backgrounds.sketch,
+        building: buildings.sketchHouse,
+        rateMs: 15e10 / 1e3,
+        clovers: {
+            regular: [],
+            heroes: [],
+        },
+    },
+    /* [CC] Javascript Console */
     [LaneType.Peak]: {
         job: Job.Peak,
         background: backgrounds.wip2,
         building: buildings.altar,
-        rateMs: 15e10 / 1e3,
+        rateMs: 11e11 / 1e3,
         clovers: {
             regular: [],
             heroes: [],

@@ -24,6 +24,6 @@ import lab4 from "./lab-4.png";
 export default {
     0: [cursor0, cursor1, cursor2, cursor3, cursor4],
     2: [mine0, mine1, mine2, mine3, mine4],
-    3: [forge0, forge1, forge2, forge3, forge4],
-    6: [lab0, lab1, lab2, lab3, lab4],
+    4: [forge0, forge1, forge2, forge3, forge4],
+    7: [lab0, lab1, lab2, lab3, lab4],
 } as Record<UpgradeType, string[]>;

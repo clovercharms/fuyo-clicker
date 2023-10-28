@@ -62,7 +62,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     );
 
     const handleBuy = (type: UpgradeType, id: number) => {
-        upgrades.buy(type as unknown as UpgradeType, id);
+        upgrades.buy(type, id);
         play(Sound.Kaching);
     };
 

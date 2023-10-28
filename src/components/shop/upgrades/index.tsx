@@ -11,6 +11,8 @@ import {
 } from "pure-rand";
 import Price from "../../price";
 import { Currency } from "../item/data";
+import { useAudio } from "@/context/audio";
+import { Sound } from "@/context/audio/sounds";
 
 const RNG_SEED = 15;
 
@@ -20,6 +22,7 @@ const RNG_SEED = 15;
 export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const game = useGameStore();
     const upgrades = useGameStore(state => state.upgrades);
+    const { play } = useAudio();
     const containerRef = useRef<HTMLDivElement>(null);
     const [active, setActive] = useState<{
         id: number;
@@ -58,6 +61,11 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
         [game, upgrades.unlocked]
     );
 
+    const handleBuy = (type: UpgradeType, id: number) => {
+        upgrades.buy(type as unknown as UpgradeType, id);
+        play(Sound.Kaching);
+    };
+
     return (
         <div
             {...props}
@@ -74,9 +82,9 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                         <button
                             key={type + id}
                             onClick={() =>
-                                upgrades.buy(
+                                handleBuy(
                                     type as unknown as UpgradeType,
-                                    parseInt(id)
+                                    Number(id)
                                 )
                             }
                             onMouseEnter={e => {

@@ -1,10 +1,10 @@
 import { priceBase } from "../shop/item/data";
 
-export const CLOVER_RATE_BASE = 1.1;
+export const CLOVER_RATE_BASE = 1.13;
 export const HERO_CLOVER_RATE_MS = 1 / 120e3;
 
 export const upgrades = {
-    rate: 0.0005,
+    rate: 1 / 1e3,
     price: {
         amount: 15,
     },

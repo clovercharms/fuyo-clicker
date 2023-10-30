@@ -47,7 +47,7 @@ export const items: Record<number, Item> = {
     2: {
         name: "Axe",
         price: {
-            amount: 1100,
+            amount: 1.1e3,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Lumberjacks,
@@ -57,7 +57,7 @@ export const items: Record<number, Item> = {
     3: {
         name: "Forge",
         price: {
-            amount: 12e3,
+            amount: 1.18e4,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Blacksmiths,
@@ -67,7 +67,7 @@ export const items: Record<number, Item> = {
     4: {
         name: "Crane",
         price: {
-            amount: 13e4,
+            amount: 1.27e5,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.FactoryWorkers,
@@ -77,7 +77,7 @@ export const items: Record<number, Item> = {
     5: {
         name: "Repair Tools",
         price: {
-            amount: 1.4e6,
+            amount: 1.37e6,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Mechanics,
@@ -87,7 +87,7 @@ export const items: Record<number, Item> = {
     6: {
         name: "Lab Equipment",
         price: {
-            amount: 2e7,
+            amount: 1.47e7,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Scientists,
@@ -97,7 +97,7 @@ export const items: Record<number, Item> = {
     7: {
         name: "Scuba Gear",
         price: {
-            amount: 33e7,
+            amount: 1.58e8,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Divers,
@@ -107,7 +107,7 @@ export const items: Record<number, Item> = {
     8: {
         name: "Rocket",
         price: {
-            amount: 51e8,
+            amount: 1.7e9,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Astronauts,
@@ -117,7 +117,7 @@ export const items: Record<number, Item> = {
     9: {
         name: "Altar",
         price: {
-            amount: 75e9,
+            amount: 1.83e10,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Cultists,
@@ -127,7 +127,7 @@ export const items: Record<number, Item> = {
     10: {
         name: "Bank",
         price: {
-            amount: 1e12,
+            amount: 1.97e11,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Investors,
@@ -137,7 +137,7 @@ export const items: Record<number, Item> = {
     11: {
         name: "UFO",
         price: {
-            amount: 14e12,
+            amount: 2.12e12,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Aliens,
@@ -147,7 +147,7 @@ export const items: Record<number, Item> = {
     12: {
         name: "Nuclear Power Plant",
         price: {
-            amount: 17e13,
+            amount: 2.28e13,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Hazmats,
@@ -157,7 +157,7 @@ export const items: Record<number, Item> = {
     13: {
         name: "Wizard Tower",
         price: {
-            amount: 21e14,
+            amount: 2.45e14,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Wizards,
@@ -167,7 +167,7 @@ export const items: Record<number, Item> = {
     14: {
         name: "Castle",
         price: {
-            amount: 26e15,
+            amount: 2.64e15,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Knights,
@@ -177,7 +177,7 @@ export const items: Record<number, Item> = {
     15: {
         name: "Sketch",
         price: {
-            amount: 31e16,
+            amount: 2.84e16,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Sketches,
@@ -187,7 +187,7 @@ export const items: Record<number, Item> = {
     16: {
         name: "Peak",
         price: {
-            amount: 71e18,
+            amount: 3.06e17,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Peak,

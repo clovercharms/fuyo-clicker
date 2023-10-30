@@ -64,7 +64,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Lumberjack,
         background: backgrounds.wip,
         building: buildings.castle,
-        rateMs: 8 / 1e3,
+        rateMs: 1.1e1 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -75,7 +75,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Blacksmith,
         background: backgrounds.forge,
         building: buildings.forge,
-        rateMs: 47 / 1e3,
+        rateMs: 1.3e2 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -86,7 +86,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.FactoryWorker,
         background: backgrounds.constructionSite,
         building: buildings.chemtoilet,
-        rateMs: 260 / 1e3,
+        rateMs: 1.4e3 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -97,7 +97,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Mechanic,
         background: backgrounds.garage,
         building: buildings.rack,
-        rateMs: 14e2 / 1e3,
+        rateMs: 1.51e4 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -108,7 +108,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Scientist,
         background: backgrounds.lab,
         building: buildings.scienceDesk,
-        rateMs: 78e2 / 1e3,
+        rateMs: 1.62e5 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -120,7 +120,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         background: backgrounds.seasea,
         building: buildings.sub,
         flying: true,
-        rateMs: 44e3 / 1e3,
+        rateMs: 1.74e6 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -132,7 +132,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         background: backgrounds.wip2,
         building: buildings.rocket,
         flying: true,
-        rateMs: 26e4 / 1e3,
+        rateMs: 1.87e7 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -143,7 +143,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Cultist,
         background: backgrounds.wip,
         building: buildings.altar,
-        rateMs: 16e5 / 1e3,
+        rateMs: 2.01e8 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -154,7 +154,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Investor,
         background: backgrounds.wip,
         building: buildings.bank,
-        rateMs: 1e7 / 1e3,
+        rateMs: 2.16e9 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -166,7 +166,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         background: backgrounds.wip2,
         building: buildings.ufo,
         flying: true,
-        rateMs: 65e6 / 1e3,
+        rateMs: 2.33e10 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -177,7 +177,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Hazmat,
         background: backgrounds.powerPlant,
         building: buildings.powerPlant,
-        rateMs: 43e7 / 1e3,
+        rateMs: 2.51e11 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -188,7 +188,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Wizard,
         background: backgrounds.wip,
         building: buildings.wizardTower,
-        rateMs: 29e8 / 1e3,
+        rateMs: 2.7e12 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -199,7 +199,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Knight,
         background: backgrounds.wip,
         building: buildings.castle,
-        rateMs: 21e9 / 1e3,
+        rateMs: 2.91e13 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -210,7 +210,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Sketch,
         background: backgrounds.sketch,
         building: buildings.sketchHouse,
-        rateMs: 15e10 / 1e3,
+        rateMs: 3.14e14 / 1e3,
         clovers: {
             regular: [],
             heroes: [],
@@ -221,7 +221,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
         job: Job.Peak,
         background: backgrounds.wip2,
         building: buildings.altar,
-        rateMs: 11e11 / 1e3,
+        rateMs: 3.39e15 / 1e3,
         clovers: {
             regular: [],
             heroes: [],

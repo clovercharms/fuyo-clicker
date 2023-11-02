@@ -42,7 +42,7 @@ export const Jobs: { [type in Job]: JobConfig } = {
     [Job.Cultist]: { src: images.cultist },
     [Job.Investor]: { src: images.investor },
     [Job.Alien]: { src: images.alien },
-    [Job.Hazmat]: { src: images.hazmat },
+    [Job.Hazmat]: { src: images.hazmat, substitute: true },
     [Job.Wizard]: { src: images.wizard },
     [Job.Knight]: { src: images.knight },
     [Job.Sketch]: { src: images.sketch, substitute: true },

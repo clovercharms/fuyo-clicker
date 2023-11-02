@@ -129,7 +129,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     /* [CC] Shipment */
     [LaneType.Astronauts]: {
         job: Job.Astronaut,
-        background: backgrounds.wip2,
+        background: backgrounds.space1,
         building: buildings.rocket,
         flying: true,
         rateMs: 1.87e7 / 1e3,
@@ -163,7 +163,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     /* [CC] Time Machine */
     [LaneType.Aliens]: {
         job: Job.Alien,
-        background: backgrounds.wip2,
+        background: backgrounds.space2,
         building: buildings.ufo,
         flying: true,
         rateMs: 2.33e10 / 1e3,
@@ -219,7 +219,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     /* [CC] Javascript Console */
     [LaneType.Peak]: {
         job: Job.Peak,
-        background: backgrounds.wip2,
+        background: backgrounds.space1,
         building: buildings.altar,
         rateMs: 3.39e15 / 1e3,
         clovers: {

@@ -6,6 +6,8 @@ import mines from "./minemine.png";
 import seasea from "./seasea.png";
 import powerPlant from "./power-plant.png";
 import sketch from "./sketch.png";
+import space1 from "./space01.png";
+import space2 from "./space02.png";
 import wip from "./wip.png";
 import wip2 from "./wip2.png";
 
@@ -18,6 +20,8 @@ export {
     seasea,
     powerPlant,
     sketch,
+    space1,
+    space2,
     wip,
     wip2,
 };

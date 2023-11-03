@@ -1,6 +1,5 @@
 import bases from "@/assets/images/clover/base";
 import * as cosmetics from "@/assets/images/clover/cosmetics";
-import * as overlays from "@/assets/images/clover/overlays";
 
 /**
  * Type of a Clover.
@@ -39,7 +38,6 @@ export interface JobConfig {
     bases?: Record<CloverType, string>;
     extras?: string[];
     cosmetics?: string[];
-    overlay?: string;
 }
 
 /**
@@ -103,7 +101,6 @@ export const Jobs: { [type in Job]: JobConfig } = {
         bases: bases.regular,
         extras: [cosmetics.lips],
         cosmetics: [cosmetics.astronaut],
-        overlay: overlays.astronaut,
     },
     [Job.Alien]: {
         bases: bases.alien,

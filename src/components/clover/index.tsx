@@ -24,7 +24,7 @@ export default function Clover({
     type = CloverType.Regular,
     ...props
 }: CloverProps) {
-    const rand = xoroshiro128plus(id);
+    const rand = xoroshiro128plus(id * 1.5);
     const name = names[dist(0, names.length - 1, rand)];
 
     let extra: string | null = null;
@@ -43,7 +43,6 @@ export default function Clover({
                 {Jobs[job].cosmetics?.map((cosmetic, i) => (
                     <img key={i} src={cosmetic} />
                 ))}
-                {Jobs[job].overlay && <img src={Jobs[job].overlay} />}
             </div>
         </div>
     );

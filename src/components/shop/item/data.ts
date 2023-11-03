@@ -111,7 +111,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Investors,
-        thumbnail: icons.rocket,
+        thumbnail: icons.bank,
     },
     /* [CC] Alchemy Lab */
     9: {

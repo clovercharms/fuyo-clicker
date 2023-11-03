@@ -20,6 +20,6 @@ export default {
     },
     peak: {
         0: regular.peak,
-        1: regular.peak,
+        1: hero.peak,
     },
 };

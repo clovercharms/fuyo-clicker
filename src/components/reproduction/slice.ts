@@ -212,7 +212,17 @@ function determineHeroCloverLaneTypes(get: () => GameState) {
 }
 
 function generateHeroClover(lastId: number, laneTypes: LaneType[]) {
-    const laneType = laneTypes[Math.floor(Math.random() * laneTypes.length)];
+    /** The lanetype to generate the hero clover for. */
+    let laneType: LaneType;
+
+    // 90% Chance to generate last 3 lane types.
+    if (Math.random() > 0.1) {
+        laneType = laneTypes[laneTypes.length - Math.ceil(Math.random() * 3)];
+    }
+    // 10% Chance to generate any lane type.
+    else {
+        laneType = laneTypes[Math.floor(Math.random() * laneTypes.length)];
+    }
 
     return {
         id: lastId + 1,

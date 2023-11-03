@@ -38,6 +38,7 @@ export default function Clover({
                     <img src={type === CloverType.Regular ? base : hero} />
                 )}
                 <img src={Jobs[job].src} />
+                {Jobs[job].overlay && <img src={Jobs[job].overlay} />}
             </div>
         </div>
     );

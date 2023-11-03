@@ -1,4 +1,5 @@
-import * as images from "../../assets/images/clover/jobs";
+import * as jobs from "@/assets/images/clover/jobs";
+import * as overlays from "@/assets/images/clover/jobs/overlays";
 
 /**
  * A type of job a Clover can have.
@@ -25,28 +26,29 @@ export enum Job {
 export interface JobConfig {
     src: string;
     substitute?: boolean;
+    overlay?: string;
 }
 
 /**
  * Mapping for Clover jobs to image URLs.
  */
 export const Jobs: { [type in Job]: JobConfig } = {
-    [Job.Blacksmith]: { src: images.blacksmith },
-    [Job.FactoryWorker]: { src: images.factory_worker },
-    [Job.Mechanic]: { src: images.mechanic },
-    [Job.Miner]: { src: images.miner },
-    [Job.Lumberjack]: { src: images.lumberjack },
-    [Job.Scientist]: { src: images.scientist },
-    [Job.Diver]: { src: images.scuba },
-    [Job.Astronaut]: { src: images.astronaut },
-    [Job.Cultist]: { src: images.cultist },
-    [Job.Investor]: { src: images.investor },
-    [Job.Alien]: { src: images.alien },
-    [Job.Hazmat]: { src: images.hazmat, substitute: true },
-    [Job.Wizard]: { src: images.wizard },
-    [Job.Knight]: { src: images.knight },
-    [Job.Sketch]: { src: images.sketch, substitute: true },
-    [Job.Peak]: { src: images.peak, substitute: true },
+    [Job.Blacksmith]: { src: jobs.blacksmith },
+    [Job.FactoryWorker]: { src: jobs.factory_worker },
+    [Job.Mechanic]: { src: jobs.mechanic },
+    [Job.Miner]: { src: jobs.miner },
+    [Job.Lumberjack]: { src: jobs.lumberjack },
+    [Job.Scientist]: { src: jobs.scientist },
+    [Job.Diver]: { src: jobs.scuba },
+    [Job.Astronaut]: { src: jobs.astronaut, overlay: overlays.astronaut },
+    [Job.Cultist]: { src: jobs.cultist },
+    [Job.Investor]: { src: jobs.investor },
+    [Job.Alien]: { src: jobs.alien },
+    [Job.Hazmat]: { src: jobs.hazmat, substitute: true },
+    [Job.Wizard]: { src: jobs.wizard },
+    [Job.Knight]: { src: jobs.knight },
+    [Job.Sketch]: { src: jobs.sketch, substitute: true },
+    [Job.Peak]: { src: jobs.peak, substitute: true },
 };
 
 /**

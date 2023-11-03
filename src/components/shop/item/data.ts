@@ -65,112 +65,112 @@ export const items: Record<number, Item> = {
     },
     /* [CC] Factory */
     4: {
-        name: "Crane",
-        price: {
-            amount: 1.27e5,
-            currency: Currency.CLOVERS,
-        },
-        laneType: LaneType.FactoryWorkers,
-        thumbnail: icons.constructionSite,
-    },
-    /* [CC] Bank */
-    5: {
         name: "Repair Tools",
         price: {
-            amount: 1.37e6,
+            amount: 1.27e5,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Mechanics,
         thumbnail: icons.repairShop,
     },
-    /* [CC] Temple */
-    6: {
-        name: "Lab Equipment",
+    /* [CC] Bank */
+    5: {
+        name: "Crane",
         price: {
-            amount: 1.47e7,
+            amount: 1.37e6,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Scientists,
-        thumbnail: icons.lab,
+        laneType: LaneType.FactoryWorkers,
+        thumbnail: icons.constructionSite,
     },
-    /* [CC] Wizard Tower */
-    7: {
+    /* [CC] Temple */
+    6: {
         name: "Scuba Gear",
         price: {
-            amount: 1.58e8,
+            amount: 1.47e7,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Divers,
         thumbnail: icons.sub,
     },
+    /* [CC] Wizard Tower */
+    7: {
+        name: "Lab Equipment",
+        price: {
+            amount: 1.58e8,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Scientists,
+        thumbnail: icons.lab,
+    },
     /* [CC] Shipment */
     8: {
-        name: "Rocket",
+        name: "Bank",
         price: {
             amount: 1.7e9,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Astronauts,
+        laneType: LaneType.Investors,
         thumbnail: icons.rocket,
     },
     /* [CC] Alchemy Lab */
     9: {
-        name: "Altar",
+        name: "Power Plant",
         price: {
             amount: 1.83e10,
-            currency: Currency.CLOVERS,
-        },
-        laneType: LaneType.Cultists,
-        thumbnail: icons.altar,
-    },
-    /* [CC] Portal */
-    10: {
-        name: "Bank",
-        price: {
-            amount: 1.97e11,
-            currency: Currency.CLOVERS,
-        },
-        laneType: LaneType.Investors,
-        thumbnail: icons.bank,
-    },
-    /* [CC] Time Machine */
-    11: {
-        name: "UFO",
-        price: {
-            amount: 2.12e12,
-            currency: Currency.CLOVERS,
-        },
-        laneType: LaneType.Aliens,
-        thumbnail: icons.wip,
-    },
-    /* [CC] Antimatter Condenser */
-    12: {
-        name: "Nuclear Power Plant",
-        price: {
-            amount: 2.28e13,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Hazmats,
         thumbnail: icons.hazmat,
     },
-    /* [CC] Prism */
-    13: {
+    /* [CC] Portal */
+    10: {
+        name: "Castle",
+        price: {
+            amount: 1.97e11,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Knights,
+        thumbnail: icons.wip,
+    },
+    /* [CC] Time Machine */
+    11: {
+        name: "Altar",
+        price: {
+            amount: 2.12e12,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Cultists,
+        thumbnail: icons.altar,
+    },
+    /* [CC] Antimatter Condenser */
+    12: {
         name: "Wizard Tower",
         price: {
-            amount: 2.45e14,
+            amount: 2.28e13,
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Wizards,
         thumbnail: icons.wip,
     },
+    /* [CC] Prism */
+    13: {
+        name: "Rocket",
+        price: {
+            amount: 2.45e14,
+            currency: Currency.CLOVERS,
+        },
+        laneType: LaneType.Astronauts,
+        thumbnail: icons.rocket,
+    },
     /* [CC] Chancemaker */
     14: {
-        name: "Castle",
+        name: "UFO",
         price: {
             amount: 2.64e15,
             currency: Currency.CLOVERS,
         },
-        laneType: LaneType.Knights,
+        laneType: LaneType.Aliens,
         thumbnail: icons.wip,
     },
     /* [CC] Fractal Engine */

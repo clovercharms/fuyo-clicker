@@ -14,6 +14,7 @@ import ufo from "./ufo.png";
 import wizardTower from "./wizard-tower.png";
 import powerPlant from "./power-plant.png";
 import wood from "./wood.png";
+import tentacles from "./tentacles.png";
 
 export {
     forge,
@@ -32,4 +33,5 @@ export {
     wizardTower,
     powerPlant,
     wood,
+    tentacles,
 };

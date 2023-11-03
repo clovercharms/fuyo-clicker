@@ -93,9 +93,6 @@ export const createCoinsSlice = (
                 return amount;
             },
             cheat: (amount: number) => {
-                // Immediately forward game state.
-                get().coins.tick();
-
                 set(
                     produce<GameState>(state => {
                         state.coins.amount = amount;

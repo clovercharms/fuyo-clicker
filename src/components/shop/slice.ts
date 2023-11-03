@@ -97,8 +97,6 @@ export const createShopSlice = (
                 const price = calculatePrice(id, item.purchased);
                 const laneType = items[id].laneType;
 
-                get().tick();
-
                 // Auto clicker
                 if (laneType === undefined) {
                     if (get().coins.amount < price) return false;

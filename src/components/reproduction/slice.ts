@@ -173,8 +173,6 @@ export const createReproSlice = (
                 );
             },
             upgrade: () => {
-                get().tick();
-
                 const nextTier = get().repro.clovers.tier + 1;
                 const price = calculatePrice(nextTier);
                 if (get().coins.amount < price) return false;

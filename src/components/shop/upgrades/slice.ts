@@ -39,8 +39,6 @@ export const createUpgradesSlice = (
         upgrades: {
             ...initialUpgradesState,
             buy: (type: UpgradeType, id: number) => {
-                get().tick();
-
                 const price = upgrades[type][id].price;
                 if (get().coins.amount < price) return false;
 

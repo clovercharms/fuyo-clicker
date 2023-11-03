@@ -173,7 +173,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Antimatter Condenser */
     [LaneType.Wizards]: {
         job: Job.Wizard,
-        background: backgrounds.powerPlant,
+        background: backgrounds.wip,
         building: buildings.wizardTower,
         rateMs: 2.51e11 / 1e3,
         clovers: {

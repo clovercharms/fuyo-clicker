@@ -25,9 +25,10 @@ export default function Fuyonade() {
             />
             <div className={classes.controls}>
                 {!fuyonade.active && fuyonade.progress >= 1 && (
-                    <button onClick={() => activate(BoostType.FUYONADE)}>
-                        <h1>🌈 Spill 🌈</h1>
-                    </button>
+                    <button
+                        className={classes.spill}
+                        onClick={() => activate(BoostType.FUYONADE)}
+                    />
                 )}
             </div>
         </div>

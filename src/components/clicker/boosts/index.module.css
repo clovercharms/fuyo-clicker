@@ -146,8 +146,26 @@
 .controls {
     position: absolute;
     display: flex;
-    bottom: 10rem;
+    bottom: 6rem;
     width: 100%;
     display: flex;
     justify-content: center;
+
+    & > .spill {
+        all: unset;
+        cursor: pointer;
+        background-image: url("../../../assets/images/spill.png");
+        background-size: cover;
+        width: 12rem;
+        height: 12rem;
+        transition: 0.1s;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:active {
+            transform: scale(1);
+        }
+    }
 }

@@ -8,7 +8,7 @@ export default {
     },
     hazmat: {
         0: regular.hazmat,
-        1: regular.hazmat,
+        1: hero.hazmat,
     },
     alien: {
         0: regular.alien,

@@ -17,6 +17,6 @@
     }
 
     &.clovers::after {
-        background-image: url("../../assets/images/clover/base.png");
+        background-image: url("../../assets/images/clover/base/regular/regular.png");
     }
 }

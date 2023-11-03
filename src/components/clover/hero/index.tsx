@@ -1,8 +1,7 @@
 import { HTMLProps } from "react";
 import { useDraggable } from "@dnd-kit/core";
 import Clover from "..";
-import { Job } from "../data";
-import { CloverType } from "../../lanes/slice";
+import { CloverType, Job } from "../data";
 
 export interface CloverProps extends Omit<HTMLProps<HTMLDivElement>, "id"> {
     id: number;

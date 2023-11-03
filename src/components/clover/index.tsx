@@ -1,13 +1,10 @@
 import classes from "./index.module.css";
-import base from "@/assets/images/clover/base.png";
-import hero from "@/assets/images/clover/hero.png";
 import { HTMLProps } from "react";
-import { Job, Jobs, names } from "./data";
+import { CloverType, Job, Jobs, names } from "./data";
 import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
-import { CloverType } from "../lanes/slice";
 import cx from "classix";
 
 export interface CloverProps
@@ -30,14 +27,22 @@ export default function Clover({
     const rand = xoroshiro128plus(id);
     const name = names[dist(0, names.length - 1, rand)];
 
+    let extra: string | null = null;
+    if (Jobs[job].extras !== undefined && dist(0, 1, rand) > 0.5) {
+        extra = Jobs[job].extras![dist(0, Jobs[job].extras!.length - 1, rand)];
+    }
+
     return (
         <div {...props} className={cx(classes.clover, props.className)}>
             <span className={classes.name}>{name}</span>
             <div className={classes.body}>
-                {!Jobs[job].substitute && (
-                    <img src={type === CloverType.Regular ? base : hero} />
+                {Jobs[job].bases !== undefined && (
+                    <img src={Jobs[job].bases![type]} />
                 )}
-                <img src={Jobs[job].src} />
+                {extra && <img src={extra} />}
+                {Jobs[job].cosmetics?.map((cosmetic, i) => (
+                    <img key={i} src={cosmetic} />
+                ))}
                 {Jobs[job].overlay && <img src={Jobs[job].overlay} />}
             </div>
         </div>

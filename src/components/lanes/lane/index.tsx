@@ -1,7 +1,7 @@
 import classes from "./index.module.css";
 import { CSSProperties, HTMLProps, useRef } from "react";
 import Clover from "../../clover";
-import { CloverType, Lane as ILane } from "../slice";
+import { Lane as ILane } from "../slice";
 import { LaneType, lanes as data } from "./data";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "@/store";
@@ -12,6 +12,7 @@ import {
 } from "pure-rand";
 import cx from "classix";
 import { useElementSize, useIntersectionObserver } from "usehooks-ts";
+import { CloverType } from "@/components/clover/data";
 
 // Size constants
 const BUILDING_SIZE_PX = 64;

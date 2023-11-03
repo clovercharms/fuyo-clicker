@@ -1,6 +1,6 @@
 import { ParticleContainer, useTick, Sprite } from "@pixi/react";
 import coinImage from "@/assets/images/fuyo-coin.png";
-import cloverImage from "@/assets/images/clover/base.png";
+import cloverImage from "@/assets/images/clover/base/regular/regular.png";
 import { useMemo, useRef, useState } from "react";
 import { Sprite as ISprite } from "pixi.js";
 import { easings } from "react-spring";
@@ -36,7 +36,6 @@ export default function Backdrop({ size }: BackdropProps) {
             ),
         [rateMs, size]
     );
-    console.log("backdrop size", size);
     const particles = useRef<Particles>(new Particles(count, size));
 
     // Update container size

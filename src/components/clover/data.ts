@@ -1,5 +1,14 @@
-import * as jobs from "@/assets/images/clover/jobs";
-import * as overlays from "@/assets/images/clover/jobs/overlays";
+import bases from "@/assets/images/clover/base";
+import * as cosmetics from "@/assets/images/clover/cosmetics";
+import * as overlays from "@/assets/images/clover/overlays";
+
+/**
+ * Type of a Clover.
+ */
+export enum CloverType {
+    Regular,
+    Hero,
+}
 
 /**
  * A type of job a Clover can have.
@@ -23,9 +32,13 @@ export enum Job {
     Peak,
 }
 
+/**
+ * Cosmetical configuration of a Clover Job.
+ */
 export interface JobConfig {
-    src: string;
-    substitute?: boolean;
+    bases?: Record<CloverType, string>;
+    extras?: string[];
+    cosmetics?: string[];
     overlay?: string;
 }
 
@@ -33,22 +46,74 @@ export interface JobConfig {
  * Mapping for Clover jobs to image URLs.
  */
 export const Jobs: { [type in Job]: JobConfig } = {
-    [Job.Blacksmith]: { src: jobs.blacksmith },
-    [Job.FactoryWorker]: { src: jobs.factory_worker },
-    [Job.Mechanic]: { src: jobs.mechanic },
-    [Job.Miner]: { src: jobs.miner },
-    [Job.Lumberjack]: { src: jobs.lumberjack },
-    [Job.Scientist]: { src: jobs.scientist },
-    [Job.Diver]: { src: jobs.scuba },
-    [Job.Astronaut]: { src: jobs.astronaut, overlay: overlays.astronaut },
-    [Job.Cultist]: { src: jobs.cultist },
-    [Job.Investor]: { src: jobs.investor },
-    [Job.Alien]: { src: jobs.alien },
-    [Job.Hazmat]: { src: jobs.hazmat, substitute: true },
-    [Job.Wizard]: { src: jobs.wizard },
-    [Job.Knight]: { src: jobs.knight },
-    [Job.Sketch]: { src: jobs.sketch, substitute: true },
-    [Job.Peak]: { src: jobs.peak, substitute: true },
+    [Job.Miner]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.miner],
+    },
+    [Job.Lumberjack]: {
+        bases: bases.regular,
+        cosmetics: [cosmetics.lumberjack],
+    },
+    [Job.Blacksmith]: {
+        bases: bases.regular,
+        cosmetics: [cosmetics.blacksmith],
+    },
+    [Job.Mechanic]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.mechanic],
+    },
+    [Job.FactoryWorker]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.factory_worker],
+    },
+    [Job.Diver]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.scuba],
+    },
+    [Job.Scientist]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.scientist],
+    },
+    [Job.Investor]: {
+        bases: bases.regular,
+        cosmetics: [cosmetics.investor],
+    },
+    [Job.Hazmat]: {
+        bases: bases.hazmat,
+    },
+    [Job.Knight]: {
+        bases: bases.regular,
+        cosmetics: [cosmetics.knight],
+    },
+    [Job.Cultist]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.cultist],
+    },
+    [Job.Wizard]: {
+        bases: bases.regular,
+        cosmetics: [cosmetics.wizard],
+    },
+    [Job.Astronaut]: {
+        bases: bases.regular,
+        extras: [cosmetics.lips],
+        cosmetics: [cosmetics.astronaut],
+        overlay: overlays.astronaut,
+    },
+    [Job.Alien]: {
+        bases: bases.alien,
+    },
+    [Job.Sketch]: {
+        bases: bases.sketch,
+    },
+    [Job.Peak]: {
+        bases: bases.peak,
+    },
 };
 
 /**

@@ -3,11 +3,7 @@ import { GameState } from "@/store";
 import { LaneType } from "./lane/data";
 import { resetters } from "../../resetters";
 import { produce } from "immer";
-
-export enum CloverType {
-    Regular,
-    Hero,
-}
+import { CloverType } from "../clover/data";
 
 /**
  * State about a lane, such as the amount of buildings and the clovers assigned

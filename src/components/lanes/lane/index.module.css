@@ -78,6 +78,7 @@
                     50s var(--animation-delay) flying infinite linear,
                     25s var(--animation-delay) flip steps(1, end) infinite
                         alternate;
+                animation-play-state: paused;
             }
         }
     }
@@ -96,6 +97,7 @@
             & > div {
                 animation: 1s var(--animation-delay) flip steps(1, end)
                     alternate infinite;
+                animation-play-state: paused;
             }
 
             & > span {
@@ -109,6 +111,7 @@
             & > div > div {
                 animation: 1s var(--animation-delay) flip steps(1, end)
                     alternate infinite;
+                animation-play-state: paused;
             }
         }
     }
@@ -117,11 +120,44 @@
     & > .hero-clovers {
         & > * {
             animation: 2s var(--animation-delay) work infinite linear;
+            animation-play-state: paused;
         }
     }
 
     & .building:first-child,
     & > .clovers > :first-child {
         margin-left: unset;
+    }
+}
+
+.animated.lane {
+    & > .buildings {
+        &.flying {
+            & > img {
+                animation-play-state: running;
+            }
+        }
+    }
+
+    & > .clovers {
+        & > .clover {
+            & > div {
+                animation-play-state: running;
+            }
+        }
+    }
+
+    & > .hero-clovers {
+        & > .hero-clover {
+            & > div > div {
+                animation-play-state: running;
+            }
+        }
+    }
+    & > .clovers,
+    & > .hero-clovers {
+        & > * {
+            animation-play-state: running;
+        }
     }
 }

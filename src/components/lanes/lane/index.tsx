@@ -1,5 +1,5 @@
 import classes from "./index.module.css";
-import { CSSProperties, HTMLProps } from "react";
+import { CSSProperties, HTMLProps, useRef } from "react";
 import Clover from "../../clover";
 import { CloverType, Lane as ILane } from "../slice";
 import { LaneType, lanes as data } from "./data";
@@ -11,8 +11,9 @@ import {
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
 import cx from "classix";
+import { useIntersectionObserver } from "usehooks-ts";
 
-const RNG_SEED = 1;
+// Size constants
 const BUILDING_SIZE_PX = 64;
 const CLOVER_SIZE_PX = 32;
 const HERO_CLOVER_SIZE_PX = 80;
@@ -37,8 +38,10 @@ export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
  */
 export default function Lane({ type, lane, rect, ...props }: LaneProps) {
     const lanes = useGameStore(state => state.lanes);
-    const rand = xoroshiro128plus(RNG_SEED);
+    const rand = xoroshiro128plus(Number(type));
     const sizing = useDynamicSizes(rect);
+    const ref = useRef<HTMLDivElement | null>(null);
+    const intersection = useIntersectionObserver(ref, {});
 
     const { isOver, setNodeRef } = useDroppable({
         id: `${type}-lane`,
@@ -61,11 +64,18 @@ export default function Lane({ type, lane, rect, ...props }: LaneProps) {
     return (
         <div
             {...props}
-            className={cx(classes.lane, props.className)}
+            className={cx(
+                classes.lane,
+                intersection?.isIntersecting && classes.animated,
+                props.className
+            )}
             style={{
                 backgroundImage: `url(${data[type].background})`,
             }}
-            ref={setNodeRef}
+            ref={r => {
+                setNodeRef(r);
+                ref.current = r;
+            }}
         >
             <div
                 className={cx(

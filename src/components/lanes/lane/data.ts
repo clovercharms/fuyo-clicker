@@ -219,7 +219,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Javascript Console */
     [LaneType.Peak]: {
         job: Job.Peak,
-        background: backgrounds.space1,
+        background: backgrounds.voidd,
         building: buildings.tentacles,
         rateMs: 3.39e15 / 1e3,
         clovers: {

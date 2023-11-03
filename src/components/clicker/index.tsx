@@ -8,11 +8,11 @@ import Backdrop from "./backdrop";
 import Header from "./header";
 import Fuyonade from "./boosts";
 import cx from "classix";
-import { useRect } from "@/hooks/useRect";
 import { useAudio } from "@/context/audio";
+import { useElementSize } from "usehooks-ts";
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
-    const { elementRef, rect } = useRect<HTMLDivElement>();
+    const [elementRef, size] = useElementSize();
     const audio = useAudio();
 
     // [FIXME] Workound https://github.com/pixijs/pixi-react/issues/456
@@ -26,14 +26,14 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
         >
             <Fuyonade />
             <Header className={classes.header} />
-            {rect !== null && (
+            {size.width && size.height !== 0 && (
                 <Stage
-                    width={rect.width}
-                    height={rect.height}
+                    width={size.width}
+                    height={size.height}
                     options={{ backgroundAlpha: 0, autoDensity: true }}
                 >
-                    <Backdrop rect={rect} />
-                    <Container x={rect.width / 2} y={rect.height / 2}>
+                    <Backdrop size={size} />
+                    <Container x={size.width / 2} y={size.height / 2}>
                         <Hands />
                         <Coin audio={audio} />
                     </Container>

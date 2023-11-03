@@ -11,35 +11,36 @@ import {
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
 import cx from "classix";
-import { useIntersectionObserver } from "usehooks-ts";
+import { useElementSize, useIntersectionObserver } from "usehooks-ts";
 
 // Size constants
 const BUILDING_SIZE_PX = 64;
 const CLOVER_SIZE_PX = 32;
 const HERO_CLOVER_SIZE_PX = 80;
 
-function useDynamicSizes(rect: DOMRect) {
+function useDynamicSizes(size: ReturnType<typeof useElementSize>[1]) {
     return {
-        buldings: Math.ceil(rect.width / BUILDING_SIZE_PX),
-        clovers: Math.ceil(rect.width / CLOVER_SIZE_PX),
-        heroClovers: Math.ceil(rect.width / HERO_CLOVER_SIZE_PX),
+        buldings: Math.ceil(size.width / BUILDING_SIZE_PX),
+        clovers: Math.ceil(size.width / CLOVER_SIZE_PX),
+        heroClovers: Math.ceil(size.width / HERO_CLOVER_SIZE_PX),
     };
 }
 
-export interface LaneProps extends Omit<HTMLProps<HTMLDivElement>, "type"> {
+export interface LaneProps
+    extends Omit<HTMLProps<HTMLDivElement>, "type" | "size"> {
     type: LaneType;
     lane: ILane;
-    rect: DOMRect;
+    size: ReturnType<typeof useElementSize>[1];
 }
 
 /**
  * A lane is a workable area to which Clovers can be assigned to and buildings
  * can be built, possibly by upgrades or deliberate action.
  */
-export default function Lane({ type, lane, rect, ...props }: LaneProps) {
+export default function Lane({ type, lane, size, ...props }: LaneProps) {
     const lanes = useGameStore(state => state.lanes);
     const rand = xoroshiro128plus(Number(type));
-    const sizing = useDynamicSizes(rect);
+    const sizing = useDynamicSizes(size);
     const ref = useRef<HTMLDivElement | null>(null);
     const intersection = useIntersectionObserver(ref, {});
 

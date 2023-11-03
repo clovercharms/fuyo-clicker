@@ -1,6 +1,7 @@
+import { useElementSize } from "usehooks-ts";
 import { PARTICLE_SIZE } from ".";
 
-const ANIM_DURATION_RANGE = [5e3, 10e3];
+const ANIM_DURATION_RANGE_MS = [5e3, 10e3];
 
 export interface AnimationProperties {
     x: number;
@@ -19,7 +20,7 @@ export interface Particle {
     to: AnimationProperties;
     duration: number;
     started: number;
-    recycle: boolean;
+    recycled: boolean;
     type: ParticleType;
 }
 
@@ -27,18 +28,21 @@ export class Particles {
     active = 0;
     array: Particle[] = [];
     recycleable: number[] = [];
-    _rect: DOMRect;
+    _containerSize: ReturnType<typeof useElementSize>[1];
     _lastId = 0;
-    get rect() {
-        return this._rect;
+    get containerSize() {
+        return this._containerSize;
     }
-    set rect(value: DOMRect) {
-        this._rect = value;
+    set containerSize(value: ReturnType<typeof useElementSize>[1]) {
+        this._containerSize = value;
         this.resetAll();
     }
 
-    constructor(size: number, rect: DOMRect) {
-        this._rect = rect;
+    constructor(
+        size: number,
+        containerSize: ReturnType<typeof useElementSize>[1]
+    ) {
+        this._containerSize = containerSize;
         this.resize(size);
     }
 
@@ -71,7 +75,7 @@ export class Particles {
     }
 
     recycle(id: number) {
-        this.array[id].recycle = true;
+        this.array[id].recycled = true;
         this.recycleable.push(id);
         this.active -= 1;
     }
@@ -87,26 +91,30 @@ export class Particles {
             from: {
                 x:
                     -(PARTICLE_SIZE / 2) +
-                    Math.random() * (this.rect.width + PARTICLE_SIZE / 2),
+                    Math.random() *
+                        (this.containerSize.width + PARTICLE_SIZE / 2),
                 y:
                     -(PARTICLE_SIZE / 2) -
-                    Math.random() * (this.rect.height + PARTICLE_SIZE / 2),
+                    Math.random() *
+                        (this.containerSize.height + PARTICLE_SIZE / 2),
                 rotation: -Math.PI * 2 + Math.random() * (Math.PI * 4),
             },
             to: {
                 x:
                     -(PARTICLE_SIZE / 2) +
-                    Math.random() * (this.rect.width + PARTICLE_SIZE / 2),
-                y: this.rect.height + PARTICLE_SIZE / 2,
+                    Math.random() *
+                        (this.containerSize.width + PARTICLE_SIZE / 2),
+                y: this.containerSize.height + PARTICLE_SIZE / 2,
                 rotation: -Math.PI * 2 + Math.random() * (Math.PI * 4),
             },
             duration:
-                ANIM_DURATION_RANGE[0] + Math.random() * ANIM_DURATION_RANGE[1],
+                ANIM_DURATION_RANGE_MS[0] +
+                Math.random() * ANIM_DURATION_RANGE_MS[1],
             started: performance.now(),
             type: Math.random() < 0.9 ? ParticleType.COIN : ParticleType.CLOVER,
-            recycle:
+            recycled:
                 id !== undefined && recycledId !== undefined
-                    ? this.array[id].recycle
+                    ? this.array[id].recycled
                     : false,
         } as Particle;
     }

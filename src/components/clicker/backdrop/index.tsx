@@ -6,6 +6,7 @@ import { Sprite as ISprite } from "pixi.js";
 import { easings } from "react-spring";
 import { useGameStore } from "@/store";
 import { ParticleType, Particles } from "./particles";
+import { useElementSize } from "usehooks-ts";
 
 export const PARTICLE_SIZE = 100;
 
@@ -16,35 +17,35 @@ function tween(start: number, end: number, time: number): number {
 }
 
 export interface BackdropProps {
-    rect: DOMRect;
+    size: ReturnType<typeof useElementSize>[1];
 }
 
-export default function Backdrop({ rect }: BackdropProps) {
+export default function Backdrop({ size }: BackdropProps) {
     const rateMs = useGameStore(state => state.coins.rateMs);
-
+    const sprites = useRef<ISprite[]>([]);
+    const [, setRenderCount] = useState(0);
     const count = useMemo(
         () =>
             Math.min(
                 Math.round(rateMs * RATE_TIME_MS),
                 Math.round(
-                    (rect.width / PARTICLE_SIZE) *
-                        (rect.height / PARTICLE_SIZE) *
+                    (size.width / PARTICLE_SIZE) *
+                        (size.height / PARTICLE_SIZE) *
                         16
                 )
             ),
-        [rateMs, rect]
+        [rateMs, size]
     );
-    const particles = useRef<Particles>(null!);
-    if (particles.current === null) {
-        particles.current = new Particles(count, rect);
-    } else if (
-        particles.current.rect.width !== rect.width ||
-        particles.current.rect.height !== rect.height
+    console.log("backdrop size", size);
+    const particles = useRef<Particles>(new Particles(count, size));
+
+    // Update container size
+    if (
+        particles.current.containerSize.width !== size.width ||
+        particles.current.containerSize.height !== size.height
     ) {
-        particles.current.rect = rect;
+        particles.current.containerSize = size;
     }
-    const sprites = useRef<ISprite[]>([]);
-    const [, setRenderCount] = useState(0);
 
     useTick(() => {
         // Update particles
@@ -65,7 +66,7 @@ export default function Backdrop({ rect }: BackdropProps) {
                 progress
             );
 
-            if (particle.recycle || progress < 1) continue;
+            if (particle.recycled || progress < 1) continue;
 
             particles.current.reset(particle.id);
         }

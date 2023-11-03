@@ -13,6 +13,7 @@ import sketchHouse from "./sketch-house.png";
 import ufo from "./ufo.png";
 import wizardTower from "./wizard-tower.png";
 import powerPlant from "./power-plant.png";
+import wood from "./wood.png";
 
 export {
     forge,
@@ -30,4 +31,5 @@ export {
     ufo,
     wizardTower,
     powerPlant,
+    wood,
 };

@@ -63,7 +63,7 @@ export const lanes: { [type in LaneType]: LaneData } = {
     [LaneType.Lumberjacks]: {
         job: Job.Lumberjack,
         background: backgrounds.wip,
-        building: buildings.castle,
+        building: buildings.wood,
         rateMs: 1.1e1 / 1e3,
         clovers: {
             regular: [],

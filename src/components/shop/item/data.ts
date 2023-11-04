@@ -171,7 +171,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Aliens,
-        thumbnail: icons.wip,
+        thumbnail: icons.ufo,
     },
     /* [CC] Fractal Engine */
     15: {

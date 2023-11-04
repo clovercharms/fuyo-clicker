@@ -9,6 +9,7 @@ import altar from "./altar.png";
 import bank from "./bank.png";
 import hazmat from "./hazmat.png";
 import rocket from "./rocket.png";
+import ufo from "./ufo.png";
 import wip from "./wip.png";
 
 export {
@@ -23,5 +24,6 @@ export {
     hazmat,
     bank,
     rocket,
+    ufo,
     wip,
 };

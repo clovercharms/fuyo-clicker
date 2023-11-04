@@ -146,9 +146,8 @@
 .controls {
     position: absolute;
     display: flex;
-    bottom: 6rem;
+    bottom: calc(25% - 150px);
     width: 100%;
-    display: flex;
     justify-content: center;
 
     & > .spill {

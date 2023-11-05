@@ -135,11 +135,11 @@ export const createReproSlice = (
             },
             spawn: () => {
                 // Generate new Hero Clover
-                const heroCloverLaneTypes = determineHeroCloverLaneTypes(get);
-                if (heroCloverLaneTypes.length === 0) {
-                    alert("Conditions not met to spawn hero clover.");
-                    return;
-                }
+                const heroCloverLaneTypes = Object.entries(get().lanes.types)
+                    .filter(([, lane]) => lane.buildings > 0)
+                    .map(([type]) => type as unknown as LaneType);
+                if (heroCloverLaneTypes.length === 0) return;
+
                 const heroClover = generateHeroClover(
                     get().repro.clovers.lastCloverId,
                     heroCloverLaneTypes

@@ -25,7 +25,7 @@ export interface ShopSlice {
          * previously been unlocked.
          * @returns Unlocked items.
          */
-        unlockedItems: () => Record<number, Item>;
+        unlockedItems: () => Record<number, boolean>;
         /**
          * Action for buying an item from the store.
          * @param id The metadata id of the item to purchase.

@@ -210,7 +210,7 @@ export function calculatePrice(id: number, purchased: number) {
 }
 
 /** Currency to price ratio when to uncover an item. */
-const UNCOVER_RATIO = 0.75;
+const UNCOVER_RATIO = 0.1;
 
 /**
  * Based on the item data, and the amount of currency, return if the currency to

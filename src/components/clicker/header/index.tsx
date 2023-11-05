@@ -4,6 +4,7 @@ import { useCounter } from "@/hooks/useCounter";
 import { useGameStore } from "@/store";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
+import { Button } from "@/components/button";
 
 const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 
@@ -34,7 +35,7 @@ export default function Header(props: HTMLProps<HTMLHeadingElement>) {
                 <span ref={counterRef} /> coins
             </h1>
             <h2>Per second: {formatNumber(coins.rateMs * 1e3)}</h2>
-            <button onClick={handleCheat}>Set coins</button>
+            <Button onClick={handleCheat}>Set coins</Button>
         </header>
     );
 }

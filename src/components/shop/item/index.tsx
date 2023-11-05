@@ -2,7 +2,7 @@ import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import { Item as ItemData } from "./data";
 import Price from "../../price";
-import { Button } from "@/components/button";
+import { Button, Variant } from "@/components/button";
 
 export interface ItemProps extends HTMLProps<HTMLLIElement> {
     item: ItemData;
@@ -24,18 +24,22 @@ export default function Item({
 }: ItemProps) {
     return (
         <li {...props}>
-            <Button disabled={!affordable} className={classes.button}>
+            <Button
+                variant={Variant.REGULAR}
+                disabled={!affordable}
+                className={classes.button}
+            >
                 <div className={classes.row}>
                     <div className={classes.details}>
                         <img className={classes.thumbnail} src={thumbnail} />
                         <div>
-                            <h3>{name}</h3>
-                            <h3>
+                            <div>{name}</div>
+                            <div>
                                 <Price amount={price} currency={currency} />
-                            </h3>
+                            </div>
                         </div>
                     </div>
-                    <h2 className={classes.purchased}>{purchased}</h2>
+                    <div className={classes.purchased}>{purchased}</div>
                 </div>
             </Button>
         </li>

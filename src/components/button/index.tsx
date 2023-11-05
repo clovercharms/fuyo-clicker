@@ -20,7 +20,7 @@ const VARIANT_CLASSES = {
 };
 
 export function Button({
-    variant = Variant.REGULAR,
+    variant = Variant.THIN,
     children,
     ...props
 }: ButtonProps) {

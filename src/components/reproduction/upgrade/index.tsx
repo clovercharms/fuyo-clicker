@@ -27,10 +27,10 @@ export function Upgrade() {
                 onClick={handleUpgrade}
                 disabled={upgradeCost > coins}
             >
-                <h3>
+                <div>
                     Upgrade -{" "}
                     <Price amount={upgradeCost} currency={Currency.COINS} />
-                </h3>
+                </div>
             </Button>
         </div>
     );

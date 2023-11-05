@@ -3,6 +3,7 @@ import HeroClover from "@/components/clover/hero";
 import { useDndMonitor, DragOverlay } from "@dnd-kit/core";
 import { useState } from "react";
 import classes from "./index.module.css";
+import { Button } from "@/components/button";
 
 export function Hero() {
     const spawn = useGameStore(state => state.repro.spawn);
@@ -16,9 +17,9 @@ export function Hero() {
 
     return (
         <div className={classes.hero}>
-            <button className={classes.spawn} onClick={spawn}>
+            <Button className={classes.spawn} onClick={spawn}>
                 Spawn
-            </button>
+            </Button>
             {spawned && (
                 <HeroClover
                     className={classes.clover}

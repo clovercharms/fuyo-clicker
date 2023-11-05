@@ -1,3 +1,7 @@
 .news {
     background-color: #fff6;
+
+    & > .controls {
+        display: flex;
+    }
 }

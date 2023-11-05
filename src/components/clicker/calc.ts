@@ -134,8 +134,13 @@ export function calcClickAmount(
     // Cursors
     if (unlockedUpgrades[UpgradeType.Cursor] > 0) {
         const rateSec = calcRateMs(upgrades, lanes, clickers) * 1e3;
-        let total = rateSec;
-        total *= 1.05 ** (unlockedUpgrades[UpgradeType.Cursor] - 1);
+        // Base rate 30%
+        let percentage = 0.3;
+        if (unlockedUpgrades[UpgradeType.Cursor] > 1) {
+            // 10% After every upgrade
+            percentage += (unlockedUpgrades[UpgradeType.Cursor] - 1) * 0.1;
+        }
+        const total = percentage * rateSec;
         amount += total;
     }
 

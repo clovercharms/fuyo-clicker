@@ -11,7 +11,7 @@ import { useElementSize } from "usehooks-ts";
 export const PARTICLE_SIZE = 100;
 
 /** The amount of time used to determine the generated coin amount. */
-const RATE_TIME_MS = 500;
+const RATE_TIME_MS = 100;
 
 function tween(start: number, end: number, time: number): number {
     return start + time * (end - start);

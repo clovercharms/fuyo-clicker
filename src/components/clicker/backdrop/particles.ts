@@ -1,5 +1,11 @@
 import { useElementSize } from "usehooks-ts";
 import { PARTICLE_SIZE } from ".";
+import {
+    xoroshiro128plus,
+    unsafeUniformIntDistribution as dist,
+} from "pure-rand";
+
+const RNG = xoroshiro128plus(42);
 
 const ANIM_DURATION_RANGE_MS = [5e3, 10e3];
 
@@ -19,15 +25,18 @@ export interface Particle {
     from: AnimationProperties;
     to: AnimationProperties;
     duration: number;
-    started: number;
-    recycled: boolean;
+    delay: number;
+    initialized: number;
+    started: number | null;
     type: ParticleType;
+    recycled: boolean;
 }
 
 export class Particles {
     active = 0;
     array: Particle[] = [];
-    recycleable: number[] = [];
+    activeMap: Map<number, boolean> = new Map<number, boolean>();
+    recycledQueue: number[] = [];
     _containerSize: ReturnType<typeof useElementSize>[1];
     _lastId = 0;
     get containerSize() {
@@ -55,8 +64,11 @@ export class Particles {
             }
             changed = true;
         } else if (this.active > size) {
-            for (let i = this.active - 1; i >= size; i--) {
-                this.recycle(i);
+            let toRecycle = this.active - size;
+            for (const id of this.activeMap.keys()) {
+                if (toRecycle-- === 0) break;
+
+                this.recycle(id);
             }
             changed = true;
         }
@@ -76,46 +88,45 @@ export class Particles {
 
     recycle(id: number) {
         this.array[id].recycled = true;
-        this.recycleable.push(id);
+        this.recycledQueue.push(id);
+        this.activeMap.delete(id);
         this.active -= 1;
     }
 
     generateParticle(id?: number) {
-        let recycledId: number | undefined = undefined;
-        if (id !== undefined) {
-            recycledId = this.recycleable.shift();
-        }
+        const generatedId = id ?? this.recycledQueue.shift() ?? this._lastId++;
+        this.activeMap.set(generatedId, true);
 
         return {
-            id: id ?? recycledId ?? this._lastId++,
+            id: generatedId,
             from: {
-                x:
-                    -(PARTICLE_SIZE / 2) +
-                    Math.random() *
-                        (this.containerSize.width + PARTICLE_SIZE / 2),
-                y:
-                    -(PARTICLE_SIZE / 2) -
-                    Math.random() *
-                        (this.containerSize.height + PARTICLE_SIZE / 2),
-                rotation: -Math.PI * 2 + Math.random() * (Math.PI * 4),
+                x: dist(
+                    -PARTICLE_SIZE,
+                    this.containerSize.width + PARTICLE_SIZE,
+                    RNG
+                ),
+                y: -PARTICLE_SIZE,
+                rotation: -Math.PI * 2 + dist(0, Math.PI * 4, RNG),
             },
             to: {
-                x:
-                    -(PARTICLE_SIZE / 2) +
-                    Math.random() *
-                        (this.containerSize.width + PARTICLE_SIZE / 2),
-                y: this.containerSize.height + PARTICLE_SIZE / 2,
-                rotation: -Math.PI * 2 + Math.random() * (Math.PI * 4),
+                x: dist(
+                    -PARTICLE_SIZE,
+                    this.containerSize.width + PARTICLE_SIZE,
+                    RNG
+                ),
+                y:
+                    this.containerSize.height * 3 +
+                    dist(0, this.containerSize.height, RNG),
+                rotation: -Math.PI * 2 + dist(0, Math.PI * 4, RNG),
             },
             duration:
                 ANIM_DURATION_RANGE_MS[0] +
-                Math.random() * ANIM_DURATION_RANGE_MS[1],
-            started: performance.now(),
-            type: Math.random() < 0.9 ? ParticleType.COIN : ParticleType.CLOVER,
-            recycled:
-                id !== undefined && recycledId !== undefined
-                    ? this.array[id].recycled
-                    : false,
+                dist(0, ANIM_DURATION_RANGE_MS[1], RNG),
+            delay: dist(0, 1e3, RNG),
+            initialized: performance.now(),
+            started: null,
+            type: dist(0, 9, RNG) < 9 ? ParticleType.COIN : ParticleType.CLOVER,
+            recycled: false,
         } as Particle;
     }
 }

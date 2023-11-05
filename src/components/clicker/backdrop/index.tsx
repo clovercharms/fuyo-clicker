@@ -10,7 +10,8 @@ import { useElementSize } from "usehooks-ts";
 
 export const PARTICLE_SIZE = 100;
 
-const RATE_TIME_MS = 1e3;
+/** The amount of time used to determine the generated coin amount. */
+const RATE_TIME_MS = 500;
 
 function tween(start: number, end: number, time: number): number {
     return start + time * (end - start);
@@ -29,10 +30,8 @@ export default function Backdrop({ size }: BackdropProps) {
             Math.min(
                 Math.round(rateMs * RATE_TIME_MS),
                 Math.round(
-                    (size.width / PARTICLE_SIZE) *
-                        (size.height / PARTICLE_SIZE) *
-                        16
-                )
+                    (size.width / PARTICLE_SIZE) * (size.height / PARTICLE_SIZE)
+                ) * 8
             ),
         [rateMs, size]
     );
@@ -47,14 +46,32 @@ export default function Backdrop({ size }: BackdropProps) {
     }
 
     useTick(() => {
-        // Update particles
+        // Update particles.
         if (particles.current.resize(count)) setRenderCount(count => count + 1);
 
-        // Update sprites
+        // Update sprites.
         for (const [id, sprite] of Object.entries(sprites.current)) {
-            const particle = particles.current.array[parseInt(id)];
+            const particle = particles.current.array[Number(id)];
 
-            const elapsed = performance.now() - particle.started;
+            // Ignore recycled and off screen.
+            if (particle.recycled && sprite.y >= size.height + PARTICLE_SIZE) {
+                continue;
+            }
+
+            let elapsed = performance.now() - particle.initialized;
+            // If not started keep on starting location.
+            if (elapsed < particle.delay) {
+                sprite.x = particle.from.x;
+                sprite.y = particle.from.y;
+                continue;
+                // Else signal start of animation.
+            } else if (particle.started === null) {
+                particle.started = performance.now();
+                elapsed = 0;
+            } else {
+                elapsed = performance.now() - particle.started;
+            }
+
             const progress = easings.easeInQuad(elapsed / particle.duration);
 
             sprite.x = tween(particle.from.x, particle.to.x, progress);
@@ -65,9 +82,10 @@ export default function Backdrop({ size }: BackdropProps) {
                 progress
             );
 
-            if (particle.recycled || progress < 1) continue;
-
-            particles.current.reset(particle.id);
+            // If sprite reached bottom and not recycled, restart at top.
+            if (sprite.y >= size.height + PARTICLE_SIZE && !particle.recycled) {
+                particles.current.reset(particle.id);
+            }
         }
     });
 

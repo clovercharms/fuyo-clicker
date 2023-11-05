@@ -33,20 +33,10 @@
             display: flex;
             flex-direction: column;
         }
-
-        & > .border {
-            width: 1rem;
-            background-image: url("./assets/images/border-vertical.png");
-            background-size: contain;
-        }
     }
 
     & > .right {
         display: flex;
         flex-direction: column;
-
-        & > * {
-            flex: 1;
-        }
     }
 }

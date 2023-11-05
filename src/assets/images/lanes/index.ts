@@ -9,6 +9,9 @@ import sketch from "./sketch.png";
 import space1 from "./space01.png";
 import space2 from "./space02.png";
 import voidd from "./void.png";
+import plainsday from "./plainsday.png";
+import plainseve from "./plainseve.png";
+import plainsnight from "./plainsnight.png";
 import wip from "./wip.png";
 import wip2 from "./wip2.png";
 
@@ -24,6 +27,9 @@ export {
     space1,
     space2,
     voidd,
+    plainsday,
+    plainseve,
+    plainsnight,
     wip,
     wip2,
 };

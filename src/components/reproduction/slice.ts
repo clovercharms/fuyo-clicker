@@ -214,7 +214,10 @@ function generateHeroClover(lastId: number, laneTypes: LaneType[]) {
 
     // 90% Chance to generate last 3 lane types.
     if (Math.random() > 0.1) {
-        laneType = laneTypes[laneTypes.length - Math.ceil(Math.random() * 3)];
+        laneType =
+            laneTypes[
+                Math.max(laneTypes.length - Math.ceil(Math.random() * 3), 0)
+            ];
     }
     // 10% Chance to generate any lane type.
     else {

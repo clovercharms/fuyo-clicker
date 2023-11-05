@@ -1,6 +1,7 @@
 .shop {
     background-color: #fff6;
     overflow: hidden auto;
+    flex: 1;
 
     & > .header {
         background-image: url("../../assets/images/shop/header.png");
@@ -15,5 +16,6 @@
         padding: 0;
         margin: 0;
         border-collapse: collapse;
+        margin: 0.25rem;
     }
 }

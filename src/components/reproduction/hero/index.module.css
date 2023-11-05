@@ -1,0 +1,22 @@
+@keyframes birth {
+    0% {
+        transform: translate(6rem, -1rem) rotate(180deg);
+    }
+    100% {
+        transform: initial;
+    }
+}
+
+.hero {
+    & > .clover {
+        position: absolute;
+        top: 13.5rem;
+        left: 3rem;
+        animation: 1s birth forwards;
+    }
+
+    & .spawn {
+        position: absolute;
+        bottom: 0;
+    }
+}

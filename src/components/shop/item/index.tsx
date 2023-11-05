@@ -1,8 +1,8 @@
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import cx from "classix";
 import { Item as ItemData } from "./data";
 import Price from "../../price";
+import { Button } from "@/components/button";
 
 export interface ItemProps extends HTMLProps<HTMLLIElement> {
     item: ItemData;
@@ -23,22 +23,21 @@ export default function Item({
     ...props
 }: ItemProps) {
     return (
-        <li
-            {...props}
-            className={cx(
-                classes.item,
-                !affordable && classes.hidden,
-                props.className
-            )}
-        >
-            <div>
-                <img className={classes.thumbnail} src={thumbnail} />
-                <div className={classes.details}>
-                    <div>{name}</div>
-                    <Price amount={price} currency={currency} />
+        <li {...props}>
+            <Button disabled={!affordable} className={classes.button}>
+                <div className={classes.row}>
+                    <div className={classes.details}>
+                        <img className={classes.thumbnail} src={thumbnail} />
+                        <div>
+                            <h3>{name}</h3>
+                            <h3>
+                                <Price amount={price} currency={currency} />
+                            </h3>
+                        </div>
+                    </div>
+                    <h2 className={classes.purchased}>{purchased}</h2>
                 </div>
-            </div>
-            <div className={classes.purchased}>{purchased}</div>
+            </Button>
         </li>
     );
 }

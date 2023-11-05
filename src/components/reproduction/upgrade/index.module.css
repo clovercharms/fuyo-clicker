@@ -1,0 +1,9 @@
+.upgrade {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}

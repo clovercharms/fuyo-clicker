@@ -1,0 +1,39 @@
+.partners {
+    inset: 0;
+    filter: brightness(0.75);
+
+    & > img {
+        position: absolute;
+        height: 9rem;
+        aspect-ratio: 1/1;
+        transition: opacity 0.5s;
+    }
+
+    & > img:nth-child(1) {
+        top: 6.25rem;
+        left: 2rem;
+        transform: rotateY(180deg) rotateZ(-10deg);
+    }
+
+    & > img:nth-child(2) {
+        transform: rotateY(180deg) rotateZ(-5deg);
+        top: 6rem;
+        left: -2rem;
+    }
+
+    & > img:nth-child(3) {
+        transform: rotateY(180deg);
+        top: 6rem;
+        left: 7rem;
+    }
+
+    & > img:nth-child(4) {
+        top: 6rem;
+        left: 18rem;
+    }
+
+    & > img:nth-child(5) {
+        top: 6.5rem;
+        left: 13rem;
+    }
+}

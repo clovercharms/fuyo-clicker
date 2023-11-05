@@ -62,7 +62,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Farm */
     [LaneType.Lumberjacks]: {
         job: Job.Lumberjack,
-        background: backgrounds.wip,
+        background: backgrounds.plainsday,
         building: buildings.wood,
         rateMs: 1.1e1 / 1e3,
         clovers: {
@@ -151,7 +151,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Portal */
     [LaneType.Knights]: {
         job: Job.Knight,
-        background: backgrounds.wip,
+        background: backgrounds.plainseve,
         building: buildings.castle,
         rateMs: 2.16e9 / 1e3,
         clovers: {
@@ -173,7 +173,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Antimatter Condenser */
     [LaneType.Wizards]: {
         job: Job.Wizard,
-        background: backgrounds.wip,
+        background: backgrounds.plainsnight,
         building: buildings.wizardTower,
         rateMs: 2.51e11 / 1e3,
         clovers: {

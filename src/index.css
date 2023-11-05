@@ -26,14 +26,16 @@ body {
 
 body,
 h1,
-h2 {
+h2,
+h3 {
     font-family: "Subscribe", sans-serif;
     margin: 0;
     overflow: hidden;
 }
 
 h1,
-h2 {
+h2,
+h3 {
     color: #0c996f;
     -webkit-text-stroke: 0.01rem white;
     text-shadow: 0px 1px 1px #a6a6a6;
@@ -47,9 +49,15 @@ h2 {
     font-size: 2rem;
 }
 
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
 @-moz-document url-prefix() {
     h1,
-    h2 {
+    h2,
+    h3 {
         -webkit-text-stroke: 1.4px white;
     }
 }

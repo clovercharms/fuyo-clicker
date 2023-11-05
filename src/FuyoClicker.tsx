@@ -8,6 +8,7 @@ import { useGameStore } from "./store";
 import { DndContext } from "@dnd-kit/core";
 import Clicker from "./components/clicker";
 import { AudioProvider } from "./context/audio";
+import { Divider, Orientation } from "./components/divider";
 
 /** Determines the frequency of updates of the game state. */
 const TICK_MS = 1000;
@@ -33,15 +34,16 @@ export default function FuyoClicker() {
                 <Clicker className={classes.left} />
                 <DndContext>
                     <div className={classes.middle}>
-                        <div className={classes.border} />
+                        <Divider />
                         <div>
                             <News />
                             <Lanes />
                         </div>
-                        <div className={classes.border} />
+                        <Divider />
                     </div>
                     <div className={classes.right}>
                         <Reproduction />
+                        <Divider orientation={Orientation.HORIZONTAL} />
                         <Shop />
                     </div>
                 </DndContext>

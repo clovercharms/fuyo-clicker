@@ -1,10 +1,8 @@
 .price {
-    position: relative;
-
     &::after {
-        position: absolute;
+        display: inline-block;
         content: "";
-        height: 100%;
+        width: 1.5rem;
         aspect-ratio: 1/1;
         margin-left: 0.25rem;
         background-size: contain;

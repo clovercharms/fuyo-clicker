@@ -4,6 +4,7 @@ import Lane from "./lane";
 import { useGameStore } from "@/store";
 import cx from "classix";
 import { useElementSize } from "usehooks-ts";
+import { Divider, Orientation } from "../divider";
 
 /**
  * Collection of Lanes for Clovers to be assigned to.
@@ -18,7 +19,7 @@ export default function Lanes(props: HTMLProps<HTMLDivElement>) {
             ref={elementRef}
             className={cx(classes.lanes, props.className)}
         >
-            <div className={classes.border} />
+            <Divider orientation={Orientation.HORIZONTAL} />
             {size.width + size.height !== 0 &&
                 Object.entries(lanes)
                     .filter(([, lane]) => lane.buildings > 0)
@@ -29,7 +30,7 @@ export default function Lanes(props: HTMLProps<HTMLDivElement>) {
                                 lane={lane}
                                 size={size}
                             />
-                            <div className={classes.border} />
+                            <Divider orientation={Orientation.HORIZONTAL} />
                         </Fragment>
                     ))}
         </div>

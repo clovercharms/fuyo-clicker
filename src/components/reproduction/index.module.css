@@ -1,42 +1,66 @@
 .reproduction {
-    background-color: #fff6;
+    background-image: url("@/assets/images/repro/background.png");
+    background-size: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+
+    & h2 {
+        font-size: 1.75rem;
+    }
+
+    & > header {
+        position: absolute;
+        width: 100%;
+        background-color: #fff9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    & > .couch {
+        position: absolute;
+        inset: 0;
+        background-image: url("@/assets/images/repro/couch.png");
+        background-size: 100%;
+    }
+
+    & > .clover {
+        position: absolute;
+        top: 43%;
+        left: 35%;
+        width: 8rem;
+        aspect-ratio: 1/1;
+        animation: 1s spin ease-in-out alternate infinite;
+
+        & button {
+            width: 8rem;
+            aspect-ratio: 1/1;
+            background-color: unset;
+            border-style: unset;
+            background-image: url("@/assets/images/clover/base/regular/kiss.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: 0.1s;
+
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+
+            &:active {
+                transform: scale(1);
+            }
+        }
+    }
 }
 
 @keyframes spin {
     0% {
-        transform: rotateZ(0deg);
+        transform: rotateZ(-10deg);
     }
     100% {
-        transform: rotateZ(360deg);
+        transform: rotateZ(10deg);
     }
-}
-
-.clover {
-    width: 8rem;
-    aspect-ratio: 1/1;
-    animation: 1s spin linear infinite;
-
-    & button {
-        width: 8rem;
-        aspect-ratio: 1/1;
-        background-color: unset;
-        border-style: unset;
-        background-image: url("../../assets/images/clover/base/regular/regular.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        transition: 0.1s;
-
-        &:hover {
-            transform: scale(1.2);
-            cursor: pointer;
-        }
-
-        &:active {
-            transform: scale(1);
-        }
-    }
-}
-
-.spawn {
-    margin-bottom: 1rem;
 }

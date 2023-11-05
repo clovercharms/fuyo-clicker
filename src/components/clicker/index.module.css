@@ -2,7 +2,7 @@
     position: relative;
     overflow: hidden;
 
-    & > .header {
+    & > header {
         position: absolute;
         top: 10%;
         width: calc(100% - 2rem);

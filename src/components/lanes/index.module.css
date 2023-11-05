@@ -1,4 +1,5 @@
 .lanes {
     background-color: #fff6;
     overflow-y: auto;
+    user-select: none;
 }

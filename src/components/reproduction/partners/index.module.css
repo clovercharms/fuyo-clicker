@@ -1,6 +1,7 @@
 .partners {
     inset: 0;
     filter: brightness(0.75);
+    user-select: none;
 
     & > img {
         position: absolute;

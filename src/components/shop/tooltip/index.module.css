@@ -1,10 +1,26 @@
 .tooltip {
     pointer-events: none;
-    background-image: url("../../../assets/images/shop/upgrades/upgrades-bg.png");
-    background-size: 100%;
-    border-image: url("../../../assets/images/shop/upgrades/upgrades-frame.png")
-        30 26 stretch;
+    background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
+    background-size: 28rem;
+    border-image: url("@/assets/images/shop/upgrades/upgrades-frame.png") 30 24
+        stretch;
     border-image-width: 0.8rem;
-    padding: 1rem;
-    color: white;
+    padding: 1rem 1.5rem;
+    padding-bottom: 1.5rem;
+
+    & h1,
+    & h2,
+    & h3 {
+        color: white;
+        font-weight: 400;
+        -webkit-text-stroke: 1.5px black;
+    }
+
+    & h2 {
+        -webkit-text-stroke: 1.3px black;
+    }
+
+    & h3 {
+        -webkit-text-stroke: 1.2px black;
+    }
 }

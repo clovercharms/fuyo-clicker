@@ -140,7 +140,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                             currency={Currency.COINS}
                         />
                     </h2>
-                    <h2>{data[active.type][active.id].description}</h2>
+                    <h3>{data[active.type][active.id].description}</h3>
                 </Tooltip>
             )}
         </div>

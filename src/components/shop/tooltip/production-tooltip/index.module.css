@@ -1,0 +1,11 @@
+hr {
+    border: 1.5px solid #333;
+    margin: 1rem -1rem;
+    margin-top: 0.5rem;
+}
+
+.stats {
+    background-color: rgb(255 255 255 / 0.25);
+    margin: -1rem -1rem -1rem -1rem;
+    padding: 0.25rem 1rem 0.5rem 1rem;
+}

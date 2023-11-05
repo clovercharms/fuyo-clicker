@@ -1,4 +1,4 @@
-import { Button } from "@/components/button";
+import { Button, Variant } from "@/components/button";
 import Price from "@/components/price";
 import { Currency } from "@/components/shop/item/data";
 import { useAudio } from "@/context/audio";
@@ -22,7 +22,11 @@ export function Upgrade() {
 
     return (
         <div className={classes.upgrade}>
-            <Button onClick={handleUpgrade} disabled={upgradeCost > coins}>
+            <Button
+                variant={Variant.THIN}
+                onClick={handleUpgrade}
+                disabled={upgradeCost > coins}
+            >
                 <h3>
                     Upgrade -{" "}
                     <Price amount={upgradeCost} currency={Currency.COINS} />

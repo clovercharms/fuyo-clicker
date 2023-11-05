@@ -37,6 +37,7 @@ export default function FuyoClicker() {
                         <Divider />
                         <div>
                             <News />
+                            <Divider orientation={Orientation.HORIZONTAL} />
                             <Lanes />
                         </div>
                         <Divider />

@@ -19,7 +19,6 @@ export default function Lanes(props: HTMLProps<HTMLDivElement>) {
             ref={elementRef}
             className={cx(classes.lanes, props.className)}
         >
-            <Divider orientation={Orientation.HORIZONTAL} />
             {size.width + size.height !== 0 &&
                 Object.entries(lanes)
                     .filter(([, lane]) => lane.buildings > 0)

@@ -2,12 +2,12 @@
     background-size: contain;
 
     &.vertical {
-        width: 1rem;
+        min-width: 1rem;
         background-image: url("@/assets/images/border-vertical.png");
     }
 
     &.horizontal {
-        height: 1rem;
+        min-height: 1rem;
         background-image: url("@/assets/images/border-horizontal.png");
     }
 }

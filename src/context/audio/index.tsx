@@ -104,11 +104,18 @@ export function AudioProvider({ children }: PropsWithChildren) {
 
         const typeSounds = Object.entries(elements.current).filter(
             ([sound]) => SOUNDS[sound as unknown as Sound].type === type
-        );
+        ) as unknown as [Sound, HTMLAudioElement[]][];
 
         const promises: Promise<void>[] = [];
-        for (const [, elements] of typeSounds) {
-            for (const element of elements) {
+        for (const [sound, elems] of typeSounds) {
+            for (const element of elems) {
+                if (!SOUNDS[sound].persistent) {
+                    element.pause();
+                    // Clear references
+                    elements.current[sound] = [];
+                    continue;
+                }
+
                 if (muted) {
                     element.pause();
                 } else {

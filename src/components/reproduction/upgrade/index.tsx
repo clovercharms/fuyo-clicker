@@ -1,11 +1,12 @@
 import { Button, Variant } from "@/components/button";
 import Price from "@/components/price";
-import { Currency } from "@/components/shop/item/data";
+import { Currency } from "@/components/shop/data";
 import { useAudio } from "@/context/audio";
 import { Sound } from "@/context/audio/sounds";
 import { useGameStore } from "@/store";
 import { calculatePrice } from "../data";
 import classes from "./index.module.css";
+import { SMOOCHES } from "..";
 
 export function Upgrade() {
     const audio = useAudio();
@@ -16,8 +17,9 @@ export function Upgrade() {
     const upgradeCost = calculatePrice(tier + 1);
 
     const handleUpgrade = () => {
-        audio.play(Sound.Kaching);
-        upgrade();
+        if (!upgrade()) return;
+        void audio.play(Sound.Kaching);
+        void audio.play(SMOOCHES[Math.floor(Math.random() * SMOOCHES.length)]);
     };
 
     return (

@@ -28,12 +28,15 @@ export default function Coin({ audio }: CoinProps) {
     const handleClick = (e: FederatedPointerEvent) => {
         const amount = click();
 
-        audio.play(Sound.Coin1);
-        if (Math.random() > 0.9) audio.play(Sound.Coin2);
+        void audio.play(Sound.Coin1);
+        if (Math.random() > 0.9) void audio.play(Sound.Coin2);
 
         // Start BGM if not playing already
-        if (!audio.states[Sound.BGM]?.element?.paused) {
-            audio.play(Sound.BGM);
+        if (
+            !audio.elements[Sound.BGM] ||
+            audio.elements[Sound.BGM]?.[0]?.paused
+        ) {
+            void audio.play(Sound.BGM);
         }
 
         setHints(hints => [

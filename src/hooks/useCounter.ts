@@ -2,12 +2,21 @@ import { useCallback, useEffect, useRef } from "react";
 import { formatNumber } from "@/utils/numbers";
 
 /**
- * Optimistic counter for a given value, which updates at a certain rate.
- * @param value The last known value.
- * @param rateMs The rate in which the value changes every millisecond.
- * @param floor Whether or not to floor the computed value.
+ * Properties of the Counter.
  */
-export function useCounter(value: number, rateMs: number, floor?: boolean) {
+export interface CounterProps {
+    /** The last known value. */
+    value: number;
+    /** The rate in which the value changes every millisecond. */
+    rateMs: number;
+    /** Whether or not to floor the computed value. */
+    floor?: boolean;
+}
+
+/**
+ * Optimistic counter for a given value, which updates at a certain rate.
+ */
+export function useCounter({ value, rateMs, floor }: CounterProps) {
     /** Reference to the element to update the value in. */
     const elementRef = useRef<HTMLElement>(null);
     /** The last animation frame requested. */

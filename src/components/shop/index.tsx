@@ -1,7 +1,7 @@
 import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { HTMLProps, useRef, useState } from "react";
-import { Currency, calculatePrice, items } from "./item/data";
+import { Currency, calculatePrice, items } from "./data";
 import Upgrades from "./upgrades";
 import useTooltip from "./tooltip/useTooltip";
 import Item from "./item";
@@ -17,7 +17,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     const shop = useGameStore(state => state.shop);
     const coins = useGameStore(state => state.coins);
     const clovers = useGameStore(state => state.repro.clovers.amount);
-    const { play } = useAudio();
+    const audio = useAudio();
 
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState<number | null>(null);
@@ -28,8 +28,17 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     } = useTooltip();
 
     const handleBuy = (id: number) => {
-        shop.buy(id);
-        play(Sound.Kaching);
+        if (!shop.buy(id)) return;
+
+        void audio.play(Sound.Kaching);
+
+        if (!items[id].sounds?.length) return;
+
+        const randomSound =
+            items[id].sounds![
+                Math.floor(Math.random() * items[id].sounds!.length)
+            ];
+        void audio.play(randomSound, { volume: 1 });
     };
 
     return (

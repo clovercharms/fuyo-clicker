@@ -10,7 +10,11 @@ const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
 
 export default function Header(props: HTMLProps<HTMLHeadingElement>) {
     const coins = useGameStore(state => state.coins);
-    const { counterRef } = useCounter(coins.amount, coins.rateMs, true);
+    const { counterRef } = useCounter({
+        value: coins.amount,
+        rateMs: coins.rateMs,
+        floor: true,
+    });
 
     /**
      * Updates the title to reflect the latest amount of coins accrued.

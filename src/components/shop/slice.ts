@@ -1,6 +1,6 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/store";
-import { calculatePrice, isItemUnlocked, items } from "./item/data";
+import { calculatePrice, isItemUnlocked, items } from "./data";
 import { CLOVERS_PER_BUILDING } from "../lanes/lane/data";
 import { resetters } from "../../resetters";
 import { produce } from "immer";

@@ -1,3 +1,4 @@
+import { Sound } from "@/context/audio/sounds";
 import * as backgrounds from "../../../assets/images/lanes";
 import * as buildings from "../../../assets/images/lanes/buildings";
 import { Job } from "../../clover/data";
@@ -41,6 +42,7 @@ export interface LaneData {
         regular: number[];
         heroes: number[];
     };
+    sounds: Sound[];
 }
 
 /**
@@ -58,6 +60,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Miner1],
     },
     /* [CC] Farm */
     [LaneType.Lumberjacks]: {
@@ -69,6 +72,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Lumberjack1],
     },
     /* [CC] Mine */
     [LaneType.Blacksmiths]: {
@@ -80,6 +84,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Blacksmith1],
     },
     /* [CC] Factory */
     [LaneType.Mechanics]: {
@@ -91,6 +96,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Mechanic1],
     },
     /* [CC] Bank */
     [LaneType.FactoryWorkers]: {
@@ -102,6 +108,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Engineer1],
     },
     /* [CC] Temple */
     [LaneType.Divers]: {
@@ -114,6 +121,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Diver1, Sound.Diver2],
     },
     /* [CC] Wizard Tower */
     [LaneType.Scientists]: {
@@ -125,6 +133,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Scientist1],
     },
     /* [CC] Shipment */
     [LaneType.Investors]: {
@@ -136,6 +145,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Investor1],
     },
     /* [CC] Alchemy Lab */
     [LaneType.Hazmats]: {
@@ -147,6 +157,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Hazmat1],
     },
     /* [CC] Portal */
     [LaneType.Knights]: {
@@ -158,6 +169,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Knight1],
     },
     /* [CC] Time Machine */
     [LaneType.Cultists]: {
@@ -169,6 +181,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Cultist1],
     },
     /* [CC] Antimatter Condenser */
     [LaneType.Wizards]: {
@@ -180,6 +193,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Wizard1],
     },
     /* [CC] Prism */
     [LaneType.Astronauts]: {
@@ -192,6 +206,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Astronaut1],
     },
     /* [CC] Chancemaker */
     [LaneType.Aliens]: {
@@ -204,6 +219,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Alien1],
     },
     /* [CC] Fractal Engine */
     [LaneType.Sketches]: {
@@ -215,6 +231,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Generico1],
     },
     /* [CC] Javascript Console */
     [LaneType.Peak]: {
@@ -226,6 +243,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
+        sounds: [Sound.Peak1],
     },
 };
 

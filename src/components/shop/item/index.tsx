@@ -1,6 +1,6 @@
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { Item as ItemData } from "./data";
+import { Item as ItemData } from "../data";
 import Price from "../../price";
 import { Button, Variant } from "@/components/button";
 

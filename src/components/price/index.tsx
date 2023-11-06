@@ -1,5 +1,5 @@
 import classes from "./index.module.css";
-import { Currency } from "../shop/item/data";
+import { Currency } from "../shop/data";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
 

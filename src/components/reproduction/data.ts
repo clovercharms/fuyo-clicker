@@ -1,4 +1,4 @@
-import { priceBase } from "../shop/item/data";
+import { priceBase } from "../shop/data";
 
 export const CLOVER_RATE_BASE = 1.14;
 export const HERO_CLOVER_RATE_MS = 1 / 120e3;

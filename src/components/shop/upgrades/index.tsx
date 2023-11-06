@@ -10,7 +10,7 @@ import {
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
 import Price from "../../price";
-import { Currency } from "../item/data";
+import { Currency } from "../data";
 import { useAudio } from "@/context/audio";
 import { Sound } from "@/context/audio/sounds";
 import cx from "classix";
@@ -24,7 +24,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const game = useGameStore();
     const upgrades = useGameStore(state => state.upgrades);
     const coins = useGameStore(state => state.coins.amount);
-    const { play } = useAudio();
+    const audio = useAudio();
     const containerRef = useRef<HTMLDivElement>(null);
     const [active, setActive] = useState<{
         id: number;
@@ -64,8 +64,8 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     );
 
     const handleBuy = (type: UpgradeType, id: number) => {
-        const success = upgrades.buy(type, id);
-        if (success) play(Sound.Kaching);
+        if (!upgrades.buy(type, id)) return;
+        void audio.play(Sound.Kaching);
     };
 
     return (

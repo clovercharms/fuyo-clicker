@@ -1,12 +1,8 @@
 import bgm from "@/assets/audio/fuyonade_dreams_ver2.wav";
-import coin1 from "@/assets/audio/Coin_Sound_3.mp3";
-import coin2 from "@/assets/audio/Coin_Sound_1-3.mp3";
+import * as clicker from "@/assets/audio/clicker";
 import kaching from "@/assets/audio/kachingNotReally.wav";
-import smooch1 from "@/assets/audio/Smooch_2.mp3";
-import smooch2 from "@/assets/audio/Smooch_3.mp3";
-import smooch3 from "@/assets/audio/Smooch_4-2.mp3";
-import smooch4 from "@/assets/audio/Smooch_4-4.mp3";
-import smooch5 from "@/assets/audio/Smooch_4.mp3";
+import * as repro from "@/assets/audio/repro";
+import * as lanes from "@/assets/audio/lanes";
 import { AudioInitOptions } from ".";
 
 /**
@@ -16,12 +12,52 @@ export enum Sound {
     BGM,
     Coin1,
     Coin2,
+    FuyonadeFull,
     Kaching,
     Smooch1,
     Smooch2,
     Smooch3,
     Smooch4,
     Smooch5,
+    Smooch6,
+    Alien1,
+    Astronaut1,
+    AutoClicker1,
+    Blacksmith1,
+    Cultist1,
+    Diver1,
+    Diver2,
+    Engineer1,
+    Generico1,
+    Hazmat1,
+    Investor1,
+    Knight1,
+    Lumberjack1,
+    Mechanic1,
+    Miner1,
+    Peak1,
+    Scientist1,
+    Wizard1,
+    Ahh1,
+    Ahh2,
+    Ahh3,
+    Ahh4,
+    Ahh5,
+    Ahh6,
+    Ahh7,
+    Ahh8,
+    Ahh9,
+    Ahh10,
+    Haa1,
+    Weirdchamp,
+}
+
+/**
+ * A type of sound.
+ */
+export enum SoundType {
+    Music,
+    SFX,
 }
 
 /**
@@ -30,6 +66,8 @@ export enum Sound {
 export interface SoundConfig {
     /** The source of the audio file. */
     src: string;
+    /** The type of the sound. */
+    type: SoundType;
     /** Whether or not audio should persist and be controllable. */
     persistent?: boolean;
     /** The options to use when initializing the `HTMLAudioElement` element. */
@@ -42,17 +80,208 @@ export interface SoundConfig {
 export const SOUNDS: Record<Sound, SoundConfig> = {
     [Sound.BGM]: {
         src: bgm,
+        type: SoundType.Music,
         persistent: true,
-        options: {
-            loop: true,
-        },
+        options: { loop: true },
     },
-    [Sound.Coin1]: { src: coin1, options: { volume: 0.25 } },
-    [Sound.Coin2]: { src: coin2, options: { volume: 0.25 } },
-    [Sound.Kaching]: { src: kaching, options: { volume: 0.25 } },
-    [Sound.Smooch1]: { src: smooch1, options: { volume: 0.1 } },
-    [Sound.Smooch2]: { src: smooch2, options: { volume: 0.1 } },
-    [Sound.Smooch3]: { src: smooch3, options: { volume: 0.1 } },
-    [Sound.Smooch4]: { src: smooch4, options: { volume: 0.1 } },
-    [Sound.Smooch5]: { src: smooch5, options: { volume: 0.1 } },
+    [Sound.Coin1]: {
+        src: clicker.coin1,
+        type: SoundType.SFX,
+        options: { volume: 0.25 },
+    },
+    [Sound.Coin2]: {
+        src: clicker.coin2,
+        type: SoundType.SFX,
+        options: { volume: 0.25 },
+    },
+    [Sound.FuyonadeFull]: {
+        src: clicker.fuyonadeFull,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Kaching]: {
+        src: kaching,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch1]: {
+        src: repro.smooch1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch2]: {
+        src: repro.smooch2,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch3]: {
+        src: repro.smooch3,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch4]: {
+        src: repro.smooch4,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch5]: {
+        src: repro.smooch5,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Smooch6]: {
+        src: repro.smooch6,
+        type: SoundType.SFX,
+        options: { volume: 0.6 },
+    },
+    [Sound.Alien1]: {
+        src: lanes.alien1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Astronaut1]: {
+        src: lanes.astronaut1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.AutoClicker1]: {
+        src: lanes.autoClicker1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Blacksmith1]: {
+        src: lanes.blacksmith1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Cultist1]: {
+        src: lanes.cultist1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Diver1]: {
+        src: lanes.diver1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Diver2]: {
+        src: lanes.diver2,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Engineer1]: {
+        src: lanes.engineer1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Generico1]: {
+        src: lanes.generico1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Hazmat1]: {
+        src: lanes.hazmat1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Investor1]: {
+        src: lanes.investor1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Knight1]: {
+        src: lanes.knight1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Lumberjack1]: {
+        src: lanes.lumberjack1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Mechanic1]: {
+        src: lanes.mechanic1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Miner1]: {
+        src: lanes.miner1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Peak1]: {
+        src: lanes.peak1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Scientist1]: {
+        src: lanes.scientist1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Wizard1]: {
+        src: lanes.wizard1,
+        type: SoundType.SFX,
+        options: { volume: 0.2 },
+    },
+    [Sound.Ahh1]: {
+        src: clicker.boosts.fuyonade.ahh1,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh2]: {
+        src: clicker.boosts.fuyonade.ahh2,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh3]: {
+        src: clicker.boosts.fuyonade.ahh3,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh4]: {
+        src: clicker.boosts.fuyonade.ahh4,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh5]: {
+        src: clicker.boosts.fuyonade.ahh5,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh6]: {
+        src: clicker.boosts.fuyonade.ahh6,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh7]: {
+        src: clicker.boosts.fuyonade.ahh7,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh8]: {
+        src: clicker.boosts.fuyonade.ahh8,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh9]: {
+        src: clicker.boosts.fuyonade.ahh9,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Ahh10]: {
+        src: clicker.boosts.fuyonade.ahh10,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Haa1]: {
+        src: clicker.boosts.fuyonade.haa1,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Weirdchamp]: {
+        src: clicker.boosts.fuyonade.weirdchamp,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
 };

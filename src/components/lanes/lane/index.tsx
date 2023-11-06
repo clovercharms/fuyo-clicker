@@ -13,6 +13,8 @@ import {
 import cx from "classix";
 import { useElementSize, useIntersectionObserver } from "usehooks-ts";
 import { CloverType } from "@/components/clover/data";
+import { useSoundEmitter } from "@/hooks/useSoundEmitter";
+import { useAudio } from "@/context/audio";
 
 // Size constants
 const BUILDING_SIZE_PX = 64;
@@ -44,6 +46,14 @@ export default function Lane({ type, lane, size, ...props }: LaneProps) {
     const sizing = useDynamicSizes(size);
     const ref = useRef<HTMLDivElement | null>(null);
     const intersection = useIntersectionObserver(ref, {});
+    const audio = useAudio();
+
+    const audioRatio = Math.min((lane.buildings - 1) / 10, 1);
+    useSoundEmitter({
+        sounds: data[type].sounds,
+        intervalRangeMs: [5e3 - audioRatio * 4e3, 20e3 - audioRatio * 10e3],
+        enabled: intersection?.isIntersecting ?? false,
+    });
 
     const { isOver, setNodeRef } = useDroppable({
         id: `${type}-lane`,
@@ -60,6 +70,12 @@ export default function Lane({ type, lane, size, ...props }: LaneProps) {
             if (eventData.job !== data[type].job) return;
 
             lanes.assign(eventData.id as number, type);
+            void audio.play(
+                data[type].sounds[
+                    Math.floor(Math.random() * data[type].sounds.length)
+                ],
+                { volume: 1 }
+            );
         },
     });
 

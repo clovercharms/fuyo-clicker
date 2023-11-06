@@ -1,5 +1,6 @@
-import { LaneType } from "../../lanes/lane/data";
-import { Item as ItemSlice } from "../slice";
+import { Sound } from "@/context/audio/sounds";
+import { LaneType } from "../lanes/lane/data";
+import { Item as ItemSlice } from "./slice";
 import hand from "@/assets/images/hand.png";
 import * as icons from "@/assets/images/shop/items/icons";
 
@@ -19,6 +20,7 @@ export interface Item {
     };
     laneType?: LaneType;
     thumbnail: string;
+    sounds?: Sound[];
 }
 
 /**
@@ -32,6 +34,7 @@ export const items: Record<number, Item> = {
             currency: Currency.COINS,
         },
         thumbnail: hand,
+        sounds: [Sound.AutoClicker1],
     },
     /* [CC] Grandma */
     1: {
@@ -42,6 +45,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Miners,
         thumbnail: icons.mine,
+        sounds: [Sound.Miner1],
     },
     /* [CC] Farm */
     2: {
@@ -52,6 +56,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Lumberjacks,
         thumbnail: icons.wip,
+        sounds: [Sound.Lumberjack1],
     },
     /* [CC] Mine */
     3: {
@@ -62,6 +67,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Blacksmiths,
         thumbnail: icons.forge,
+        sounds: [Sound.Blacksmith1],
     },
     /* [CC] Factory */
     4: {
@@ -72,6 +78,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Mechanics,
         thumbnail: icons.repairShop,
+        sounds: [Sound.Mechanic1],
     },
     /* [CC] Bank */
     5: {
@@ -82,6 +89,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.FactoryWorkers,
         thumbnail: icons.constructionSite,
+        sounds: [Sound.Engineer1],
     },
     /* [CC] Temple */
     6: {
@@ -92,6 +100,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Divers,
         thumbnail: icons.sub,
+        sounds: [Sound.Diver1, Sound.Diver2],
     },
     /* [CC] Wizard Tower */
     7: {
@@ -102,6 +111,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Scientists,
         thumbnail: icons.lab,
+        sounds: [Sound.Scientist1],
     },
     /* [CC] Shipment */
     8: {
@@ -112,6 +122,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Investors,
         thumbnail: icons.bank,
+        sounds: [Sound.Investor1],
     },
     /* [CC] Alchemy Lab */
     9: {
@@ -122,6 +133,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Hazmats,
         thumbnail: icons.hazmat,
+        sounds: [Sound.Hazmat1],
     },
     /* [CC] Portal */
     10: {
@@ -132,6 +144,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Knights,
         thumbnail: icons.wip,
+        sounds: [Sound.Knight1],
     },
     /* [CC] Time Machine */
     11: {
@@ -142,6 +155,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Cultists,
         thumbnail: icons.altar,
+        sounds: [Sound.Cultist1],
     },
     /* [CC] Antimatter Condenser */
     12: {
@@ -152,6 +166,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Wizards,
         thumbnail: icons.wip,
+        sounds: [Sound.Wizard1],
     },
     /* [CC] Prism */
     13: {
@@ -162,6 +177,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Astronauts,
         thumbnail: icons.rocket,
+        sounds: [Sound.Astronaut1],
     },
     /* [CC] Chancemaker */
     14: {
@@ -172,6 +188,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Aliens,
         thumbnail: icons.ufo,
+        sounds: [Sound.Alien1],
     },
     /* [CC] Fractal Engine */
     15: {
@@ -182,6 +199,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Sketches,
         thumbnail: icons.sketch,
+        sounds: [Sound.Generico1],
     },
     /* [CC] Javascript Console */
     16: {
@@ -192,6 +210,7 @@ export const items: Record<number, Item> = {
         },
         laneType: LaneType.Peak,
         thumbnail: icons.wip,
+        sounds: [Sound.Peak1],
     },
 };
 

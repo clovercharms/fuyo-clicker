@@ -2,16 +2,15 @@ import cx from "classix";
 import { useGameStore } from "@/store";
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { useAudio } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
+import { SoundType } from "@/context/audio/sounds";
 import { Button } from "../button";
+import { AudioToggle } from "./audio-toggle";
 
 /**
  * Newsreel that displays news based on current or random events.
  */
 export default function News(props: HTMLProps<HTMLDivElement>) {
     const reset = useGameStore(state => state.reset);
-    const audio = useAudio();
 
     return (
         <div {...props} className={cx(classes.news, props.className)}>
@@ -25,16 +24,8 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
                 >
                     Reset all progress
                 </Button>
-                <Button
-                    onClick={() => {
-                        audio.setMuted(
-                            Sound.BGM,
-                            !audio.states[Sound.BGM]?.muted
-                        );
-                    }}
-                >
-                    {!audio.states[Sound.BGM]?.muted ? "Mute" : "Unmute"} BGM
-                </Button>
+                <AudioToggle type={SoundType.Music} label="Music" />
+                <AudioToggle type={SoundType.SFX} label="SFX" />
             </div>
         </div>
     );

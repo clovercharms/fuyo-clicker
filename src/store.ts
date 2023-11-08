@@ -14,6 +14,7 @@ import {
     createBoostsSlice,
 } from "./components/clicker/boosts/slice";
 import { resetters } from "./resetters";
+import { SpeciesSlice, createSpeciesSlice } from "./components/species/slice";
 
 /** Combination of all different slices from different aspects of the game. */
 export type GameState = CoinsSlice &
@@ -21,7 +22,8 @@ export type GameState = CoinsSlice &
     UpgradesSlice &
     ShopSlice &
     ReproSlice &
-    LanesSlice & {
+    LanesSlice &
+    SpeciesSlice & {
         tick: () => void;
         reset: () => void;
     };
@@ -42,10 +44,12 @@ export const useGameStore = create<GameState>()(
                 ...createShopSlice(set, get),
                 ...createReproSlice(set, get),
                 ...createLanesSlice(set, get),
+                ...createSpeciesSlice(set, get),
                 tick: () => {
                     createCoinsSlice(set, get).coins.tick();
                     createBoostsSlice(set, get).boosts.tick();
                     createReproSlice(set, get).repro.tick();
+                    createSpeciesSlice(set, get).species.tick();
                 },
                 reset: () =>
                     set(

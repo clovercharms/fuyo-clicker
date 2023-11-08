@@ -9,6 +9,7 @@ import { DndContext } from "@dnd-kit/core";
 import Clicker from "./components/clicker";
 import { AudioProvider } from "./context/audio";
 import { Divider, Orientation } from "./components/divider";
+import { Species } from "./components/species";
 
 /** Determines the frequency of updates of the game state. */
 const TICK_MS = 1000;
@@ -49,6 +50,7 @@ export default function FuyoClicker() {
                     </div>
                 </DndContext>
             </div>
+            <Species />
         </AudioProvider>
     );
 }

@@ -3,6 +3,7 @@ import * as clicker from "@/assets/audio/clicker";
 import kaching from "@/assets/audio/kachingNotReally.wav";
 import * as repro from "@/assets/audio/repro";
 import * as lanes from "@/assets/audio/lanes";
+import * as species from "@/assets/audio/species";
 import { AudioInitOptions } from ".";
 
 /**
@@ -50,6 +51,14 @@ export enum Sound {
     Ahh10,
     Haa1,
     Weirdchamp,
+    Scream1,
+    Scream2,
+    Scream3,
+    Scream4,
+    Scream5,
+    Scream6,
+    Scream7,
+    Scream8,
 }
 
 /**
@@ -281,6 +290,46 @@ export const SOUNDS: Record<Sound, SoundConfig> = {
     },
     [Sound.Weirdchamp]: {
         src: clicker.boosts.fuyonade.weirdchamp,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream1]: {
+        src: species.scream1,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream2]: {
+        src: species.scream2,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream3]: {
+        src: species.scream3,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream4]: {
+        src: species.scream4,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream5]: {
+        src: species.scream5,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream6]: {
+        src: species.scream6,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream7]: {
+        src: species.scream7,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Scream8]: {
+        src: species.scream8,
         type: SoundType.SFX,
         options: { volume: 1 },
     },

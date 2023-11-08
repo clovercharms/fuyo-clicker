@@ -9,7 +9,7 @@
 
 .species {
     position: absolute;
-    inset: 0;
+    overflow: visible;
     pointer-events: none;
 
     & > .specimen {

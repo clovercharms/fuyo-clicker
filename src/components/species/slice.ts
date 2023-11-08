@@ -88,8 +88,8 @@ export const createSpeciesSlice = (
     };
 };
 
-const T_MIN_SEC = 300;
-const T_MAX_SEC = 900;
+const T_MIN_SEC = 150;
+const T_MAX_SEC = 450;
 
 function shouldSpawn(timeSec: number) {
     // https://cookieclicker.fandom.com/wiki/Golden_Cookie#Spawn_Time
@@ -99,10 +99,10 @@ function shouldSpawn(timeSec: number) {
     return Math.random() < probability;
 }
 
-// 15% Of collected coins.
-const BONUS_PERCENTAGE_COINS = 0.15;
-// 15 Minutes production.
-const BONUS_PRODUCTION_TIME = 15 * 60e3;
+// 30% Of collected coins.
+const BONUS_PERCENTAGE_COINS = 0.3;
+// 7.5 Minutes production.
+const BONUS_PRODUCTION_TIME = 7.5 * 60e3;
 
 function determineBonus(coins: number, rateMs: number) {
     const percentage = BONUS_PERCENTAGE_COINS * coins;

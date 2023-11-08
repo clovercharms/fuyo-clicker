@@ -1,7 +1,7 @@
 import classes from "./index.module.css";
 import { HTMLProps, useEffect } from "react";
 import { useCounter } from "@/hooks/useCounter";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
 import { Button } from "@/components/button";

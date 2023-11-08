@@ -1,20 +1,26 @@
 import { create } from "zustand";
-import { CoinsSlice, createCoinsSlice } from "./components/clicker/slice";
-import { ShopSlice, createShopSlice } from "./components/shop/slice";
+import { CoinsSlice, createCoinsSlice } from "../../components/clicker/slice";
+import { ShopSlice, createShopSlice } from "../../components/shop/slice";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import { ReproSlice, createReproSlice } from "./components/reproduction/slice";
-import { all as merge } from "deepmerge";
-import { LanesSlice, createLanesSlice } from "./components/lanes/slice";
+import {
+    ReproSlice,
+    createReproSlice,
+} from "../../components/reproduction/slice";
+import { LanesSlice, createLanesSlice } from "../../components/lanes/slice";
 import {
     UpgradesSlice,
     createUpgradesSlice,
-} from "./components/shop/upgrades/slice";
+} from "../../components/shop/upgrades/slice";
 import {
     BoostsSlice,
     createBoostsSlice,
-} from "./components/clicker/boosts/slice";
+} from "../../components/clicker/boosts/slice";
 import { resetters } from "./resetters";
-import { SpeciesSlice, createSpeciesSlice } from "./components/species/slice";
+import {
+    SpeciesSlice,
+    createSpeciesSlice,
+} from "../../components/species/slice";
+import { mergePersisted } from "..";
 
 /** Combination of all different slices from different aspects of the game. */
 export type GameState = CoinsSlice &
@@ -68,11 +74,7 @@ export const useGameStore = create<GameState>()(
                 name: STORE_NAME,
                 version: 2,
                 storage: createJSONStorage(() => localStorage),
-                merge: (persisted, current) =>
-                    merge([current, persisted as Partial<GameState>], {
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                        arrayMerge: (_, src) => src,
-                    }) as GameState,
+                merge: mergePersisted<GameState>(),
             }
         )
     )

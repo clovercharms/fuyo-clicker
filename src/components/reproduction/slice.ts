@@ -1,5 +1,5 @@
 import { StoreApi } from "zustand";
-import { GameState } from "@/store";
+import { GameState } from "@/stores/game";
 import { CloverType, Job } from "../clover/data";
 import {
     CLOVER_RATE_BASE,
@@ -8,7 +8,7 @@ import {
     upgrades,
 } from "./data";
 import { LaneType, lanes } from "../lanes/lane/data";
-import { resetters } from "../../resetters";
+import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
 
 /**

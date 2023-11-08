@@ -1,8 +1,8 @@
 import { StoreApi } from "zustand";
-import { GameState } from "@/store";
+import { GameState } from "@/stores/game";
 import { calculatePrice, isItemUnlocked, items } from "./data";
 import { CLOVERS_PER_BUILDING } from "../lanes/lane/data";
-import { resetters } from "../../resetters";
+import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
 import { CloverType } from "../clover/data";
 

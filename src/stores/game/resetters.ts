@@ -1,3 +1,3 @@
-import { GameState } from "./store";
+import { GameState } from ".";
 
 export const resetters: (() => Partial<GameState>)[] = [];

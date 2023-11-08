@@ -1,7 +1,7 @@
 import { Container, Sprite } from "@pixi/react-animated";
 import { Sprite as ISprite } from "pixi.js";
 import { easings, useSpring } from "react-spring";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import hand from "@/assets/images/hand.png";
 import { useRef } from "react";
 import { useTick } from "@pixi/react";

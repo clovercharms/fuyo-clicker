@@ -1,7 +1,7 @@
 import { StoreApi } from "zustand";
-import { GameState } from "@/store";
+import { GameState } from "@/stores/game";
 import { LaneType } from "./lane/data";
-import { resetters } from "../../resetters";
+import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
 import { CloverType } from "../clover/data";
 

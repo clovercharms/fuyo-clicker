@@ -1,8 +1,8 @@
 import cx from "classix";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { SoundType } from "@/context/audio/sounds";
+import { SoundType } from "@/utils/audio/sounds";
 import { Button } from "../button";
 import { AudioToggle } from "./audio-toggle";
 

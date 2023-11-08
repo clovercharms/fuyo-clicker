@@ -1,11 +1,11 @@
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import { useEffect, useState } from "react";
 import classes from "./index.module.css";
 import { useTransition } from "react-transition-state";
 import cx from "classix";
 import * as speciesImages from "@/assets/images/species";
-import { Sound } from "@/context/audio/sounds";
-import { useAudio } from "@/context/audio";
+import { Sound } from "@/utils/audio/sounds";
+import { useSettingsStore } from "@/stores/settings";
 
 const SPECIES = [
     speciesImages.boobfa,
@@ -43,7 +43,7 @@ export function Species() {
         timeout: 1e3,
         preEnter: true,
     });
-    const audio = useAudio();
+    const play = useSettingsStore(settings => settings.audio.play);
 
     useEffect(() => {
         // Only run when spawn queued and active element exited.
@@ -69,7 +69,7 @@ export function Species() {
         // Only activate if entered and not any other state (e.g. `exiting`.)
         if (transitionState.status !== "entered") return;
         species.activate();
-        void audio.play(SCREAMS[Math.floor(Math.random() * SCREAMS.length)]);
+        void play(SCREAMS[Math.floor(Math.random() * SCREAMS.length)]);
         toggle(false);
     };
 

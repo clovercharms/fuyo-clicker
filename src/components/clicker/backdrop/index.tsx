@@ -4,7 +4,7 @@ import cloverImage from "@/assets/images/clover/base/regular/regular.png";
 import { useMemo, useRef, useState } from "react";
 import { Sprite as ISprite } from "pixi.js";
 import { easings } from "react-spring";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import { ParticleType, Particles } from "./particles";
 import { useElementSize } from "usehooks-ts";
 

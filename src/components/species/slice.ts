@@ -1,6 +1,6 @@
 import { StoreApi } from "zustand";
-import { GameState } from "@/store";
-import { resetters } from "../../resetters";
+import { GameState } from "@/stores/game";
+import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
 
 /**

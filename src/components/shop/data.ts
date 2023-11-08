@@ -1,4 +1,4 @@
-import { Sound } from "@/context/audio/sounds";
+import { Sound } from "@/utils/audio/sounds";
 import { LaneType } from "../lanes/lane/data";
 import { Item as ItemSlice } from "./slice";
 import hand from "@/assets/images/hand.png";

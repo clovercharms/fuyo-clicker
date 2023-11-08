@@ -4,10 +4,9 @@ import Lanes from "./components/lanes";
 import News from "./components/news";
 import Reproduction from "./components/reproduction";
 import Shop from "./components/shop";
-import { useGameStore } from "./store";
+import { useGameStore } from "./stores/game";
 import { DndContext } from "@dnd-kit/core";
 import Clicker from "./components/clicker";
-import { AudioProvider } from "./context/audio";
 import { Divider, Orientation } from "./components/divider";
 import { Species } from "./components/species";
 
@@ -30,27 +29,25 @@ export default function FuyoClicker() {
     }, []);
 
     return (
-        <AudioProvider>
-            <div className={classes["fuyo-clicker"]}>
-                <Clicker className={classes.left} />
-                <DndContext>
-                    <div className={classes.middle}>
-                        <Divider />
-                        <div>
-                            <News />
-                            <Divider orientation={Orientation.HORIZONTAL} />
-                            <Lanes />
-                        </div>
-                        <Divider />
-                    </div>
-                    <div className={classes.right}>
-                        <Reproduction />
+        <div className={classes["fuyo-clicker"]}>
+            <Clicker className={classes.left} />
+            <DndContext>
+                <div className={classes.middle}>
+                    <Divider />
+                    <div>
+                        <News />
                         <Divider orientation={Orientation.HORIZONTAL} />
-                        <Shop />
+                        <Lanes />
                     </div>
-                </DndContext>
-            </div>
+                    <Divider />
+                </div>
+                <div className={classes.right}>
+                    <Reproduction />
+                    <Divider orientation={Orientation.HORIZONTAL} />
+                    <Shop />
+                </div>
+            </DndContext>
             <Species />
-        </AudioProvider>
+        </div>
     );
 }

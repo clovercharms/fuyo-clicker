@@ -1,15 +1,15 @@
 import { Button, Variant } from "@/components/button";
 import Price from "@/components/price";
 import { Currency } from "@/components/shop/data";
-import { useAudio } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
-import { useGameStore } from "@/store";
+import { Sound } from "@/utils/audio/sounds";
+import { useGameStore } from "@/stores/game";
 import { calculatePrice } from "../data";
 import classes from "./index.module.css";
 import { SMOOCHES } from "..";
+import { useSettingsStore } from "@/stores/settings";
 
 export function Upgrade() {
-    const audio = useAudio();
+    const play = useSettingsStore(settings => settings.audio.play);
     const tier = useGameStore(state => state.repro.clovers.tier);
     const coins = useGameStore(state => state.coins.amount);
     const upgrade = useGameStore(state => state.repro.upgrade);
@@ -18,8 +18,8 @@ export function Upgrade() {
 
     const handleUpgrade = () => {
         if (!upgrade()) return;
-        void audio.play(Sound.Kaching);
-        void audio.play(SMOOCHES[Math.floor(Math.random() * SMOOCHES.length)]);
+        void play(Sound.Kaching);
+        void play(SMOOCHES[Math.floor(Math.random() * SMOOCHES.length)]);
     };
 
     return (

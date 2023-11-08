@@ -1,4 +1,4 @@
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
 import itemFrames from "@/assets/images/shop/upgrades/item-frames";
 import { HTMLProps, useMemo, useRef, useState } from "react";
@@ -11,9 +11,9 @@ import {
 } from "pure-rand";
 import Price from "../../price";
 import { Currency } from "../data";
-import { useAudio } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
+import { Sound } from "@/utils/audio/sounds";
 import cx from "classix";
+import { useSettingsStore } from "@/stores/settings";
 
 const RNG_SEED = 15;
 
@@ -24,7 +24,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const game = useGameStore();
     const upgrades = useGameStore(state => state.upgrades);
     const coins = useGameStore(state => state.coins.amount);
-    const audio = useAudio();
+    const play = useSettingsStore(settings => settings.audio.play);
     const containerRef = useRef<HTMLDivElement>(null);
     const [active, setActive] = useState<{
         id: number;
@@ -65,7 +65,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
 
     const handleBuy = (type: UpgradeType, id: number) => {
         if (!upgrades.buy(type, id)) return;
-        void audio.play(Sound.Kaching);
+        void play(Sound.Kaching);
     };
 
     return (

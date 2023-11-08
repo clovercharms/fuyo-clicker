@@ -1,4 +1,4 @@
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
 import kiss from "@/assets/images/clover/base/regular/kiss.png";
 

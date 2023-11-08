@@ -1,7 +1,7 @@
 import classes from "./index.module.css";
 import { Fragment, HTMLProps } from "react";
 import Lane from "./lane";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import cx from "classix";
 import { useElementSize } from "usehooks-ts";
 import { Divider, Orientation } from "../divider";

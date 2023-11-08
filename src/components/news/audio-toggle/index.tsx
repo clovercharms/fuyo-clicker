@@ -1,6 +1,6 @@
 import { Button } from "@/components/button";
-import { useAudio } from "@/context/audio";
-import { SoundType } from "@/context/audio/sounds";
+import { useSettingsStore } from "@/stores/settings";
+import { SoundType } from "@/utils/audio/sounds";
 
 export interface AudioToggleProps {
     type: SoundType;
@@ -8,7 +8,7 @@ export interface AudioToggleProps {
 }
 
 export function AudioToggle({ type, label }: AudioToggleProps) {
-    const audio = useAudio();
+    const audio = useSettingsStore(settings => settings.audio);
 
     return (
         <Button

@@ -1,4 +1,4 @@
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import HeroClover from "@/components/clover/hero";
 import { useDndMonitor, DragOverlay } from "@dnd-kit/core";
 import { useState } from "react";

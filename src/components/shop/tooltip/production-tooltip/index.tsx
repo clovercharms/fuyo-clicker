@@ -10,7 +10,7 @@ import { formatNumber } from "@/utils/numbers";
 import { Currency, items } from "../../data";
 import { lanes as lanesData } from "@/components/lanes/lane/data";
 import Tooltip, { TooltipProps } from "..";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import { memo } from "react";
 import classes from "./index.module.css";
 import Price from "@/components/price";

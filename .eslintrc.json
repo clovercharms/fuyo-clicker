@@ -38,7 +38,7 @@
                     ["@/context", "./src/context"],
                     ["@/hooks", "./src/hooks"],
                     ["@/utils", "./src/utils"],
-                    ["@/store", "./src/store"]
+                    ["@/stores", "./src/stores"]
                 ],
                 "extensions": [".ts", ".tsx"]
             }

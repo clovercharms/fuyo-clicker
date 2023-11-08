@@ -1,13 +1,14 @@
 import { Container, Sprite } from "@pixi/react-animated";
 import coin from "@/assets/images/fuyo-coin.png";
 import { useSpring } from "react-spring";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import { useRef, useState } from "react";
 import { HINT_DURATION, Hint, HintProps } from "./hint";
 import { FederatedPointerEvent } from "pixi.js";
 import { useApp } from "@pixi/react";
-import { AudioContext } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
+import { Sound } from "@/utils/audio/sounds";
+import { elements } from "@/utils/audio";
+import { useSettingsStore } from "@/stores/settings";
 
 const COIN_SIZE = 300;
 
@@ -15,7 +16,8 @@ export interface CoinProps {
     audio: AudioContext;
 }
 
-export default function Coin({ audio }: CoinProps) {
+export default function Coin() {
+    const play = useSettingsStore(settings => settings.audio.play);
     const click = useGameStore(state => state.coins.click);
     const [spring, set] = useSpring(() => ({
         width: COIN_SIZE,
@@ -28,15 +30,12 @@ export default function Coin({ audio }: CoinProps) {
     const handleClick = (e: FederatedPointerEvent) => {
         const amount = click();
 
-        void audio.play(Sound.Coin1);
-        if (Math.random() > 0.9) void audio.play(Sound.Coin2);
+        void play(Sound.Coin1);
+        if (Math.random() > 0.9) void play(Sound.Coin2);
 
         // Start BGM if not playing already
-        if (
-            !audio.elements[Sound.BGM] ||
-            audio.elements[Sound.BGM]?.[0]?.paused
-        ) {
-            void audio.play(Sound.BGM);
+        if (!elements[Sound.BGM] || elements[Sound.BGM]?.[0]?.paused) {
+            void play(Sound.BGM);
         }
 
         setHints(hints => [

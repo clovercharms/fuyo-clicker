@@ -1,4 +1,4 @@
-import { GameState } from "@/store";
+import { GameState } from "@/stores/game";
 import icons from "@/assets/images/shop/upgrades/icons";
 import wip from "@/assets/images/shop/upgrades/icons/wip.png";
 import { LaneType } from "../../lanes/lane/data";

@@ -1,10 +1,10 @@
 import cx from "classix";
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
 import { BoostType } from "./data";
 import { useEffect, useRef } from "react";
-import { useAudio } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
+import { Sound } from "@/utils/audio/sounds";
+import { useSettingsStore } from "@/stores/settings";
 
 /**
  * Sound effects to play when activating the boost.
@@ -30,7 +30,7 @@ export default function Fuyonade() {
     );
     const activate = useGameStore(state => state.boosts.activate);
     const filled = useRef<boolean>(false);
-    const audio = useAudio();
+    const play = useSettingsStore(settings => settings.audio.play);
 
     /**
      * Track when filled and play a sound effect.
@@ -44,16 +44,16 @@ export default function Fuyonade() {
         }
         if (fuyonade.progress < 1) return;
 
-        void audio.play(Sound.FuyonadeFull);
+        void play(Sound.FuyonadeFull);
         filled.current = true;
-    }, [audio, fuyonade.progress, fuyonade.active]);
+    }, [play, fuyonade.progress, fuyonade.active]);
 
     /**
      * Activates the boost.
      */
     const handleActivate = () => {
         activate(BoostType.FUYONADE);
-        void audio.play(
+        void play(
             ACTIVATION_SOUNDS[
                 Math.floor(Math.random() * ACTIVATION_SOUNDS.length)
             ]

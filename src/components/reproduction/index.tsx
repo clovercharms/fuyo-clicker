@@ -1,16 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useGameStore } from "@/store";
+import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
-import { useAudio } from "@/context/audio";
-import { Sound } from "@/context/audio/sounds";
+import { Sound } from "@/utils/audio/sounds";
 import { Partners } from "./partners";
 import { Hero } from "./hero";
 import { Upgrade } from "./upgrade";
 import { useSoundEmitter } from "@/hooks/useSoundEmitter";
+import { useSettingsStore } from "@/stores/settings";
 
 export const SMOOCHES = [
     Sound.Smooch1,
@@ -33,7 +33,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
         rateMs,
         floor: true,
     });
-    const audio = useAudio();
+    const play = useSettingsStore(settings => settings.audio.play);
 
     const audioRatio = Math.min(rateMs / 1, 1);
     useSoundEmitter({
@@ -43,7 +43,7 @@ export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
     });
 
     const handleClick = () => {
-        void audio.play(SMOOCHES[Math.floor(Math.random() * SMOOCHES.length)]);
+        void play(SMOOCHES[Math.floor(Math.random() * SMOOCHES.length)]);
         click();
     };
 

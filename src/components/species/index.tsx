@@ -27,7 +27,7 @@ const SCREAMS = [
     Sound.Scream8,
 ];
 
-const DISAPPEAR_TIME_MS = 60e3;
+const DISAPPEAR_TIME_MS = 120e3;
 const SPECIES_SIZE_PX = 160;
 
 interface Position {

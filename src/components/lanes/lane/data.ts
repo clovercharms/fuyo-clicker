@@ -174,7 +174,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Time Machine */
     [LaneType.Cultists]: {
         job: Job.Cultist,
-        background: backgrounds.wip,
+        background: backgrounds.dungeon,
         building: buildings.altar,
         rateMs: 2.33e10 / 1e3,
         clovers: {

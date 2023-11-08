@@ -12,6 +12,7 @@ import voidd from "./void.png";
 import plainsday from "./plainsday.png";
 import plainseve from "./plainseve.png";
 import plainsnight from "./plainsnight.png";
+import dungeon from "./dungeon.png";
 import wip from "./wip.png";
 import wip2 from "./wip2.png";
 
@@ -30,6 +31,7 @@ export {
     plainsday,
     plainseve,
     plainsnight,
+    dungeon,
     wip,
     wip2,
 };

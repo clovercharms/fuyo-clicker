@@ -99,8 +99,8 @@ function shouldSpawn(timeSec: number) {
     return Math.random() < probability;
 }
 
-// 30% Of collected coins.
-const BONUS_PERCENTAGE_COINS = 0.3;
+// 75% Of collected coins.
+const BONUS_PERCENTAGE_COINS = 0.75;
 // 7.5 Minutes production.
 const BONUS_PRODUCTION_TIME = 7.5 * 60e3;
 

@@ -121,7 +121,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
-        sounds: [Sound.Diver1, Sound.Diver2],
+        sounds: [Sound.Diver1],
     },
     /* [CC] Wizard Tower */
     [LaneType.Scientists]: {

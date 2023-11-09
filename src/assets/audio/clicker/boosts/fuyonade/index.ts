@@ -10,6 +10,11 @@ import ahh9 from "./fuyo_ahn_7.mp3";
 import ahh10 from "./fuyo_ahn_8.mp3";
 import haa1 from "./fuyo_haa_1.mp3";
 import weirdchamp from "./fuyo_weirdchamp_1.mp3";
+import gulp from "./gulp.mp3";
+import slurp1 from "./slurp_1.mp3";
+import slurp2 from "./slurp_2.mp3";
+import slurp3 from "./slurp_3.mp3";
+import thirstQuenched from "./thirst_quenched.mp3";
 
 export {
     ahh1,
@@ -24,4 +29,9 @@ export {
     ahh10,
     haa1,
     weirdchamp,
+    gulp,
+    slurp1,
+    slurp2,
+    slurp3,
+    thirstQuenched,
 };

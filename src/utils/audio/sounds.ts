@@ -59,6 +59,11 @@ export enum Sound {
     Scream6,
     Scream7,
     Scream8,
+    Gulp,
+    Slurp1,
+    Slurp2,
+    Slurp3,
+    ThirstQuenched,
 }
 
 /**
@@ -330,6 +335,31 @@ export const SOUNDS: Record<Sound, SoundConfig> = {
     },
     [Sound.Scream8]: {
         src: species.scream8,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Gulp]: {
+        src: clicker.boosts.fuyonade.gulp,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Slurp1]: {
+        src: clicker.boosts.fuyonade.slurp1,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Slurp2]: {
+        src: clicker.boosts.fuyonade.slurp2,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.Slurp3]: {
+        src: clicker.boosts.fuyonade.slurp3,
+        type: SoundType.SFX,
+        options: { volume: 1 },
+    },
+    [Sound.ThirstQuenched]: {
+        src: clicker.boosts.fuyonade.thirstQuenched,
         type: SoundType.SFX,
         options: { volume: 1 },
     },

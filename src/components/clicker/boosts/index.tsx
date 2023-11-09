@@ -5,6 +5,7 @@ import { BoostType } from "./data";
 import { useEffect, useRef } from "react";
 import { Sound } from "@/utils/audio/sounds";
 import { useSettingsStore } from "@/stores/settings";
+import { useSoundEmitter } from "@/hooks/useSoundEmitter";
 
 /**
  * Sound effects to play when activating the boost.
@@ -24,16 +25,32 @@ const ACTIVATION_SOUNDS = [
     Sound.Weirdchamp,
 ];
 
+const ACTIVATED_SOUNDS = [
+    Sound.Gulp,
+    Sound.Slurp1,
+    Sound.Slurp2,
+    Sound.Slurp3,
+    Sound.Slurp3,
+    Sound.Slurp3,
+];
+
 export default function Fuyonade() {
     const fuyonade = useGameStore(
         state => state.boosts.types[BoostType.FUYONADE]
     );
     const activate = useGameStore(state => state.boosts.activate);
-    const filled = useRef<boolean>(false);
     const play = useSettingsStore(settings => settings.audio.play);
+    useSoundEmitter({
+        sounds: ACTIVATED_SOUNDS,
+        intervalRangeMs: [25e2, 5e3],
+        enabled: fuyonade.active,
+    });
+
+    const filled = useRef<boolean>(false);
+    const empty = useRef<boolean>(false);
 
     /**
-     * Track when filled and play a sound effect.
+     * Track filling and emptying to play a sound effect.
      */
     useEffect(() => {
         if (filled.current) {
@@ -42,10 +59,18 @@ export default function Fuyonade() {
             }
             return;
         }
-        if (fuyonade.progress < 1) return;
-
-        void play(Sound.FuyonadeFull);
-        filled.current = true;
+        if (empty.current) {
+            if (!fuyonade.active && fuyonade.progress > 0) {
+                empty.current = false;
+            }
+        }
+        if (fuyonade.progress >= 1) {
+            void play(Sound.FuyonadeFull);
+            filled.current = true;
+        } else if (fuyonade.progress <= 0) {
+            void play(Sound.ThirstQuenched);
+            empty.current = true;
+        }
     }, [play, fuyonade.progress, fuyonade.active]);
 
     /**

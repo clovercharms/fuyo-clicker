@@ -13,6 +13,7 @@ import plainsday from "./plainsday.png";
 import plainseve from "./plainseve.png";
 import plainsnight from "./plainsnight.png";
 import dungeon from "./dungeon.png";
+import city from "./city.png";
 import wip from "./wip.png";
 import wip2 from "./wip2.png";
 
@@ -32,6 +33,7 @@ export {
     plainseve,
     plainsnight,
     dungeon,
+    city,
     wip,
     wip2,
 };

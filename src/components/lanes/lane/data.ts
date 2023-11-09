@@ -138,7 +138,7 @@ export const lanes: Record<LaneType, LaneData> = {
     /* [CC] Shipment */
     [LaneType.Investors]: {
         job: Job.Investor,
-        background: backgrounds.wip,
+        background: backgrounds.city,
         building: buildings.bank,
         rateMs: 1.87e7 / 1e3,
         clovers: {

@@ -9,6 +9,8 @@ import altar from "./altar.png";
 import bank from "./bank.png";
 import hazmat from "./hazmat.png";
 import rocket from "./rocket.png";
+import wizardTower from "./wizard-tower.png";
+import peak from "./peak.png";
 import ufo from "./ufo.png";
 import wip from "./wip.png";
 
@@ -25,5 +27,7 @@ export {
     bank,
     rocket,
     ufo,
+    wizardTower,
+    peak,
     wip,
 };

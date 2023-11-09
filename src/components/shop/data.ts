@@ -165,7 +165,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Wizards,
-        thumbnail: icons.wip,
+        thumbnail: icons.wizardTower,
         sounds: [Sound.Wizard1],
     },
     /* [CC] Prism */
@@ -209,7 +209,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Peak,
-        thumbnail: icons.wip,
+        thumbnail: icons.peak,
         sounds: [Sound.Peak1],
     },
 };

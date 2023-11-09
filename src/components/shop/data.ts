@@ -225,7 +225,7 @@ export const priceBase = 1.15;
  */
 export function calculatePrice(id: number, purchased: number) {
     const item = items[id];
-    return Math.round(item.price.amount * priceBase ** purchased);
+    return Math.ceil(item.price.amount * priceBase ** purchased);
 }
 
 /** Currency to price ratio when to uncover an item. */

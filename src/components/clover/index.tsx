@@ -31,15 +31,18 @@ export default function Clover({
     if (Jobs[job].extras !== undefined && dist(0, 1, rand) > 0.5) {
         extra = Jobs[job].extras![dist(0, Jobs[job].extras!.length - 1, rand)];
     }
+    const bases = Jobs[job].bases?.[type];
+    let base: string | null = null;
+    if (bases !== undefined) {
+        base = bases[dist(0, bases.length - 1, rand)];
+    }
 
     return (
         <div {...props} className={cx(classes.clover, props.className)}>
             <span className={classes.name}>{name}</span>
             <div className={classes.body}>
-                {Jobs[job].bases !== undefined && (
-                    <img src={Jobs[job].bases![type]} />
-                )}
-                {extra && <img src={extra} />}
+                {base !== null && <img src={base} />}
+                {extra !== null && <img src={extra} />}
                 {Jobs[job].cosmetics?.map((cosmetic, i) => (
                     <img key={i} src={cosmetic} />
                 ))}

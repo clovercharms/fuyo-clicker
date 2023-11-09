@@ -35,7 +35,7 @@ export enum Job {
  * Cosmetical configuration of a Clover Job.
  */
 export interface JobConfig {
-    bases?: Record<CloverType, string>;
+    bases?: Record<CloverType, string[]>;
     extras?: string[];
     cosmetics?: string[];
 }

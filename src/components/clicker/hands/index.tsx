@@ -6,8 +6,9 @@ import hand from "@/assets/images/hand.png";
 import { useRef } from "react";
 import { useTick } from "@pixi/react";
 
-const HAND_SIZE = 30;
-const ANGLE_DIFF = 5;
+const HAND_SIZE = 40;
+const ANGLE_DIFF = 10;
+const RING_OFFSET = 30;
 const COIN_SIZE = 300;
 /** Determines nth hands to move with a poke animation. */
 const LOOP_OFFSET = 14;
@@ -58,13 +59,20 @@ export default function Hands() {
     }));
 
     useTick(() => {
-        Object.keys(handRefs.current)
-            .filter(k => (parseInt(k) - offsetHand.current) % LOOP_OFFSET === 0)
-            .forEach(k => {
-                if (!handRefs.current) return;
+        if (!handRefs.current) return;
 
-                handRefs.current[parseInt(k)].y = pokeSpring.y.get();
-            });
+        let refKeys = Object.keys(handRefs.current);
+
+        const loopOffset =
+            refKeys.length < LOOP_OFFSET ? refKeys.length : LOOP_OFFSET;
+
+        refKeys = refKeys.filter(
+            k => (Number(k) - offsetHand.current) % loopOffset === 0
+        );
+
+        for (const key of refKeys) {
+            handRefs.current[Number(key)].y = pokeSpring.y.get();
+        }
     });
 
     return (
@@ -76,7 +84,10 @@ export default function Hands() {
                         key={i}
                         pivot={{
                             x: 0,
-                            y: COIN_SIZE / 2 + HAND_SIZE / 2 + ring * 20,
+                            y:
+                                COIN_SIZE / 2 +
+                                HAND_SIZE / 2 +
+                                ring * RING_OFFSET,
                         }}
                         rotation={
                             (i * ANGLE_DIFF + ring * (ANGLE_DIFF / 2)) *

@@ -61,17 +61,17 @@ export default function Hands() {
     useTick(() => {
         if (!handRefs.current) return;
 
-        let refKeys = Object.keys(handRefs.current);
+        const hands = Object.entries(handRefs.current);
 
         const loopOffset =
-            refKeys.length < LOOP_OFFSET ? refKeys.length : LOOP_OFFSET;
+            hands.length < LOOP_OFFSET ? hands.length : LOOP_OFFSET;
 
-        refKeys = refKeys.filter(
-            k => (Number(k) - offsetHand.current) % loopOffset === 0
-        );
-
-        for (const key of refKeys) {
-            handRefs.current[Number(key)].y = pokeSpring.y.get();
+        for (const [key, hand] of hands) {
+            if ((Number(key) - offsetHand.current) % loopOffset === 0) {
+                hand.y = pokeSpring.y.get();
+            } else {
+                hand.y = 0;
+            }
         }
     });
 

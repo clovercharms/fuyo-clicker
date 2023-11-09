@@ -93,7 +93,7 @@ export const items: Record<number, Item> = {
     },
     /* [CC] Temple */
     6: {
-        name: "Scuba Gear",
+        name: "Submarine",
         price: {
             amount: 1.47e7,
             currency: Currency.CLOVERS,

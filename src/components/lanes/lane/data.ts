@@ -121,7 +121,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
-        sounds: [Sound.Diver1],
+        sounds: [Sound.Diver1, Sound.Diver3],
     },
     /* [CC] Wizard Tower */
     [LaneType.Scientists]: {
@@ -219,7 +219,7 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
-        sounds: [Sound.Alien1],
+        sounds: [Sound.Alien2, Sound.Alien3],
     },
     /* [CC] Fractal Engine */
     [LaneType.Sketches]: {

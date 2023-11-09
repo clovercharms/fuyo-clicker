@@ -1,10 +1,13 @@
 import alien1 from "./alien1.mp3";
+import alien2 from "./alien2.mp3";
+import alien3 from "./alien3.mp3";
 import astronaut1 from "./astronaut1.mp3";
 import autoClicker1 from "./auto-clicker1.mp3";
 import blacksmith1 from "./blacksmith1.mp3";
 import cultist1 from "./cultist1.mp3";
 import diver1 from "./diver1.mp3";
 import diver2 from "./diver2.mp3";
+import diver3 from "./diver3.mp3";
 import engineer1 from "./engineer1.mp3";
 import generico1 from "./generico1.mp3";
 import hazmat1 from "./hazmat1.mp3";
@@ -19,12 +22,15 @@ import wizard1 from "./wizard1.mp3";
 
 export {
     alien1,
+    alien2,
+    alien3,
     astronaut1,
     autoClicker1,
     blacksmith1,
     cultist1,
     diver1,
     diver2,
+    diver3,
     engineer1,
     generico1,
     hazmat1,

@@ -7,8 +7,8 @@ import { useRef } from "react";
 import { useTick } from "@pixi/react";
 
 const HAND_SIZE = 40;
-const ANGLE_DIFF = 10;
-const RING_OFFSET = 30;
+const ANGLE_DIFF = 9;
+const RING_OFFSET = 20;
 const COIN_SIZE = 300;
 /** Determines nth hands to move with a poke animation. */
 const LOOP_OFFSET = 14;

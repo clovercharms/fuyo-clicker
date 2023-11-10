@@ -55,7 +55,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Lumberjacks,
-        thumbnail: icons.wip,
+        thumbnail: icons.axe,
         sounds: [Sound.Lumberjack1],
     },
     /* [CC] Mine */
@@ -143,7 +143,7 @@ export const items: Record<number, Item> = {
             currency: Currency.CLOVERS,
         },
         laneType: LaneType.Knights,
-        thumbnail: icons.wip,
+        thumbnail: icons.castle,
         sounds: [Sound.Knight1],
     },
     /* [CC] Time Machine */

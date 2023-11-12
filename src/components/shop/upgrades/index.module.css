@@ -20,10 +20,9 @@
         height: 5rem;
         overflow: hidden scroll;
         padding: 0.5rem;
-        transition: 0.5s;
 
-        &:has(> :first-child:nth-last-child(n + 5)):hover {
-            height: 20rem;
+        &:has(> :first-child:nth-last-child(n + 6)):hover {
+            height: fit-content;
         }
     }
 }

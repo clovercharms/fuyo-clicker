@@ -6,6 +6,7 @@ import { SoundType } from "@/utils/audio/sounds";
 import { Button } from "../button";
 import { AudioToggle } from "./audio-toggle";
 import { newsreel } from "@/assets/json_data/data";
+import Marquee from "react-fast-marquee";
 /**
  * Newsreel that displays news based on current or random events.
  */
@@ -15,14 +16,16 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
     useEffect(() => {
         const interval = setInterval(() => {
           setIndexNews(indexNews => indexNews + 1)
-        }, 10000);
+        }, 30000);
         return () => clearInterval(interval);
       }, []);
 
     return (
         <div {...props} className={cx(classes.news, props.className)}>
-            <div>{newsreel[indexNews].content}</div>
-            <div> - {newsreel[indexNews].author}</div>
+            <Marquee><h3>{newsreel[indexNews].content}</h3></Marquee>
+            <div>
+            <h3>- {newsreel[indexNews].author ? newsreel[indexNews].author : 'Unknown author'}</h3>
+            </div>
             <div className={classes.controls}>
                 <Button
                     onClick={() => {

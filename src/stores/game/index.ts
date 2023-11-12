@@ -56,6 +56,7 @@ export const useGameStore = create<GameState>()(
                     createBoostsSlice(set, get).boosts.tick();
                     createReproSlice(set, get).repro.tick();
                     createSpeciesSlice(set, get).species.tick();
+                    createShopSlice(set, get).shop.tick();
                 },
                 reset: () =>
                     set(

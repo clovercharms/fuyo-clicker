@@ -21,17 +21,15 @@ export interface ShopSlice {
         items: Record<number, Item>;
         unlocked: Record<number, boolean>;
         /**
-         * Getter for filtering items based on whether or not they have
-         * previously been unlocked.
-         * @returns Unlocked items.
-         */
-        unlockedItems: () => Record<number, boolean>;
-        /**
          * Action for buying an item from the store.
          * @param id The metadata id of the item to purchase.
          * @returns Whether or not the purchase was successful.
          */
         buy: (id: number) => boolean;
+        /**
+         * Chronologically updates shop state.
+         */
+        tick: () => void;
     };
 }
 
@@ -49,48 +47,6 @@ export const createShopSlice = (
     return {
         shop: {
             ...initialShopState,
-            unlockedItems: () => {
-                let unlocked = {};
-                let newUnlocked = false;
-
-                for (const id of Object.keys(items).map(Number)) {
-                    const shopItem =
-                        get().shop.items[id] ??
-                        structuredClone(initialItemState);
-
-                    if (!get().shop.unlocked[id]) {
-                        if (
-                            !isItemUnlocked(
-                                shopItem,
-                                items[id as unknown as number],
-                                get().coins.amount,
-                                get().repro.clovers.amount
-                            )
-                        )
-                            continue;
-                        else newUnlocked = true;
-                    }
-                    unlocked = {
-                        ...unlocked,
-                        [id]: true,
-                    };
-                }
-
-                if (newUnlocked) {
-                    set(
-                        produce<GameState>(state => {
-                            state.shop.unlocked = {
-                                ...state.shop.unlocked,
-                                ...unlocked,
-                            };
-                        }),
-                        false,
-                        // @ts-expect-error typing
-                        "Shop - Unlocked - Item"
-                    );
-                }
-                return unlocked;
-            },
             buy: (id: number) => {
                 const item =
                     get().shop.items[id] ?? structuredClone(initialItemState);
@@ -149,6 +105,46 @@ export const createShopSlice = (
                 get().tick();
 
                 return true;
+            },
+            tick: () => {
+                let unlocked = {};
+                let newUnlocked = false;
+
+                for (const id of Object.keys(items).map(Number)) {
+                    const shopItem =
+                        get().shop.items[id] ??
+                        structuredClone(initialItemState);
+
+                    if (!get().shop.unlocked[id]) {
+                        if (
+                            !isItemUnlocked(
+                                shopItem,
+                                items[id as unknown as number],
+                                get().coins.amount,
+                                get().repro.clovers.amount
+                            )
+                        )
+                            continue;
+                        else newUnlocked = true;
+                    }
+                    unlocked = {
+                        ...unlocked,
+                        [id]: true,
+                    };
+                }
+                if (!newUnlocked) return;
+
+                set(
+                    produce<GameState>(state => {
+                        state.shop.unlocked = {
+                            ...state.shop.unlocked,
+                            ...unlocked,
+                        };
+                    }),
+                    false,
+                    // @ts-expect-error typing
+                    "Tick - Shop - Unlock"
+                );
             },
         },
     };

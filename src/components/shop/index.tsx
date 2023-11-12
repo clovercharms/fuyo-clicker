@@ -54,7 +54,7 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
                 onMouseLeave={() => setActiveId(null)}
                 ref={setAnchor}
             >
-                {Object.entries(shop.unlockedItems())
+                {Object.entries(shop.unlocked)
                     .filter(([, unlocked]) => !!unlocked)
                     .map(([id]) => {
                         const item = shop.items[id as unknown as number];

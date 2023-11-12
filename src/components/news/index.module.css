@@ -1,7 +1,9 @@
 .news {
-    background-color: #fff6;
+    background-color: rgb(255, 255, 255);
+    background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
 
     & > .controls {
         display: flex;
+
     }
 }

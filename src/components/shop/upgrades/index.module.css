@@ -4,46 +4,47 @@
 
 .upgrades {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
     background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
     background-size: 28rem;
     border-image: url("@/assets/images/shop/upgrades/upgrades-frame.png") 30 24
         stretch;
     border-image-width: 0.8rem;
-    padding: 1rem;
+    padding: 0.7rem;
 
-    & > :nth-child(n + 6) {
-        display: none;
-    }
+    & > .items {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: max-content;
+        min-height: 5rem;
+        max-height: 20rem;
+        height: 5rem;
+        overflow: hidden scroll;
+        padding: 0.5rem;
+        transition: 0.5s;
 
-    &:hover > .upgrade:nth-child(n + 6) {
-        display: block;
-    }
-
-    .upgrade {
-        position: relative;
-        border-style: unset;
-        background-color: unset;
-        background-position: center 65%;
-        background-size: 65%, contain;
-        background-repeat: no-repeat;
-        cursor: pointer;
-        transition:
-            transform 0.1s,
-            filter 0.5s;
-
-        &:hover {
-            transform: rotateZ(15deg) !important;
+        &:has(> :first-child:nth-last-child(n + 5)):hover {
+            height: 20rem;
         }
 
-        &.hidden {
-            filter: brightness(0.75);
-        }
-    }
+        .upgrade {
+            position: relative;
+            border-style: unset;
+            background-color: unset;
+            background-position: center 65%;
+            background-size: 65%, contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transition:
+                transform 0.1s,
+                filter 0.5s;
+            height: 5rem;
 
-    .placeholder,
-    .upgrade {
-        aspect-ratio: 1/1;
+            &:hover {
+                transform: rotateZ(15deg) !important;
+            }
+            &.hidden {
+                filter: brightness(0.75);
+            }
+        }
     }
 }

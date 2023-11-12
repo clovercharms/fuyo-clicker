@@ -1,29 +1,39 @@
 import { UpgradeType } from "@/components/shop/upgrades/data";
-import cursor0 from "./cursor-0.webp";
-import cursor1 from "./cursor-1.webp";
-import cursor2 from "./cursor-2.webp";
-import cursor3 from "./cursor-3.webp";
-import cursor4 from "./cursor-4.webp";
-import mine0 from "./mine-0.png";
-import mine1 from "./mine-1.png";
-import mine2 from "./mine-2.png";
-import mine3 from "./mine-3.png";
-import mine4 from "./mine-4.png";
-import forge0 from "./forge-0.png";
-import forge1 from "./forge-1.png";
-import forge2 from "./forge-2.png";
-import forge3 from "./forge-3.png";
-import forge4 from "./forge-4.png";
-import lab0 from "./lab-0.png";
-import lab1 from "./lab-1.png";
-import lab2 from "./lab-2.png";
-import lab3 from "./lab-3.png";
-import lab4 from "./lab-4.png";
+import axes from "./axes";
+import barrels from "./barrels";
+import bibles from "./bibles";
+import cursors from "./cursors";
+import drills from "./drills";
+import hammers from "./hammers";
+import flags from "./flags";
+import potions from "./potions";
+import pickaxes from "./pickaxes";
+import moneybags from "./moneybags";
+import oxytanks from "./oxytanks";
+import pencils from "./pencils";
+import spaceguns from "./spaceguns";
+import suwords from "./suwords";
+import tentacles from "./tentacles";
+import wands from "./wands";
+import wrenches from "./wrenches";
 
-/* [FIXME] Typing */
 export default {
-    0: [cursor0, cursor1, cursor2, cursor3, cursor4],
-    2: [mine0, mine1, mine2, mine3, mine4],
-    4: [forge0, forge1, forge2, forge3, forge4],
-    7: [lab0, lab1, lab2, lab3, lab4],
+    0: cursors,
+    1: cursors,
+    2: pickaxes,
+    3: axes,
+    4: hammers,
+    5: wrenches,
+    6: drills,
+    7: oxytanks,
+    8: potions,
+    9: moneybags,
+    10: barrels,
+    11: suwords,
+    12: bibles,
+    13: wands,
+    14: flags,
+    15: spaceguns,
+    16: pencils,
+    17: tentacles,
 } as Record<UpgradeType, string[]>;

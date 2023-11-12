@@ -79,57 +79,61 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 ref={setAnchor}
                 onMouseLeave={() => setActive(null)}
             >
-                {Object.entries(activeUpgrades).map(([type, upgrades2]) =>
-                    Object.entries(upgrades2).map(([id, upgrade]) => {
-                        const affordable = coins >= upgrade.price;
+                <div className={classes.items}>
+                    {Object.entries(activeUpgrades).map(([type, upgrades2]) =>
+                        Object.entries(upgrades2).map(([id, upgrade]) => {
+                            const affordable = coins >= upgrade.price;
 
-                        return (
-                            <button
-                                key={type + id}
-                                onClick={() =>
-                                    affordable &&
-                                    handleBuy(
-                                        type as unknown as UpgradeType,
-                                        Number(id)
-                                    )
-                                }
-                                onMouseEnter={e => {
-                                    setActive({
-                                        id: parseInt(id),
-                                        type: type as unknown as UpgradeType,
-                                    });
-                                    setCoords({ x: e.clientX, y: e.clientY });
-                                }}
-                                onMouseLeave={() => setActive(null)}
-                                className={cx(
-                                    classes.upgrade,
-                                    !affordable && classes.hidden
-                                )}
-                                style={{
-                                    backgroundImage: `url(${
-                                        upgrade.image
-                                    }), url(${
-                                        itemFrames[
-                                            Math.round(
-                                                dist(
-                                                    0,
-                                                    itemFrames.length - 1,
-                                                    rand
+                            return (
+                                <button
+                                    key={type + id}
+                                    onClick={() =>
+                                        affordable &&
+                                        handleBuy(
+                                            type as unknown as UpgradeType,
+                                            Number(id)
+                                        )
+                                    }
+                                    onMouseEnter={e => {
+                                        setActive({
+                                            id: parseInt(id),
+                                            type: type as unknown as UpgradeType,
+                                        });
+                                        setCoords({
+                                            x: e.clientX,
+                                            y: e.clientY,
+                                        });
+                                    }}
+                                    onMouseLeave={() => setActive(null)}
+                                    className={cx(
+                                        classes.upgrade,
+                                        !affordable && classes.hidden
+                                    )}
+                                    style={{
+                                        backgroundImage: `url(${
+                                            upgrade.image
+                                        }), url(${
+                                            itemFrames[
+                                                Math.round(
+                                                    dist(
+                                                        0,
+                                                        itemFrames.length - 1,
+                                                        rand
+                                                    )
                                                 )
-                                            )
-                                        ]
-                                    })`,
-                                    transform: `rotateZ(${dist(
-                                        -12,
-                                        12,
-                                        rand
-                                    )}deg)`,
-                                }}
-                            />
-                        );
-                    })
-                )}
-                <span className={classes.placeholder} />
+                                            ]
+                                        })`,
+                                        transform: `rotateZ(${dist(
+                                            -12,
+                                            12,
+                                            rand
+                                        )}deg)`,
+                                    }}
+                                />
+                            );
+                        })
+                    )}
+                </div>
             </div>
             {active !== null && (
                 <Tooltip anchor={anchor!} initialCoords={coords!}>

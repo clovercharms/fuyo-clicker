@@ -24,7 +24,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
         >
             <Fuyonade />
             <Header />
-            {size.width && size.height !== 0 && (
+            {size.width + size.height !== 0 && (
                 <Stage
                     width={size.width}
                     height={size.height}

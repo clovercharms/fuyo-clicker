@@ -1,67 +1,33 @@
 import { useGameStore } from "@/stores/game";
 import classes from "./index.module.css";
-import itemFrames from "@/assets/images/shop/upgrades/item-frames";
-import { HTMLProps, useMemo, useRef, useState } from "react";
-import { Upgrade, UpgradeType, upgrades as data } from "./data";
+import { HTMLProps, useRef, useState } from "react";
+import { UpgradeType, upgrades as data } from "./data";
 import useTooltip from "../tooltip/useTooltip";
 import Tooltip from "../tooltip";
-import {
-    xoroshiro128plus,
-    unsafeUniformIntDistribution as dist,
-} from "pure-rand";
 import Price from "../../price";
 import { Currency } from "../data";
 import { Sound } from "@/utils/audio/sounds";
-import cx from "classix";
 import { useSettingsStore } from "@/stores/settings";
+import { Item } from "./item";
 
-const RNG_SEED = 15;
+export type ActiveUpgrade = {
+    id: number;
+    type: UpgradeType;
+} | null;
 
 /**
  * Upgrades panel that can be used to buy upgrades to further progress the game.
  */
 export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
-    const game = useGameStore();
     const upgrades = useGameStore(state => state.upgrades);
     const coins = useGameStore(state => state.coins.amount);
     const play = useSettingsStore(settings => settings.audio.play);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [active, setActive] = useState<{
-        id: number;
-        type: UpgradeType;
-    } | null>(null);
+    const [active, setActive] = useState<ActiveUpgrade>(null);
     const {
         anchor: [anchor, setAnchor],
         coords: [coords, setCoords],
     } = useTooltip();
-    const rand = xoroshiro128plus(RNG_SEED);
-
-    const activeUpgrades = useMemo(
-        () =>
-            Object.keys(data).reduce(
-                (prev, type: unknown) => ({
-                    ...prev,
-                    [type as UpgradeType]: Object.entries(
-                        data[type as UpgradeType]
-                    ).reduce(
-                        (prev, [id, upgrade]) => ({
-                            ...prev,
-                            ...(upgrade.condition(game) &&
-                            !upgrades.unlocked[type as UpgradeType][
-                                parseInt(id)
-                            ]
-                                ? {
-                                      [id]: upgrade,
-                                  }
-                                : {}),
-                        }),
-                        {} as Record<number, Upgrade>
-                    ),
-                }),
-                {} as Record<UpgradeType, Record<number, Upgrade>>
-            ),
-        [game, upgrades.unlocked]
-    );
 
     const handleBuy = (type: UpgradeType, id: number) => {
         if (!upgrades.buy(type, id)) return;
@@ -80,58 +46,18 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 onMouseLeave={() => setActive(null)}
             >
                 <div className={classes.items}>
-                    {Object.entries(activeUpgrades).map(([type, upgrades2]) =>
-                        Object.entries(upgrades2).map(([id, upgrade]) => {
-                            const affordable = coins >= upgrade.price;
-
-                            return (
-                                <button
-                                    key={type + id}
-                                    onClick={() =>
-                                        affordable &&
-                                        handleBuy(
-                                            type as unknown as UpgradeType,
-                                            Number(id)
-                                        )
-                                    }
-                                    onMouseEnter={e => {
-                                        setActive({
-                                            id: parseInt(id),
-                                            type: type as unknown as UpgradeType,
-                                        });
-                                        setCoords({
-                                            x: e.clientX,
-                                            y: e.clientY,
-                                        });
-                                    }}
-                                    onMouseLeave={() => setActive(null)}
-                                    className={cx(
-                                        classes.upgrade,
-                                        !affordable && classes.hidden
-                                    )}
-                                    style={{
-                                        backgroundImage: `url(${
-                                            upgrade.image
-                                        }), url(${
-                                            itemFrames[
-                                                Math.round(
-                                                    dist(
-                                                        0,
-                                                        itemFrames.length - 1,
-                                                        rand
-                                                    )
-                                                )
-                                            ]
-                                        })`,
-                                        transform: `rotateZ(${dist(
-                                            -12,
-                                            12,
-                                            rand
-                                        )}deg)`,
-                                    }}
-                                />
-                            );
-                        })
+                    {Object.entries(upgrades.active()).map(([type, upgrades]) =>
+                        Object.entries(upgrades).map(([id, upgrade]) => (
+                            <Item
+                                key={Number(type) + Number(id)}
+                                type={type as unknown as UpgradeType}
+                                id={Number(id)}
+                                affordable={coins >= upgrade.price}
+                                onBuy={handleBuy}
+                                setActive={setActive}
+                                setCoords={setCoords}
+                            />
+                        ))
                     )}
                 </div>
             </div>

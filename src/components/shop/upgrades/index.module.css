@@ -25,26 +25,5 @@
         &:has(> :first-child:nth-last-child(n + 5)):hover {
             height: 20rem;
         }
-
-        .upgrade {
-            position: relative;
-            border-style: unset;
-            background-color: unset;
-            background-position: center 65%;
-            background-size: 65%, contain;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            transition:
-                transform 0.1s,
-                filter 0.5s;
-            height: 5rem;
-
-            &:hover {
-                transform: rotateZ(15deg) !important;
-            }
-            &.hidden {
-                filter: brightness(0.75);
-            }
-        }
     }
 }

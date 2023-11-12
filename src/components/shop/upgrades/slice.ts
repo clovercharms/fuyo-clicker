@@ -1,6 +1,6 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/stores/game";
-import { UpgradeType, upgrades } from "./data";
+import { Upgrade, UpgradeType, upgrades } from "./data";
 import { resetters } from "../../../stores/game/resetters";
 import { produce } from "immer";
 
@@ -10,6 +10,10 @@ import { produce } from "immer";
 export interface UpgradesSlice {
     upgrades: {
         unlocked: Record<UpgradeType, Record<number, boolean>>;
+        /**
+         * Returns the active (condition met and not purchased) upgrades.
+         */
+        active: () => Record<UpgradeType, Record<number, Upgrade>>;
         /**
          * Action for buying an upgrade from the shop.
          * @param type The type of upgrade.
@@ -38,6 +42,29 @@ export const createUpgradesSlice = (
     return {
         upgrades: {
             ...initialUpgradesState,
+            active: () =>
+                Object.keys(upgrades).reduce(
+                    (prev, type: unknown) => ({
+                        ...prev,
+                        [type as UpgradeType]: Object.entries(
+                            upgrades[type as UpgradeType]
+                        ).reduce(
+                            (prev, [id, upgrade]) => ({
+                                ...prev,
+                                ...(upgrade.condition(get()) &&
+                                !get().upgrades.unlocked[type as UpgradeType][
+                                    parseInt(id)
+                                ]
+                                    ? {
+                                          [id]: upgrade,
+                                      }
+                                    : {}),
+                            }),
+                            {} as Record<number, Upgrade>
+                        ),
+                    }),
+                    {} as Record<UpgradeType, Record<number, Upgrade>>
+                ),
             buy: (type: UpgradeType, id: number) => {
                 const price = upgrades[type][id].price;
                 if (get().coins.amount < price) return false;

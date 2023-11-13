@@ -1,8 +1,24 @@
 .news {
-    background-color: rgb(255, 0, 0);
     background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
+    background-size: 28rem;
+
+    & > .reel {
+        padding: 1rem 0;
+
+        .quote {
+            margin-right: 1rem;
+        }
+
+        & .quote,
+        & .author {
+            -webkit-text-stroke: 1px black;
+            font-size: 1.5rem;
+            color: white;
+        }
+    }
 
     & > .controls {
         display: flex;
+        justify-content: flex-end;
     }
 }

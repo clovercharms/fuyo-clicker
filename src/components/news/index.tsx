@@ -16,23 +16,24 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
     const NEWS_INTERVAL_MS = 30000;
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndexNews(indexNews => indexNews + 1);
+            setIndexNews(Math.floor(Math.random() * newsreel.length));
         }, NEWS_INTERVAL_MS);
         return () => clearInterval(interval);
     }, []);
 
     return (
         <div {...props} className={cx(classes.news, props.className)}>
-            <Marquee>
-                <h3>{newsreel[indexNews].content}</h3>
-            </Marquee>
-            <div>
-                <h3>
-                    -{" "}
+            <div className={classes.reel}>
+                <Marquee className={classes.marquee} autoFill={true}>
+                    <div className={classes.quote}>
+                        {newsreel[indexNews].content}
+                    </div>
+                </Marquee>
+                <div className={classes.author}>
                     {newsreel[indexNews].author
-                        ? newsreel[indexNews].author
-                        : "Unknown author"}
-                </h3>
+                        ? `- ${newsreel[indexNews].author}`
+                        : "\u00A0"}
+                </div>
             </div>
             <div className={classes.controls}>
                 <Button

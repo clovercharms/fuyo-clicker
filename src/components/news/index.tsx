@@ -44,13 +44,20 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
 
     return (
         <div {...props} className={cx(classes.news, props.className)}>
-            <div className={cx(classes.reel, classes[transitionState.status])}>
+            <div className={classes.reel}>
                 <Marquee>
-                    <div className={classes.quote}>
+                    <div
+                        className={cx(
+                            classes.quote,
+                            classes[transitionState.status]
+                        )}
+                    >
                         {newsreel[newsIndex].content}
                     </div>
                 </Marquee>
-                <div className={classes.row}>
+                <div
+                    className={cx(classes.row, classes[transitionState.status])}
+                >
                     <div className={classes.author}>
                         {newsreel[newsIndex].author &&
                             `- ${newsreel[newsIndex].author}`}

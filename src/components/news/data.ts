@@ -1,9 +1,6 @@
-import { GameState } from "../../stores/game/index";
-
 export interface NewsItem {
     content: string;
     author?: string;
-    condition?: (state: GameState) => boolean;
 }
 
 const authors = {

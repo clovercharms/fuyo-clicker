@@ -434,4 +434,12 @@ export const newsreel: NewsItem[] = [
         content:
             "New study suggest that microplastic on water is causing clover stems to get shorter",
     },
+    {
+        content:
+            "Tentacle monster goes on a rampage after being 'accidentally' released by local leprechaun",
+    },
+    {
+        content:
+            "Energy goes down in Leprechaunland as VTuber leprechaun make her first pair in golf game.",
+    },
 ];

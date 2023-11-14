@@ -25,6 +25,17 @@ export const useSettingsStore = create<SettingsState>()(
                 version: 1,
                 storage: createJSONStorage(() => localStorage),
                 merge: mergePersisted<SettingsState>(),
+                migrate: (persistedState, version) => {
+                    switch (version) {
+                        case 0:
+                            return {
+                                ...(persistedState as SettingsState),
+                                debug: false,
+                            };
+                        default:
+                            return persistedState as SettingsState;
+                    }
+                },
             }
         )
     )

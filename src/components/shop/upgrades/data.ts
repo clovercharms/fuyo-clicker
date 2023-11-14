@@ -269,35 +269,38 @@ export const upgrades: Upgrades = {
     /* [CC] Mine */
     [UpgradeType.Blacksmiths]: {
         0: {
-            name: "Forge - Upgrade 1",
+            name: "Bigger hammer",
             price: 1.2e5,
             image: icons[UpgradeType.Blacksmiths][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 1,
         },
         1: {
-            name: "Forge - Upgrade 2",
+            name: "Titanium anvil",
+            description: "Does it even matter what metal its made of?",
             price: 6e5,
             image: icons[UpgradeType.Blacksmiths][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 5,
         },
         2: {
-            name: "Forge - Upgrade 3",
+            name: "Electric forge",
             price: 3e6,
             image: icons[UpgradeType.Blacksmiths][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 25,
         },
         3: {
-            name: "Forge - Upgrade 4",
+            name: "Majestic braided beard",
+            description: "It gets in the way but improves morale",
             price: 1.5e7,
             image: icons[UpgradeType.Blacksmiths][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Blacksmiths].buildings >= 50,
         },
         4: {
-            name: "Forge - Upgrade 5",
+            name: "Mjolnir",
+            description: "Step aside Thor, I need it to make this suword",
             price: 7.5e7,
             image: icons[UpgradeType.Blacksmiths][4],
             condition: (state: GameState) =>

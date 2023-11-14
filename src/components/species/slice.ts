@@ -73,10 +73,7 @@ export const createSpeciesSlice = (
             activate: () => {
                 set(
                     produce<GameState>(state => {
-                        const bonus = determineBonus(
-                            get().coins.amount,
-                            get().coins.rateMs
-                        );
+                        const bonus = determineBonus(get().coins.rateMs);
                         state.coins.amount += bonus;
                     }),
                     false,
@@ -99,14 +96,9 @@ function shouldSpawn(timeSec: number) {
     return Math.random() < probability;
 }
 
-// 75% Of collected coins.
-const BONUS_PERCENTAGE_COINS = 0.75;
 // 7.5 Minutes production.
 const BONUS_PRODUCTION_TIME = 7.5 * 60e3;
 
-function determineBonus(coins: number, rateMs: number) {
-    const percentage = BONUS_PERCENTAGE_COINS * coins;
-    const production = rateMs * BONUS_PRODUCTION_TIME;
-
-    return Math.min(percentage, production);
+function determineBonus(rateMs: number) {
+    return rateMs * BONUS_PRODUCTION_TIME;
 }

@@ -50,7 +50,7 @@ export const LaneTypeUpgradeType: Partial<Record<LaneType, UpgradeType>> = {
  */
 export interface Upgrade {
     name: string;
-    description: string;
+    description?: string;
     price: number;
     image: string;
     condition: (state: GameState) => boolean;
@@ -227,7 +227,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Lumberjacks]: {
         0: {
             name: "Lumberjacks - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 1.1e4,
             image: icons[UpgradeType.Lumberjacks][0],
             condition: (state: GameState) =>
@@ -235,7 +234,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Lumberjacks - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 5.5e4,
             image: icons[UpgradeType.Lumberjacks][1],
             condition: (state: GameState) =>
@@ -243,7 +241,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Lumberjacks - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 2.75e5,
             image: icons[UpgradeType.Lumberjacks][2],
             condition: (state: GameState) =>
@@ -251,7 +248,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Lumberjacks - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 1.375e6,
             image: icons[UpgradeType.Lumberjacks][3],
             condition: (state: GameState) =>
@@ -259,7 +255,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Lumberjacks - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 6.875e6,
             image: icons[UpgradeType.Lumberjacks][4],
             condition: (state: GameState) =>
@@ -270,7 +265,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Blacksmiths]: {
         0: {
             name: "Forge - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 1.2e5,
             image: icons[UpgradeType.Blacksmiths][0],
             condition: (state: GameState) =>
@@ -278,7 +272,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Forge - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 6e5,
             image: icons[UpgradeType.Blacksmiths][1],
             condition: (state: GameState) =>
@@ -286,7 +279,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Forge - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 3e6,
             image: icons[UpgradeType.Blacksmiths][2],
             condition: (state: GameState) =>
@@ -294,7 +286,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Forge - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 1.5e7,
             image: icons[UpgradeType.Blacksmiths][3],
             condition: (state: GameState) =>
@@ -302,7 +293,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Forge - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 7.5e7,
             image: icons[UpgradeType.Blacksmiths][4],
             condition: (state: GameState) =>
@@ -313,7 +303,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Mechanics]: {
         0: {
             name: "Repair Shop - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 1.4e7,
             image: icons[UpgradeType.Mechanics][0],
             condition: (state: GameState) =>
@@ -321,7 +310,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Repair Shop - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 7e7,
             image: icons[UpgradeType.Mechanics][1],
             condition: (state: GameState) =>
@@ -329,7 +317,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Repair Shop - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 3.5e8,
             image: icons[UpgradeType.Mechanics][2],
             condition: (state: GameState) =>
@@ -337,7 +324,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Repair Shop - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 1.75e9,
             image: icons[UpgradeType.Mechanics][3],
             condition: (state: GameState) =>
@@ -345,7 +331,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Repair Shop - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 8.75e9,
             image: icons[UpgradeType.Mechanics][4],
             condition: (state: GameState) =>
@@ -356,7 +341,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.FactoryWorkers]: {
         0: {
             name: "Construction Site - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 1.3e6,
             image: icons[UpgradeType.FactoryWorkers][0],
             condition: (state: GameState) =>
@@ -364,7 +348,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Construction Site - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 6.5e6,
             image: icons[UpgradeType.FactoryWorkers][1],
             condition: (state: GameState) =>
@@ -372,7 +355,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Construction Site - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 3.25e7,
             image: icons[UpgradeType.FactoryWorkers][2],
             condition: (state: GameState) =>
@@ -380,7 +362,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Construction Site - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 1.625e8,
             image: icons[UpgradeType.FactoryWorkers][3],
             condition: (state: GameState) =>
@@ -388,7 +369,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Construction Site - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 8.125e8,
             image: icons[UpgradeType.FactoryWorkers][4],
             condition: (state: GameState) =>
@@ -398,40 +378,40 @@ export const upgrades: Upgrades = {
     /* [CC] Temple */
     [UpgradeType.Divers]: {
         0: {
-            name: "Ocean - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
+            name: "Fresh air",
+            description: "You don't get to taste this often, huh?",
             price: 3.3e9,
             image: icons[UpgradeType.Divers][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 1,
         },
         1: {
-            name: "Ocean - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
+            name: "Clover fumes",
+            description: "Why do I feel so groggy?",
             price: 1.65e10,
             image: icons[UpgradeType.Divers][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 5,
         },
         2: {
-            name: "Ocean - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
+            name: "Brap tank",
+            description: "I wouldn't want to breathe it",
             price: 8.25e10,
             image: icons[UpgradeType.Divers][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 25,
         },
         3: {
-            name: "Ocean - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
+            name: "Fuyo musk",
+            description: `Can be smelled from a 100 km radius. "Take a bath, stinky!"`,
             price: 4.125e11,
             image: icons[UpgradeType.Divers][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 50,
         },
         4: {
-            name: "Ocean - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
+            name: "Leprecopium",
+            description: "Ingest a maximum of 217 ml a day",
             price: 2.0625e12,
             image: icons[UpgradeType.Divers][4],
             condition: (state: GameState) =>
@@ -441,40 +421,40 @@ export const upgrades: Upgrades = {
     // [CC] Wizard Tower
     [UpgradeType.Scientists]: {
         0: {
-            name: "Lab - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
+            name: "Stem extract",
+            description: "W-where did you get that?",
             price: 2e8,
             image: icons[UpgradeType.Scientists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 1,
         },
         1: {
-            name: "Lab - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
+            name: "Clover solvent",
+            description: "Do NOT put your stem in this!",
             price: 1e9,
             image: icons[UpgradeType.Scientists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 5,
         },
         2: {
-            name: "Lab - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
+            name: "Lucky Charm tears solution",
+            description: "Easy to gather when Fuyoless",
             price: 5e9,
             image: icons[UpgradeType.Scientists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 25,
         },
         3: {
-            name: "Lab - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
+            name: "Fuyonade essence",
+            description: "Used to scent bus seats",
             price: 2.5e10,
             image: icons[UpgradeType.Scientists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 50,
         },
         4: {
-            name: "Lab - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
+            name: "Reproduction catalyst",
+            description: "It makes the clovers go wild",
             price: 1.25e11,
             image: icons[UpgradeType.Scientists][4],
             condition: (state: GameState) =>
@@ -484,40 +464,41 @@ export const upgrades: Upgrades = {
     /* [CC] Shipment */
     [UpgradeType.Investors]: {
         0: {
-            name: "Investors - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
+            name: "Tip bag",
+            description: "Leave a funny message! Wait-",
             price: 1e13,
             image: icons[UpgradeType.Investors][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 1,
         },
         1: {
-            name: "Investors - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
+            name: "Wallet bag",
+            description: "Legally stol- obtained through donations!",
             price: 5e13,
             image: icons[UpgradeType.Investors][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 5,
         },
         2: {
-            name: "Investors - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
+            name: "Edible paper money bag",
+            description:
+                "Delicious delicacy. Hide from the nearest leprechaun.",
             price: 2.5e14,
             image: icons[UpgradeType.Investors][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 25,
         },
         3: {
-            name: "Investors - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
+            name: "Fuyocoin bag",
+            description: "Found at the end of a rainbow! Not a scam!",
             price: 1.25e15,
             image: icons[UpgradeType.Investors][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 50,
         },
         4: {
-            name: "Investors - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
+            name: "Akasupa Bag",
+            description: "Are you okay?",
             price: 6.25e15,
             image: icons[UpgradeType.Investors][4],
             condition: (state: GameState) =>
@@ -528,7 +509,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Hazmats]: {
         0: {
             name: "Hazmats - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 1.7e15,
             image: icons[UpgradeType.Hazmats][0],
             condition: (state: GameState) =>
@@ -536,7 +516,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Hazmats - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 8.5e15,
             image: icons[UpgradeType.Hazmats][1],
             condition: (state: GameState) =>
@@ -544,7 +523,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Hazmats - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 4.25e16,
             image: icons[UpgradeType.Hazmats][2],
             condition: (state: GameState) =>
@@ -552,15 +530,13 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Hazmats - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 2.125e17,
             image: icons[UpgradeType.Hazmats][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 50,
         },
         4: {
-            name: "Hazmats - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
+            name: "Leprechaun",
             price: 1.0625e18,
             image: icons[UpgradeType.Hazmats][4],
             condition: (state: GameState) =>
@@ -570,40 +546,41 @@ export const upgrades: Upgrades = {
     /* [CC] Portal */
     [UpgradeType.Knights]: {
         0: {
-            name: "Knights - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
+            name: "Stem suword",
+            description: "Always up, heh",
             price: 2.6e17,
             image: icons[UpgradeType.Knights][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 1,
         },
         1: {
-            name: "Knights - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
+            name: "El punhetero",
+            description: "Truly a BLASPHEMOUS name",
             price: 1.3e18,
             image: icons[UpgradeType.Knights][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 5,
         },
         2: {
-            name: "Knights - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
+            name: "Diamond suword",
+            description:
+                "Let's hope it doesn't suffer the same fate as the pickaxe...",
             price: 6.5e18,
             image: icons[UpgradeType.Knights][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 25,
         },
         3: {
-            name: "Knights - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
+            name: "3 inch destroyer",
+            description: "Take a look at my enormous suword",
             price: 3.25e19,
             image: icons[UpgradeType.Knights][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 50,
         },
         4: {
-            name: "Knights - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
+            name: "Suword",
+            description: "Suword.",
             price: 1.625e20,
             image: icons[UpgradeType.Knights][4],
             condition: (state: GameState) =>
@@ -614,7 +591,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Cultists]: {
         0: {
             name: "Cultists - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 7.5e11,
             image: icons[UpgradeType.Cultists][0],
             condition: (state: GameState) =>
@@ -622,7 +598,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Cultists - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 3.75e12,
             image: icons[UpgradeType.Cultists][1],
             condition: (state: GameState) =>
@@ -630,7 +605,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Cultists - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 1.875e13,
             image: icons[UpgradeType.Cultists][2],
             condition: (state: GameState) =>
@@ -638,7 +612,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Cultists - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 9.375e13,
             image: icons[UpgradeType.Cultists][3],
             condition: (state: GameState) =>
@@ -646,7 +619,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Cultists - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 4.6875e14,
             image: icons[UpgradeType.Cultists][4],
             condition: (state: GameState) =>
@@ -657,7 +629,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Wizards]: {
         0: {
             name: "Wizards - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 2.1e16,
             image: icons[UpgradeType.Wizards][0],
             condition: (state: GameState) =>
@@ -665,7 +636,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Wizards - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 1.05e17,
             image: icons[UpgradeType.Wizards][1],
             condition: (state: GameState) =>
@@ -673,7 +643,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Wizards - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 5.25e17,
             image: icons[UpgradeType.Wizards][2],
             condition: (state: GameState) =>
@@ -681,7 +650,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Wizards - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 2.625e18,
             image: icons[UpgradeType.Wizards][3],
             condition: (state: GameState) =>
@@ -689,7 +657,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Wizards - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 1.3125e19,
             image: icons[UpgradeType.Wizards][4],
             condition: (state: GameState) =>
@@ -700,7 +667,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Astronauts]: {
         0: {
             name: "Astronauts - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 5.1e10,
             image: icons[UpgradeType.Astronauts][0],
             condition: (state: GameState) =>
@@ -708,7 +674,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Astronauts - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 2.55e11,
             image: icons[UpgradeType.Astronauts][1],
             condition: (state: GameState) =>
@@ -716,7 +681,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Astronauts - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 1.275e12,
             image: icons[UpgradeType.Astronauts][2],
             condition: (state: GameState) =>
@@ -724,7 +688,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Astronauts - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 6.375e12,
             image: icons[UpgradeType.Astronauts][3],
             condition: (state: GameState) =>
@@ -732,7 +695,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Astronauts - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 3.1875e13,
             image: icons[UpgradeType.Astronauts][4],
             condition: (state: GameState) =>
@@ -743,7 +705,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Aliens]: {
         0: {
             name: "Aliens - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 14e13,
             image: icons[UpgradeType.Aliens][0],
             condition: (state: GameState) =>
@@ -751,7 +712,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Aliens - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 7e14,
             image: icons[UpgradeType.Aliens][1],
             condition: (state: GameState) =>
@@ -759,7 +719,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Aliens - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 3.5e15,
             image: icons[UpgradeType.Aliens][2],
             condition: (state: GameState) =>
@@ -767,7 +726,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Aliens - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 1.75e16,
             image: icons[UpgradeType.Aliens][3],
             condition: (state: GameState) =>
@@ -775,7 +733,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Aliens - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 8.75e16,
             image: icons[UpgradeType.Aliens][4],
             condition: (state: GameState) =>
@@ -786,7 +743,6 @@ export const upgrades: Upgrades = {
     [UpgradeType.Sketches]: {
         0: {
             name: "Sketches - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
             price: 3.1e18,
             image: icons[UpgradeType.Sketches][0],
             condition: (state: GameState) =>
@@ -794,7 +750,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Sketches - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 1.55e19,
             image: icons[UpgradeType.Sketches][1],
             condition: (state: GameState) =>
@@ -802,7 +757,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Sketches - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 7.75e19,
             image: icons[UpgradeType.Sketches][2],
             condition: (state: GameState) =>
@@ -810,7 +764,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Sketches - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 3.875e20,
             image: icons[UpgradeType.Sketches][3],
             condition: (state: GameState) =>
@@ -818,7 +771,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Sketches - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 1.9375e21,
             image: icons[UpgradeType.Sketches][4],
             condition: (state: GameState) =>
@@ -828,8 +780,7 @@ export const upgrades: Upgrades = {
     /* [CC] Javascript Console */
     [UpgradeType.Peak]: {
         0: {
-            name: "Peak - Upgrade 1",
-            description: "A funny and witty description goes here. :)",
+            name: "Standard tentacle",
             price: 7.1e20,
             image: icons[UpgradeType.Peak][0],
             condition: (state: GameState) =>
@@ -837,7 +788,6 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Peak - Upgrade 2",
-            description: "A funny and witty description goes here. :)",
             price: 3.55e21,
             image: icons[UpgradeType.Peak][1],
             condition: (state: GameState) =>
@@ -845,7 +795,6 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Peak - Upgrade 3",
-            description: "A funny and witty description goes here. :)",
             price: 1.775e22,
             image: icons[UpgradeType.Peak][2],
             condition: (state: GameState) =>
@@ -853,7 +802,6 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Peak - Upgrade 4",
-            description: "A funny and witty description goes here. :)",
             price: 8.875e22,
             image: icons[UpgradeType.Peak][3],
             condition: (state: GameState) =>
@@ -861,7 +809,6 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Peak - Upgrade 5",
-            description: "A funny and witty description goes here. :)",
             price: 4.4375e23,
             image: icons[UpgradeType.Peak][4],
             condition: (state: GameState) =>

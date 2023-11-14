@@ -9,11 +9,14 @@ import { Currency } from "../data";
 import { Sound } from "@/utils/audio/sounds";
 import { useSettingsStore } from "@/stores/settings";
 import { Item } from "./item";
+import cx from "classix";
 
 export type ActiveUpgrade = {
     id: number;
     type: UpgradeType;
 } | null;
+
+const UPGRADES_PER_ROW = 5;
 
 /**
  * Upgrades panel that can be used to buy upgrades to further progress the game.
@@ -28,6 +31,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
         anchor: [anchor, setAnchor],
         coords: [coords, setCoords],
     } = useTooltip();
+    const activeUpgrades = upgrades.active();
 
     const handleBuy = (type: UpgradeType, id: number) => {
         if (!upgrades.buy(type, id)) return;
@@ -45,8 +49,14 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 ref={setAnchor}
                 onMouseLeave={() => setActive(null)}
             >
-                <div className={classes.items}>
-                    {Object.entries(upgrades.active()).map(([type, upgrades]) =>
+                <div
+                    className={cx(
+                        classes.items,
+                        Object.keys(activeUpgrades).length > UPGRADES_PER_ROW &&
+                            classes.expandable
+                    )}
+                >
+                    {Object.entries(activeUpgrades).map(([type, upgrades]) =>
                         Object.entries(upgrades).map(([id, upgrade]) => (
                             <Item
                                 key={Number(type) + Number(id)}
@@ -70,7 +80,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                             currency={Currency.COINS}
                         />
                     </h2>
-                    <h3>{data[active.type][active.id].description}</h3>
+                    <h3>{data[active.type][active.id]?.description}</h3>
                 </Tooltip>
             )}
         </div>

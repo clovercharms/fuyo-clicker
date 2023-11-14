@@ -21,7 +21,7 @@
         overflow: hidden scroll;
         padding: 0.5rem;
 
-        &:has(> :first-child:nth-last-child(n + 6)):hover {
+        &.expandable:hover {
             height: fit-content;
         }
     }

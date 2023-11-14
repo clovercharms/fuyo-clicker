@@ -303,35 +303,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Mechanics]: {
         0: {
             name: "Repair Shop - Upgrade 1",
-            price: 1.4e7,
+            price: 1.3e6,
             image: icons[UpgradeType.Mechanics][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 1,
         },
         1: {
             name: "Repair Shop - Upgrade 2",
-            price: 7e7,
+            price: 6.6e6,
             image: icons[UpgradeType.Mechanics][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 5,
         },
         2: {
             name: "Repair Shop - Upgrade 3",
-            price: 3.5e8,
+            price: 3.3e7,
             image: icons[UpgradeType.Mechanics][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 25,
         },
         3: {
             name: "Repair Shop - Upgrade 4",
-            price: 1.75e9,
+            price: 1.65e8,
             image: icons[UpgradeType.Mechanics][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 50,
         },
         4: {
             name: "Repair Shop - Upgrade 5",
-            price: 8.75e9,
+            price: 8.25e8,
             image: icons[UpgradeType.Mechanics][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 100,
@@ -341,35 +341,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.FactoryWorkers]: {
         0: {
             name: "Construction Site - Upgrade 1",
-            price: 1.3e6,
+            price: 1.43e7,
             image: icons[UpgradeType.FactoryWorkers][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 1,
         },
         1: {
             name: "Construction Site - Upgrade 2",
-            price: 6.5e6,
+            price: 7.15e7,
             image: icons[UpgradeType.FactoryWorkers][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 5,
         },
         2: {
             name: "Construction Site - Upgrade 3",
-            price: 3.25e7,
+            price: 3.575e8,
             image: icons[UpgradeType.FactoryWorkers][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 25,
         },
         3: {
             name: "Construction Site - Upgrade 4",
-            price: 1.625e8,
+            price: 1.7875e9,
             image: icons[UpgradeType.FactoryWorkers][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 50,
         },
         4: {
             name: "Construction Site - Upgrade 5",
-            price: 8.125e8,
+            price: 8.9375e9,
             image: icons[UpgradeType.FactoryWorkers][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 100,
@@ -380,7 +380,7 @@ export const upgrades: Upgrades = {
         0: {
             name: "Fresh air",
             description: "You don't get to taste this often, huh?",
-            price: 3.3e9,
+            price: 1.54e8,
             image: icons[UpgradeType.Divers][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 1,
@@ -388,7 +388,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Clover fumes",
             description: "Why do I feel so groggy?",
-            price: 1.65e10,
+            price: 7.7e8,
             image: icons[UpgradeType.Divers][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 5,
@@ -396,7 +396,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Brap tank",
             description: "I wouldn't want to breathe it",
-            price: 8.25e10,
+            price: 3.85e9,
             image: icons[UpgradeType.Divers][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 25,
@@ -404,7 +404,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Fuyo musk",
             description: `Can be smelled from a 100 km radius. "Take a bath, stinky!"`,
-            price: 4.125e11,
+            price: 1.925e10,
             image: icons[UpgradeType.Divers][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 50,
@@ -412,7 +412,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Leprecopium",
             description: "Ingest a maximum of 217 ml a day",
-            price: 2.0625e12,
+            price: 9.625e10,
             image: icons[UpgradeType.Divers][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Divers].buildings >= 100,
@@ -423,7 +423,7 @@ export const upgrades: Upgrades = {
         0: {
             name: "Stem extract",
             description: "W-where did you get that?",
-            price: 2e8,
+            price: 2.2e9,
             image: icons[UpgradeType.Scientists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 1,
@@ -431,7 +431,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Clover solvent",
             description: "Do NOT put your stem in this!",
-            price: 1e9,
+            price: 1.1e10,
             image: icons[UpgradeType.Scientists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 5,
@@ -439,7 +439,7 @@ export const upgrades: Upgrades = {
         2: {
             name: "Lucky Charm tears solution",
             description: "Easy to gather when Fuyoless",
-            price: 5e9,
+            price: 5.5e10,
             image: icons[UpgradeType.Scientists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 25,
@@ -447,7 +447,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Fuyonade essence",
             description: "Used to scent bus seats",
-            price: 2.5e10,
+            price: 2.75e11,
             image: icons[UpgradeType.Scientists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 50,
@@ -455,7 +455,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Reproduction catalyst",
             description: "It makes the clovers go wild",
-            price: 1.25e11,
+            price: 1.375e12,
             image: icons[UpgradeType.Scientists][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Scientists].buildings >= 100,
@@ -466,7 +466,7 @@ export const upgrades: Upgrades = {
         0: {
             name: "Tip bag",
             description: "Leave a funny message! Wait-",
-            price: 1e13,
+            price: 3.63e10,
             image: icons[UpgradeType.Investors][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 1,
@@ -474,7 +474,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Wallet bag",
             description: "Legally stol- obtained through donations!",
-            price: 5e13,
+            price: 1.815e11,
             image: icons[UpgradeType.Investors][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 5,
@@ -483,7 +483,7 @@ export const upgrades: Upgrades = {
             name: "Edible paper money bag",
             description:
                 "Delicious delicacy. Hide from the nearest leprechaun.",
-            price: 2.5e14,
+            price: 9.075e11,
             image: icons[UpgradeType.Investors][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 25,
@@ -491,7 +491,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "Fuyocoin bag",
             description: "Found at the end of a rainbow! Not a scam!",
-            price: 1.25e15,
+            price: 4.5375e12,
             image: icons[UpgradeType.Investors][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 50,
@@ -499,7 +499,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Akasupa Bag",
             description: "Are you okay?",
-            price: 6.25e15,
+            price: 2.26875e13,
             image: icons[UpgradeType.Investors][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Investors].buildings >= 100,
@@ -509,35 +509,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Hazmats]: {
         0: {
             name: "Hazmats - Upgrade 1",
-            price: 1.7e15,
+            price: 5.61e11,
             image: icons[UpgradeType.Hazmats][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 1,
         },
         1: {
             name: "Hazmats - Upgrade 2",
-            price: 8.5e15,
+            price: 2.805e12,
             image: icons[UpgradeType.Hazmats][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 5,
         },
         2: {
             name: "Hazmats - Upgrade 3",
-            price: 4.25e16,
+            price: 1.4025e13,
             image: icons[UpgradeType.Hazmats][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 25,
         },
         3: {
             name: "Hazmats - Upgrade 4",
-            price: 2.125e17,
+            price: 7.0125e13,
             image: icons[UpgradeType.Hazmats][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 50,
         },
         4: {
             name: "Leprechaun",
-            price: 1.0625e18,
+            price: 3.50625e14,
             image: icons[UpgradeType.Hazmats][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 100,
@@ -548,7 +548,7 @@ export const upgrades: Upgrades = {
         0: {
             name: "Stem suword",
             description: "Always up, heh",
-            price: 2.6e17,
+            price: 8.25e12,
             image: icons[UpgradeType.Knights][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 1,
@@ -556,7 +556,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "El punhetero",
             description: "Truly a BLASPHEMOUS name",
-            price: 1.3e18,
+            price: 4.125e13,
             image: icons[UpgradeType.Knights][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 5,
@@ -565,7 +565,7 @@ export const upgrades: Upgrades = {
             name: "Diamond suword",
             description:
                 "Let's hope it doesn't suffer the same fate as the pickaxe...",
-            price: 6.5e18,
+            price: 2.0625e14,
             image: icons[UpgradeType.Knights][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 25,
@@ -573,7 +573,7 @@ export const upgrades: Upgrades = {
         3: {
             name: "3 inch destroyer",
             description: "Take a look at my enormous suword",
-            price: 3.25e19,
+            price: 1.03125e15,
             image: icons[UpgradeType.Knights][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 50,
@@ -581,7 +581,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Suword",
             description: "Suword.",
-            price: 1.625e20,
+            price: 5.15625e15,
             image: icons[UpgradeType.Knights][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Knights].buildings >= 100,
@@ -591,35 +591,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Cultists]: {
         0: {
             name: "Cultists - Upgrade 1",
-            price: 7.5e11,
+            price: 1.1e14,
             image: icons[UpgradeType.Cultists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 1,
         },
         1: {
             name: "Cultists - Upgrade 2",
-            price: 3.75e12,
+            price: 5.5e14,
             image: icons[UpgradeType.Cultists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 5,
         },
         2: {
             name: "Cultists - Upgrade 3",
-            price: 1.875e13,
+            price: 2.75e15,
             image: icons[UpgradeType.Cultists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 25,
         },
         3: {
             name: "Cultists - Upgrade 4",
-            price: 9.375e13,
+            price: 1.375e16,
             image: icons[UpgradeType.Cultists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 50,
         },
         4: {
             name: "Cultists - Upgrade 5",
-            price: 4.6875e14,
+            price: 6.875e16,
             image: icons[UpgradeType.Cultists][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 100,
@@ -629,35 +629,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Wizards]: {
         0: {
             name: "Wizards - Upgrade 1",
-            price: 2.1e16,
+            price: 1.54e15,
             image: icons[UpgradeType.Wizards][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 1,
         },
         1: {
             name: "Wizards - Upgrade 2",
-            price: 1.05e17,
+            price: 7.7e15,
             image: icons[UpgradeType.Wizards][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 5,
         },
         2: {
             name: "Wizards - Upgrade 3",
-            price: 5.25e17,
+            price: 3.85e16,
             image: icons[UpgradeType.Wizards][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 25,
         },
         3: {
             name: "Wizards - Upgrade 4",
-            price: 2.625e18,
+            price: 1.925e17,
             image: icons[UpgradeType.Wizards][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 50,
         },
         4: {
             name: "Wizards - Upgrade 5",
-            price: 1.3125e19,
+            price: 9.625e17,
             image: icons[UpgradeType.Wizards][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 100,
@@ -667,35 +667,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Astronauts]: {
         0: {
             name: "Astronauts - Upgrade 1",
-            price: 5.1e10,
+            price: 1.87e16,
             image: icons[UpgradeType.Astronauts][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 1,
         },
         1: {
             name: "Astronauts - Upgrade 2",
-            price: 2.55e11,
+            price: 9.35e16,
             image: icons[UpgradeType.Astronauts][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 5,
         },
         2: {
             name: "Astronauts - Upgrade 3",
-            price: 1.275e12,
+            price: 4.675e17,
             image: icons[UpgradeType.Astronauts][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 25,
         },
         3: {
             name: "Astronauts - Upgrade 4",
-            price: 6.375e12,
+            price: 2.3375e18,
             image: icons[UpgradeType.Astronauts][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 50,
         },
         4: {
             name: "Astronauts - Upgrade 5",
-            price: 3.1875e13,
+            price: 1.16875e19,
             image: icons[UpgradeType.Astronauts][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 100,
@@ -705,35 +705,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Aliens]: {
         0: {
             name: "Aliens - Upgrade 1",
-            price: 14e13,
+            price: 2.3e17,
             image: icons[UpgradeType.Aliens][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 1,
         },
         1: {
             name: "Aliens - Upgrade 2",
-            price: 7e14,
+            price: 1.155e18,
             image: icons[UpgradeType.Aliens][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 5,
         },
         2: {
             name: "Aliens - Upgrade 3",
-            price: 3.5e15,
+            price: 5.775e18,
             image: icons[UpgradeType.Aliens][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 25,
         },
         3: {
             name: "Aliens - Upgrade 4",
-            price: 1.75e16,
+            price: 2.8875e19,
             image: icons[UpgradeType.Aliens][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 50,
         },
         4: {
             name: "Aliens - Upgrade 5",
-            price: 8.75e16,
+            price: 1.44375e20,
             image: icons[UpgradeType.Aliens][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 100,
@@ -743,35 +743,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Sketches]: {
         0: {
             name: "Sketches - Upgrade 1",
-            price: 3.1e18,
+            price: 2.86e18,
             image: icons[UpgradeType.Sketches][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 1,
         },
         1: {
             name: "Sketches - Upgrade 2",
-            price: 1.55e19,
+            price: 1.43e19,
             image: icons[UpgradeType.Sketches][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 5,
         },
         2: {
             name: "Sketches - Upgrade 3",
-            price: 7.75e19,
+            price: 7.15e19,
             image: icons[UpgradeType.Sketches][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 25,
         },
         3: {
             name: "Sketches - Upgrade 4",
-            price: 3.875e20,
+            price: 3.575e20,
             image: icons[UpgradeType.Sketches][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 50,
         },
         4: {
             name: "Sketches - Upgrade 5",
-            price: 1.9375e21,
+            price: 1.7875e21,
             image: icons[UpgradeType.Sketches][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 100,
@@ -781,35 +781,35 @@ export const upgrades: Upgrades = {
     [UpgradeType.Peak]: {
         0: {
             name: "Standard tentacle",
-            price: 7.1e20,
+            price: 3.41e19,
             image: icons[UpgradeType.Peak][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 1,
         },
         1: {
             name: "Peak - Upgrade 2",
-            price: 3.55e21,
+            price: 1.705e20,
             image: icons[UpgradeType.Peak][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 5,
         },
         2: {
             name: "Peak - Upgrade 3",
-            price: 1.775e22,
+            price: 8.525e20,
             image: icons[UpgradeType.Peak][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 25,
         },
         3: {
             name: "Peak - Upgrade 4",
-            price: 8.875e22,
+            price: 4.2625e21,
             image: icons[UpgradeType.Peak][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 50,
         },
         4: {
             name: "Peak - Upgrade 5",
-            price: 4.4375e23,
+            price: 2.13125e22,
             image: icons[UpgradeType.Peak][4],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 100,

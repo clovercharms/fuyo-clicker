@@ -3,7 +3,8 @@
     background-size: 28rem;
 
     & > .reel {
-        padding: 1rem 0;
+        padding-top: 0.25rem;
+        padding-bottom: 0.5rem;
         transition: 0.5s;
 
         &.preEnter,
@@ -13,6 +14,7 @@
 
         & .quote {
             margin-right: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         & .quote,
@@ -24,10 +26,11 @@
             display: flex;
             align-items: center;
         }
-    }
 
-    & > .controls {
-        display: flex;
-        justify-content: flex-end;
+        & > .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 0.5rem;
+        }
     }
 }

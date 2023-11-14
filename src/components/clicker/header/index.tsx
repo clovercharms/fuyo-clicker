@@ -5,11 +5,14 @@ import { useGameStore } from "@/stores/game";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
 import { Button } from "@/components/button";
+import { useSettingsStore } from "@/stores/settings";
 
-const BASE_TITLE = import.meta.env.PROD ? "Peach Colored Hair" : "Fuyo Clicker";
+const BASE_TITLE = "Fuyo Clicker";
 
 export default function Header(props: HTMLProps<HTMLHeadingElement>) {
     const coins = useGameStore(state => state.coins);
+    const debug = useSettingsStore(state => state.debug);
+
     const { counterRef } = useCounter({
         value: coins.amount,
         rateMs: coins.rateMs,
@@ -26,9 +29,8 @@ export default function Header(props: HTMLProps<HTMLHeadingElement>) {
     }, [coins.amount]);
 
     const handleCheat = () => {
-        let amount = 0;
-        do amount = parseInt(prompt("Coins:") ?? "");
-        while (Number.isNaN(amount));
+        const amount = Number(prompt("Coins:") ?? "");
+        if (Number.isNaN(amount)) return;
 
         coins.cheat(amount);
     };
@@ -39,7 +41,7 @@ export default function Header(props: HTMLProps<HTMLHeadingElement>) {
                 <span ref={counterRef} /> coins
             </h1>
             <h2>Per second: {formatNumber(coins.rateMs * 1e3)}</h2>
-            <Button onClick={handleCheat}>Set coins</Button>
+            {debug && <Button onClick={handleCheat}>Set coins</Button>}
         </header>
     );
 }

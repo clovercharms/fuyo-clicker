@@ -3,7 +3,9 @@ import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { mergePersisted } from "..";
 
-export type SettingsState = AudioSlice;
+export type SettingsState = AudioSlice & {
+    debug: boolean;
+};
 
 export const STORE_NAME = "settings-store";
 
@@ -16,10 +18,11 @@ export const useSettingsStore = create<SettingsState>()(
         persist(
             (set, get) => ({
                 ...createAudioSlice(set, get),
+                debug: false,
             }),
             {
                 name: STORE_NAME,
-                version: 0,
+                version: 1,
                 storage: createJSONStorage(() => localStorage),
                 merge: mergePersisted<SettingsState>(),
             }

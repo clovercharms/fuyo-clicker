@@ -440,6 +440,6 @@ export const newsreel: NewsItem[] = [
     },
     {
         content:
-            "Energy goes down in Leprechaunland as VTuber leprechaun make her first pair in golf game.",
+            "Energy goes down in Leprechaunland as VTuber leprechaun make her first par in golf game.",
     },
 ];

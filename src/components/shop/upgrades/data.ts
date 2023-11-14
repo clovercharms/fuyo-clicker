@@ -226,21 +226,25 @@ export const upgrades: Upgrades = {
     /* [CC] Farm */
     [UpgradeType.Lumberjacks]: {
         0: {
-            name: "Lumberjacks - Upgrade 1",
+            name: "Red Flannel Shirt",
+            description:
+                "Can you even call yourself a lumberjack if you don't have one of these?",
             price: 1.1e4,
             image: icons[UpgradeType.Lumberjacks][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Lumberjacks].buildings >= 1,
         },
         1: {
-            name: "Lumberjacks - Upgrade 2",
+            name: "Bigger Axes",
+            description: "Size matters.",
             price: 5.5e4,
             image: icons[UpgradeType.Lumberjacks][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Lumberjacks].buildings >= 5,
         },
         2: {
-            name: "Lumberjacks - Upgrade 3",
+            name: "Axe dual wielding",
+            description: "Two is better than one.",
             price: 2.75e5,
             image: icons[UpgradeType.Lumberjacks][2],
             condition: (state: GameState) =>
@@ -254,7 +258,8 @@ export const upgrades: Upgrades = {
                 state.lanes.types[LaneType.Lumberjacks].buildings >= 50,
         },
         4: {
-            name: "Lumberjacks - Upgrade 5",
+            name: "Dad Bod",
+            description: "This is what peak performance looks like",
             price: 6.875e6,
             image: icons[UpgradeType.Lumberjacks][4],
             condition: (state: GameState) =>
@@ -536,7 +541,7 @@ export const upgrades: Upgrades = {
                 state.lanes.types[LaneType.Hazmats].buildings >= 50,
         },
         4: {
-            name: "Leprechaun",
+            name: "Radioactive leprechaun waste",
             price: 3.50625e14,
             image: icons[UpgradeType.Hazmats][4],
             condition: (state: GameState) =>
@@ -725,14 +730,14 @@ export const upgrades: Upgrades = {
                 state.lanes.types[LaneType.Aliens].buildings >= 25,
         },
         3: {
-            name: "Aliens - Upgrade 4",
+            name: "Clover Instrumentality Project",
             price: 2.8875e19,
             image: icons[UpgradeType.Aliens][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 50,
         },
         4: {
-            name: "Aliens - Upgrade 5",
+            name: "FUYO BEAM!!!",
             price: 1.44375e20,
             image: icons[UpgradeType.Aliens][4],
             condition: (state: GameState) =>
@@ -787,28 +792,28 @@ export const upgrades: Upgrades = {
                 state.lanes.types[LaneType.Peak].buildings >= 1,
         },
         1: {
-            name: "Peak - Upgrade 2",
+            name: "Suction tip",
             price: 1.705e20,
             image: icons[UpgradeType.Peak][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 5,
         },
         2: {
-            name: "Peak - Upgrade 3",
+            name: "Splitter",
             price: 8.525e20,
             image: icons[UpgradeType.Peak][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 25,
         },
         3: {
-            name: "Peak - Upgrade 4",
+            name: "Milker",
             price: 4.2625e21,
             image: icons[UpgradeType.Peak][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Peak].buildings >= 50,
         },
         4: {
-            name: "Peak - Upgrade 5",
+            name: "Slime",
             price: 2.13125e22,
             image: icons[UpgradeType.Peak][4],
             condition: (state: GameState) =>

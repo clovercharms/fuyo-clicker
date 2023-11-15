@@ -1,4 +1,4 @@
-import bgm from "@/assets/audio/fuyonade_dreams_ver2.wav";
+import bgm from "@/assets/audio/fuyonade_dreams_ver2.mp3";
 import * as clicker from "@/assets/audio/clicker";
 import kaching from "@/assets/audio/kachingNotReally.wav";
 import * as repro from "@/assets/audio/repro";

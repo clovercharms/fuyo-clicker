@@ -348,35 +348,35 @@ export const upgrades: Upgrades = {
     /* [CC] Bank */
     [UpgradeType.FactoryWorkers]: {
         0: {
-            name: "Construction Site - Upgrade 1",
+            name: "Ay-ron farm",
             price: 1.43e7,
             image: icons[UpgradeType.FactoryWorkers][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 1,
         },
         1: {
-            name: "Construction Site - Upgrade 2",
+            name: "Pablo Puebes' confinement space",
             price: 7.15e7,
             image: icons[UpgradeType.FactoryWorkers][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 5,
         },
         2: {
-            name: "Construction Site - Upgrade 3",
+            name: "Gold farm",
             price: 3.575e8,
             image: icons[UpgradeType.FactoryWorkers][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 25,
         },
         3: {
-            name: "Construction Site - Upgrade 4",
+            name: "Reproduction farm",
             price: 1.7875e9,
             image: icons[UpgradeType.FactoryWorkers][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 50,
         },
         4: {
-            name: "Construction Site - Upgrade 5",
+            name: "Fuyo's tentacle statue",
             price: 8.9375e9,
             image: icons[UpgradeType.FactoryWorkers][4],
             condition: (state: GameState) =>
@@ -598,35 +598,36 @@ export const upgrades: Upgrades = {
     /* [CC] Time Machine */
     [UpgradeType.Cultists]: {
         0: {
-            name: "Cultists - Upgrade 1",
+            name: "Join the tummy cult as a new recruit",
+            description: "We have cute, cultured and breedable tummies",
             price: 1.1e14,
             image: icons[UpgradeType.Cultists][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 1,
         },
         1: {
-            name: "Cultists - Upgrade 2",
+            name: "Become a stummy enjoyer",
             price: 5.5e14,
             image: icons[UpgradeType.Cultists][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 5,
         },
         2: {
-            name: "Cultists - Upgrade 3",
+            name: "Become a Womb tattoo enjoyer",
             price: 2.75e15,
             image: icons[UpgradeType.Cultists][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 25,
         },
         3: {
-            name: "Cultists - Upgrade 4",
+            name: "Become a Tummy 'Bulge' enjoyer",
             price: 1.375e16,
             image: icons[UpgradeType.Cultists][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Cultists].buildings >= 50,
         },
         4: {
-            name: "Cultists - Upgrade 5",
+            name: "Tummy for the tummy god",
             price: 6.875e16,
             image: icons[UpgradeType.Cultists][4],
             condition: (state: GameState) =>

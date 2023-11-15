@@ -251,7 +251,8 @@ export const upgrades: Upgrades = {
                 state.lanes.types[LaneType.Lumberjacks].buildings >= 25,
         },
         3: {
-            name: "Lumberjacks - Upgrade 4",
+            name: "Suspenders",
+            description: "For a complete look.",
             price: 1.375e6,
             image: icons[UpgradeType.Lumberjacks][3],
             condition: (state: GameState) =>
@@ -270,6 +271,7 @@ export const upgrades: Upgrades = {
     [UpgradeType.Blacksmiths]: {
         0: {
             name: "Bigger hammer",
+            description: "Has to be larger than 3 inches.",
             price: 1.2e5,
             image: icons[UpgradeType.Blacksmiths][0],
             condition: (state: GameState) =>
@@ -277,7 +279,7 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Titanium anvil",
-            description: "Does it even matter what metal its made of?",
+            description: `Modeled after a leprechaun's "assets".`,
             price: 6e5,
             image: icons[UpgradeType.Blacksmiths][1],
             condition: (state: GameState) =>
@@ -285,6 +287,7 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Electric forge",
+            description: "Shocking, I know.",
             price: 3e6,
             image: icons[UpgradeType.Blacksmiths][2],
             condition: (state: GameState) =>
@@ -292,7 +295,8 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Majestic braided beard",
-            description: "It gets in the way but improves morale",
+            description:
+                "It gets in the way but improves morale. It's also very attractive.",
             price: 1.5e7,
             image: icons[UpgradeType.Blacksmiths][3],
             condition: (state: GameState) =>
@@ -356,13 +360,15 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Pablo Puebes' confinement space",
+            description: "I-it's not like I l-like him or anything!",
             price: 7.15e7,
             image: icons[UpgradeType.FactoryWorkers][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.FactoryWorkers].buildings >= 5,
         },
         2: {
-            name: "Gold farm",
+            name: "Automatic gold farm",
+            description: "It would suck if it suddenly stopped working",
             price: 3.575e8,
             image: icons[UpgradeType.FactoryWorkers][2],
             condition: (state: GameState) =>
@@ -370,6 +376,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Reproduction farm",
+            description: "Chu chu chu",
             price: 1.7875e9,
             image: icons[UpgradeType.FactoryWorkers][3],
             condition: (state: GameState) =>
@@ -377,6 +384,7 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Fuyo's tentacle statue",
+            description: "I want to wake up and see myself...",
             price: 8.9375e9,
             image: icons[UpgradeType.FactoryWorkers][4],
             condition: (state: GameState) =>
@@ -735,6 +743,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Clover Instrumentality Project",
+            description: `Return to sap. "Tumbling down, tumbling down, tumbling down~"`,
             price: 2.8875e19,
             image: icons[UpgradeType.Aliens][3],
             condition: (state: GameState) =>
@@ -790,6 +799,8 @@ export const upgrades: Upgrades = {
     [UpgradeType.Peak]: {
         0: {
             name: "Standard tentacle",
+            description:
+                "Comes in a wide variety of sizes and colors, and can be used for a variety of tasks.",
             price: 3.41e19,
             image: icons[UpgradeType.Peak][0],
             condition: (state: GameState) =>
@@ -797,6 +808,8 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "Suction tip",
+            description:
+                "This variety has developed a bulb capable of producing strong suction.",
             price: 1.705e20,
             image: icons[UpgradeType.Peak][1],
             condition: (state: GameState) =>
@@ -804,6 +817,8 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Splitter",
+            description:
+                "This variety can split off into additional tentacles at will.",
             price: 8.525e20,
             image: icons[UpgradeType.Peak][2],
             condition: (state: GameState) =>
@@ -811,6 +826,8 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Milker",
+            description:
+                "Strong suction holds it in place as it carries out its purpose.",
             price: 4.2625e21,
             image: icons[UpgradeType.Peak][3],
             condition: (state: GameState) =>
@@ -818,6 +835,8 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Slime",
+            description:
+                "Can enter through even the smallest opening, and then expand to fill the entire space.",
             price: 2.13125e22,
             image: icons[UpgradeType.Peak][4],
             condition: (state: GameState) =>

@@ -352,7 +352,8 @@ export const upgrades: Upgrades = {
     /* [CC] Bank */
     [UpgradeType.FactoryWorkers]: {
         0: {
-            name: "Ay-ron farm",
+            name: "Eye-ron farm",
+            description: "Eye-ron for suwords",
             price: 1.43e7,
             image: icons[UpgradeType.FactoryWorkers][0],
             condition: (state: GameState) =>
@@ -645,35 +646,40 @@ export const upgrades: Upgrades = {
     /* [CC] Antimatter Condenser */
     [UpgradeType.Wizards]: {
         0: {
-            name: "Wizards - Upgrade 1",
+            name: "Stem wand",
+            description: "Powers up when there's a leprechaun nearby.",
             price: 1.54e15,
             image: icons[UpgradeType.Wizards][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 1,
         },
         1: {
-            name: "Wizards - Upgrade 2",
+            name: "Leprechaun magic",
+            description: "Works 30% of the time.",
             price: 7.7e15,
             image: icons[UpgradeType.Wizards][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 5,
         },
         2: {
-            name: "Wizards - Upgrade 3",
+            name: "Witch outfit",
+            description: "For the most fun time of the year!",
             price: 3.85e16,
             image: icons[UpgradeType.Wizards][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 25,
         },
         3: {
-            name: "Wizards - Upgrade 4",
+            name: "ASMR magic spell",
+            description: "Infatuates Lucky charms better than a love potion.",
             price: 1.925e17,
             image: icons[UpgradeType.Wizards][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Wizards].buildings >= 50,
         },
         4: {
-            name: "Wizards - Upgrade 5",
+            name: "Wish!",
+            description: "Will be granted (almost) every stream!",
             price: 9.625e17,
             image: icons[UpgradeType.Wizards][4],
             condition: (state: GameState) =>

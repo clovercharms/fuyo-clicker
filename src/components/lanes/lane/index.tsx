@@ -15,6 +15,7 @@ import { useElementSize, useIntersectionObserver } from "usehooks-ts";
 import { CloverType } from "@/components/clover/data";
 import { useSoundEmitter } from "@/hooks/useSoundEmitter";
 import { useSettingsStore } from "@/stores/settings";
+import { useQuality } from "@/hooks/useQuality";
 
 // Size constants
 const BUILDING_SIZE_PX = 64;
@@ -47,6 +48,7 @@ export default function Lane({ type, lane, size, ...props }: LaneProps) {
     const ref = useRef<HTMLDivElement | null>(null);
     const intersection = useIntersectionObserver(ref, {});
     const play = useSettingsStore(settings => settings.audio.play);
+    const quality = useQuality();
 
     const audioRatio = Math.min((lane.buildings - 1) / 10, 1);
     useSoundEmitter({
@@ -84,7 +86,8 @@ export default function Lane({ type, lane, size, ...props }: LaneProps) {
             {...props}
             className={cx(
                 classes.lane,
-                intersection?.isIntersecting && classes.animated,
+                intersection?.isIntersecting && classes.visible,
+                ...quality.classes,
                 props.className
             )}
             style={{

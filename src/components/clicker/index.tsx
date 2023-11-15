@@ -9,9 +9,12 @@ import Header from "./header";
 import Fuyonade from "./boosts";
 import cx from "classix";
 import { useElementSize } from "usehooks-ts";
+import { useSettingsStore } from "@/stores/settings";
+import { Quality } from "../news/settings/slice";
 
 export default function Clicker(props: HTMLProps<HTMLDivElement>) {
     const [elementRef, size] = useElementSize();
+    const quality = useSettingsStore(settings => settings.quality);
 
     // [FIXME] Workound https://github.com/pixijs/pixi-react/issues/456
     useMemo(() => new BlurFilter(0), []);
@@ -28,9 +31,12 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                 <Stage
                     width={size.width}
                     height={size.height}
-                    options={{ backgroundAlpha: 0, autoDensity: true }}
+                    options={{
+                        backgroundAlpha: 0,
+                        autoDensity: true,
+                    }}
                 >
-                    <Backdrop size={size} />
+                    {quality <= Quality.Medium && <Backdrop size={size} />}
                     <Container x={size.width / 2} y={size.height / 2}>
                         <Hands />
                         <Coin />

@@ -2,12 +2,13 @@ import { AudioSlice, createAudioSlice } from "@/utils/audio";
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { mergePersisted } from "..";
-import { produce } from "immer";
+import {
+    Quality,
+    SettingsSlice,
+    createSettingsSlice,
+} from "@/components/news/settings/slice";
 
-export type SettingsState = AudioSlice & {
-    debug: boolean;
-    setDebug: (value: boolean) => void;
-};
+export type SettingsState = SettingsSlice & AudioSlice;
 
 export const STORE_NAME = "settings-store";
 
@@ -20,20 +21,11 @@ export const useSettingsStore = create<SettingsState>()(
         persist(
             (set, get) => ({
                 ...createAudioSlice(set, get),
-                debug: false,
-                setDebug: (value: boolean) => {
-                    set(
-                        produce<SettingsState>(state => {
-                            state.debug = value;
-                        }),
-                        false,
-                        "Action - Settings - Debug"
-                    );
-                },
+                ...createSettingsSlice(set),
             }),
             {
                 name: STORE_NAME,
-                version: 1,
+                version: 2,
                 storage: createJSONStorage(() => localStorage),
                 merge: mergePersisted<SettingsState>(),
                 migrate: (persistedState, version) => {
@@ -42,6 +34,11 @@ export const useSettingsStore = create<SettingsState>()(
                             return {
                                 ...(persistedState as SettingsState),
                                 debug: false,
+                            };
+                        case 1:
+                            return {
+                                ...(persistedState as SettingsState),
+                                quality: Quality.High,
                             };
                         default:
                             return persistedState as SettingsState;

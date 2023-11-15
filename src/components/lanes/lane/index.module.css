@@ -70,16 +70,15 @@
             aspect-ratio: 1/1;
             margin-left: -1rem;
         }
+    }
 
-        &.flying {
-            & > img {
-                animation-composition: add;
-                animation:
-                    50s var(--animation-delay) flying infinite linear,
-                    25s var(--animation-delay) flip steps(1, end) infinite
-                        alternate;
-                animation-play-state: paused;
-            }
+    &:global(.hq) > .flying.buildings {
+        & > img {
+            animation-composition: add;
+            animation:
+                50s var(--animation-delay) flying infinite linear,
+                25s var(--animation-delay) flip steps(1, end) infinite alternate;
+            animation-play-state: paused;
         }
     }
 
@@ -94,34 +93,28 @@
         }
 
         & > .clover {
-            & > div {
-                animation: 1s var(--animation-delay) flip steps(1, end)
-                    alternate infinite;
-                animation-play-state: paused;
-            }
-
             & > span {
                 font-size: 1.2rem;
             }
         }
     }
 
-    & > .hero-clovers {
-        & > .hero-clover {
-            & > div > div {
-                animation: 1s var(--animation-delay) flip steps(1, end)
-                    alternate infinite;
-                animation-play-state: paused;
-            }
-        }
+    &:global(.mq) > .clovers > .clover > div {
+        animation: 1s var(--animation-delay) flip steps(1, end) alternate
+            infinite;
+        animation-play-state: paused;
     }
 
-    & > .clovers,
-    & > .hero-clovers {
-        & > * {
-            animation: 2s var(--animation-delay) work infinite linear;
-            animation-play-state: paused;
-        }
+    &:global(.mq) > .hero-clovers > .hero-clover > div > div {
+        animation: 1s var(--animation-delay) flip steps(1, end) alternate
+            infinite;
+        animation-play-state: paused;
+    }
+
+    &:global(.hq) > .clovers > *,
+    &:global(.hq) > .hero-clovers > * {
+        animation: 2s var(--animation-delay) work infinite linear;
+        animation-play-state: paused;
     }
 
     & .building:first-child,
@@ -130,7 +123,7 @@
     }
 }
 
-.animated.lane {
+.visible.lane {
     & > .buildings {
         &.flying {
             & > img {

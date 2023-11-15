@@ -16,7 +16,7 @@ export function AudioToggle({ type, label }: AudioToggleProps) {
                 void audio.mute(type, !audio.muted[type]);
             }}
         >
-            {!audio.muted[type] ? "Mute" : "Unmute"} {label}
+            {!audio.muted[type] ? "🔉" : "🔇"} {label}
         </Button>
     );
 }

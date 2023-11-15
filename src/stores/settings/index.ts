@@ -2,9 +2,11 @@ import { AudioSlice, createAudioSlice } from "@/utils/audio";
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { mergePersisted } from "..";
+import { produce } from "immer";
 
 export type SettingsState = AudioSlice & {
     debug: boolean;
+    setDebug: (value: boolean) => void;
 };
 
 export const STORE_NAME = "settings-store";
@@ -19,6 +21,15 @@ export const useSettingsStore = create<SettingsState>()(
             (set, get) => ({
                 ...createAudioSlice(set, get),
                 debug: false,
+                setDebug: (value: boolean) => {
+                    set(
+                        produce<SettingsState>(state => {
+                            state.debug = value;
+                        }),
+                        false,
+                        "Action - Settings - Debug"
+                    );
+                },
             }),
             {
                 name: STORE_NAME,

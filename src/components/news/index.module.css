@@ -1,11 +1,9 @@
 .news {
     background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
     background-size: 28rem;
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
 
     & > .reel {
-        padding-top: 0.25rem;
-        padding-bottom: 0.5rem;
-
         & .quote {
             margin-right: 1rem;
             margin-bottom: 0.5rem;
@@ -30,7 +28,6 @@
         & > .row {
             display: flex;
             justify-content: space-between;
-            margin: 0 0.5rem;
         }
     }
 }

@@ -4,7 +4,7 @@ import { HTMLProps, useEffect, useState } from "react";
 import { newsreel } from "./data";
 import Marquee from "react-fast-marquee";
 import { useTransition } from "react-transition-state";
-import { Controls } from "./controls";
+import { Settings } from "./settings";
 
 const CHARS_PER_SECOND = 2.5;
 const MIN_DURATION_MS = 1.5e4;
@@ -62,7 +62,7 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
                         {newsreel[newsIndex].author &&
                             `- ${newsreel[newsIndex].author}`}
                     </div>
-                    <Controls />
+                    <Settings />
                 </div>
             </div>
         </div>

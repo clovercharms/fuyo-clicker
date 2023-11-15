@@ -181,9 +181,9 @@ export const upgrades: Upgrades = {
     /* [CC] Grandma */
     [UpgradeType.Miners]: {
         0: {
-            name: "Sugar gas",
+            name: "Clover gas",
             description:
-                "A pink, volatile gas, found in the depths of some chocolate caves.",
+                "A green, volatile gas, found in the depths of some gold mines.",
             price: 1e3,
             image: icons[UpgradeType.Miners][0],
             condition: (state: GameState) =>
@@ -721,21 +721,25 @@ export const upgrades: Upgrades = {
     /* [CC] Chancemaker */
     [UpgradeType.Aliens]: {
         0: {
-            name: "Aliens - Upgrade 1",
+            name: "Stem laser gun",
+            description: "Stems shoot pretty hard after all.",
             price: 2.3e17,
             image: icons[UpgradeType.Aliens][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 1,
         },
         1: {
-            name: "Aliens - Upgrade 2",
+            name: "Poptart leprecat",
+            description:
+                "It has been haunting me for 10 hours, please make it stop.",
             price: 1.155e18,
             image: icons[UpgradeType.Aliens][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Aliens].buildings >= 5,
         },
         2: {
-            name: "Aliens - Upgrade 3",
+            name: "Great-grandpa leprechaun's flying hand",
+            description: "Postumous pettiness",
             price: 5.775e18,
             image: icons[UpgradeType.Aliens][2],
             condition: (state: GameState) =>
@@ -760,35 +764,42 @@ export const upgrades: Upgrades = {
     /* [CC] Fractal Engine */
     [UpgradeType.Sketches]: {
         0: {
-            name: "Sketches - Upgrade 1",
+            name: "Pencil",
+            description: "Simple is best for beginners!",
             price: 2.86e18,
             image: icons[UpgradeType.Sketches][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 1,
         },
         1: {
-            name: "Sketches - Upgrade 2",
+            name: "Phone pen",
+            description: "Why is it ringing so often?",
             price: 1.43e19,
             image: icons[UpgradeType.Sketches][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 5,
         },
         2: {
-            name: "Sketches - Upgrade 3",
+            name: "Spoon",
+            description:
+                "You're supposed to be drawing, not trying to break out of jail!",
             price: 7.15e19,
             image: icons[UpgradeType.Sketches][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 25,
         },
         3: {
-            name: "Sketches - Upgrade 4",
+            name: "Make-up brush",
+            description:
+                "I guess this will do. Should've bought better supplies...",
             price: 3.575e20,
             image: icons[UpgradeType.Sketches][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Sketches].buildings >= 50,
         },
         4: {
-            name: "Sketches - Upgrade 5",
+            name: "Digital pen",
+            description: "Remember to save! Oh sh-",
             price: 1.7875e21,
             image: icons[UpgradeType.Sketches][4],
             condition: (state: GameState) =>

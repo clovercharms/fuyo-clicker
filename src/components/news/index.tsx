@@ -45,7 +45,7 @@ export default function News(props: HTMLProps<HTMLDivElement>) {
     return (
         <div {...props} className={cx(classes.news, props.className)}>
             <div className={classes.reel}>
-                <Marquee>
+                <Marquee className={classes.marquee}>
                     <div
                         className={cx(
                             classes.quote,

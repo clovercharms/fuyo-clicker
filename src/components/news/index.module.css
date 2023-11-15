@@ -4,6 +4,11 @@
     padding: 0rem 0.5rem 0.5rem 0.5rem;
 
     & > .reel {
+        & .marquee {
+            margin: 0 -0.5rem;
+            padding: 0 0.5rem;
+        }
+
         & .quote {
             margin-right: 1rem;
             margin-bottom: 0.5rem;

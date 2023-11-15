@@ -96,8 +96,8 @@ function shouldSpawn(timeSec: number) {
     return Math.random() < probability;
 }
 
-// 7.5 Minutes production.
-const BONUS_PRODUCTION_TIME = 7.5 * 60e3;
+// 3 Minutes production.
+const BONUS_PRODUCTION_TIME = 3 * 60e3;
 
 function determineBonus(rateMs: number) {
     return rateMs * BONUS_PRODUCTION_TIME;

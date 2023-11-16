@@ -19,6 +19,8 @@
             top 0.2s;
         font-size: 1.5rem;
         z-index: 1;
+        white-space: nowrap;
+        pointer-events: none;
     }
 
     & > .body {

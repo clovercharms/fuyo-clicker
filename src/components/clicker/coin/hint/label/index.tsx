@@ -27,7 +27,7 @@ export default function Label({ x, y, amount }: HintProps) {
                 anchor={[0.5]}
                 x={0}
                 y={0}
-                text={`+${formatNumber(amount)}`}
+                text={`+${formatNumber(Math.floor(amount))}`}
                 style={
                     new TextStyle({
                         fontFamily: "Subscribe",

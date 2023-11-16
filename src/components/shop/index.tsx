@@ -9,6 +9,10 @@ import cx from "classix";
 import { Sound } from "@/utils/audio/sounds";
 import { ProductionTooltip } from "./tooltip/production-tooltip";
 import { useSettingsStore } from "@/stores/settings";
+import { countBuildings } from "../clicker/calc";
+
+const TOTAL_TIERS = 4;
+const TIER_TOTAL_BUILDINGS = 16 * 10;
 
 /**
  * Shop for buying upgrades and advancements.
@@ -18,14 +22,18 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
     const coins = useGameStore(state => state.coins);
     const clovers = useGameStore(state => state.repro.clovers.amount);
     const play = useSettingsStore(settings => settings.audio.play);
-
     const containerRef = useRef<HTMLDivElement>(null);
     const [activeId, setActiveId] = useState<number | null>(null);
-
     const {
         anchor: [anchor, setAnchor],
         coords: [coords, setCoords],
     } = useTooltip();
+    const tier = useGameStore(state =>
+        Math.round(
+            (countBuildings(state.lanes.types) / TIER_TOTAL_BUILDINGS) *
+                TOTAL_TIERS
+        )
+    );
 
     const handleBuy = (id: number) => {
         if (!shop.buy(id)) return;
@@ -47,7 +55,17 @@ export default function Shop(props: HTMLProps<HTMLDivElement>) {
             className={cx(classes.shop, props.className)}
             ref={containerRef}
         >
-            <div className={classes.header} />
+            <div className={classes.header}>
+                <div className={classes.background} />
+                <div
+                    className={cx(
+                        classes.boxes,
+                        tier > 0 && classes[tier],
+                        tier > TOTAL_TIERS && classes[TOTAL_TIERS]
+                    )}
+                />
+                <div className={classes.clover} />
+            </div>
             <Upgrades />
             <ul
                 className={classes.items}

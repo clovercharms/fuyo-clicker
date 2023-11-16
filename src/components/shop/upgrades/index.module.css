@@ -1,9 +1,13 @@
 .container {
-    background-color: #fff4;
+    position: relative;
+    z-index: 1;
 }
 
 .upgrades {
-    position: relative;
+    position: absolute;
+    width: 100%;
+    min-height: 7.5rem;
+    box-sizing: border-box;
     background-image: url("@/assets/images/shop/upgrades/upgrades-bg.png");
     background-size: 28rem;
     border-image: url("@/assets/images/shop/upgrades/upgrades-frame.png") 30 24
@@ -16,13 +20,14 @@
         grid-template-columns: repeat(5, 1fr);
         grid-auto-rows: max-content;
         min-height: 5rem;
-        max-height: 20rem;
+        max-height: 15rem;
         height: 5rem;
         overflow: hidden scroll;
         padding: 0.5rem;
+        transition: 0.5s;
 
         &.expandable:hover {
-            height: fit-content;
+            height: 15rem;
         }
     }
 }

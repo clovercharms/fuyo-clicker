@@ -1,22 +1,66 @@
 .shop {
-    background-color: #fff6;
     display: flex;
     flex-direction: column;
     flex: 1;
     min-height: 0;
+    background-image: linear-gradient(0deg, rgb(0 0 0 / 10%), rgb(0 0 0 / 10%)),
+        url("@/assets/images/shop/upgrades/upgrades-bg.png");
+    background-size: 28rem;
 
     & > .header {
-        background-image: url("../../assets/images/shop/header.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
+        position: relative;
         min-height: 7rem;
+
+        & > * {
+            position: absolute;
+            inset: 0;
+        }
+
+        & > .background {
+            background-image: url("@/assets/images/shop/background.png");
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        & > .boxes {
+            background-size: cover;
+            background-position: bottom;
+
+            &.1 {
+                background-image: url("@/assets/images/shop/boxes/boxes0.png");
+            }
+
+            &.2 {
+                background-image: url("@/assets/images/shop/boxes/boxes0.png"),
+                    url("@/assets/images/shop/boxes/boxes1.png");
+            }
+
+            &.3 {
+                background-image: url("@/assets/images/shop/boxes/boxes0.png"),
+                    url("@/assets/images/shop/boxes/boxes1.png"),
+                    url("@/assets/images/shop/boxes/boxes2.png");
+            }
+
+            &.4 {
+                background-image: url("@/assets/images/shop/boxes/boxes0.png"),
+                    url("@/assets/images/shop/boxes/boxes1.png"),
+                    url("@/assets/images/shop/boxes/boxes2.png"),
+                    url("@/assets/images/shop/boxes/boxes3.png");
+            }
+        }
+
+        & > .clover {
+            background: url("@/assets/images/shop/header.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
     }
 
     & > .items {
         all: unset;
+        margin-top: 7.5rem;
         padding: 0.25rem;
         overflow: hidden auto;
-        flex: 1;
     }
 }

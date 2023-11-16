@@ -30,22 +30,24 @@ export interface CoinsSlice {
     };
 }
 
-const initialCoinsState = {
+const initialCoinsState = () => ({
     amount: 0,
     manualAmount: 0,
     lastUpdate: performance.now(),
     rateMs: 0,
     clickers: 0,
-};
+});
 
 export const createCoinsSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
 ) => {
-    resetters.push(() => ({ coins: { ...get().coins, ...initialCoinsState } }));
+    resetters.push(() => ({
+        coins: { ...get().coins, ...initialCoinsState() },
+    }));
     return {
         coins: {
-            ...initialCoinsState,
+            ...initialCoinsState(),
             tick: () => {
                 const elapsed = Math.max(
                     0,

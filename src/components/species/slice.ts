@@ -25,22 +25,22 @@ export interface SpeciesSlice {
 /**
  * Default species state.
  */
-const defaultSpecies = {
-    lastUpdate: 0,
-    lastSpawn: 0,
+const defaultSpecies = () => ({
+    lastUpdate: performance.now(),
+    lastSpawn: performance.now(),
     spawn: false,
-};
+});
 
 export const createSpeciesSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
 ) => {
     resetters.push(() => ({
-        species: { ...get().species, ...defaultSpecies },
+        species: { ...get().species, ...defaultSpecies() },
     }));
     return {
         species: {
-            ...defaultSpecies,
+            ...defaultSpecies(),
             tick: () => {
                 set(
                     produce<GameState>(state => {

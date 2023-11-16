@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { formatNumber } from "@/utils/numbers";
+import { State, useGameStore } from "@/stores/game";
 
 /**
  * Properties of the Counter.
@@ -22,6 +23,7 @@ export function useCounter({ value, rateMs, floor }: CounterProps) {
     /** The last animation frame requested. */
     const requestRef = useRef<number | undefined>();
     const lastUpdate = useRef(performance.now());
+    const state = useGameStore(state => state.state);
 
     /**
      * Update progression timer upon change in value or rate (likely from tick.)
@@ -34,7 +36,7 @@ export function useCounter({ value, rateMs, floor }: CounterProps) {
      * Updates the actual value inside of the element outside rendering loop.
      */
     const updateValue = useCallback(() => {
-        if (!elementRef.current) return;
+        if (!elementRef.current || state === State.PAUSED) return;
         const elapsed = Math.max(0, performance.now() - lastUpdate.current);
 
         const currentValue = value + elapsed * rateMs;
@@ -44,7 +46,7 @@ export function useCounter({ value, rateMs, floor }: CounterProps) {
 
         requestRef.current = requestAnimationFrame(updateValue);
         return () => cancelAnimationFrame(requestRef.current!);
-    }, [elementRef, value, rateMs, floor]);
+    }, [elementRef, value, rateMs, floor, state]);
 
     /**
      * Starts the main update loop which runs every animation frame.

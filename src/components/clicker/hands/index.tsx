@@ -67,6 +67,8 @@ export default function Hands() {
             hands.length < LOOP_OFFSET ? hands.length : LOOP_OFFSET;
 
         for (const [key, hand] of hands) {
+            if (!hand) continue;
+
             if ((Number(key) - offsetHand.current) % loopOffset === 0) {
                 hand.y = pokeSpring.y.get();
             } else {

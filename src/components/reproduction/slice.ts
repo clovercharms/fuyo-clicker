@@ -45,7 +45,7 @@ export interface ReproSlice {
     };
 }
 
-const initialReproState = {
+const initialReproState = () => ({
     clovers: {
         amount: 0,
         rateMs: 0,
@@ -58,16 +58,18 @@ const initialReproState = {
         lastCloverId: -1,
     },
     lastUpdate: performance.now(),
-};
+});
 
 export const createReproSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
 ) => {
-    resetters.push(() => ({ repro: { ...get().repro, ...initialReproState } }));
+    resetters.push(() => ({
+        repro: { ...get().repro, ...initialReproState() },
+    }));
     return {
         repro: {
-            ...initialReproState,
+            ...initialReproState(),
             tick: () => {
                 const elapsed = Math.max(
                     0,

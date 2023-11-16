@@ -17,7 +17,7 @@ export interface BoostsSlice {
     };
 }
 
-const initialBoostsState = {
+const initialBoostsState = () => ({
     types: {
         [BoostType.FUYONADE]: {
             lastUpdate: performance.now(),
@@ -25,18 +25,18 @@ const initialBoostsState = {
             active: false,
         },
     },
-};
+});
 
 export const createBoostsSlice = (
     set: StoreApi<GameState>["setState"],
     get: StoreApi<GameState>["getState"]
 ) => {
     resetters.push(() => ({
-        boosts: { ...get().boosts, ...initialBoostsState },
+        boosts: { ...get().boosts, ...initialBoostsState() },
     }));
     return {
         boosts: {
-            ...initialBoostsState,
+            ...initialBoostsState(),
             tick: () => {
                 set(
                     produce<GameState>(state => {

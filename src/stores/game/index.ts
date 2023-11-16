@@ -21,18 +21,30 @@ import {
     createSpeciesSlice,
 } from "../../components/species/slice";
 import { mergePersisted } from "..";
+import { produce } from "immer";
+
+export enum State {
+    RUNNING,
+    PAUSED,
+}
+
+export interface GameSlice {
+    state: State;
+    tick: () => void;
+    reset: () => void;
+    setState: (state: State) => void;
+    load: (state: GameState) => void;
+}
 
 /** Combination of all different slices from different aspects of the game. */
-export type GameState = CoinsSlice &
+export type GameState = GameSlice &
+    CoinsSlice &
     BoostsSlice &
     UpgradesSlice &
     ShopSlice &
     ReproSlice &
     LanesSlice &
-    SpeciesSlice & {
-        tick: () => void;
-        reset: () => void;
-    };
+    SpeciesSlice;
 
 export const STORE_NAME = "game-store";
 
@@ -51,6 +63,7 @@ export const useGameStore = create<GameState>()(
                 ...createReproSlice(set, get),
                 ...createLanesSlice(set, get),
                 ...createSpeciesSlice(set, get),
+                state: State.RUNNING,
                 tick: () => {
                     createCoinsSlice(set, get).coins.tick();
                     createBoostsSlice(set, get).boosts.tick();
@@ -70,12 +83,37 @@ export const useGameStore = create<GameState>()(
                         false,
                         "Action - Reset"
                     ),
+                setState: (state: State) =>
+                    set(
+                        produce<GameState>(game => {
+                            game.state = state;
+                        }),
+                        false,
+                        "Action - State"
+                    ),
+                load: (state: GameState) =>
+                    set(
+                        mergePersisted<GameState>()(state, get()),
+                        true,
+                        "Action - Load"
+                    ),
             }),
             {
                 name: STORE_NAME,
-                version: 2,
+                version: 3,
                 storage: createJSONStorage(() => localStorage),
                 merge: mergePersisted<GameState>(),
+                migrate: (persistedState, version) => {
+                    switch (version) {
+                        case 2:
+                            return {
+                                ...(persistedState as GameState),
+                                state: State.RUNNING,
+                            };
+                        default:
+                            return persistedState as GameState;
+                    }
+                },
             }
         )
     )

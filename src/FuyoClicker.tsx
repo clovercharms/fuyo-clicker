@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import classes from "./FuyoClicker.module.css";
 import Lanes from "./components/lanes";
 import News from "./components/news";
 import Reproduction from "./components/reproduction";
 import Shop from "./components/shop";
-import { useGameStore } from "./stores/game";
+import { State, useGameStore } from "./stores/game";
 import { DndContext } from "@dnd-kit/core";
 import Clicker from "./components/clicker";
 import { Divider, Orientation } from "./components/divider";
@@ -17,16 +17,16 @@ const TICK_MS = 1000;
  * Contains all the game's components, and handles the main game loop.
  */
 export default function FuyoClicker() {
-    const intervalId = useRef<number | undefined>();
     const tick = useGameStore(state => state.tick);
+    const state = useGameStore(state => state.state);
 
     useEffect(() => {
-        if (intervalId.current) return;
+        if (state === State.PAUSED) return;
 
-        tick();
-        intervalId.current = window.setInterval(tick, TICK_MS);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        const intervalId = window.setInterval(tick, TICK_MS);
+
+        return () => window.clearInterval(intervalId);
+    }, [tick, state]);
 
     return (
         <div className={classes["fuyo-clicker"]}>

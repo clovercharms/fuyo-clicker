@@ -12,9 +12,7 @@ export function Settings() {
 
     return (
         <>
-            <Button onClick={() => dialogRef.current?.showModal()}>
-                Settings
-            </Button>
+            <Button onClick={() => dialogRef.current?.showModal()}>⚙️</Button>
             <Dialog ref={dialogRef} className={classes.settings}>
                 <h1>Settings</h1>
                 <Quality />

@@ -9,7 +9,7 @@
         transform 0.1s,
         filter 0.5s;
     color: white;
-    -webkit-text-stroke: 0.0625rem black;
+    -webkit-text-stroke: 1.01px black;
     font-size: 1.5rem;
 
     &:hover {

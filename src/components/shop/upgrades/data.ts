@@ -352,7 +352,7 @@ export const upgrades: Upgrades = {
         4: {
             name: "Clover Soboxide",
             description:
-                "Common blend consisting of clover tears and sweat that helps the engine move faster.",
+                "Common blend consisting of clover tears and sweat that helps the engines move more efficiently.",
             price: 8.25e8,
             image: icons[UpgradeType.Mechanics][4],
             condition: (state: GameState) =>

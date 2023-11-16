@@ -21,6 +21,7 @@
         cursor: pointer;
         transition: 0.5s;
         pointer-events: all;
+        z-index: 10;
 
         &.preEnter,
         &.exiting {

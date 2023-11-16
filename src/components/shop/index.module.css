@@ -62,5 +62,6 @@
         margin-top: 7.5rem;
         padding: 0.25rem;
         overflow: hidden auto;
+        flex: 1;
     }
 }

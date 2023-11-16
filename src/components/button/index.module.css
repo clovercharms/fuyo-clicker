@@ -9,7 +9,7 @@
         transform 0.1s,
         filter 0.5s;
     color: white;
-    -webkit-text-stroke: 1.01px black;
+    -webkit-text-stroke: 1.2px black;
     font-size: 1.5rem;
 
     &:hover {
@@ -46,5 +46,11 @@
         & > .content {
             margin: 0.2rem 0.8rem 0.8rem 0.6rem;
         }
+    }
+}
+
+@-moz-document url-prefix() {
+    .button {
+        -webkit-text-stroke: 1.01px black;
     }
 }

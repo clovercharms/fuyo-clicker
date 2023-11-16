@@ -35,6 +35,7 @@ export default function Clicker(props: HTMLProps<HTMLDivElement>) {
                         backgroundAlpha: 0,
                         autoDensity: true,
                     }}
+                    className={classes.stage}
                 >
                     {quality <= Quality.Medium && <Backdrop size={size} />}
                     <Container x={size.width / 2} y={size.height / 2}>

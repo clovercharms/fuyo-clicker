@@ -8,4 +8,8 @@
         width: calc(100% - 2rem);
         padding: 1rem;
     }
+
+    & > .stage {
+        user-select: none;
+    }
 }

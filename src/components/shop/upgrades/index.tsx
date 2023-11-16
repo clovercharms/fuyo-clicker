@@ -11,12 +11,12 @@ import { useSettingsStore } from "@/stores/settings";
 import { Item } from "./item";
 import cx from "classix";
 
-export type ActiveUpgrade = {
+const UPGRADES_PER_ROW = 5;
+
+export interface ActiveUpgrade {
     id: number;
     type: UpgradeType;
-} | null;
-
-const UPGRADES_PER_ROW = 5;
+}
 
 /**
  * Upgrades panel that can be used to buy upgrades to further progress the game.
@@ -26,12 +26,16 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const coins = useGameStore(state => state.coins.amount);
     const play = useSettingsStore(settings => settings.audio.play);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [active, setActive] = useState<ActiveUpgrade>(null);
+    const [active, setActive] = useState<ActiveUpgrade | null>(null);
     const {
         anchor: [anchor, setAnchor],
         coords: [coords, setCoords],
     } = useTooltip();
     const activeUpgrades = upgrades.active();
+    const totalActiveUpgrades = Object.entries(activeUpgrades).reduce(
+        (total, [, upgrade]) => total + Object.keys(upgrade).length,
+        0
+    );
 
     const handleBuy = (type: UpgradeType, id: number) => {
         if (!upgrades.buy(type, id)) return;
@@ -52,7 +56,7 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                 <div
                     className={cx(
                         classes.items,
-                        Object.keys(activeUpgrades).length > UPGRADES_PER_ROW &&
+                        totalActiveUpgrades > UPGRADES_PER_ROW &&
                             classes.expandable
                     )}
                 >

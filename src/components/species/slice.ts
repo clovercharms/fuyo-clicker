@@ -26,8 +26,8 @@ export interface SpeciesSlice {
  * Default species state.
  */
 const defaultSpecies = () => ({
-    lastUpdate: performance.now(),
-    lastSpawn: performance.now(),
+    lastUpdate: Date.now(),
+    lastSpawn: Date.now(),
     spawn: false,
 });
 
@@ -44,10 +44,14 @@ export const createSpeciesSlice = (
             tick: () => {
                 set(
                     produce<GameState>(state => {
-                        const timeMs = performance.now();
+                        const timeMs = Date.now();
                         const elapsedMs = Math.max(
                             0,
-                            state.species.lastUpdate - state.species.lastSpawn
+                            state.species.lastUpdate -
+                                Math.max(
+                                    get().lastLoaded,
+                                    state.species.lastSpawn
+                                )
                         );
 
                         state.species.lastUpdate = timeMs;

@@ -3,6 +3,7 @@ import { GameState } from "@/stores/game";
 import { BoostType, boosts as data } from "./data";
 import { resetters } from "../../../stores/game/resetters";
 import { produce } from "immer";
+import { calcElapsed } from "@/utils/timer";
 
 export interface Boost {
     lastUpdate: number;
@@ -20,7 +21,7 @@ export interface BoostsSlice {
 const initialBoostsState = () => ({
     types: {
         [BoostType.FUYONADE]: {
-            lastUpdate: performance.now(),
+            lastUpdate: Date.now(),
             progress: 0,
             active: false,
         },
@@ -45,6 +46,7 @@ export const createBoostsSlice = (
                                 ([type, boost]) => [
                                     type,
                                     updateBoost(
+                                        get().lastLoaded,
                                         type as unknown as BoostType,
                                         boost
                                     ),
@@ -72,8 +74,8 @@ export const createBoostsSlice = (
     };
 };
 
-function updateBoost(type: BoostType, boost: Boost) {
-    const elapsed = Math.max(0, performance.now() - boost.lastUpdate);
+function updateBoost(lastLoaded: number, type: BoostType, boost: Boost) {
+    const elapsed = calcElapsed(lastLoaded, boost.lastUpdate);
 
     const progress =
         boost.progress +
@@ -84,7 +86,7 @@ function updateBoost(type: BoostType, boost: Boost) {
 
     return {
         ...boost,
-        lastUpdate: performance.now(),
+        lastUpdate: Date.now(),
         progress: progress <= 0 ? 0 : progress >= 1 ? 1 : progress,
         active: progress <= 0 ? false : boost.active,
     };

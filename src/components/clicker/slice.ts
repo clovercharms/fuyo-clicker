@@ -3,6 +3,7 @@ import { GameState } from "@/stores/game";
 import { resetters } from "../../stores/game/resetters";
 import { calcClickAmount, calcRateMs } from "./calc";
 import { produce } from "immer";
+import { calcElapsed } from "@/utils/timer";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.
@@ -33,7 +34,7 @@ export interface CoinsSlice {
 const initialCoinsState = () => ({
     amount: 0,
     manualAmount: 0,
-    lastUpdate: performance.now(),
+    lastUpdate: Date.now(),
     rateMs: 0,
     clickers: 0,
 });
@@ -49,11 +50,6 @@ export const createCoinsSlice = (
         coins: {
             ...initialCoinsState(),
             tick: () => {
-                const elapsed = Math.max(
-                    0,
-                    performance.now() - get().coins.lastUpdate
-                );
-
                 const rateMs = calcRateMs(
                     get().upgrades.unlocked,
                     get().lanes.types,
@@ -63,7 +59,12 @@ export const createCoinsSlice = (
 
                 set(
                     produce<GameState>(state => {
-                        state.coins.lastUpdate = performance.now();
+                        const elapsed = calcElapsed(
+                            get().lastLoaded,
+                            get().coins.lastUpdate
+                        );
+
+                        state.coins.lastUpdate = Date.now();
                         state.coins.rateMs = rateMs;
                         state.coins.amount += elapsed * rateMs;
                     }),

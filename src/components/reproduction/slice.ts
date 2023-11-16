@@ -10,6 +10,7 @@ import {
 import { LaneType, lanes } from "../lanes/lane/data";
 import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
+import { calcElapsed } from "@/utils/timer";
 
 /**
  * Slice containing information about the current production progress,
@@ -57,7 +58,7 @@ const initialReproState = () => ({
         },
         lastCloverId: -1,
     },
-    lastUpdate: performance.now(),
+    lastUpdate: Date.now(),
 });
 
 export const createReproSlice = (
@@ -71,9 +72,9 @@ export const createReproSlice = (
         repro: {
             ...initialReproState(),
             tick: () => {
-                const elapsed = Math.max(
-                    0,
-                    performance.now() - get().repro.lastUpdate
+                const elapsed = calcElapsed(
+                    get().lastLoaded,
+                    get().repro.lastUpdate
                 );
 
                 const cloverRateMs =
@@ -96,7 +97,7 @@ export const createReproSlice = (
                         const clovers = state.repro.clovers;
                         const heroes = state.repro.clovers.heroes;
 
-                        state.repro.lastUpdate = performance.now();
+                        state.repro.lastUpdate = Date.now();
                         clovers.rateMs = cloverRateMs;
                         clovers.amount += elapsed * cloverRateMs;
 

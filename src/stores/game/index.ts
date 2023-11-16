@@ -29,11 +29,12 @@ export enum State {
 }
 
 export interface GameSlice {
-    state: State;
     tick: () => void;
     reset: () => void;
+    state: State;
     setState: (state: State) => void;
     load: (state: GameState) => void;
+    lastLoaded: number;
 }
 
 /** Combination of all different slices from different aspects of the game. */
@@ -63,7 +64,6 @@ export const useGameStore = create<GameState>()(
                 ...createReproSlice(set, get),
                 ...createLanesSlice(set, get),
                 ...createSpeciesSlice(set, get),
-                state: State.RUNNING,
                 tick: () => {
                     createCoinsSlice(set, get).coins.tick();
                     createBoostsSlice(set, get).boosts.tick();
@@ -83,6 +83,7 @@ export const useGameStore = create<GameState>()(
                         false,
                         "Action - Reset"
                     ),
+                state: State.RUNNING,
                 setState: (state: State) =>
                     set(
                         produce<GameState>(game => {
@@ -93,16 +94,23 @@ export const useGameStore = create<GameState>()(
                     ),
                 load: (state: GameState) =>
                     set(
-                        mergePersisted<GameState>()(state, get()),
+                        {
+                            ...mergePersisted<GameState>()(state, get()),
+                            lastLoaded: Date.now(),
+                        },
                         true,
                         "Action - Load"
                     ),
+                lastLoaded: Date.now(),
             }),
             {
                 name: STORE_NAME,
                 version: 3,
                 storage: createJSONStorage(() => localStorage),
-                merge: mergePersisted<GameState>(),
+                merge: (persisted, current) => ({
+                    ...mergePersisted<GameState>()(persisted, current),
+                    lastLoaded: Date.now(),
+                }),
                 migrate: (persistedState, version) => {
                     switch (version) {
                         case 2:

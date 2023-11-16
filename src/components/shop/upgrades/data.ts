@@ -260,7 +260,7 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Dad Bod",
-            description: "This is what peak performance looks like",
+            description: "This is what peak performance looks like.",
             price: 6.875e6,
             image: icons[UpgradeType.Lumberjacks][4],
             condition: (state: GameState) =>
@@ -304,7 +304,7 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Mjolnir",
-            description: "Step aside Thor, I need it to make this suword",
+            description: "Step aside Thor, I need it to make this suword.",
             price: 7.5e7,
             image: icons[UpgradeType.Blacksmiths][4],
             condition: (state: GameState) =>
@@ -314,35 +314,45 @@ export const upgrades: Upgrades = {
     /* [CC] Factory */
     [UpgradeType.Mechanics]: {
         0: {
-            name: "Repair Shop - Upgrade 1",
+            name: "Magical Wrenches",
+            description:
+                "Tiny magical wrenches that can change shape help the clovers get into tight spots",
             price: 1.3e6,
             image: icons[UpgradeType.Mechanics][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 1,
         },
         1: {
-            name: "Repair Shop - Upgrade 2",
+            name: "Slick Grease",
+            description:
+                "A dab of magic slicky grease and voilà! Engines on overdrive—with a enjoyable twist!",
             price: 6.6e6,
             image: icons[UpgradeType.Mechanics][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 5,
         },
         2: {
-            name: "Repair Shop - Upgrade 3",
+            name: "Tummy Toolkit",
+            description:
+                "Special tools helping the clovers with the important parts!",
             price: 3.3e7,
             image: icons[UpgradeType.Mechanics][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 25,
         },
         3: {
-            name: "Repair Shop - Upgrade 4",
+            name: "Spark Plug Shock",
+            description:
+                "Special spark plugs that shock the engine (and the clovers) for an added boost.",
             price: 1.65e8,
             image: icons[UpgradeType.Mechanics][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Mechanics].buildings >= 50,
         },
         4: {
-            name: "Repair Shop - Upgrade 5",
+            name: "Clover Soboxide",
+            description:
+                "Common blend consisting of clover tears and sweat that helps the engine move faster.",
             price: 8.25e8,
             image: icons[UpgradeType.Mechanics][4],
             condition: (state: GameState) =>
@@ -353,7 +363,7 @@ export const upgrades: Upgrades = {
     [UpgradeType.FactoryWorkers]: {
         0: {
             name: "Eye-ron farm",
-            description: "Eye-ron for suwords",
+            description: "Eye-ron for suwords.",
             price: 1.43e7,
             image: icons[UpgradeType.FactoryWorkers][0],
             condition: (state: GameState) =>
@@ -369,7 +379,7 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Automatic gold farm",
-            description: "It would suck if it suddenly stopped working",
+            description: "It would suck if it suddenly stopped working...",
             price: 3.575e8,
             image: icons[UpgradeType.FactoryWorkers][2],
             condition: (state: GameState) =>
@@ -412,7 +422,7 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Brap tank",
-            description: "I wouldn't want to breathe it",
+            description: "I wouldn't want to breathe it.",
             price: 3.85e9,
             image: icons[UpgradeType.Divers][2],
             condition: (state: GameState) =>
@@ -420,7 +430,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Fuyo musk",
-            description: `Can be smelled from a 100 km radius. "Take a bath, stinky!"`,
+            description: `Can be smelled from a 100 km radius. "Take a bath, stinky!".`,
             price: 1.925e10,
             image: icons[UpgradeType.Divers][3],
             condition: (state: GameState) =>
@@ -428,7 +438,7 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Leprecopium",
-            description: "Ingest a maximum of 217 ml a day",
+            description: "Ingest a maximum of 217 ml a day.",
             price: 9.625e10,
             image: icons[UpgradeType.Divers][4],
             condition: (state: GameState) =>
@@ -455,7 +465,7 @@ export const upgrades: Upgrades = {
         },
         2: {
             name: "Lucky Charm tears solution",
-            description: "Easy to gather when Fuyoless",
+            description: "Easy to gather when Fuyoless.",
             price: 5.5e10,
             image: icons[UpgradeType.Scientists][2],
             condition: (state: GameState) =>
@@ -463,7 +473,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Fuyonade essence",
-            description: "Used to scent bus seats",
+            description: "Used to scent bus seats.",
             price: 2.75e11,
             image: icons[UpgradeType.Scientists][3],
             condition: (state: GameState) =>
@@ -471,7 +481,7 @@ export const upgrades: Upgrades = {
         },
         4: {
             name: "Reproduction catalyst",
-            description: "It makes the clovers go wild",
+            description: "It makes the clovers go wild.",
             price: 1.375e12,
             image: icons[UpgradeType.Scientists][4],
             condition: (state: GameState) =>
@@ -525,35 +535,45 @@ export const upgrades: Upgrades = {
     /* [CC] Alchemy Lab */
     [UpgradeType.Hazmats]: {
         0: {
-            name: "Hazmats - Upgrade 1",
+            name: "Radioactive Clovers",
+            description:
+                "Clovers harvest the power of the green glow to boost production! (And grow a few more long body parts.)",
             price: 5.61e11,
             image: icons[UpgradeType.Hazmats][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 1,
         },
         1: {
-            name: "Hazmats - Upgrade 2",
+            name: "Cloverfield Core Meltdown",
+            description:
+                "Harness the chaotic energy of a mischievous leprechaun to supercharge the coin production. Caution: May cause uncontrollable jitters.",
             price: 2.805e12,
             image: icons[UpgradeType.Hazmats][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 5,
         },
         2: {
-            name: "Hazmats - Upgrade 3",
+            name: "Leprechaunized Enrichment",
+            description:
+                "Infuse nuclear material with mischievous leprechaun sweat for an enriched boost.",
             price: 1.4025e13,
             image: icons[UpgradeType.Hazmats][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 25,
         },
         3: {
-            name: "Hazmats - Upgrade 4",
+            name: "Four Leaf Fission Accelerator",
+            description:
+                "Split the luck of the clovers into an atomic frenzy multiplying coins with chaotic energy.",
             price: 7.0125e13,
             image: icons[UpgradeType.Hazmats][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Hazmats].buildings >= 50,
         },
         4: {
-            name: "Radioactive leprechaun waste",
+            name: "Clover Quantum Collider",
+            description:
+                "Merge quantum mechanics with leprechaun juices creating an unstable yet huge surge in coins!",
             price: 3.50625e14,
             image: icons[UpgradeType.Hazmats][4],
             condition: (state: GameState) =>
@@ -564,7 +584,7 @@ export const upgrades: Upgrades = {
     [UpgradeType.Knights]: {
         0: {
             name: "Stem suword",
-            description: "Always up, heh",
+            description: "Always up, heh.",
             price: 8.25e12,
             image: icons[UpgradeType.Knights][0],
             condition: (state: GameState) =>
@@ -572,7 +592,7 @@ export const upgrades: Upgrades = {
         },
         1: {
             name: "El punhetero",
-            description: "Truly a BLASPHEMOUS name",
+            description: "Truly a BLASPHEMOUS name.",
             price: 4.125e13,
             image: icons[UpgradeType.Knights][1],
             condition: (state: GameState) =>
@@ -589,7 +609,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "3 inch destroyer",
-            description: "Take a look at my enormous suword",
+            description: "Take a look at my enormous suword.",
             price: 1.03125e15,
             image: icons[UpgradeType.Knights][3],
             condition: (state: GameState) =>
@@ -608,7 +628,7 @@ export const upgrades: Upgrades = {
     [UpgradeType.Cultists]: {
         0: {
             name: "Join the tummy cult as a new recruit",
-            description: "We have cute, cultured and breedable tummies",
+            description: "We have cute, cultured and breedable tummies.",
             price: 1.1e14,
             image: icons[UpgradeType.Cultists][0],
             condition: (state: GameState) =>
@@ -689,35 +709,45 @@ export const upgrades: Upgrades = {
     /* [CC] Prism */
     [UpgradeType.Astronauts]: {
         0: {
-            name: "Astronauts - Upgrade 1",
+            name: "Tentacular Rocket Thrusters",
+            description:
+                "Upgrade rocket propulsion systems with the versatility of tentacles!",
             price: 1.87e16,
             image: icons[UpgradeType.Astronauts][0],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 1,
         },
         1: {
-            name: "Astronauts - Upgrade 2",
+            name: "Coin Rover",
+            description:
+                "Small (cute) robot that helps searching for alien coins and wallets (and life sometimes!)",
             price: 9.35e16,
             image: icons[UpgradeType.Astronauts][1],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 5,
         },
         2: {
-            name: "Astronauts - Upgrade 3",
+            name: "Clover Lunar Lander",
+            description:
+                "Long lunar lander that helps clovers search deep for aliens (and their wallets!)",
             price: 4.675e17,
             image: icons[UpgradeType.Astronauts][2],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 25,
         },
         3: {
-            name: "Astronauts - Upgrade 4",
+            name: "Navigation Technology",
+            description:
+                "Learning the quirky abilities of the aliens, discover new ways to find wallets within multiple galaxies.",
             price: 2.3375e18,
             image: icons[UpgradeType.Astronauts][3],
             condition: (state: GameState) =>
                 state.lanes.types[LaneType.Astronauts].buildings >= 50,
         },
         4: {
-            name: "Astronauts - Upgrade 5",
+            name: "Lucky Charm Lunar Base",
+            description:
+                "Big research base of operations, helping further understanding into alien galaxy economies.",
             price: 1.16875e19,
             image: icons[UpgradeType.Astronauts][4],
             condition: (state: GameState) =>

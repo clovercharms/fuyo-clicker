@@ -14,7 +14,7 @@ export interface ItemProps {
     id: number;
     affordable: boolean;
     onBuy: (type: UpgradeType, id: number) => void;
-    setActive: (upgrade: ActiveUpgrade) => void;
+    setActive: (upgrade: ActiveUpgrade | null) => void;
     setCoords: (coords: Coords | null) => void;
 }
 

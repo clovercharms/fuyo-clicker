@@ -43,36 +43,43 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
     };
 
     return (
-        <div
-            {...props}
-            className={[props.className, classes.container].join(" ")}
-            ref={containerRef}
-        >
+        <>
             <div
-                className={classes.upgrades}
-                ref={setAnchor}
-                onMouseLeave={() => setActive(null)}
+                {...props}
+                className={[props.className, classes.container].join(" ")}
+                ref={containerRef}
             >
                 <div
-                    className={cx(
-                        classes.items,
-                        totalActiveUpgrades > UPGRADES_PER_ROW &&
-                            classes.expandable
-                    )}
+                    className={classes.upgrades}
+                    ref={setAnchor}
+                    onMouseLeave={() => setActive(null)}
                 >
-                    {Object.entries(activeUpgrades).map(([type, upgrades]) =>
-                        Object.entries(upgrades).map(([id, upgrade]) => (
-                            <Item
-                                key={Number(type) + Number(id)}
-                                type={type as unknown as UpgradeType}
-                                id={Number(id)}
-                                affordable={coins >= upgrade.price}
-                                onBuy={handleBuy}
-                                setActive={setActive}
-                                setCoords={setCoords}
-                            />
-                        ))
-                    )}
+                    <div
+                        className={cx(
+                            classes.items,
+                            totalActiveUpgrades > UPGRADES_PER_ROW &&
+                                classes.expandable
+                        )}
+                    >
+                        {Object.entries(activeUpgrades).map(
+                            ([type, upgrades]) =>
+                                Object.entries(upgrades).map(
+                                    ([id, upgrade]) => (
+                                        <Item
+                                            key={Number(type) + Number(id)}
+                                            type={
+                                                type as unknown as UpgradeType
+                                            }
+                                            id={Number(id)}
+                                            affordable={coins >= upgrade.price}
+                                            onBuy={handleBuy}
+                                            setActive={setActive}
+                                            setCoords={setCoords}
+                                        />
+                                    )
+                                )
+                        )}
+                    </div>
                 </div>
             </div>
             {active !== null && (
@@ -87,6 +94,6 @@ export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
                     <h3>{data[active.type][active.id]?.description}</h3>
                 </Tooltip>
             )}
-        </div>
+        </>
     );
 }

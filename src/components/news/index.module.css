@@ -16,7 +16,7 @@
 
         & .quote,
         & .author {
-            -webkit-text-stroke: 1px black;
+            -webkit-text-stroke: 1.01px black;
             font-size: 1.5rem;
             color: white;
             height: 2rem;

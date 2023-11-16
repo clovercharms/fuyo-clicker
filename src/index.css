@@ -37,7 +37,7 @@ h1,
 h2,
 h3 {
     color: #0c996f;
-    -webkit-text-stroke: 0.01rem white;
+    -webkit-text-stroke: 0.16px white;
     text-shadow: 0px 1px 1px #a6a6a6;
 }
 

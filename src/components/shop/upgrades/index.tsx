@@ -1,15 +1,17 @@
 import { useGameStore } from "@/stores/game";
-import classes from "./index.module.css";
 import { HTMLProps, useRef, useState } from "react";
-import { UpgradeType, upgrades as data } from "./data";
-import useTooltip from "../tooltip/useTooltip";
-import Tooltip from "../tooltip";
-import Price from "../../price";
-import { Currency } from "../data";
 import { Sound } from "@/utils/audio/sounds";
 import { useSettingsStore } from "@/stores/settings";
-import { Item } from "./item";
 import cx from "classix";
+
+import { useTooltip } from "../tooltip/useTooltip";
+import { Tooltip } from "../tooltip";
+import { Price } from "../../price";
+import { Currency } from "../data";
+
+import { Item } from "./item";
+import { UpgradeType, upgrades as data } from "./data";
+import classes from "./index.module.css";
 
 const UPGRADES_PER_ROW = 5;
 
@@ -21,7 +23,7 @@ export interface ActiveUpgrade {
 /**
  * Upgrades panel that can be used to buy upgrades to further progress the game.
  */
-export default function Upgrades(props: HTMLProps<HTMLDivElement>) {
+export function Upgrades(props: HTMLProps<HTMLDivElement>) {
     const upgrades = useGameStore(state => state.upgrades);
     const coins = useGameStore(state => state.coins.amount);
     const play = useSettingsStore(settings => settings.audio.play);

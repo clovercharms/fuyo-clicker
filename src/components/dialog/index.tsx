@@ -1,7 +1,9 @@
 import { HTMLProps, forwardRef, useImperativeHandle, useRef } from "react";
-import classes from "./index.module.css";
 import cx from "classix";
+
 import { Button } from "../button";
+
+import classes from "./index.module.css";
 
 export const Dialog = forwardRef<
     HTMLDialogElement,

@@ -3,12 +3,13 @@ import coin from "@/assets/images/fuyo-coin.png";
 import { useSpring } from "react-spring";
 import { useGameStore } from "@/stores/game";
 import { useRef, useState } from "react";
-import { HINT_DURATION, Hint, HintProps } from "./hint";
 import { FederatedPointerEvent } from "pixi.js";
 import { useApp } from "@pixi/react";
 import { Sound } from "@/utils/audio/sounds";
 import { elements } from "@/utils/audio";
 import { useSettingsStore } from "@/stores/settings";
+
+import { HINT_DURATION, Hint, HintProps } from "./hint";
 
 const COIN_SIZE = 300;
 
@@ -16,7 +17,7 @@ export interface CoinProps {
     audio: AudioContext;
 }
 
-export default function Coin() {
+export function Coin() {
     const play = useSettingsStore(settings => settings.audio.play);
     const click = useGameStore(state => state.coins.click);
     const [spring, set] = useSpring(() => ({

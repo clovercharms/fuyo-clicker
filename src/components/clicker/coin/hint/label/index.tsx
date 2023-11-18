@@ -2,10 +2,11 @@ import { Container } from "@pixi/react-animated";
 import { TextStyle } from "pixi.js";
 import { easings, useSpring } from "react-spring";
 import { Text } from "@pixi/react";
-import { HINT_DURATION, HintProps } from "..";
 import { formatNumber } from "@/utils/numbers";
 
-export default function Label({ x, y, amount }: HintProps) {
+import { HINT_DURATION, HintProps } from "..";
+
+export function Label({ x, y, amount }: HintProps) {
     const [spring] = useSpring(() => ({
         from: {
             y,

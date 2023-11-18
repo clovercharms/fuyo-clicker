@@ -1,14 +1,16 @@
-import classes from "./index.module.css";
-import { Currency } from "../shop/data";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
+
+import { Currency } from "../shop/data";
+
+import classes from "./index.module.css";
 
 export interface PriceProps {
     amount: number;
     currency: Currency;
 }
 
-export default function Price({ amount, currency }: PriceProps) {
+export function Price({ amount, currency }: PriceProps) {
     return (
         <span
             className={cx(

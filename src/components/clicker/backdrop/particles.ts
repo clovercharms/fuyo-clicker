@@ -1,9 +1,10 @@
 import { useElementSize } from "usehooks-ts";
-import { PARTICLE_SIZE } from ".";
 import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
+
+import { PARTICLE_SIZE } from ".";
 
 const RNG = xoroshiro128plus(42);
 

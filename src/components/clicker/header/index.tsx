@@ -1,4 +1,3 @@
-import classes from "./index.module.css";
 import { HTMLProps, useEffect } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import { useGameStore } from "@/stores/game";
@@ -7,9 +6,11 @@ import { formatNumber } from "@/utils/numbers";
 import { Button } from "@/components/button";
 import { useSettingsStore } from "@/stores/settings";
 
+import classes from "./index.module.css";
+
 const BASE_TITLE = "Fuyo Clicker";
 
-export default function Header(props: HTMLProps<HTMLHeadingElement>) {
+export function Header(props: HTMLProps<HTMLHeadingElement>) {
     const coins = useGameStore(state => state.coins);
     const debug = useSettingsStore(state => state.debug);
 

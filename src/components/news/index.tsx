@@ -1,9 +1,10 @@
 import cx from "classix";
-import classes from "./index.module.css";
 import { HTMLProps, useEffect, useState } from "react";
-import { newsreel } from "./data";
 import Marquee from "react-fast-marquee";
 import { useTransition } from "react-transition-state";
+
+import { newsreel } from "./data";
+import classes from "./index.module.css";
 import { Settings } from "./settings";
 
 const CHARS_PER_SECOND = 2.5;
@@ -13,7 +14,7 @@ const TRANSITION_DURATION_MS = 500;
 /**
  * Newsreel that displays news based on current or random events.
  */
-export default function News(props: HTMLProps<HTMLDivElement>) {
+export function News(props: HTMLProps<HTMLDivElement>) {
     const [newsIndex, setNewsIndex] = useState(
         Math.floor(Math.random() * newsreel.length)
     );

@@ -1,7 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import classes from "./index.module.css";
 import cx from "classix";
+
+import classes from "./index.module.css";
 
 export enum Variant {
     REGULAR,

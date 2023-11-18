@@ -1,6 +1,7 @@
 import { Button } from "@/components/button";
-import { Quality } from "../../slice";
 import { useSettingsStore } from "@/stores/settings";
+
+import { Quality } from "../../slice";
 
 export interface QualityButtonProps {
     quality: Quality;

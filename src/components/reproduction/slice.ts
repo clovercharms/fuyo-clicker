@@ -1,16 +1,18 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/stores/game";
+import { produce } from "immer";
+import { calcElapsed } from "@/utils/timer";
+
 import { CloverType, Job } from "../clover/data";
+import { LaneType, lanes } from "../lanes/lane/data";
+import { resetters } from "../../stores/game/resetters";
+
 import {
     CLOVER_RATE_BASE,
     HERO_CLOVER_RATE_MS,
     calculatePrice,
     upgrades,
 } from "./data";
-import { LaneType, lanes } from "../lanes/lane/data";
-import { resetters } from "../../stores/game/resetters";
-import { produce } from "immer";
-import { calcElapsed } from "@/utils/timer";
 
 /**
  * Slice containing information about the current production progress,

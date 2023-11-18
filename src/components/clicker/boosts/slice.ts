@@ -1,9 +1,11 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/stores/game";
-import { BoostType, boosts as data } from "./data";
-import { resetters } from "../../../stores/game/resetters";
 import { produce } from "immer";
 import { calcElapsed } from "@/utils/timer";
+
+import { resetters } from "../../../stores/game/resetters";
+
+import { BoostType, boosts as data } from "./data";
 
 export interface Boost {
     lastUpdate: number;

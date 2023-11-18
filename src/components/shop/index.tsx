@@ -1,15 +1,18 @@
 import { useGameStore } from "@/stores/game";
-import classes from "./index.module.css";
 import { HTMLProps, useRef, useState } from "react";
-import { Currency, calculatePrice, items } from "./data";
-import Upgrades from "./upgrades";
-import useTooltip from "./tooltip/useTooltip";
-import Item from "./item";
 import cx from "classix";
 import { Sound } from "@/utils/audio/sounds";
-import { ProductionTooltip } from "./tooltip/production-tooltip";
 import { useSettingsStore } from "@/stores/settings";
+
 import { countBuildings } from "../clicker/calc";
+
+import classes from "./index.module.css";
+import { Currency, calculatePrice, items } from "./data";
+import { Upgrades } from "./upgrades";
+import { useTooltip } from "./tooltip/useTooltip";
+import { Item } from "./item";
+import { ProductionTooltip } from "./tooltip/production-tooltip";
+
 
 const TOTAL_TIERS = 4;
 const TIER_TOTAL_BUILDINGS = 16 * 10;
@@ -17,7 +20,7 @@ const TIER_TOTAL_BUILDINGS = 16 * 10;
 /**
  * Shop for buying upgrades and advancements.
  */
-export default function Shop(props: HTMLProps<HTMLDivElement>) {
+export function Shop(props: HTMLProps<HTMLDivElement>) {
     const shop = useGameStore(state => state.shop);
     const coins = useGameStore(state => state.coins);
     const clovers = useGameStore(state => state.repro.clovers.amount);

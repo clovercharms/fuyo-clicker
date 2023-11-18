@@ -1,6 +1,8 @@
-import { AudioToggle } from "./audio-toggle";
-import classes from "../index.module.css";
 import { SoundType } from "@/utils/audio/sounds";
+
+import classes from "../index.module.css";
+
+import { AudioToggle } from "./audio-toggle";
 
 export function Audio() {
     return (

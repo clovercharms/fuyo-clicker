@@ -15,7 +15,7 @@ const LOOP_OFFSET = 14;
 /** Duration of a poke animation. */
 const POKE_DURATION_MS = 5e2;
 
-export default function Hands() {
+export function Hands() {
     const clickers = useGameStore(state => state.coins.clickers);
 
     const rotationSpring = useSpring(() => ({

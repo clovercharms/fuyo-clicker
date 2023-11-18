@@ -1,16 +1,17 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useGameStore } from "@/stores/game";
-import classes from "./index.module.css";
 import { HTMLProps } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
 import { Sound } from "@/utils/audio/sounds";
+import { useSoundEmitter } from "@/hooks/useSoundEmitter";
+import { useSettingsStore } from "@/stores/settings";
+
 import { Partners } from "./partners";
 import { Hero } from "./hero";
 import { Upgrade } from "./upgrade";
-import { useSoundEmitter } from "@/hooks/useSoundEmitter";
-import { useSettingsStore } from "@/stores/settings";
+import classes from "./index.module.css";
 
 export const SMOOCHES = [
     Sound.Smooch1,
@@ -24,7 +25,7 @@ export const SMOOCHES = [
 /**
  * Spawning area for Clovers, ready to be assigned.
  */
-export default function Reproduction(props: HTMLProps<HTMLDivElement>) {
+export function Reproduction(props: HTMLProps<HTMLDivElement>) {
     const amount = useGameStore(state => state.repro.clovers.amount);
     const rateMs = useGameStore(state => state.repro.clovers.rateMs);
     const click = useGameStore(state => state.repro.click);

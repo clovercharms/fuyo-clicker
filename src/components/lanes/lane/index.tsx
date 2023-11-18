@@ -1,11 +1,6 @@
-import classes from "./index.module.css";
 import { CSSProperties, HTMLProps, useRef } from "react";
-import Clover from "../../clover";
-import { Lane as ILane } from "../slice";
-import { LaneType, lanes as data } from "./data";
 import { useDndMonitor, useDroppable } from "@dnd-kit/core";
 import { useGameStore } from "@/stores/game";
-import HeroClover from "../../clover/hero";
 import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
@@ -16,6 +11,13 @@ import { CloverType } from "@/components/clover/data";
 import { useSoundEmitter } from "@/hooks/useSoundEmitter";
 import { useSettingsStore } from "@/stores/settings";
 import { useQuality } from "@/hooks/useQuality";
+
+import { HeroClover } from "../../clover/hero";
+import { Lane as ILane } from "../slice";
+import { Clover } from "../../clover";
+
+import { LaneType, lanes as data } from "./data";
+import classes from "./index.module.css";
 
 // Size constants
 const BUILDING_SIZE_PX = 64;
@@ -41,7 +43,7 @@ export interface LaneProps
  * A lane is a workable area to which Clovers can be assigned to and buildings
  * can be built, possibly by upgrades or deliberate action.
  */
-export default function Lane({ type, lane, size, ...props }: LaneProps) {
+export function Lane({ type, lane, size, ...props }: LaneProps) {
     const lanes = useGameStore(state => state.lanes);
     const rand = xoroshiro128plus(Number(type));
     const sizing = useDynamicSizes(size);

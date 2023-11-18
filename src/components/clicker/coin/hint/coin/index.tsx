@@ -1,9 +1,10 @@
 import { easings, useSpring } from "react-spring";
-import { HINT_DURATION, HintProps } from "..";
 import { Sprite } from "@pixi/react-animated";
 import coin from "@/assets/images/fuyo-coin.png";
 
-export default function Coin({ x, y }: HintProps) {
+import { HINT_DURATION, HintProps } from "..";
+
+export function Coin({ x, y }: HintProps) {
     const [spring] = useSpring(() => {
         const xOffset = -25 + Math.random() * 50;
         const rotation = -Math.PI + Math.random() * (Math.PI * 2);

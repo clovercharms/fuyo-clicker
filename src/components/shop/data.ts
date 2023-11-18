@@ -1,8 +1,10 @@
 import { Sound } from "@/utils/audio/sounds";
-import { LaneType } from "../lanes/lane/data";
-import { Item as ItemSlice } from "./slice";
 import cursor from "@/assets/images/cursor.png";
 import * as icons from "@/assets/images/shop/items/icons";
+
+import { LaneType } from "../lanes/lane/data";
+
+import { Item as ItemSlice } from "./slice";
 
 export enum Currency {
     COINS,

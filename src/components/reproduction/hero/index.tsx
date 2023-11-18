@@ -1,10 +1,11 @@
 import { useGameStore } from "@/stores/game";
-import HeroClover from "@/components/clover/hero";
+import { HeroClover } from "@/components/clover/hero";
 import { useDndMonitor, DragOverlay } from "@dnd-kit/core";
 import { useState } from "react";
-import classes from "./index.module.css";
 import { Button } from "@/components/button";
 import { useSettingsStore } from "@/stores/settings";
+
+import classes from "./index.module.css";
 
 export function Hero() {
     const spawn = useGameStore(state => state.repro.spawn);

@@ -1,5 +1,6 @@
-import { QualityOption } from "./quality-option";
 import { Quality as QualityEnum } from "../slice";
+
+import { QualityOption } from "./quality-option";
 
 export function Quality() {
     return (

@@ -1,7 +1,8 @@
 import { StoreApi } from "zustand";
-import { SOUNDS, Sound, SoundType } from "./sounds";
 import { SettingsState } from "@/stores/settings";
 import { produce } from "immer";
+
+import { SOUNDS, Sound, SoundType } from "./sounds";
 
 /**
  * The options for initializing a new `HTMLAudioElement`.

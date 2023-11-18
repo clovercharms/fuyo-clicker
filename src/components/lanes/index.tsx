@@ -1,15 +1,17 @@
-import classes from "./index.module.css";
 import { Fragment, HTMLProps } from "react";
-import Lane from "./lane";
 import { useGameStore } from "@/stores/game";
 import cx from "classix";
 import { useElementSize } from "usehooks-ts";
+
 import { Divider, Orientation } from "../divider";
+
+import { Lane } from "./lane";
+import classes from "./index.module.css";
 
 /**
  * Collection of Lanes for Clovers to be assigned to.
  */
-export default function Lanes(props: HTMLProps<HTMLDivElement>) {
+export function Lanes(props: HTMLProps<HTMLDivElement>) {
     const lanes = useGameStore(state => state.lanes.types);
     const [elementRef, size] = useElementSize();
 

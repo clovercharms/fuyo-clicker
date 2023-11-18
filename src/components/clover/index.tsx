@@ -1,11 +1,12 @@
-import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { CloverType, Job, Jobs, names } from "./data";
 import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
 import cx from "classix";
+
+import { CloverType, Job, Jobs, names } from "./data";
+import classes from "./index.module.css";
 
 export interface CloverProps
     extends Omit<HTMLProps<HTMLDivElement>, "id" | "type"> {
@@ -18,7 +19,7 @@ export interface CloverProps
  * Represents a single clover as part of a lane.
  * Clovers are assigned a job and may contain cosmetic layers.
  */
-export default function Clover({
+export function Clover({
     id,
     job,
     type = CloverType.Regular,

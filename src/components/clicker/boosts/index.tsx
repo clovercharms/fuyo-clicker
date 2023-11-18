@@ -1,11 +1,12 @@
 import cx from "classix";
 import { useGameStore } from "@/stores/game";
-import classes from "./index.module.css";
-import { BoostType } from "./data";
 import { useEffect, useRef } from "react";
 import { Sound } from "@/utils/audio/sounds";
 import { useSettingsStore } from "@/stores/settings";
 import { useSoundEmitter } from "@/hooks/useSoundEmitter";
+
+import { BoostType } from "./data";
+import classes from "./index.module.css";
 
 /**
  * Sound effects to play when activating the boost.
@@ -34,7 +35,7 @@ const ACTIVATED_SOUNDS = [
     Sound.Slurp3,
 ];
 
-export default function Fuyonade() {
+export function Fuyonade() {
     const fuyonade = useGameStore(
         state => state.boosts.types[BoostType.FUYONADE]
     );

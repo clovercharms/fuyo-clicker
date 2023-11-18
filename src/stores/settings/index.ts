@@ -1,12 +1,13 @@
 import { AudioSlice, createAudioSlice } from "@/utils/audio";
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
-import { mergePersisted } from "..";
 import {
     Quality,
     SettingsSlice,
     createSettingsSlice,
 } from "@/components/news/settings/slice";
+
+import { mergePersisted } from "..";
 
 export type SettingsState = SettingsSlice & AudioSlice;
 

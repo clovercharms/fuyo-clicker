@@ -1,7 +1,8 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/stores/game";
-import { resetters } from "../../stores/game/resetters";
 import { produce } from "immer";
+
+import { resetters } from "../../stores/game/resetters";
 
 /**
  * Slice of the state of species in the game.

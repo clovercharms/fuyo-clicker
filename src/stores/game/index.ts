@@ -1,7 +1,9 @@
 import { create } from "zustand";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { produce } from "immer";
+
 import { CoinsSlice, createCoinsSlice } from "../../components/clicker/slice";
 import { ShopSlice, createShopSlice } from "../../components/shop/slice";
-import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import {
     ReproSlice,
     createReproSlice,
@@ -15,13 +17,13 @@ import {
     BoostsSlice,
     createBoostsSlice,
 } from "../../components/clicker/boosts/slice";
-import { resetters } from "./resetters";
 import {
     SpeciesSlice,
     createSpeciesSlice,
 } from "../../components/species/slice";
 import { mergePersisted } from "..";
-import { produce } from "immer";
+
+import { resetters } from "./resetters";
 
 export enum State {
     RUNNING,
@@ -98,7 +100,7 @@ export const useGameStore = create<GameState>()(
                             ...mergePersisted<GameState>()(state, get()),
                             lastLoaded: Date.now(),
                         },
-                        true,
+                        false,
                         "Action - Load"
                     ),
                 lastLoaded: Date.now(),

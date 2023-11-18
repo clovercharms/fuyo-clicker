@@ -1,8 +1,10 @@
-import classes from "./index.module.css";
 import { HTMLProps } from "react";
-import { Item as ItemData } from "../data";
-import Price from "../../price";
 import { Button, Variant } from "@/components/button";
+
+import { Item as ItemData } from "../data";
+import { Price } from "../../price";
+
+import classes from "./index.module.css";
 
 export interface ItemProps extends HTMLProps<HTMLLIElement> {
     item: ItemData;
@@ -11,7 +13,7 @@ export interface ItemProps extends HTMLProps<HTMLLIElement> {
     purchased: number;
 }
 
-export default function Item({
+export function Item({
     item: {
         name,
         price: { currency },

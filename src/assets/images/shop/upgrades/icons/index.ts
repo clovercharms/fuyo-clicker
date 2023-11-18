@@ -1,4 +1,5 @@
 import { UpgradeType } from "@/components/shop/upgrades/data";
+
 import axes from "./axes";
 import barrels from "./barrels";
 import bibles from "./bibles";

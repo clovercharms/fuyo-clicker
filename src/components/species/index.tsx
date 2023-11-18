@@ -1,11 +1,12 @@
-import { useGameStore } from "@/stores/game";
 import { useEffect, useState } from "react";
-import classes from "./index.module.css";
 import { useTransition } from "react-transition-state";
 import cx from "classix";
+import { useGameStore } from "@/stores/game";
 import * as speciesImages from "@/assets/images/species";
 import { Sound } from "@/utils/audio/sounds";
 import { useSettingsStore } from "@/stores/settings";
+
+import classes from "./index.module.css";
 
 const SPECIES = [
     speciesImages.boobfa,

@@ -1,18 +1,20 @@
-import classes from "./index.module.css";
 import { HTMLProps, useMemo } from "react";
-import Hands from "./hands";
 import { Stage, Container } from "@pixi/react";
 import { BlurFilter } from "pixi.js";
-import Coin from "./coin";
-import Backdrop from "./backdrop";
-import Header from "./header";
-import Fuyonade from "./boosts";
 import cx from "classix";
 import { useElementSize } from "usehooks-ts";
 import { useSettingsStore } from "@/stores/settings";
+
 import { Quality } from "../news/settings/slice";
 
-export default function Clicker(props: HTMLProps<HTMLDivElement>) {
+import { Coin } from "./coin";
+import { Backdrop } from "./backdrop";
+import { Header } from "./header";
+import { Fuyonade } from "./boosts";
+import { Hands } from "./hands";
+import classes from "./index.module.css";
+
+export function Clicker(props: HTMLProps<HTMLDivElement>) {
     const [elementRef, size] = useElementSize();
     const quality = useSettingsStore(settings => settings.quality);
 

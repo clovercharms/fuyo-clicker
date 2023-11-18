@@ -1,4 +1,3 @@
-import classes from "./index.module.css";
 import {
     useRef,
     useMemo,
@@ -10,6 +9,8 @@ import {
 import { useFloating } from "@floating-ui/react-dom";
 import { Coords, autoUpdate, shift } from "@floating-ui/dom";
 
+import classes from "./index.module.css";
+
 export interface TooltipProps extends PropsWithChildren {
     anchor: HTMLElement;
     initialCoords?: Coords;
@@ -19,11 +20,7 @@ export interface TooltipProps extends PropsWithChildren {
  * Specialized tooltip component that anchors around a given anchor on the `x`
  * axis and follows the cursor's `y` position.
  */
-export default function Tooltip({
-    anchor,
-    initialCoords,
-    children,
-}: TooltipProps) {
+export function Tooltip({ anchor, initialCoords, children }: TooltipProps) {
     const mousePos = useRef({
         ...(initialCoords ?? { x: -1, y: -1 }),
     });

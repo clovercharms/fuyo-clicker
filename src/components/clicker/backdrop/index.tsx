@@ -5,8 +5,9 @@ import { useMemo, useRef, useState } from "react";
 import { Sprite as ISprite } from "pixi.js";
 import { easings } from "react-spring";
 import { useGameStore } from "@/stores/game";
-import { ParticleType, Particles } from "./particles";
 import { useElementSize } from "usehooks-ts";
+
+import { ParticleType, Particles } from "./particles";
 
 export const PARTICLE_SIZE = 100;
 
@@ -21,7 +22,7 @@ export interface BackdropProps {
     size: ReturnType<typeof useElementSize>[1];
 }
 
-export default function Backdrop({ size }: BackdropProps) {
+export function Backdrop({ size }: BackdropProps) {
     const rateMs = useGameStore(state => state.coins.rateMs);
     const sprites = useRef<ISprite[]>([]);
     const [, setRenderCount] = useState(0);

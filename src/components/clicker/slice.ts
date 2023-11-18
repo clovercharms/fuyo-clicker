@@ -1,9 +1,11 @@
 import { StoreApi } from "zustand";
 import { GameState } from "@/stores/game";
-import { resetters } from "../../stores/game/resetters";
-import { calcClickAmount, calcRateMs } from "./calc";
 import { produce } from "immer";
 import { calcElapsed } from "@/utils/timer";
+
+import { resetters } from "../../stores/game/resetters";
+
+import { calcClickAmount, calcRateMs } from "./calc";
 
 /**
  * Slice about coins, such as the total amount and actual production numbers.

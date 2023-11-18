@@ -1,12 +1,14 @@
 import { Button, Variant } from "@/components/button";
-import Price from "@/components/price";
+import { Price } from "@/components/price";
 import { Currency } from "@/components/shop/data";
 import { Sound } from "@/utils/audio/sounds";
 import { useGameStore } from "@/stores/game";
-import { calculatePrice } from "../data";
-import classes from "./index.module.css";
-import { SMOOCHES } from "..";
 import { useSettingsStore } from "@/stores/settings";
+
+import { calculatePrice } from "../data";
+import { SMOOCHES } from "..";
+
+import classes from "./index.module.css";
 
 export function Upgrade() {
     const play = useSettingsStore(settings => settings.audio.play);

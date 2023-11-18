@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
     countUnlockedUpgrades,
     calcBoostFactor,
@@ -7,13 +8,14 @@ import {
     CLICKER_RATE_MS,
 } from "@/components/clicker/calc";
 import { formatNumber } from "@/utils/numbers";
-import { Currency, items } from "../../data";
 import { lanes as lanesData } from "@/components/lanes/lane/data";
-import Tooltip, { TooltipProps } from "..";
 import { useGameStore } from "@/stores/game";
-import { memo } from "react";
+import { Price } from "@/components/price";
+
+import { Currency, items } from "../../data";
+import { Tooltip, TooltipProps } from "..";
+
 import classes from "./index.module.css";
-import Price from "@/components/price";
 
 export interface ProductionProps extends TooltipProps {
     itemId: number;

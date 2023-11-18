@@ -1,5 +1,3 @@
-import { UpgradeType, upgrades } from "../data";
-import { ActiveUpgrade } from "..";
 import { Coords } from "@floating-ui/dom";
 import cx from "classix";
 import itemFrames from "@/assets/images/shop/upgrades/item-frames";
@@ -7,6 +5,10 @@ import {
     xoroshiro128plus,
     unsafeUniformIntDistribution as dist,
 } from "pure-rand";
+
+import { ActiveUpgrade } from "..";
+import { UpgradeType, upgrades } from "../data";
+
 import classes from "./index.module.css";
 
 export interface ItemProps {

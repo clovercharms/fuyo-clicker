@@ -18,7 +18,7 @@ export function Settings() {
                 <h1>Settings</h1>
                 <Quality />
                 <Audio />
-                <Saves />
+                <Saves dialogRef={dialogRef} />
                 <Debug />
             </Dialog>
         </>

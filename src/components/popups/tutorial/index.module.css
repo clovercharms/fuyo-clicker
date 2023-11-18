@@ -1,0 +1,9 @@
+.tutorial {
+    &.floating {
+        margin: 0;
+    }
+
+    & > .controls {
+        display: flex;
+    }
+}

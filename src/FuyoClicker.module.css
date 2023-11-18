@@ -15,7 +15,7 @@
     background-attachment: fixed;
     animation: 120s slide infinite linear;
 
-    & > * {
+    & > *:not(.popups) {
         overflow: hidden;
         width: 25rem;
         display: flex;

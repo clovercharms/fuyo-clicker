@@ -1,0 +1,13 @@
+.ending {
+    margin-top: auto;
+    width: 30%;
+
+    & > h1 {
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    & > a > img {
+        width: 100%;
+    }
+}

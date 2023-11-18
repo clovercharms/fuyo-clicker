@@ -75,13 +75,16 @@ export const useGameStore = create<GameState>()(
                 },
                 reset: () =>
                     set(
-                        resetters.reduce(
-                            (prev, curr) => ({
-                                ...prev,
-                                ...curr(),
-                            }),
-                            {}
-                        ),
+                        {
+                            ...resetters.reduce(
+                                (prev, curr) => ({
+                                    ...prev,
+                                    ...curr(),
+                                }),
+                                {}
+                            ),
+                            lastLoaded: Date.now(),
+                        },
                         false,
                         "Action - Reset"
                     ),

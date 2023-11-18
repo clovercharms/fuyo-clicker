@@ -97,7 +97,16 @@ export const useGameStore = create<GameState>()(
                 load: (state: GameState) =>
                     set(
                         {
-                            ...mergePersisted<GameState>()(state, get()),
+                            ...mergePersisted<GameState>()(
+                                state,
+                                resetters.reduce(
+                                    (prev, curr) => ({
+                                        ...prev,
+                                        ...curr(),
+                                    }),
+                                    {} as GameState
+                                )
+                            ),
                             lastLoaded: Date.now(),
                         },
                         false,

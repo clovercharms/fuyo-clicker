@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useGameStore } from "@/stores/game";
-import { HTMLProps } from "react";
+import { HTMLProps, forwardRef } from "react";
 import { useCounter } from "@/hooks/useCounter";
 import cx from "classix";
 import { formatNumber } from "@/utils/numbers";
@@ -25,7 +25,10 @@ export const SMOOCHES = [
 /**
  * Spawning area for Clovers, ready to be assigned.
  */
-export function Reproduction(props: HTMLProps<HTMLDivElement>) {
+export const Reproduction = forwardRef<
+    HTMLDivElement,
+    HTMLProps<HTMLDivElement>
+>(function Reproduction(props, ref) {
     const amount = useGameStore(state => state.repro.clovers.amount);
     const rateMs = useGameStore(state => state.repro.clovers.rateMs);
     const click = useGameStore(state => state.repro.click);
@@ -49,7 +52,11 @@ export function Reproduction(props: HTMLProps<HTMLDivElement>) {
     };
 
     return (
-        <div {...props} className={cx(classes.reproduction, props.className)}>
+        <div
+            {...props}
+            ref={ref}
+            className={cx(classes.reproduction, props.className)}
+        >
             <Partners />
             <header>
                 <h1>Reproduction</h1>
@@ -66,4 +73,4 @@ export function Reproduction(props: HTMLProps<HTMLDivElement>) {
             <Upgrade />
         </div>
     );
-}
+});

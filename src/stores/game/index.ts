@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { produce } from "immer";
+import { PopupsSlice, createPopupsSlice } from "@/components/popups/slice";
 
 import { CoinsSlice, createCoinsSlice } from "../../components/clicker/slice";
 import { ShopSlice, createShopSlice } from "../../components/shop/slice";
@@ -47,7 +48,8 @@ export type GameState = GameSlice &
     ShopSlice &
     ReproSlice &
     LanesSlice &
-    SpeciesSlice;
+    SpeciesSlice &
+    PopupsSlice;
 
 export const STORE_NAME = "game-store";
 
@@ -66,12 +68,14 @@ export const useGameStore = create<GameState>()(
                 ...createReproSlice(set, get),
                 ...createLanesSlice(set, get),
                 ...createSpeciesSlice(set, get),
+                ...createPopupsSlice(set, get),
                 tick: () => {
                     createCoinsSlice(set, get).coins.tick();
                     createBoostsSlice(set, get).boosts.tick();
                     createReproSlice(set, get).repro.tick();
                     createSpeciesSlice(set, get).species.tick();
                     createShopSlice(set, get).shop.tick();
+                    createPopupsSlice(set, get).popups.tick();
                 },
                 reset: () =>
                     set(

@@ -266,7 +266,6 @@ export const names = [
     "Nihilist",
     "Norberto Martin",
     "NotoriousBSG82",
-    "Nutella24",
     "OGcthulhu",
     "Oleksandr Tarasov",
     "PW",

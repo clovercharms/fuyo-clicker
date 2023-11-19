@@ -26,6 +26,9 @@ export enum Sound {
     Alien2,
     Alien3,
     Astronaut1,
+    Astronaut2,
+    Astronaut3,
+    Astronaut4,
     AutoClicker1,
     Blacksmith1,
     Cultist1,
@@ -170,7 +173,22 @@ export const SOUNDS: Record<Sound, SoundConfig> = {
     [Sound.Astronaut1]: {
         src: lanes.astronaut1,
         type: SoundType.SFX,
-        options: { volume: 0.2 },
+        options: { volume: 0.3 },
+    },
+    [Sound.Astronaut2]: {
+        src: lanes.astronaut2,
+        type: SoundType.SFX,
+        options: { volume: 0.5 },
+    },
+    [Sound.Astronaut3]: {
+        src: lanes.astronaut3,
+        type: SoundType.SFX,
+        options: { volume: 0.5 },
+    },
+    [Sound.Astronaut4]: {
+        src: lanes.astronaut4,
+        type: SoundType.SFX,
+        options: { volume: 0.5 },
     },
     [Sound.AutoClicker1]: {
         src: lanes.autoClicker1,

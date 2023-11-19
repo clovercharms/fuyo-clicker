@@ -2,6 +2,9 @@ import alien1 from "./alien1.mp3";
 import alien2 from "./alien2.mp3";
 import alien3 from "./alien3.mp3";
 import astronaut1 from "./astronaut1.mp3";
+import astronaut2 from "./astronaut2.mp3";
+import astronaut3 from "./astronaut3.mp3";
+import astronaut4 from "./astronaut4.mp3";
 import autoClicker1 from "./auto-clicker1.mp3";
 import blacksmith1 from "./blacksmith1.mp3";
 import cultist1 from "./cultist1.mp3";
@@ -25,6 +28,9 @@ export {
     alien2,
     alien3,
     astronaut1,
+    astronaut2,
+    astronaut3,
+    astronaut4,
     autoClicker1,
     blacksmith1,
     cultist1,

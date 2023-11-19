@@ -207,7 +207,12 @@ export const lanes: Record<LaneType, LaneData> = {
             regular: [],
             heroes: [],
         },
-        sounds: [Sound.Astronaut1],
+        sounds: [
+            Sound.Astronaut1,
+            Sound.Astronaut2,
+            Sound.Astronaut3,
+            Sound.Astronaut4,
+        ],
     },
     /* [CC] Chancemaker */
     [LaneType.Aliens]: {

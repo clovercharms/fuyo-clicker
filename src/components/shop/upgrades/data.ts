@@ -87,7 +87,7 @@ export const upgrades: Upgrades = {
         },
         3: {
             name: "Thousand fingers",
-            description: `The mouse and cursors gain +0.1 cookies for each non-cursor object owned. "clickity"`,
+            description: `The mouse and cursors gain +1 coins for each non-cursor object owned. "clickity"`,
             price: 1e5,
             image: icons[UpgradeType.Clicker][3],
             condition: (state: GameState) => state.coins.clickers >= 25,

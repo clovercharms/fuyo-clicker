@@ -9,7 +9,7 @@ import { Boost } from "./boosts/slice";
 /** Rate of production per auto clicker in milliseconds */
 export const CLICKER_RATE_MS = 0.0001;
 export const DOUBLING_CLICKER_UPGRADES = 3;
-export const COOKIES_RATE_PER_NON_CURSOR_BUILDING = 1 / 1e4;
+export const COOKIES_RATE_PER_NON_CURSOR_BUILDING = 1 / 1e3;
 
 export function countUnlockedUpgrades(
     unlockedUpgrades: Record<UpgradeType, Record<number, boolean>>
@@ -56,6 +56,7 @@ export function calcLanesRate(
 }
 
 export function calcThousandFingerRate(
+    clickers: number,
     upgrades: Record<UpgradeType, Record<number, boolean>>,
     totalBuildings: number
 ) {
@@ -66,7 +67,8 @@ export function calcThousandFingerRate(
 
     let thousandRateMs = 0;
 
-    thousandRateMs = totalBuildings * COOKIES_RATE_PER_NON_CURSOR_BUILDING;
+    thousandRateMs =
+        clickers * totalBuildings * COOKIES_RATE_PER_NON_CURSOR_BUILDING;
 
     // Multipliers
     switch (thousandUpgrades) {
@@ -97,7 +99,11 @@ export function calcClickerRate(
 
     let rateMs = clickers * CLICKER_RATE_MS * 2 ** doublingUpgrades;
 
-    rateMs += calcThousandFingerRate(unlockedUpgrades, totalBuildings);
+    rateMs += calcThousandFingerRate(
+        clickers,
+        unlockedUpgrades,
+        totalBuildings
+    );
 
     return rateMs;
 }
@@ -129,7 +135,7 @@ export function calcClickAmount(
     let amount = 1 * 2 ** doublingUpgrades;
 
     // Thousand fingers
-    const thousandRateMs = calcThousandFingerRate(upgrades, totalBuildings);
+    const thousandRateMs = calcThousandFingerRate(1, upgrades, totalBuildings);
     amount += thousandRateMs * 1e3;
 
     // Cursors

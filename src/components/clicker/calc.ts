@@ -9,7 +9,7 @@ import { Boost } from "./boosts/slice";
 /** Rate of production per auto clicker in milliseconds */
 export const CLICKER_RATE_MS = 0.0001;
 export const DOUBLING_CLICKER_UPGRADES = 3;
-export const COOKIES_RATE_PER_NON_CURSOR_BUILDING = 1 / 1e3;
+export const COINS_RATE_PER_NON_CURSOR_BUILDING = 1 / 1e3;
 
 export function countUnlockedUpgrades(
     unlockedUpgrades: Record<UpgradeType, Record<number, boolean>>
@@ -68,7 +68,7 @@ export function calcThousandFingerRate(
     let thousandRateMs = 0;
 
     thousandRateMs =
-        clickers * totalBuildings * COOKIES_RATE_PER_NON_CURSOR_BUILDING;
+        clickers * totalBuildings * COINS_RATE_PER_NON_CURSOR_BUILDING;
 
     // Multipliers
     switch (thousandUpgrades) {

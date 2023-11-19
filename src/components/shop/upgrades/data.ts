@@ -326,7 +326,7 @@ export const upgrades: Upgrades = {
         1: {
             name: "Slick Grease",
             description:
-                "A dab of magic slicky grease and voilà! Engines on overdrive—with a enjoyable twist!",
+                "A dab of magic slicky grease and voila! Engines on overdrive—with a enjoyable twist!",
             price: 6.6e6,
             image: icons[UpgradeType.Mechanics][1],
             condition: (state: GameState) =>

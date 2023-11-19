@@ -5,7 +5,7 @@ import { produce } from "immer";
 import { resetters } from "../../stores/game/resetters";
 import { LaneType } from "../lanes/lane/data";
 
-import { Step } from "./tutorial";
+import { Step } from "./tutorial/steps";
 
 /**
  * Slice of the state of popups in the game.

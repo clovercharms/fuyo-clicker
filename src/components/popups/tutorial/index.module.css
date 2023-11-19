@@ -1,9 +1,86 @@
+@keyframes background-scroll {
+    0% {
+        background-position-y: 0rem;
+    }
+    100% {
+        background-position-y: 1.75rem;
+    }
+}
+
 .tutorial {
+    width: 35rem;
+
+    & h1 {
+        margin-bottom: 0.5rem;
+    }
+
     &.floating {
         margin: 0;
     }
 
+    & .border {
+        border-image: url("/src/assets/images/shop/upgrades/upgrades-frame.png")
+            30 24 stretch;
+        border-image-width: 0.8rem;
+        padding: 0.6rem 0.7rem 0.5rem 0.7rem;
+    }
+
+    & .container {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    & .lime-text {
+        color: lime;
+    }
+
+    & .violet-text {
+        color: violet;
+    }
+
+    & .crimson-text {
+        color: crimson;
+        -webkit-text-stroke-color: white;
+    }
+
+    & .yellow-text {
+        color: yellow;
+    }
+
+    & .gold-text {
+        background-image: linear-gradient(
+            0deg,
+            yellow 25%,
+            white 50%,
+            yellow 75%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: 2s background-scroll linear infinite forwards;
+    }
+
+    & .rainbow-text {
+        background-image: linear-gradient(
+            0deg,
+            #ff32d1,
+            #ff202d,
+            #ff7600,
+            #d5f300,
+            #00ff00,
+            #00b7f6,
+            #ff32d1
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: 5s background-scroll linear infinite forwards;
+    }
+
     & > .controls {
         display: flex;
+        justify-content: space-between;
     }
 }

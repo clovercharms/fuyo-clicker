@@ -1,0 +1,18 @@
+@keyframes background-scroll {
+    0% {
+        background-position-y: 0rem;
+    }
+    100% {
+        background-position-y: 1.75rem;
+    }
+}
+
+.clicker {
+    & .coin {
+        height: 384px;
+    }
+
+    & .spill {
+        height: 80px;
+    }
+}

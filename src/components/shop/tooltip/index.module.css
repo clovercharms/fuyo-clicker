@@ -31,7 +31,7 @@
         & h1,
         & h2,
         & h3 {
-            -webkit-text-stroke: 1.3px black;
+            -webkit-text-stroke: 1.5px black;
         }
 
         & h2 {

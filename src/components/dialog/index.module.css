@@ -20,15 +20,46 @@
 
     & h1,
     & h2,
-    & h3 {
+    & h3,
+    & p {
         color: white;
         font-weight: 400;
         -webkit-text-stroke: 1.5px black;
-        margin-bottom: 0.5rem;
+    }
+
+    & h2 {
+        -webkit-text-stroke: 1.3px black;
+    }
+
+    & h3,
+    & p {
+        -webkit-text-stroke: 1.2px black;
+    }
+
+    & p {
+        font-size: 1.5rem;
     }
 
     & hr {
         margin: 1rem -0.8rem;
         border-color: black;
+    }
+}
+
+@-moz-document url-prefix() {
+    .dialog {
+        & h1,
+        & h2,
+        & h3 {
+            -webkit-text-stroke: 1.5px black;
+        }
+
+        & h2 {
+            -webkit-text-stroke: 1.1px black;
+        }
+
+        & h3 {
+            -webkit-text-stroke: 1.01px black;
+        }
     }
 }

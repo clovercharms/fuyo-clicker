@@ -1,7 +1,8 @@
 import { Dialog } from "@/components/dialog";
 import { useGameStore } from "@/stores/game";
 import { useState } from "react";
-import image from "@/assets/images/ending.png";
+import normal from "@/assets/images/ending/normal.png";
+import full from "@/assets/images/ending/full.png";
 
 import classes from "./index.module.css";
 
@@ -18,8 +19,8 @@ export function Ending() {
             onCancel={() => setOpen(false)}
         >
             <h1>Happy Anniversary Fuyo!</h1>
-            <a href={image} target="_blank" rel="noreferrer">
-                <img src={image} />
+            <a href={full} target="_blank" rel="noreferrer">
+                <img src={normal} />
             </a>
         </Dialog>
     );

@@ -1,0 +1,22 @@
+@keyframes swing {
+    0% {
+        transform: rotate(60deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(60deg);
+    }
+}
+
+.shop {
+    & .image {
+        width: 192px;
+    }
+    & .pickaxe {
+        width: 92px;
+        animation: 1s swing linear infinite;
+        margin-right: 0.5rem;
+    }
+}

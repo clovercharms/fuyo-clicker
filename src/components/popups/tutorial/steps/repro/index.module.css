@@ -1,0 +1,26 @@
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.repro {
+    & .image {
+        width: 176px;
+    }
+
+    & .kiss-clover {
+        display: inline-block;
+        height: 3rem;
+        margin: -1rem 0;
+    }
+
+    & .hero {
+        height: 128px;
+        animation: 1s spin infinite ease-in-out;
+        margin-right: 0.5rem;
+    }
+}

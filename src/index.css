@@ -54,6 +54,10 @@ h3 {
     font-weight: 400;
 }
 
+p {
+    margin: 0.5rem 0;
+}
+
 @-moz-document url-prefix() {
     h1,
     h2,

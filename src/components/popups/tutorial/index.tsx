@@ -59,7 +59,7 @@ export function Tutorial({ refs }: TutorialProps) {
         >
             {StepContent && <StepContent />}
             <div className={classes.controls}>
-                {tutorial.step !== Step.START && (
+                {tutorial.step !== Step.START ? (
                     <Button
                         onClick={() =>
                             tutorial.setStep(
@@ -69,6 +69,8 @@ export function Tutorial({ refs }: TutorialProps) {
                     >
                         ◀ Prev
                     </Button>
+                ) : (
+                    <div></div>
                 )}
                 <Button onClick={() => tutorial.setStep(tutorial.step + 1)}>
                     {tutorial.step !== Step.SHOP ? "Next ▶" : "Finish ▶ 🏁"}

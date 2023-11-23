@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { HTMLProps, useEffect, useState } from "react";
 import { useTransition } from "react-transition-state";
 import cx from "classix";
 import { useGameStore } from "@/stores/game";
@@ -36,7 +36,7 @@ interface Position {
     y: number;
 }
 
-export function Species() {
+export function Species(props: HTMLProps<HTMLDivElement>) {
     const species = useGameStore(state => state.species);
     const [speciesIndex, setSpeciesIndex] = useState<number | null>(null);
     const [position, setPosition] = useState<Position | null>(null);
@@ -75,7 +75,7 @@ export function Species() {
     };
 
     return (
-        <div className={classes.species}>
+        <div {...props} className={cx(classes.species, props.className)}>
             <button
                 className={cx(
                     classes.specimen,

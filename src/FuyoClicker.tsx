@@ -51,7 +51,7 @@ export function FuyoClicker() {
                     <Shop ref={refs.shop} />
                 </div>
             </DndContext>
-            <Species />
+            <Species className={classes.species} />
             <Popups className={classes.popups} refs={refs} />
         </div>
     );
